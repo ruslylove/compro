@@ -38,13 +38,6 @@ jobs:
       - name: Build
         run: nr build --base /lectures/${{env.talk_title}}/ slides/${{env.talk_title}}/${{env.talk_title}}.md --per-slide
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: slides/${{env.talk_title}}/dist
-
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.6.4
         with:
