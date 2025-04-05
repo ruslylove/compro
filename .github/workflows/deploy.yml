@@ -47,7 +47,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}/lectures/${{env.talk_title}}
     needs: build
     runs-on: ubuntu-latest
     name: Deploy
