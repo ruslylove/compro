@@ -35,7 +35,7 @@ jobs:
         run: echo "talk_title=$(basename $(git show ${{ github.sha }} --name-only -- "slides/" | grep "slides/" | tail -n 1) .md)" >> "$GITHUB_ENV"
 
       - name: Build
-        run: nr build --base /lectures/${{env.talk_title}}/ slides/${{env.talk_title}}/${{env.talk_title}}.md --per-slide
+        run: nr build --base /lectures/${{env.talk_title}} slides/${{env.talk_title}}/${{env.talk_title}}.md --per-slide
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -47,11 +47,17 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}lectures/lect-9/
+      url: ${{ steps.deployment.outputs.page_url }}
     needs: build
     runs-on: ubuntu-latest
     name: Deploy
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.6.4
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: slides/${{env.talk_title}}/dist # The folder the action should deploy.
+          target-folder: ${{ env.talk_title }}
+          clean: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
