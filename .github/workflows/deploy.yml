@@ -6,7 +6,7 @@ on:
     branches: [main]
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -15,7 +15,6 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  
   build:
     runs-on: ubuntu-latest
 
@@ -32,18 +31,24 @@ jobs:
       - name: Install dependencies
         run: nci
 
-      - name: Get talk_title
-        run: echo "talk_title=$(basename $(git show ${{ github.sha }} --name-only -- "slides/" | grep "slides/" | tail -n 1) .md)" >> "$GITHUB_ENV"
-
       - name: Build
-        run: nr build --base /lectures/${{env.talk_title}}/ slides/${{env.talk_title}}/${{env.talk_title}}.md --per-slide
+        run: nr build *.md --base /${{github.event.repository.name}}/
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.6.4
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - uses: actions/upload-pages-artifact@v3
         with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: slides/${{env.talk_title}}/dist # The folder the action should deploy.
-          target-folder: ${{env.talk_title}}
-          clean: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          path: dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
