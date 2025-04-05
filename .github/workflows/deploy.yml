@@ -52,12 +52,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy
     steps:
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.6.4
-        with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: slides/${{env.talk_title}}/dist # The folder the action should deploy.
-          target-folder: ${{ env.talk_title }}
-          clean: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
