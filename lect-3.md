@@ -3,6 +3,7 @@ theme: seriph
 background: https://cover.sli.dev
 transition: slide-left
 layout: cover
+title: Lecture 3 - Sequential and Conditional Program Flow
 ---
 
 # Computer Programming

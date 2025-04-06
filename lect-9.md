@@ -3,6 +3,7 @@ theme: seriph
 background: https://cover.sli.dev
 transition: slide-left
 layout: cover
+title: Lecture 9 - File Operations
 ---
 
 # Computer Programming

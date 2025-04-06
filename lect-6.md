@@ -3,6 +3,7 @@ theme: seriph
 background: https://cover.sli.dev
 transition: slide-left
 layout: cover
+title: Lecture 6 - Arrays and Strings
 ---
 
 # Computer Programming

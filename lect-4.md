@@ -3,6 +3,7 @@ theme: seriph
 background: https://cover.sli.dev
 transition: slide-left
 layout: cover
+title: Lecture 4 - Loop Control Structures
 ---
 
 # Computer Programming

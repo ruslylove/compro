@@ -3,6 +3,7 @@ theme: seriph
 background: https://cover.sli.dev
 transition: slide-left
 layout: cover
+title: Lecture 7 - struct, union, and enum
 ---
 
 # Computer Programming
