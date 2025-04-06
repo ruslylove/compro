@@ -32,7 +32,7 @@ jobs:
         run: nci
 
       - name: Build
-        run: nr build --base /${{github.event.repository.name}}/l1 lect-1.md --base /${{github.event.repository.name}}/l2 lect-2.md
+        run: nr build --base /${{github.event.repository.name}}/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -44,7 +44,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}/lect-1/
     needs: build
     runs-on: ubuntu-latest
     name: Deploy
