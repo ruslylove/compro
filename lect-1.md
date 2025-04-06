@@ -328,6 +328,7 @@ int main() { // The program starts executing here
 * **Keywords:** `include`, `int`, `return` are reserved words in C with special meanings.
 * **Comments:** Text between `/*` and `*/` (or after `//` on a line) is ignored by the compiler and used for explanations.
 
+
 ---
 
 ## Your First C Program Example (Part 2)

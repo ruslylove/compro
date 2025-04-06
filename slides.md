@@ -46,8 +46,12 @@ Presentation slides for developers
 The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
 -->
 ---
+hideInToc: true
 ---
-<Toc maxDepth='1'/>
+
+# Contents
+
+<Toc maxDepth='1' columns='2'/>
 ---
 src: ./lect-1.md
 ---
@@ -80,4 +84,7 @@ src: ./lect-10.md
 ---
 ---
 src: ./lect-11.md
+---
+---
+src: labs/lab.md
 ---
