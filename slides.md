@@ -75,4 +75,9 @@ src: ./lect-8.md
 ---
 src: ./lect-9.md
 ---
-
+---
+src: ./lect-10.md
+---
+---
+src: ./lect-11.md
+---
