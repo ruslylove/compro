@@ -2,6 +2,7 @@
 theme: seriph
 background: https://cover.sli.dev
 transition: slide-left
+layout: cover
 ---
 
 # Computer Programming

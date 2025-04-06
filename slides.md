@@ -45,6 +45,33 @@ Presentation slides for developers
 <!--
 The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
 -->
+---
+src: ./lect-1.md
+---
+---
+src: ./lect-2.md
+---
+---
+src: ./lect-3.md
+---
+---
+src: ./lect-4.md
+---
+---
+src: ./lect-5.md
+---
+---
+src: ./lect-6.md
+---
+---
+src: ./lect-7.md
+---
+---
+src: ./lect-8.md
+---
+---
+src: ./lect-9.md
+---
 
 ---
 transition: fade-out

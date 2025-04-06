@@ -2,6 +2,7 @@
 theme: seriph
 background: https://cover.sli.dev
 transition: slide-left
+layout: cover
 ---
 
 # Computer Programming
@@ -372,4 +373,3 @@ image: https://asset-cdn.tecky.io/2021/10/20/programming_languages_family_trees_
     * **Java:** Borrowed syntax from C/C++ but uses a virtual machine.
     * **C#:** Microsoft's language similar to Java, also C-inspired syntax.
     * **Python:** While syntactically different, its standard interpreter is written in C, and it interfaces well with C libraries.
-
