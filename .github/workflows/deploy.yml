@@ -32,19 +32,19 @@ jobs:
         run: nci
 
       - name: Build
-        run: nr build --base /${{github.event.repository.name}}/ *.md
+        run: nr build --base /${{github.event.repository.name}}/lect-1/ lect-1.md
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: dist/lect-1
 
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}/lect-1
     needs: build
     runs-on: ubuntu-latest
     name: Deploy
