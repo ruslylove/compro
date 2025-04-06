@@ -40,11 +40,17 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist/lect-1
+          name: github-pages-lect-1
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/lect-2
+          name: github-pages-lect-2
 
   deploy:
     environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}/lect-1
+      name: github-pages-lect-1
+      url: ${{ steps.deployment.outputs.page_url }}lect-1
     needs: build
     runs-on: ubuntu-latest
     name: Deploy
