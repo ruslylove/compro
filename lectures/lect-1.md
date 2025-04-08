@@ -21,6 +21,8 @@ Semester 1/2025
 2.  Fundamentals of Computers
 3.  Introduction to Programming
 4.  C Programming Basics
+5.  Development Environments (Editors & IDEs)
+
 
 ---
 layout: two-cols
@@ -72,6 +74,7 @@ layout: two-cols
 2.  **Fundamentals of Computers**
 3.  Introduction to Programming
 4.  C Programming Basics
+5.  Development Environments (Editors & IDEs)
 
 ---
 layout: image-right
@@ -145,6 +148,7 @@ image: https://www.electronics-lab.com/wp-content/uploads/2021/02/1280px-Three_I
 2.  Fundamentals of Computers
 3.  **Introduction to Programming**
 4.  C Programming Basics
+5.  Development Environments (Editors & IDEs)
 
 ---
 
@@ -275,6 +279,7 @@ layout: two-cols-header
 2.  Fundamentals of Computers
 3.  Introduction to Programming
 4.  **C Programming Basics**
+5.  Development Environments (Editors & IDEs)
 
 ---
 layout: two-cols
@@ -375,3 +380,30 @@ image: https://asset-cdn.tecky.io/2021/10/20/programming_languages_family_trees_
     * **Java:** Borrowed syntax from C/C++ but uses a virtual machine.
     * **C#:** Microsoft's language similar to Java, also C-inspired syntax.
     * **Python:** While syntactically different, its standard interpreter is written in C, and it interfaces well with C libraries.
+
+---
+
+## Lecture Outline
+
+1.  Course Syllabus
+2.  Fundamentals of Computers
+3.  Introduction to Programming
+4.  C Programming Basics
+5.  **Development Environments (Editors & IDEs)**
+
+
+---
+## Tools for Programming
+
+* **Integrated Development Environments (IDEs):** Combine editor, compiler, debugger, etc.
+    * Microsoft Visual Studio (Common default on Windows)
+    * Dev-C++ (Recommended lightweight option)
+    * Visual Studio Code (VSCode - Popular versatile editor with extensions)
+    * Code::Blocks (Cross-platform IDE)
+* **Text Editors + Compilers:** A more manual approach.
+    * Use any text editor (Notepad++, Sublime Text, Vim, Emacs, etc.).
+    * Pair with a C compiler:
+        * Microsoft C compiler (Often part of Visual Studio)
+        * GCC (GNU Compiler Collection - Recommended, standard on Linux/macOS)
+        * ICC (Intel C Compiler - Known for optimization)
+        * Turbo C (Historically significant, less common now)

@@ -1,8 +1,6 @@
 ---
----
-<Toc maxDepth='1' listClass="lab"/>
----
 src: ./lect-1.md
+transition: slide-left
 ---
 ---
 src: ./lect-2.md

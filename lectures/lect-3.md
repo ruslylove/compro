@@ -17,42 +17,12 @@ Semester 1/2025
 
 ## Lecture Outline
 
-1.  **Development Environments (Editors & IDEs)**
-2.  Fundamental Components of C Programs
-3.  Basic Program Structure
-4.  Sequential Program Execution
-5.  Conditional Execution (`if-else`)
+1.  **Fundamental Components of C Programs**
+2.  Basic Program Structure
+3.  Sequential Program Execution
+4.  Conditional Execution (`if-else`)
     * Including Logical Operators
-6.  Working with Conditions
-
----
-
-## Tools for Programming
-
-* **Integrated Development Environments (IDEs):** Combine editor, compiler, debugger, etc.
-    * Microsoft Visual Studio (Common default on Windows)
-    * Dev-C++ (Recommended lightweight option)
-    * Visual Studio Code (VSCode - Popular versatile editor with extensions)
-    * Code::Blocks (Cross-platform IDE)
-* **Text Editors + Compilers:** A more manual approach.
-    * Use any text editor (Notepad++, Sublime Text, Vim, Emacs, etc.).
-    * Pair with a C compiler:
-        * Microsoft C compiler (Often part of Visual Studio)
-        * GCC (GNU Compiler Collection - Recommended, standard on Linux/macOS)
-        * ICC (Intel C Compiler - Known for optimization)
-        * Turbo C (Historically significant, less common now)
-
----
-
-## Lecture Outline
-
-1.  Development Environments (Editors & IDEs)
-2.  **Fundamental Components of C Programs**
-3.  Basic Program Structure
-4.  Sequential Program Execution
-5.  Conditional Execution (`if-else`)
-    * Including Logical Operators
-6.  Working with Conditions
+5.  Working with Conditions
 
 ---
 
@@ -103,13 +73,12 @@ int score = 100; // This is a single-line comment.
 
 ## Lecture Outline
 
-1.  Development Environments (Editors & IDEs)
-2.  Fundamental Components of C Programs
-3.  **Basic Program Structure**
-4.  Sequential Program Execution
-5.  Conditional Execution (`if-else`)
+1.  Fundamental Components of C Programs
+2.  **Basic Program Structure**
+3.  Sequential Program Execution
+4.  Conditional Execution (`if-else`)
     * Including Logical Operators
-6.  Working with Conditions
+5.  Working with Conditions
 
 ---
 
@@ -143,13 +112,12 @@ int main() { // Start of main block
 
 ## Lecture Outline
 
-1.  Development Environments (Editors & IDEs)
-2.  Fundamental Components of C Programs
-3.  Basic Program Structure
-4.  **Sequential Program Execution**
-5.  Conditional Execution (`if-else`)
+1.  Fundamental Components of C Programs
+2.  Basic Program Structure
+3.  **Sequential Program Execution**
+4.  Conditional Execution (`if-else`)
     * Including Logical Operators
-6.  Working with Conditions
+5.  Working with Conditions
 
 ---
 
@@ -272,13 +240,12 @@ int main() {
 
 ## Lecture Outline
 
-1.  Development Environments (Editors & IDEs)
-2.  Fundamental Components of C Programs
-3.  Basic Program Structure
-4.  Sequential Program Execution
-5.  **Conditional Execution** (`if-else`)
+1.  Fundamental Components of C Programs
+2.  Basic Program Structure
+3.  Sequential Program Execution
+4.  **Conditional Execution** (`if-else`)
     * Including Logical Operators
-6.  Working with Conditions
+5.  Working with Conditions
 
 ---
 
@@ -385,14 +352,13 @@ int main() {
 
 ## Lecture Outline
 
-1.  Development Environments (Editors & IDEs)
-2.  Fundamental Components of C Programs
-3.  Basic Program Structure
-4.  Sequential Program Execution
-5.  Conditional Execution (`if-else`)
+1.  Fundamental Components of C Programs
+2.  Basic Program Structure
+3.  Sequential Program Execution
+4.  Conditional Execution (`if-else`)
     * **Relational & Equality Operators**
     * Logical Operators
-6.  Working with Conditions
+5.  Working with Conditions
 
 ---
 
@@ -426,14 +392,13 @@ int main() {
 
 ## Lecture Outline
 
-1.  Development Environments (Editors & IDEs)
-2.  Fundamental Components of C Programs
-3.  Basic Program Structure
-4.  Sequential Program Execution
-5.  Conditional Execution (`if-else`)
+1.  Fundamental Components of C Programs
+2.  Basic Program Structure
+3.  Sequential Program Execution
+4.  Conditional Execution (`if-else`)
     * Relational & Equality Operators
     * **Logical Operators**
-6.  Working with Conditions
+5.  Working with Conditions
 
 ---
 
@@ -527,12 +492,11 @@ Example: `a > b && c < d` is evaluated as `(a > b) && (c < d)`.
 
 ## Lecture Outline
 
-1.  Development Environments (Editors & IDEs)
-2.  Fundamental Components of C Programs
-3.  Basic Program Structure
-4.  Sequential Program Execution
-5.  Conditional Execution (`if-else`)
-6.  Working with Conditions
+1.  Fundamental Components of C Programs
+2.  Basic Program Structure
+3.  Sequential Program Execution
+4.  Conditional Execution (`if-else`)
+5.  Working with Conditions
     * **Combining Operators**
     * Common Mistakes
 
@@ -593,14 +557,13 @@ if (a == 5) { // Compares current value of 'a' with 5.
 
 ## Lecture Outline
 
-1.  Development Environments (Editors & IDEs)
-2.  Fundamental Components of C Programs
-3.  Basic Program Structure
-4.  Sequential Program Execution
-5.  Conditional Execution (`if-else`)
+1.  Fundamental Components of C Programs
+2.  Basic Program Structure
+3.  Sequential Program Execution
+4.  Conditional Execution (`if-else`)
     * **Nested** `if-else`
     * `switch` statement
-6.  Working with Conditions
+5.  Working with Conditions
 
 ---
 
@@ -720,14 +683,13 @@ int main() {
 
 ## Lecture Outline
 
-1.  Development Environments (Editors & IDEs)
-2.  Fundamental Components of C Programs
-3.  Basic Program Structure
-4.  Sequential Program Execution
-5.  Conditional Execution (`if-else`)
+1.  Fundamental Components of C Programs
+2.  Basic Program Structure
+3.  Sequential Program Execution
+4.  Conditional Execution (`if-else`)
     * Nested `if-else`
     * **`switch` statement**
-6.  Working with Conditions
+5.  Working with Conditions
 ---
 
 ## The `switch` Statement

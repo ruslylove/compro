@@ -105,7 +105,7 @@ int main() {
 
 * **Problem:** Calculate $S = \sum_{x=1}^{5} \frac{1}{x^2}$ using a `while` loop.
 
-```c {*}{maxHeight:'380px'}
+```c {*}{maxHeight:'350px'}
 #include <stdio.h>
 
 int main() {
@@ -219,8 +219,29 @@ int main() {
 ## `for` Loop Example: Sum Calculation
 
 * **Problem:** Calculate $S = \sum_{x=1}^{5} \frac{1}{x^2}$ using a `for` loop.
+````md magic-move
+```c {*|7-8|9-10|13-14}{lines: true}
+#include <stdio.h>
 
-```c
+int main() {
+    int x; // Loop counter
+    double S = 0.0;
+
+    // Initialization: x = 1
+    x = 1;
+    // Condition: x <= 5
+    while ( x <= 5 ) {
+        // Loop Body
+        S += 1.0 / (x * x);
+        // Update: x++ (increment x after each iteration)
+        x++;
+    }
+
+    printf("S = %f\n", S);
+    return 0;
+}
+```
+```c {7-10|*}{lines: true}
 #include <stdio.h>
 
 int main() {
@@ -239,7 +260,7 @@ int main() {
     return 0;
 }
 ```
-
+````
 * This is often considered the most idiomatic way to write loops controlled by a simple counter.
 
 ---
@@ -349,12 +370,13 @@ break;
 ```
 
 ---
-transition: fade
+layout: two-cols-header
 ---
-
 ## `break` Example: Finding First Number Divisible by 7
 
-```c
+:: left ::
+*Code:*
+```c {*}
 #include <stdio.h>
 
 int main() {
@@ -374,8 +396,7 @@ int main() {
     return 0;
 }
 ```
-
----
+::right::
 
 *Output:*
 ```text

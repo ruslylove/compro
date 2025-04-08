@@ -1191,6 +1191,7 @@ Result: a = 4, b = 2
   // Step 4: result = (double result)
   //         Assignment is fine.
 ```
+
 * These conversions happen implicitly (automatically).
 
 ---
@@ -1220,6 +1221,7 @@ Result: a = 4, b = 2
   // Step 5: (double) + 17300.0 -> double + double. Result double.
   // Step 6: result = (double) -> Assignment.
 ```
+
 * Casting to a narrower type explicitly is still risky and truncates data:
 ```c
     int rounded_down = 0;
