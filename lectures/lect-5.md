@@ -18,9 +18,9 @@ Semester 1/2025
 ## Lecture Outline
 
 1.  **Functions:** Declaration, Definition, and Calling Mechanics
-2.  **Recursive Functions**
-3.  **Variable Visibility (Scope) and Lifetime**
-4.  **Preprocessor Directives and Macros**
+2.  Recursive Functions
+3.  Variable Visibility (Scope) and Lifetime
+4.  Preprocessor Directives and Macros
 
 ---
 
@@ -73,7 +73,7 @@ Semester 1/2025
 
 * Defining a function means providing the code that executes when the function is called.
 * **General Syntax:**
-    ```c
+    ```c 
     return_type function_name(parameter_list) {
         // Function Body:
         // Declarations and statements...
@@ -94,7 +94,7 @@ Semester 1/2025
 
 * **Problem:** Create a function that returns the larger of two integers.
 
-```c
+```c {*|15-21|17|18|1-13|2|3|5|8|12|19|*}{lines: true}
 // Function Definition
 int max(int num1, int num2) { // Returns int, takes two int parameters
     int result; // Local variable within the function

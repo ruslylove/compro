@@ -304,7 +304,7 @@ layout: two-cols
 
 ## Your First C Program Example (Part 1)
 
-```c {*|2|5|10|13|*}{lines:true}
+```c {*|2|5,16|10|13|*}{lines:true}
 // 1. Include Header File for Standard Input/Output
 #include <stdio.h>
 
@@ -323,40 +323,30 @@ int main() { // The program starts executing here
 }
 ```
 
-* **`#include <stdio.h>`:** Tells the compiler to include information about standard input/output functions (like `printf`) found in the `stdio.h` header file.
+
+
+<v-click at="1">
+ 
+- **`#include stdio.h`:** Tells the compiler to include information about standard input/output functions (like `printf`) found in the `stdio.h` header file.
+
+</v-click>
 
 :: right ::
 
-* **`int main() { ... }`:** Defines the mandatory `main` function where program execution begins. `int` indicates it returns an integer value. `{` and `}` define the function's body (a block of code).
-* **`printf(...)`:** A function from `stdio.h` used to display output.
-* **`return 0;`:** Exits the `main` function and signals successful completion to the OS.
-* **Keywords:** `include`, `int`, `return` are reserved words in C with special meanings.
-* **Comments:** Text between `/*` and `*/` (or after `//` on a line) is ignored by the compiler and used for explanations.
+<v-clicks at="2">
 
+- **`int main() { ... }`:** Defines the mandatory `main` function where program execution begins. `int` indicates it returns an integer value. `{` and `}` define the function's body (a block of code).
+- **`printf(...)`:** A function from `stdio.h` used to display output.
+- **`return 0;`:** Exits the `main` function and signals successful completion to the OS.
 
----
+</v-clicks>
+<v-click at="5">
 
-## Your First C Program Example (Part 2)
+- **Keywords:** `include`, `int`, `return` are reserved words in C with special meanings.
+- **Comments:** Text between `/*` and `*/` (or after `//` on a line) is ignored by the compiler and used for explanations.
 
-```c
-#include <stdio.h>
+</v-click>
 
-int main() {
-    printf("Hello world 1!\n"); // First statement executed
-    printf("Hello world 2!\n"); // Second statement executed
-    printf("Hello world 3!\n"); // Third statement executed
-    return 0;
-}
-```
-
-**Expected Output:**
-```text
-Hello world 1!
-Hello world 2!
-Hello world 3!
-```
-
-* Statements within the `main` function are typically executed sequentially from top to bottom.
 
 ---
 layout: iframe-right
