@@ -91,24 +91,26 @@ image: https://cdn.britannica.com/10/23610-050-6E34CF6B/portion-Difference-Engin
     * Tide-predicting machines
 
 ---
-layout: image-right
-image: https://miro.medium.com/v2/resize:fit:720/format:webp/0*W_QPS0HHrjyU9l9p
+layout: two-cols
 ---
 
 ## The Computing Model
-
 * **What defines computing?**
     * Taking input data.
     * Performing necessary operations on that data.
     * Producing an output or answer.
 * This fundamental model aligns with concepts proposed by pioneers like Alan Turing and John Von Neumann.
 
+::right::
+
+<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*W_QPS0HHrjyU9l9p" style="height:300px">
+
 ---
-layout: two-cols
+layout: two-cols-header
 ---
 
 ## Computer Architecture Framework
-
+::left::
 * Let's identify the primary components of a typical computer system:
     * **CPU (Central Processing Unit):** The "brain" performing calculations.
     * **Memory (RAM):** Temporary storage for active data and programs.
@@ -125,7 +127,6 @@ layout: two-cols
 ## Identifying Computer Components
 
 * Can you recognize the various internal parts of a computer?
-
 <img src="https://quizizz.com/media/resource/gs/quizizz-media/quizzes/e6088b45-4eb9-4ac3-b556-810995d8ddd5">
 
 ---
@@ -158,7 +159,6 @@ image: https://www.electronics-lab.com/wp-content/uploads/2021/02/1280px-Three_I
 * Early computing pioneers:
     * **Charles Babbage:** Designed early mechanical computers like the Difference Engine.
     * **Ada Lovelace:** Collaborated with Babbage and is widely regarded as the first computer programmer, developing algorithms for his machines. The Ada programming language is named in her honor.
-
 <img src="https://competitions.amt.edu.au/question_files//b/6/c/image-1561289354.png" style="height:300px">
 
 ---
@@ -168,32 +168,34 @@ image: https://www.electronics-lab.com/wp-content/uploads/2021/02/1280px-Three_I
 * Fundamentally, programming provides the **instructions** that tell the CPU what to do.
 * The CPU fetches both instructions and the necessary **data** from memory.
 * After processing, the results are typically sent back to memory.
-
 <img src="https://math.hws.edu/javanotes/c1/overview-fig1.png">
 
 ---
-layout: image-right
+layout: two-cols-header
 image: https://cdn.educba.com/academy/wp-content/uploads/2023/12/Machine-Language.jpg
 ---
 
-## Need for High-Level Languages?
-
+# Need for High-Level Languages?
+## Human 💁 <- translator -> Machine 🤖
+::left::
 * Humans communicate using natural languages (English, Chinese, etc.).
 * To communicate with computers, we need a language they understand, or a way to translate our instructions.
 * Computer languages act as the medium for this communication.
 * We need either a language the computer directly understands (machine code) or an interpreter/translator for a more human-readable language.
+::right::
+<img src="https://cdn.educba.com/academy/wp-content/uploads/2023/12/Machine-Language.jpg">
+
+
 
 ---
-layout: two-cols-header
----
 
-## Need for High-Level Languages? 
-::left::
+## Need for High-Level Languages?
+ 
 * At the lowest level, computer instructions are just sequences of binary digits (0s and 1s) - **machine code**.
 * The hardware (CPU) can only directly execute these binary instructions.
+<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*bXbjWyhMLUXZGxJNP__WJQ.png" style="height:200px">
 
-::right::
-<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*bXbjWyhMLUXZGxJNP__WJQ.png">
+
 
 ---
 
