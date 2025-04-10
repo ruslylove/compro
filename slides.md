@@ -25,9 +25,9 @@ mdc: true
 #  ogImage: https://cover.sli.dev
 ---
 
-# Welcome to Computer Programming
+# Welcome to 010153002 Computer Programming
 
-Presentation slides for developers
+Dr. Ruslee Sutthaweekul
 
 <div @click="$slidev.nav.next" class="mt-12 py-1" hover:bg="white op-10">
   Press Space for next page <carbon:arrow-right />
