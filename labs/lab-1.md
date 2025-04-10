@@ -166,7 +166,7 @@ Semester: 1/2025
 * Assign appropriate literal values to them.
 * Print the value of each variable to the screen using `printf` and the correct format specifier (`%d`, `%f`, `%lf`, `%c`).
 
-```c
+```c {*}{maxHeight:'300px'}
 #include <stdio.h>
 
 int main() {
@@ -187,6 +187,7 @@ int main() {
     return 0;
 }
 ```
+
 * Compile and run this code in your chosen IDE (Code::Blocks or VS Code).
 
 ---
@@ -216,6 +217,7 @@ int main() {
     return 0;
 }
 ```
+
 * Compile and run. Notice how `double` generally maintains more precision than `float`.
 
 ---
@@ -258,4 +260,5 @@ int main() {
     return 0;
 }
 ```
+
 * Compile and run this code to see the formatted output.

@@ -168,11 +168,11 @@ image: https://www.electronics-lab.com/wp-content/uploads/2021/02/1280px-Three_I
 <img src="https://math.hws.edu/javanotes/c1/overview-fig1.png">
 
 ---
-layout: two-cols
+layout: two-cols-header
 image: https://cdn.educba.com/academy/wp-content/uploads/2023/12/Machine-Language.jpg
 ---
 
-# Need for High-Level Languages?
+## Need for High-Level Languages?
 ## Human 💁 <- translator -> Machine 🤖
 ::left::
 * Humans communicate using natural languages (English, Chinese, etc.).
