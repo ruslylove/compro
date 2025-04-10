@@ -91,7 +91,8 @@ image: https://cdn.britannica.com/10/23610-050-6E34CF6B/portion-Difference-Engin
     * Tide-predicting machines
 
 ---
-layout: two-cols
+layout: image-left
+image: https://miro.medium.com/v2/resize:fit:720/format:webp/0*W_QPS0HHrjyU9l9p
 ---
 
 ## The Computing Model
@@ -100,10 +101,6 @@ layout: two-cols
     * Performing necessary operations on that data.
     * Producing an output or answer.
 * This fundamental model aligns with concepts proposed by pioneers like Alan Turing and John Von Neumann.
-
-::right::
-
-<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*W_QPS0HHrjyU9l9p" style="height:300px">
 
 ---
 layout: two-cols-header
@@ -171,7 +168,7 @@ image: https://www.electronics-lab.com/wp-content/uploads/2021/02/1280px-Three_I
 <img src="https://math.hws.edu/javanotes/c1/overview-fig1.png">
 
 ---
-layout: two-cols-header
+layout: two-cols
 image: https://cdn.educba.com/academy/wp-content/uploads/2023/12/Machine-Language.jpg
 ---
 
@@ -193,9 +190,7 @@ image: https://cdn.educba.com/academy/wp-content/uploads/2023/12/Machine-Languag
  
 * At the lowest level, computer instructions are just sequences of binary digits (0s and 1s) - **machine code**.
 * The hardware (CPU) can only directly execute these binary instructions.
-<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*bXbjWyhMLUXZGxJNP__WJQ.png" style="height:200px">
-
-
+<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*bXbjWyhMLUXZGxJNP__WJQ.png" style="height:300px">
 
 ---
 
