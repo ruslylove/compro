@@ -3,7 +3,7 @@ theme: seriph
 background: https://cover.sli.dev
 transition: slide-left
 layout: cover
-title: Lab 7 - struct and union
+title: Lab 8 - struct and union
 class: lab
 ---
 
