@@ -179,7 +179,9 @@ image: https://cdn.educba.com/academy/wp-content/uploads/2023/12/Machine-Languag
 * To communicate with computers, we need a language they understand, or a way to translate our instructions.
 * Computer languages act as the medium for this communication.
 * We need either a language the computer directly understands (machine code) or an interpreter/translator for a more human-readable language.
+
 ::right::
+
 <img src="https://cdn.educba.com/academy/wp-content/uploads/2023/12/Machine-Language.jpg">
 
 
@@ -190,8 +192,12 @@ image: https://cdn.educba.com/academy/wp-content/uploads/2023/12/Machine-Languag
  
 * At the lowest level, computer instructions are just sequences of binary digits (0s and 1s) - **machine code**.
 * The hardware (CPU) can only directly execute these binary instructions.
-<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*bXbjWyhMLUXZGxJNP__WJQ.png" style="height:300px">
+<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*bXbjWyhMLUXZGxJNP__WJQ.png" style="height:200px">
 
+
+
+---
+layout: two-cols
 ---
 
 ## From Binary to High-Level Code
@@ -205,6 +211,12 @@ image: https://cdn.educba.com/academy/wp-content/uploads/2023/12/Machine-Languag
     ...
     ```
 * This is extremely difficult and error-prone for humans.
+<img src="https://preview.redd.it/wzqhe3omi4o51.jpg?auto=webp&s=70a427f5b4cd38d8bc95f7422e3e8c793b030d7e" style="height:200px">
+
+::right::
+
+<img src="https://i.redd.it/ozoxvegr2q181.jpg">
+
 
 ---
 
@@ -230,7 +242,10 @@ image: https://cdn.educba.com/academy/wp-content/uploads/2023/12/Machine-Languag
 
 ---
 
+
 ## From Binary to High-Level Code
+
+
 
 * **High-Level Languages (like C):** Provide a much more abstract and human-friendly way to write instructions, closer to mathematical notation or natural language logic.
     * Machine Code: `010101...`
@@ -238,6 +253,11 @@ image: https://cdn.educba.com/academy/wp-content/uploads/2023/12/Machine-Languag
     * High-Level (C example): `a = 3 + 5;`
 * A single high-level statement often translates to multiple machine instructions.
 
+<img src="https://web.stanford.edu/class/cs101/software-translation.png">
+
+
+---
+layout: two-cols
 ---
 
 ## Role of Translators/Compilers
@@ -249,6 +269,8 @@ image: https://cdn.educba.com/academy/wp-content/uploads/2023/12/Machine-Languag
     * The resulting machine code can then be executed directly by the computer's CPU.
 * Different programming languages (C, Java, Python, etc.) have different grammars and require different translators/compilers.
 
+::right::
+
 ```
  High-Level Code ----> Compiler ----> Machine Code
  (e.g., C code)      (Translator)    (Binary for CPU)
@@ -259,14 +281,23 @@ image: https://cdn.educba.com/academy/wp-content/uploads/2023/12/Machine-Languag
                                      ...
 ```
 
+<img src="https://preview.redd.it/rmbhk6hr22x31.jpg?width=640&crop=smart&auto=webp&s=7b47b088e8074f2241e7aece2ae294caa5e8d277">
+
+---
+layout: two-cols
 ---
 
+
 ## Program Lifecycle
+
 
 1.  **Editing:** Write C code in a text file (e.g., `Prog1.c`).
 2.  **Compiling & Linking:** Use a C compiler to translate `Prog1.c` into machine code and link it with necessary libraries, creating an executable file (e.g., `Prog1.exe` on Windows, `Prog1` on Linux/macOS). This executable is stored on the hard disk.
 3.  **Loading:** When you run the program, the operating system loads the executable file from the hard disk into memory (RAM).
 4.  **Executing:** The CPU fetches instructions from memory and executes them one by one, interacting with peripherals (like the screen via `printf`) as needed.
+
+::right::
+<img src="https://preview.redd.it/endlesscycle-v0-3tgf6c5vk5ub1.jpg?auto=webp&s=2f119c53a4afaf688868704c635ab28956b87b38">
 
 ---
 
@@ -380,13 +411,13 @@ image: https://asset-cdn.tecky.io/2021/10/20/programming_languages_family_trees_
 
 
 ---
+
 ## Tools for Programming
 
 * **Integrated Development Environments (IDEs):** Combine editor, compiler, debugger, etc.
-    * Microsoft Visual Studio (Common default on Windows)
-    * Dev-C++ (Recommended lightweight option)
-    * Visual Studio Code (VSCode - Popular versatile editor with extensions)
-    * Code::Blocks (Cross-platform IDE)
+    * Dev-C++ (Recommended lightweight option) <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI19CsbW4Qh3wWQyBooYcUEFl7N2DQHg6OOQ&s" style="height:30px"/>
+    * Visual Studio Code (VSCode - Popular versatile editor with extensions) <img src="https://chris-ayers.com/assets/images/vscode-logo.png" style="height:30px"/>
+    * Code::Blocks (Cross-platform IDE) <img src="https://img.utdstc.com/icon/509/36d/50936d7a6e54d7a9f17e40d1195f51075f03fd0110cc63bb6159c1ee093ef782:100" style="height:30px"/>
 * **Text Editors + Compilers:** A more manual approach.
     * Use any text editor (Notepad++, Sublime Text, Vim, Emacs, etc.).
     * Pair with a C compiler:

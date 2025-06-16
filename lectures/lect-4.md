@@ -220,7 +220,7 @@ int main() {
 
 * **Problem:** Calculate $S = \sum_{x=1}^{5} \frac{1}{x^2}$ using a `for` loop.
 ````md magic-move
-```c {*|7-8|9-10|13-14}{lines: true}
+```c {*|7-8|7-10|7-10,13-14}{lines: true}
 #include <stdio.h>
 
 int main() {
