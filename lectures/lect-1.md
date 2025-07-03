@@ -182,7 +182,7 @@ image: https://cdn.educba.com/academy/wp-content/uploads/2023/12/Machine-Languag
 
 ::right::
 
-<img src="https://cdn.educba.com/academy/wp-content/uploads/2023/12/Machine-Language.jpg">
+<img src="https://cdn.educba.com/academy/wp-content/uploads/2023/12/Machine-Language.jpg" style="margin:auto">
 
 
 
@@ -192,7 +192,7 @@ image: https://cdn.educba.com/academy/wp-content/uploads/2023/12/Machine-Languag
  
 * At the lowest level, computer instructions are just sequences of binary digits (0s and 1s) - **machine code**.
 * The hardware (CPU) can only directly execute these binary instructions.
-<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*bXbjWyhMLUXZGxJNP__WJQ.png" style="height:200px">
+<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*bXbjWyhMLUXZGxJNP__WJQ.png" style="height:300px;margin:auto;margin-top:50px">
 
 
 
@@ -215,7 +215,7 @@ layout: two-cols
 
 ::right::
 
-<img src="https://i.redd.it/ozoxvegr2q181.jpg">
+<img src="https://i.redd.it/ozoxvegr2q181.jpg" style="height:400px;margin:auto;margin-top:50px">
 
 
 ---
@@ -281,7 +281,7 @@ layout: two-cols
                                      ...
 ```
 
-<img src="https://preview.redd.it/rmbhk6hr22x31.jpg?width=640&crop=smart&auto=webp&s=7b47b088e8074f2241e7aece2ae294caa5e8d277">
+<img src="https://preview.redd.it/rmbhk6hr22x31.jpg?width=640&crop=smart&auto=webp&s=7b47b088e8074f2241e7aece2ae294caa5e8d277" style="height:250px;margin:auto;margin-top:50px">
 
 ---
 layout: two-cols
@@ -297,7 +297,146 @@ layout: two-cols
 4.  **Executing:** The CPU fetches instructions from memory and executes them one by one, interacting with peripherals (like the screen via `printf`) as needed.
 
 ::right::
-<img src="https://preview.redd.it/endlesscycle-v0-3tgf6c5vk5ub1.jpg?auto=webp&s=2f119c53a4afaf688868704c635ab28956b87b38">
+<img src="https://scaler.com/topics/images/preprocessor-execution.webp" >
+ <img src="https://preview.redd.it/endlesscycle-v0-3tgf6c5vk5ub1.jpg?auto=webp&s=2f119c53a4afaf688868704c635ab28956b87b38" style="height:200px;position:fixed;right:0;bottom:0">
+
+
+---
+
+## From Code to Command: The C Compilation Process
+
+Transforming human-readable C code into a machine-executable program involves several distinct stages. We'll follow a simple program, `hello.c`, through its entire journey.
+
+**The Four Main Steps:**
+1.  **Preprocessing**: Cleaning and expanding the code.
+2.  **Compiling**: Translating to assembly language.
+3.  **Assembling**: Converting to machine code.
+4.  **Linking**: Combining everything into a final executable file.
+
+---
+
+## Step 0: The Source Code (`.c`)
+
+First, we write our program in a text file. We'll call it `hello.c`. This is the human-readable source code.
+
+**`hello.c`**
+
+```c
+#include <stdio.h>
+
+int main() {
+    // This is a comment that will be removed
+    printf("Hello, World!\n");
+    return 0;
+}
+```
+
+This simple program uses the `printf` function from the standard I/O library to display a message.
+
+-----
+
+## Step 1: Preprocessing (`.i`)
+
+The **preprocessor** takes our source code and prepares it for the compiler. It handles directives that start with `#`.
+
+**Key Tasks:**
+
+  * **Removes comments**: All comments (`//` and `/* ... */`) are stripped out.
+  * **Expands macros**: Replaces symbolic constants.
+  * **Includes header files**: Copies the content of included files (like `stdio.h`) directly into our code.
+
+**Command:**
+The `-E` flag tells GCC to stop after preprocessing.
+
+```bash
+gcc -E hello.c -o hello.i
+```
+
+This creates a new file, `hello.i`, which is a large, expanded version of our original source code.
+
+-----
+
+## Step 2: Compiling (`.s`)
+
+The **compiler** translates the preprocessed code (`.i` file) into **assembly language**. Assembly is a low-level language that is specific to the computer's processor architecture (like x86-64).
+
+**Key Task:**
+
+  * Converts C logic into architecture-specific assembly instructions.
+
+**Command:**
+The `-S` flag tells GCC to stop after compiling.
+
+```bash
+gcc -S hello.i -o hello.s
+```
+
+This generates an assembly code file named `hello.s`. It's still readable, but much more detailed and complex than C.
+
+-----
+
+## Step 3: Assembling (`.o`)
+
+The **assembler** takes the assembly code (`.s` file) and translates it into **machine code**, which is pure binary (`0`s and `1`s). This output is stored in an **object file**.
+
+**Key Task:**
+
+  * Converts assembly instructions into binary machine language.
+
+**Command:**
+The `-c` flag tells GCC to stop after assembling.
+
+```bash
+gcc -c hello.s -o hello.o
+```
+
+This creates a binary object file named `hello.o`. This file contains the machine code for our program but can't be run yet because it's missing necessary library code.
+
+-----
+
+## Step 4: Linking (Executable)
+
+The **linker** is the final step. It takes our object file (`hello.o`) and links it with the necessary library code to produce a final **executable file**.
+
+**Key Task:**
+
+  * Merges our program's machine code with the code from libraries (like the code for the `printf` function) to create a runnable program.
+
+**Command:**
+Running `gcc` without special flags on our object file invokes the linker.
+
+```bash
+gcc hello.o -o hello
+```
+
+This creates the final executable file, which we've named `hello`.
+
+-----
+
+## All In One Go\!
+
+While it's useful to know the steps, you'll usually perform them all with a single command. GCC is smart enough to handle the entire process automatically.
+
+**The Combined Command:**
+
+```bash
+gcc hello.c -o hello
+```
+
+This command tells GCC to take the source file `hello.c` and perform all the steps—preprocessing, compiling, assembling, and linking—to create a final executable named `hello`.
+
+**Running Your Program:**
+
+```bash
+./hello
+```
+
+**Output:**
+
+```
+Hello, World!
+```
+
 
 ---
 
@@ -330,44 +469,36 @@ layout: two-cols
 layout: two-cols
 ---
 
-## Your First C Program Example (Part 1)
+## Your First C Program Example
 
-```c {*|2|5,16|10|13|*}{lines:true}
-// 1. Include Header File for Standard Input/Output
+```c {*|1|3|4|5|*}{lines:true}
 #include <stdio.h>
-
-// 2. Define the main function (entry point of the program)
-int main() { // The program starts executing here
-    // 3. Start of a code block
-
-    // 4. Call the printf function to print text to the screen
-    //    "\n" represents a newline character
+// This is  your first C program
+int main() { 
     printf("Hello world!\n");
-
-    // 5. Return 0 to the operating system (indicates successful execution)
     return 0;
-
-    // 6. End of the code block
 }
 ```
 
 
 
-<v-click at="1">
+<v-clicks at="1">
  
 - **`#include stdio.h`:** Tells the compiler to include information about standard input/output functions (like `printf`) found in the `stdio.h` header file.
+- **`int main() { ... }`:** Defines the mandatory `main` function where program execution begins. `int` indicates it returns an integer value. `{` and `}` define the function's body (a block of code).
 
-</v-click>
+
+</v-clicks>
 
 :: right ::
 
-<v-clicks at="2">
+<v-clicks at="3">
 
-- **`int main() { ... }`:** Defines the mandatory `main` function where program execution begins. `int` indicates it returns an integer value. `{` and `}` define the function's body (a block of code).
 - **`printf(...)`:** A function from `stdio.h` used to display output.
 - **`return 0;`:** Exits the `main` function and signals successful completion to the OS.
 
 </v-clicks>
+
 <v-click at="5">
 
 - **Keywords:** `include`, `int`, `return` are reserved words in C with special meanings.

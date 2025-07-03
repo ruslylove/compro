@@ -3,262 +3,318 @@ theme: seriph
 background: https://cover.sli.dev
 transition: slide-left
 layout: cover
-title: Lab 1 - IDE for C coding
+title: Lab 1 - Introduction to C Programming
 class: lab
 ---
 
 # Computer Programming
-## Lab 1: IDE for C coding
+## Lab 1: Introduction to C Programming
 
 Presented by: Dr. Ruslee Sutthaweekul
 
 Semester: 1/2025
 
----
-
-## Lab Outline
-
-1.  Setting up the Code::Blocks IDE
-2.  Setting up Visual Studio Code (VS Code)
-3.  Exercises on Variables and Output Formatting
 
 ---
 
-## Code::Blocks IDE
+## Objectives
 
-* Code::Blocks is a free, open-source Integrated Development Environment.
-* It's known for being lightweight and stable.
-* It supports multiple platforms: Linux, Windows, and macOS.
-* You can typically find downloads on the official Code::Blocks website (look for the version including the MinGW compiler setup for Windows if needed).
-
----
-
-## Compiler Setup in Code::Blocks
-
-* After installation, you may need to ensure the compiler is correctly configured.
-* Go to `Settings` -> `Compiler`.
-* Under `Global compiler settings`, select `GNU GCC Compiler` (or the appropriate compiler you installed, like MinGW).
-* Go to the `Toolchain executables` tab.
-* Ensure the `Compiler's installation directory` points to the correct location (e.g., `C:\Program Files (x86)\CodeBlocks\MinGW` for a standard Windows install with MinGW). The `C compiler`, `C++ compiler`, and `Linker` fields should automatically point to the executables (`mingw32-gcc.exe`, `mingw32-g++.exe`, `ar.exe`, etc.) within that directory's `bin` subfolder. You can use `Auto-detect` if needed.
+* **Familiarize yourself with the IDE (Dev C++)**
+    * Learn how to create a new project, write code, compile, and run a program.
+* **Understand and use simple expressions in C**
+    * Perform basic arithmetic operations.
+    * Assign values to variables.
+* **Handle basic input and output operations**
+    * Display information to the user using `printf()`.
+    * Read input from the user using `scanf()`.
 
 ---
 
-## Creating a New Project in Code::Blocks
+## Your Toolkit: The IDE
 
-1.  Go to `File` -> `New` -> `Project...`
-2.  Select `Console application` and click `Go`.
-3.  Choose `C` as the language.
+### What is an IDE?
 
----
+An **I**ntegrated **D**evelopment **E**nvironment is a software application that provides comprehensive facilities to computer programmers for software development. Think of it as your all-in-one workbench for coding.
 
-## Setting Project Details in Code::Blocks
+For this lab, we'll use **Dev C++**, a popular and simple IDE for beginners.
 
-1.  **Project title:** Give your project a name (e.g., `Lab1_HelloWorld`).
-2.  **Folder to create project in:** Choose a location on your computer to save the project files.
-3.  Code::Blocks will generate the necessary file names based on the title. Click `Next`.
+<img src="https://miro.medium.com/v2/resize:fit:254/1*8eQPCaYTvieOUxBxFAeBTw.png" style="margin:auto">
 
 ---
 
-## Build Configuration in Code::Blocks
+## Getting Started with Dev C++
 
-1.  **Compiler:** Ensure the correct compiler (e.g., `GNU GCC Compiler`) is selected.
-2.  **Build configurations:** You typically have `Debug` and `Release` options.
-    * `Debug`: Includes extra information useful for debugging (recommended while developing).
-    * `Release`: Optimized for performance, smaller executable size (used for final versions).
-3.  Leave the defaults checked for now and click `Finish`.
-
----
-
-## Navigating the Code::Blocks Workspace
-
-* After creating the project, the main window appears.
-* On the left side (usually), you'll see the `Management` pane with the `Projects` tab.
-* Expand your project (e.g., `Lab1_HelloWorld`).
-* Expand the `Sources` folder.
-* Double-click on `main.c` to open the default C source file in the editor.
+1.  **Open Dev C++:** Launch the application.
+2.  **Create a New Source File:**
+    * Go to `File > New > Source File` or press `Ctrl+N`.
+3.  **Write Your Code:** An empty editor will appear. This is where you'll type your C program.
+4.  **Save Your File:**
+    * Go to `File > Save As` or press `Ctrl+S`.
+    * **Crucially, save your file with a `.c` extension** (e.g., `hello.c`).
+5.  **Compile and Run:**
+    * Go to `Execute > Compile & Run` or press `F11`.
+    * Dev C++ will first compile your code (check for errors) and then run it if everything is correct. A console window will pop up to show your program's output.
 
 ---
 
-## Building and Running in Code::Blocks
+## Simple Expressions in C
 
-* **Build:** Compiles your source code (`.c` files) into object files (`.o`) and links them into an executable.
-    * Use the "Build" button (often looks like a gear) or `Build` -> `Build` menu.
-* **Run:** Executes the compiled program.
-    * Use the "Run" button (often looks like a play triangle) or `Build` -> `Run` menu.
-* **Build and Run:** Performs both steps sequentially.
-    * Use the "Build and run" button (gear + play triangle) or `Build` -> `Build and run`.
-* Output from `printf` will appear in the console window that pops up when you run the program.
+Expressions in C are combinations of values, variables, and operators that result in a single value.
 
----
+### Arithmetic Operators
 
-## Lab Outline
-
-1.  Setting up the Code::Blocks IDE
-2.  **Setting up Visual Studio Code (VS Code)**
-3.  Exercises on Variables and Output Formatting
+| Operator | Description      | Example       | Result |
+| :------: | ---------------- | ------------- | :----: |
+|   `+`    | Addition         | `5 + 3`       | `8`    |
+|   `-`    | Subtraction      | `5 - 3`       | `2`    |
+|   `*`    | Multiplication   | `5 * 3`       | `15`   |
+|   `/`    | Division         | `5 / 3`       | `1`    |
+|   `%`    | Modulus (remainder) | `5 % 3`    | `2`    |
 
 ---
 
-## Visual Studio Code (VS Code)
+## Variables and Expressions
 
-* Developed by Microsoft.
-* A free, powerful, and highly popular source code editor (not a full IDE out-of-the-box, but extensible).
-* Runs on Windows, macOS, and Linux.
-* Relies heavily on **extensions** for language support, debugging, and other features.
-
----
-
-## VS Code: Essential C/C++ Extension
-
-* To effectively work with C/C++ in VS Code, you need to install the appropriate extension.
-* Go to the `Extensions` view (usually the icon with squares on the left sidebar).
-* Search for `C/C++`.
-* Install the official **C/C++ extension from Microsoft**. This provides features like code completion (IntelliSense), debugging support, and code navigation.
-
----
-
-## VS Code: Project and File Setup
-
-* VS Code works primarily with folders.
-    1.  Create a new folder for your project on your computer (e.g., `Lab1_VSCode`).
-    2.  Open VS Code.
-    3.  Go to `File` -> `Open Folder...` and select the folder you just created.
-    4.  Create your C source file within that folder: `File` -> `New File`, save it as `main.c` (or another `.c` name).
-    5.  Write your C code in `main.c`.
-
----
-
-## Building C Code in VS Code (Terminal)
-
-* VS Code has an integrated terminal. Open it using `Terminal` -> `New Terminal` or the shortcut (often `Ctrl+``).
-* You need a C compiler installed separately (like GCC/MinGW on Windows, GCC/Clang on Linux/macOS).
-* To compile your `main.c` file, type the `gcc` command in the terminal:
-    ```bash
-    gcc main.c -o main
-    ```
-    * `gcc`: The command to invoke the GCC compiler.
-    * `main.c`: Your input source file.
-    * `-o main`: Specifies the name of the output executable file (e.g., `main.exe` on Windows, `main` on Linux/macOS).
-
----
-
-## Running C Code in VS Code (Terminal)
-
-* After successfully compiling (no errors shown in the terminal), you can run the generated executable from the same terminal.
-* **Command:**
-    * On Linux/macOS: `./main`
-    * On Windows (Command Prompt/PowerShell): `.\main.exe` or sometimes just `main.exe`
-* The program will execute, and any `printf` output will appear in the terminal.
-
----
-
-## Lab Outline
-
-1.  Setting up the Code::Blocks IDE
-2.  Setting up Visual Studio Code (VS Code)
-3.  **Exercises on Variables and Output Formatting**
-
----
-
-## Exercise: Variables and Basic Output
-
-* Declare variables of different fundamental types (`int`, `float`, `double`, `char`).
-* Assign appropriate literal values to them.
-* Print the value of each variable to the screen using `printf` and the correct format specifier (`%d`, `%f`, `%lf`, `%c`).
-
-```c {*}{maxHeight:'300px'}
-#include <stdio.h>
-
-int main() {
-    // Declare and initialize variables
-    int integer_var = 10;
-    float float_var = 3.14f; // Use 'f' suffix for float literals
-    double double_var = 2.71828;
-    char char_var = 'A';
-    int another_int = -55;
-
-    // Print the values
-    printf("Integer: %d\n", integer_var);
-    printf("Float: %f\n", float_var);
-    printf("Double: %lf\n", double_var); // Use %lf for printing doubles
-    printf("Character: %c\n", char_var);
-    printf("Another Integer: %d\n", another_int);
-
-    return 0;
-}
-```
-
-* Compile and run this code in your chosen IDE (Code::Blocks or VS Code).
-
----
-
-## Exercise: Floating-Point Precision (`float` vs `double`)
-
-* Observe the precision differences between `float` and `double`.
-* Use `printf` formatting options to control the number of decimal places displayed.
-    * `%.Nf` or `%.Nlf` prints the number with exactly N digits after the decimal point.
+Variables are used to store data. We can use expressions to calculate values and store them in variables.
 
 ```c
 #include <stdio.h>
 
 int main() {
-    double pi_double = 3.141592653589793;
-    float pi_float = 3.141592653589793f; // Precision might be lost here
-
-    printf("Double (default): %lf\n", pi_double);
-    printf("Float (default): %f\n", pi_float); // May show fewer correct digits
-
-    printf("\nFormatted Output:\n");
-    printf("Double (4 decimal places): %.4lf\n", pi_double);
-    printf("Double (8 decimal places): %.8lf\n", pi_double);
-    printf("Float (4 decimal places): %.4f\n", pi_float);
-    printf("Float (8 decimal places): %.8f\n", pi_float); // Digits beyond float's precision might be inaccurate
-
-    return 0;
-}
-```
-
-* Compile and run. Notice how `double` generally maintains more precision than `float`.
-
----
-
-## Exercise: Formatted Integer Output
-
-* **Goal:** Print integer values aligned in columns.
-* Use the width specifier in `printf`:
-    * `%Nd`: Prints the integer using at least N character positions. If the number has fewer than N digits, it will be padded with spaces (usually on the left, right-aligned by default).
-
-* **Task:** Print `a=234`, `b=5`, `c=123`, `d=55`. Display two numbers per line, separated by a comma and space. Each number should occupy 6 spaces, right-aligned.
-
-**Expected Output:**
-```
-   234,      5
-   123,     55
-```
-
-*(Self-correction: The original PDF formatting _ _ _234,_ _ _ _ _5 implies padding might be slightly different or include the comma in the width. We'll aim for standard `%6d`.)*
-
----
-
-## Code: Formatted Integer Output
-
-```c
-#include <stdio.h>
-
-int main() {
-    int a = 234;
+    int a = 10;
     int b = 5;
-    int c = 123;
-    int d = 55;
+    int sum;
+    int product;
 
-    // Print first line: a and b, each in a field of width 6
-    printf("%6d, %6d\n", a, b);
+    // Simple expression for addition
+    sum = a + b;
 
-    // Print second line: c and d, each in a field of width 6
-    printf("%6d, %6d\n", c, d);
+    // Simple expression for multiplication
+    product = a * b;
+
+    printf("The sum is: %d\n", sum);
+    printf("The product is: %d\n", product);
 
     return 0;
 }
 ```
 
-* Compile and run this code to see the formatted output.
+-----
+
+## Input and Output in C
+
+We need a way to communicate with our program.
+
+  * **Output:** `printf()` - "prints" or displays information to the console.
+  * **Input:** `scanf()` - "scans" or reads input from the user via the console.
+
+To use these, you **must** include the standard input/output library: `#include <stdio.h>`
+
+-----
+
+## The `printf()` Function
+
+The `printf()` function displays formatted output.
+
+**Syntax:** `printf("format string", argument1, argument2, ...);`
+
+The "format string" can contain text and **format specifiers**. Format specifiers are placeholders for the values of variables.
+
+### Common Format Specifiers
+
+| Specifier | Data Type |
+| :-------: | --------- |
+|   `%d`    | `int`     |
+|   `%f`    | `float`   |
+|   `%lf`   | `double`  |
+|   `%c`    | `char`    |
+
+**Example:**
+
+```c
+int age = 25;
+printf("I am %d years old.", age);
+```
+
+**Output:**
+
+```
+I am 25 years old.
+```
+
+-----
+
+## The `scanf()` Function
+
+The `scanf()` function reads formatted input from the user.
+
+**Syntax:** `scanf("format specifier", &variable_name);`
+
+Notice the ampersand `&` before the variable name. This is the "address-of" operator, and it tells `scanf()` where to store the input value in memory. **It is essential\!**
+
+**Example:**
+
+```c
+int user_age;
+
+printf("Please enter your age: ");
+scanf("%d", &user_age);
+
+printf("You entered: %d\n", user_age);
+```
+
+-----
+
+## Lab Exercise 1: Simple Calculator
+
+Write a C program that does the following:
+
+1.  Declares two integer variables, `num1` and `num2`.
+2.  Prompts the user to enter the first number and stores it in `num1`.
+3.  Prompts the user to enter the second number and stores it in `num2`.
+4.  Calculates the sum, difference, product, and quotient of the two numbers.
+5.  Prints the results of these calculations to the screen in a clear and readable format.
+
+-----
+
+## Solution: Simple Calculator
+
+```c
+#include <stdio.h>
+
+int main() {
+    int num1, num2;
+
+    // Get input for the first number
+    printf("Enter the first number: ");
+    scanf("%d", &num1);
+
+    // Get input for the second number
+    printf("Enter the second number: ");
+    scanf("%d", &num2);
+
+    // Perform calculations and print the results
+    printf("Sum: %d + %d = %d\n", num1, num2, num1 + num2);
+    printf("Difference: %d - %d = %d\n", num1, num2, num1 - num2);
+    printf("Product: %d * %d = %d\n", num1, num2, num1 * num2);
+    
+    // Note: Integer division truncates the decimal part.
+    printf("Quotient: %d / %d = %d\n", num1, num2, num1 / num2);
+
+    return 0;
+}
+```
+
+-----
+
+## Lab Exercise 2: ASCII Art Name Tag 🏷️
+
+**Your Task**: Create a program that asks for the user's name and their favorite single character. The program should then print their name inside a decorative ASCII art box made from that character.
+
+**Example Interaction:**
+
+```
+Enter your name: BMO
+Choose a character for the border: #
+```
+
+**Example Output:**
+
+```
+##########
+#        #
+#  BMO   #
+#        #
+##########
+```
+
+**Hint**: You will need to use `printf()` multiple times. Think about how to print the name with spaces around it.
+
+-----
+
+## Solution: ASCII Art Name Tag
+
+```c
+#include <stdio.h>
+
+int main() {
+    // 1. Declare variables for the name and border character
+    char name[20]; // A string to hold the name, 20 chars max
+    char border_char;
+
+    // 2. Prompt for and read the user's name
+    printf("Enter your name: ");
+    scanf("%s", name); // For simple strings, %s works without &
+
+    // 3. Prompt for and read the border character
+    // Note the space before %c to consume any leftover newline from the previous scanf
+    printf("Choose a character for the border: ");
+    scanf(" %c", &border_char);
+
+    // 4. Print the ASCII art box
+    printf("\n"); // Add a space for neatness
+    printf("%c%c%c%c%c%c%c%c%c%c\n", border_char, border_char, border_char, border_char, border_char, border_char, border_char, border_char, border_char, border_char);
+    printf("%c        %c\n", border_char, border_char);
+    printf("%c  %s   %c\n", border_char, name, border_char); // Print the name inside
+    printf("%c        %c\n", border_char, border_char);
+    printf("%c%c%c%c%c%c%c%c%c%c\n", border_char, border_char, border_char, border_char, border_char, border_char, border_char, border_char, border_char, border_char);
+
+    return 0;
+}
+```
+
+
+-----
+
+## Lab Exercise 3: Build-A-Pet 🐾
+
+**Your Task**: Let's create a better ASCII art cat. Write a program that asks the user for three characters to customize the cat's face: one for the eyes, one for the nose, and one for the whiskers. Display the customized cat using their characters.
+
+**Example Interaction:**
+
+```
+Enter a character for the eyes: o
+Enter a character for the nose: .
+Enter a character for the whiskers: ~
+```
+
+**Example Output:**
+
+```
+  /\_/\
+ ( o o )
+ ~  .  ~
+```
+
+-----
+
+## Solution: Build-A-Pet
+
+```c {*}{maxHeight:'440px'}
+#include <stdio.h>
+
+int main() {
+    // 1. Declare variables for the cat's features
+    char eye_char, nose_char, whisker_char;
+
+    // 2. Prompt for and get all inputs from the user
+    // Note the leading space in " %c" to handle newlines correctly
+    printf("Enter a character for the eyes: ");
+    scanf(" %c", &eye_char);
+
+    printf("Enter a character for the nose: ");
+    scanf(" %c", &nose_char);
+
+    printf("Enter a character for the whiskers: ");
+    scanf(" %c", &whisker_char);
+
+    // 3. Print the customized ASCII cat
+    // To print one backslash '\', you must type two: '\\'.
+    printf("\n"); // Adds a clean line before the output
+    printf("  /\\_/\\\n");
+    printf(" ( %c %c )\n", eye_char, eye_char);
+    printf(" %c  %c  %c\n", whisker_char, nose_char, whisker_char);
+
+    return 0;
+}
+```
