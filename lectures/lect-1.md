@@ -283,6 +283,77 @@ layout: two-cols
 
 <img src="https://preview.redd.it/rmbhk6hr22x31.jpg?width=640&crop=smart&auto=webp&s=7b47b088e8074f2241e7aece2ae294caa5e8d277" style="height:250px;margin:auto;margin-top:50px">
 
+
+
+
+---
+
+## Lecture Outline
+
+1.  Course Syllabus
+2.  Fundamentals of Computers
+3.  Introduction to Programming
+4.  **C Programming Basics**
+5.  Development Environments (Editors & IDEs)
+
+---
+layout: two-cols
+---
+
+## A Brief History of C
+
+* **Origins:** C was developed at AT&T Bell Labs in the early 1970s, primarily by **Dennis Ritchie**, alongside the development of the **UNIX** operating system (with significant contributions from **Ken Thompson**).
+* **Recognition:** Ritchie and Thompson were later awarded the Turing Award for their work on UNIX and C.
+* **Characteristics of C:**
+    * Relatively simple language structure.
+    * Versatile: Used for system programming, applications, embedded systems, etc.
+    * Highly efficient: Programs often run nearly as fast as equivalent assembly language code (historically cited around 70-80% efficiency).
+
+:: right ::
+* **Legacy:** C heavily influenced many later languages (C++, Java, C#, Objective-C). UNIX became a highly influential and stable operating system.
+<img src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*4AApxPkF4yXzY0jF0yHgkA.jpeg">
+
+---
+layout: two-cols
+---
+
+## Your First C Program Example
+
+```c {*|1|3|4|5|*}{lines:true}
+#include <stdio.h>
+// This is  your first C program
+int main() { 
+    printf("Hello world!\n");
+    return 0;
+}
+```
+
+
+
+<v-clicks at="1">
+ 
+- **`#include stdio.h`:** Tells the compiler to include information about standard input/output functions (like `printf`) found in the `stdio.h` header file.
+- **`int main() { ... }`:** Defines the mandatory `main` function where program execution begins. `int` indicates it returns an integer value. `{` and `}` define the function's body (a block of code).
+
+
+</v-clicks>
+
+:: right ::
+
+<v-clicks at="3">
+
+- **`printf(...)`:** A function from `stdio.h` used to display output.
+- **`return 0;`:** Exits the `main` function and signals successful completion to the OS.
+
+</v-clicks>
+
+<v-click at="5">
+
+- **Keywords:** `include`, `int`, `return` are reserved words in C with special meanings.
+- **Comments:** Text between `/*` and `*/` (or after `//` on a line) is ignored by the compiler and used for explanations.
+
+</v-click>
+
 ---
 layout: two-cols
 ---
@@ -436,76 +507,6 @@ This command tells GCC to take the source file `hello.c` and perform all the ste
 ```
 Hello, World!
 ```
-
-
----
-
-## Lecture Outline
-
-1.  Course Syllabus
-2.  Fundamentals of Computers
-3.  Introduction to Programming
-4.  **C Programming Basics**
-5.  Development Environments (Editors & IDEs)
-
----
-layout: two-cols
----
-
-## A Brief History of C
-
-* **Origins:** C was developed at AT&T Bell Labs in the early 1970s, primarily by **Dennis Ritchie**, alongside the development of the **UNIX** operating system (with significant contributions from **Ken Thompson**).
-* **Recognition:** Ritchie and Thompson were later awarded the Turing Award for their work on UNIX and C.
-* **Characteristics of C:**
-    * Relatively simple language structure.
-    * Versatile: Used for system programming, applications, embedded systems, etc.
-    * Highly efficient: Programs often run nearly as fast as equivalent assembly language code (historically cited around 70-80% efficiency).
-
-:: right ::
-* **Legacy:** C heavily influenced many later languages (C++, Java, C#, Objective-C). UNIX became a highly influential and stable operating system.
-<img src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*4AApxPkF4yXzY0jF0yHgkA.jpeg">
-
----
-layout: two-cols
----
-
-## Your First C Program Example
-
-```c {*|1|3|4|5|*}{lines:true}
-#include <stdio.h>
-// This is  your first C program
-int main() { 
-    printf("Hello world!\n");
-    return 0;
-}
-```
-
-
-
-<v-clicks at="1">
- 
-- **`#include stdio.h`:** Tells the compiler to include information about standard input/output functions (like `printf`) found in the `stdio.h` header file.
-- **`int main() { ... }`:** Defines the mandatory `main` function where program execution begins. `int` indicates it returns an integer value. `{` and `}` define the function's body (a block of code).
-
-
-</v-clicks>
-
-:: right ::
-
-<v-clicks at="3">
-
-- **`printf(...)`:** A function from `stdio.h` used to display output.
-- **`return 0;`:** Exits the `main` function and signals successful completion to the OS.
-
-</v-clicks>
-
-<v-click at="5">
-
-- **Keywords:** `include`, `int`, `return` are reserved words in C with special meanings.
-- **Comments:** Text between `/*` and `*/` (or after `//` on a line) is ignored by the compiler and used for explanations.
-
-</v-click>
-
 
 ---
 layout: iframe-right
