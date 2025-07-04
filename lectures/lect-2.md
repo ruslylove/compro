@@ -26,7 +26,7 @@ Semester 1/2025
 
 ---
 layout: image-right
-image: /lectures/img/binary_computer.png
+image: "/lectures/img/binary_computer.png"
 ---
 
 ## How Computers See Everything: Binary
