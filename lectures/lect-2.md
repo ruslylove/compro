@@ -26,7 +26,7 @@ Semester 1/2025
 
 ---
 layout: image-right
-image: https://control.com/uploads/articles/Hex_1.jpg
+image: /lectures/img/binary_computer.png
 ---
 
 ## How Computers See Everything: Binary
@@ -39,6 +39,9 @@ image: https://control.com/uploads/articles/Hex_1.jpg
 * For readability, octal (base-8) and hexadecimal (base-16) notations are often used as shorthand for binary.
 
 ---
+layout: two-cols
+---
+
 
 ## Number System Conversions: Decimal to Others
 
@@ -51,47 +54,43 @@ image: https://control.com/uploads/articles/Hex_1.jpg
 
 Can you spot the relationship between these number systems?
 
----
+:: right ::
 
-## Number System Conversions: Practice (Part 2)
+```
+Here's the process for 49 to binary:
+49 / 2 = 24 with a remainder of 1
+24 / 2 = 12 with a remainder of 0
+12 / 2 = 6 with a remainder of 0
+6 / 2 = 3 with a remainder of 0
+3 / 2 = 1 with a remainder of 1
+1 / 2 = 0 with a remainder of 1
 
-Your turn! Convert the decimal number 60 into:
+Here's the process for 49 to octal:
+49 / 8 = 6 with a remainder of 1
+6 / 8 = 0 with a remainder of 6
 
-* Binary code:
-* Octal code:
-* Hexadecimal code:
+Here's the process for 49 to hexadecimal:
+49 / 16 = 3 with a remainder of 1
+3 / 16 = 0 with a remainder of 3
 
----
+Binary: 11001 
+Octal: 61
+Hexadecimal: 31
+```
 
-## Number System Conversions: Practice Solution 
-
-Here's the solution for converting decimal 60:
-
-* Binary code: `111100`
-* Octal code: `74`
-* Hexadecimal code: `3C`
-
----
-
-## Number System Conversions: Visualizing
-
-(Original diagrams illustrated the conversion process for 60)
-
-* Decimal to binary conversion steps.
-* Decimal to octal conversion steps.
-* Decimal to hexadecimal conversion steps.
 
 ---
+layout: image-right
+image: /lectures/img/binary_conversion.png
+---
 
-## Number System Conversions: Fractions
+## Number System Conversions: Practice
 
-Converting a decimal fraction to binary, e.g., `0.3125`:
+Your turn! 🧑‍🎓 Convert the decimal number 60 into:
 
-
-
-Resulting binary fraction : `0.0101`
-
-$0 \times 2^{-1} + 1 \times 2^{-2} + 0 \times 2^{-3} + 1 \times 2^{-4} = 0.3125$
+* Binary code: <v-click>`111100`</v-click>
+* Octal code: <v-click>`74`</v-click>
+* Hexadecimal code: <v-click>`3C`</v-click>
 
 ---
 
@@ -106,7 +105,24 @@ $0 \times 2^{-1} + 1 \times 2^{-2} + 0 \times 2^{-3} + 1 \times 2^{-4} = 0.3125$
 
 ---
 
+## Number System Conversions: Fractions
+
+Converting a decimal fraction to binary, e.g., `0.3125`:
+
+
+
+Resulting binary fraction : `0.0101`
+
+$0 \times 2^{-1} + 1 \times 2^{-2} + 0 \times 2^{-3} + 1 \times 2^{-4} = 0.3125$
+
+---
+layout: image-right
+image: /lectures/img/data_in_memory.png
+---
+
 ## How Data Resides in Memory (Part 1)
+
+<Transform scale="0.8">
 
 * Data within computer memory is always stored in binary.
 * Consider the integer 49, which is `110001` in binary.
@@ -116,6 +132,7 @@ $0 \times 2^{-1} + 1 \times 2^{-2} + 0 \times 2^{-3} + 1 \times 2^{-4} = 0.3125$
 * The highest-order bit (leftmost) is often used to indicate the sign (0 for positive, 1 for negative). This applies to real numbers as well.
 * Numbers are typically stored using standard sizes like 8 bits (1 byte), 16 bits (2 bytes), etc.
     * Example (1 byte): `1 0 1 1 0 0 0 1`
+</Transform>
 
 ---
 layout: two-cols
@@ -147,6 +164,16 @@ If one bit is dedicated to the sign, how many different numbers can we represent
 
 ????
 
+<v-click>
+
+Dedicating one bit to the sign doesn't change the *total number* of unique patterns. It changes the *range* of numbers that these patterns represent.
+
+* **Unsigned Byte (no sign bit):** The range is from 0 to 255.
+* **Signed Byte (1 sign bit):** The range shifts to represent both positive and negative numbers. Using the common "two's complement" system, the range is from **-128 to +127**.
+
+In both cases, you are still representing 256 distinct numerical values.
+
+</v-click>
 ---
 
 ## How Data Resides in Memory (Part 5)
@@ -224,13 +251,12 @@ unsigned short b1;// Range: 0 to 65,535
 
 ---
 
+
 ## Visualizing Integer Type Sizes
 
 * Keywords: `int`, `short`, `long`
 * Can be `signed` or `unsigned`.
 * Size depends on the system.
-
-(Original diagram illustrated relative byte sizes)
 
 **Typical Ranges Reminder:**
 ```c
@@ -240,6 +266,26 @@ long c;           // Range: often same as int on 32-bit, wider on 64-bit
 unsigned int a1;  // Range: 0 to approx 4.2 billion
 unsigned short b1;// Range: 0 to 65,535
 ```
+
+
+
+<Transform scale="0.5">
+
+The memory size for integer types can vary. Both `signed` and `unsigned` versions of a type occupy the same amount of space.
+
+| Data Type | Typical Size in Bytes |
+| :--- | :---: |
+| `short` | 2 |
+| `int` | 4 |
+| `long` | 4 or 8 |
+
+<br>
+
+> **Note:** The exact size depends on the system's architecture and compiler. For example, `long` is often 4 bytes on 64-bit Windows but 8 bytes on 64-bit Linux.
+
+</Transform>
+
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20210105141718/GFGArticle-300x204.png" style="right:60px;top:20px;height:200px;position:fixed">
 
 ---
 
@@ -260,7 +306,12 @@ int main() {
 }
 ```
 
-*(Output shows the decimal equivalents based on two's complement representation)*
+*Output:*
+
+```
+a = -32768, b = 32767, c = -2
+d = -128
+```
 
 ---
 
@@ -598,7 +649,7 @@ int main() {
 ---
 
 **Code Example:**
-```c
+```c {all|8|9|10|12|*}{lines:true}
 #include <stdio.h>
 
 int main() {
@@ -615,7 +666,7 @@ int main() {
 ```
 
 **Output:**
-```text
+```text {*|1|2|3|4|*}{at:'1'}
 Score: 95
 Average: 88.700000
 Grade: A
@@ -657,6 +708,8 @@ Price: 7.400000
 
 ## Common `printf()` Format Specifiers
 
+<Transform scale="0.9">
+
 | Specifier | Description | Argument Type |
 |---|---|---|
 | `%c` | Single character | `char` |
@@ -666,6 +719,8 @@ Price: 7.400000
 | `%o` | Unsigned octal integer | `unsigned int` |
 | `%ld` | Signed long decimal integer | `long int` |
 | `%lu`, `%lx`, `%lo` | Unsigned long integer (dec, hex, oct) | `unsigned long int` |
+
+</Transform>
 
 ---
 
@@ -687,7 +742,7 @@ Price: 7.400000
 Printing the same data using various format specifiers:
 
 **Code:**
-```c {*}{maxHeight:'200px'}
+```c {all|8|10|12}{lines:true, maxHeight:'200px'}
 #include <stdio.h>
 
 int main() {
@@ -704,7 +759,7 @@ int main() {
 ```
 
 **Output:**
-```text
+```text {*|1|2|3}{at:'1'}
 As decimals: code_num = 79, letter = 110
 As characters: code_num = O, letter = n
 As hex: code_num = 4f, letter = 6e
@@ -866,6 +921,7 @@ The order in which operations are performed matters.
 ---
 
 *Example:* Average of 1, 2, 4.
+
 `1 + 2 + 4 / 3` is evaluated as `1 + 2 + (4 / 3)` -> `1 + 2 + 1` -> `4` (because `4/3` is integer division).
 
 To get the correct average, use: `(1 + 2 + 4) / 3` or `(1.0 + 2.0 + 4.0) / 3.0`.
@@ -892,7 +948,7 @@ How are these evaluated?
 
 | Expression | Result | Reason |
 |---|---|---|
-| `5 / 2` | `2` | 5 divided by 2 is 2.5, truncated to 2 |
+| `5 / 2` |  `2` | 5 divided by 2 is 2.5, truncated to 2 | 
 | `17 / 5` | `3` | 17 divided by 5 is 3.4, truncated to 3 |
 | `-7 / 3` | `-2` | -7 divided by 3 is -2.33..., truncated towards zero to -2 |
 
@@ -1015,6 +1071,7 @@ int main() {
   printf("number = %d\n", number); // Output will be 2
 }
 ```
+
 * While C allows this, it's often unintentional. Be careful when mixing types in assignments.
 
 ---
@@ -1022,6 +1079,8 @@ int main() {
 ## Compound Assignment Operators (Part 1)
 
 These provide a concise way to modify a variable based on its current value.
+
+<Transform scale="0.9">
 
 | Standard Form | Shortcut Equivalent | Meaning |
 |---|---|---|
@@ -1032,6 +1091,8 @@ These provide a concise way to modify a variable based on its current value.
 | `var = var % value;` | `var %= value;` | Assign remainder of `var / value` to `var` |
 | `m = m * (5 + 3);` | `m *= (5 + 3);` or `m *= 8;` | Works with expressions too |
 | `k = k / (5 + 1);` | `k /= (5 + 1);` or `k /= 6;` | Parentheses respected |
+
+</Transform>
 
 ---
 
@@ -1122,9 +1183,11 @@ int main() {
 ```
 
 **Output:**
+<v-click>
 ```text
 Final: a = 4, b = 2
 ```
+</v-click>
 
 ---
 

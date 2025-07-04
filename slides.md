@@ -5,7 +5,7 @@ theme: seriph
 # like them? see https://unsplash.com/collections/94734566/slidev
 background: https://cover.sli.dev
 # some information about your slides (markdown enabled)
-title: Welcome to Computer Programming
+title: 010153002 Computer Programming by Dr.Ruslee
 info: |
   ## Slidev Starter Template
   Presentation slides for developers.
@@ -23,6 +23,9 @@ mdc: true
 # open graph
 # seoMeta:
 #  ogImage: https://cover.sli.dev
+# lineNumbers: true
+favicon: '/img/favicon_c_new.png'
+
 ---
 
 # Welcome to 010153002 Computer Programming
