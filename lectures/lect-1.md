@@ -368,9 +368,39 @@ layout: two-cols
 4.  **Executing:** The CPU fetches instructions from memory and executes them one by one, interacting with peripherals (like the screen via `printf`) as needed.
 
 ::right::
+<div style="position:fixed;right:0">
+<Transform :scale="0.49">
+
+```mermaid
+graph TD
+    subgraph "Development"
+        A["<b>1. Editing</b><br>Write C code in a text file<br><i>(e.g., Prog1.c)</i>"] --> B;
+    end
+
+    subgraph "Build Process"
+        B["<b>2. Compiling & Linking</b><br>Use a C compiler to create an executable file"] --> C[("Executable on Disk<br><i>(e.g., Prog1.exe)</i>")];
+    end
+
+    subgraph "Execution"
+        C --> D["<b>3. Loading</b><br>OS loads the executable from disk into memory"];
+        D --> E[("Program in Memory<br><i>(RAM)</i>")];
+        E --> F["<b>4. Executing</b><br>CPU fetches and runs instructions from memory"];
+        F --> G[/Output to Peripherals<br><i>Screen via printf</i>/];
+    end
+
+    style A fill:#cde4ff
+    style B fill:#cde4ff
+    style D fill:#d5e8d4
+    style F fill:#d5e8d4
+```
+
+</Transform>
+</div>
+
+<!--
 <img src="https://scaler.com/topics/images/preprocessor-execution.webp" >
  <img src="https://preview.redd.it/endlesscycle-v0-3tgf6c5vk5ub1.jpg?auto=webp&s=2f119c53a4afaf688868704c635ab28956b87b38" style="height:200px;position:fixed;right:0;bottom:0">
-
+-->
 
 ---
 

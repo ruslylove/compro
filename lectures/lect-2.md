@@ -266,7 +266,8 @@ unsigned short b1;// Range: 0 to 65,535
 * Commonly: `int` and `long` are 4 bytes, `short` is 2 bytes on 32-bit systems.
 
 ---
-
+layout: two-cols
+---
 
 ## Visualizing Integer Type Sizes
 
@@ -283,25 +284,36 @@ unsigned int a1;  // Range: 0 to approx 4.2 billion
 unsigned short b1;// Range: 0 to 65,535
 ```
 
-
-
-<Transform scale="0.5">
-
 The memory size for integer types can vary. Both `signed` and `unsigned` versions of a type occupy the same amount of space.
 
-| Data Type | Typical Size in Bytes |
-| :--- | :---: |
-| `short` | 2 |
-| `int` | 4 |
-| `long` | 4 or 8 |
-
-<br>
+<Transform scale="0.8">
 
 > **Note:** The exact size depends on the system's architecture and compiler. For example, `long` is often 4 bytes on 64-bit Windows but 8 bytes on 64-bit Linux.
 
 </Transform>
 
+
+:: right ::
+
+<div style="margin-top:80px">
+
+```mermaid
+xychart-beta horizontal
+  title "Typical Byte Sizes of C Integer Types"
+  x-axis "Data Type" ["short / unsigned short", "int / unsigned int", "long"]
+  y-axis "Size in Bytes" 0 --> 8
+  bar [2, 4, 8]
+```
+</div>
+
+
+
+
+<!--
+
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20210105141718/GFGArticle-300x204.png" style="right:60px;top:20px;height:200px;position:fixed">
+
+-->
 
 ---
 
