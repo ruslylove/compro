@@ -9,6 +9,9 @@ src: ./lect-2.md
 src: ./lect-3.md
 ---
 ---
+src: ./flow_chart_selection.md
+---
+---
 src: ./lect-4.md
 ---
 ---

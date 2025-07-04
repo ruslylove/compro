@@ -52,8 +52,6 @@ layout: two-cols
 * **Converting Decimal to Hexadecimal (Base-16):**
     * Example: 49 (decimal) becomes `31` (hexadecimal).
 
-Can you spot the relationship between these number systems?
-
 :: right ::
 
 ```
@@ -78,6 +76,7 @@ Octal: 61
 Hexadecimal: 31
 ```
 
+**Can you spot the relationship between these number systems?**
 
 ---
 layout: image-right
@@ -115,12 +114,23 @@ Resulting binary fraction : `0.0101`
 
 $0 \times 2^{-1} + 1 \times 2^{-2} + 0 \times 2^{-3} + 1 \times 2^{-4} = 0.3125$
 
+<v-clicks>
+
+How about `2.75` ?
+
+$1 \times 2^{1} + 0 \times 2^{0} + 1 \times 2^{-1} + 1 \times 2^{-2} = 2.75$
+
+Resulting binary fraction : `10.11`
+
+</v-clicks>
+
+
 ---
 layout: image-right
 image: /lectures/img/data_in_memory.png
 ---
 
-## How Data Resides in Memory (Part 1)
+## How Data Resides in Memory
 
 <Transform scale="0.8">
 
@@ -138,17 +148,31 @@ image: /lectures/img/data_in_memory.png
 layout: two-cols
 ---
 
-## How Data Resides in Memory (Part 2)
+## How Data Resides in Memory
 
 * When multiple data items are stored, they occupy consecutive memory locations (assuming each uses 1 byte here).
 
 :: right ::
 
-<img src="https://computerscience.chemeketa.edu/cs160Reader/_images/memory.png">
+<Transform scale="0.85">
+
+| Memory Address | 8-Bit Data | Binary Representation |
+|:--------------:|:----------:|:---------------------:|
+|      `0x00`      |   `0xEA`   |      `11101010`       |
+|      `0x01`      |   `0x73`   |      `01110011`       |
+|      `0x02`      |   `0x4A`   |      `01001010`       |
+|      `0x03`      |   `0xC2`   |      `11000010`       |
+|      `...`       |    `...`   |         `...`         |
+|      `0xFC`      |   `0x64`   |      `01100100`       |
+|      `0xFD`      |   `0xA9`   |      `10101001`       |
+|      `0xFE`      |   `0xEE`   |      `11101110`       |
+|      `0xFF`      |   `0x43`   |      `01000011`       |
+
+</Transform>
 
 ---
 
-## How Data Resides in Memory (Part 3)
+## How Data Resides in Memory
 
 * An important consideration: What is the range of numbers representable within a fixed size, like 1 byte (8 bits)?
 * If no sign is used (unsigned): binary `00000000` to `11111111`.
@@ -158,11 +182,13 @@ layout: two-cols
 
 ---
 
-## How Data Resides in Memory (Part 4)
+## How Data Resides in Memory
 
-If one bit is dedicated to the sign, how many different numbers can we represent in 1 byte?
+❓If one bit is dedicated to the *sign*, how many different numbers can we represent in 1 byte?
 
-????
+| Bit Position | 7 (Sign) | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
+|---|---|---|---|---|---|---|---|---|
+| Bit Value    | 1 | 0 | 1 | 0 | 0 | 1 | 1 | 1 |
 
 <v-click>
 
@@ -174,16 +200,6 @@ Dedicating one bit to the sign doesn't change the *total number* of unique patte
 In both cases, you are still representing 256 distinct numerical values.
 
 </v-click>
----
-
-## How Data Resides in Memory (Part 5)
-
-* With a sign bit, the range changes. Using 8 bits (1 for sign, 7 for magnitude):
-    * Typically allows for positive numbers (e.g., 1 to 127).
-    * And negative numbers (e.g., -1 to -128 using two's complement).
-    * Total distinct values are still 256, including zero.
-* Some numbers, like decimal 3.3137, can only be approximated in binary due to finite representation.
-    * E.g., $11.0101$ in binary.
 
 ---
 
@@ -291,7 +307,7 @@ The memory size for integer types can vary. Both `signed` and `unsigned` version
 
 ## Integer Type Examples
 
-```c
+```c {*|9|10|*}{lines:true}
 int main() {
   // Using hexadecimal representation for clarity with bit patterns
   short a = 0x8000; // Smallest signed short (-32768)
@@ -308,14 +324,14 @@ int main() {
 
 *Output:*
 
-```
+``` {*|1|2|*}{at:'1'}
 a = -32768, b = 32767, c = -2
 d = -128
 ```
 
 ---
 
-## The Issue of Integer Overflow (Part 1)
+## The Issue of Integer Overflow
 
 Consider this code. Is there a problem?
 
@@ -329,7 +345,7 @@ int main() {
 
 ---
 
-## The Issue of Integer Overflow (Part 2)
+## The Issue of Integer Overflow
 
 Yes, there's a problem with:
 ```c
@@ -360,7 +376,7 @@ int main() {
 
 ---
 
-## The Issue of Integer Overflow (Part 3)
+## The Issue of Integer Overflow
 
 * Overflow can happen with any fixed-size primitive data type (`int`, `float`, `char`, etc.).
 * This is a consequence of using a limited number of bytes to store potentially unlimited values.
@@ -369,7 +385,7 @@ int main() {
 
 ---
 
-## Floating-Point Number Types (Part 1)
+## Floating-Point Number Types
 
 * Keywords: `float`, `double`, `long double`
 * Used to represent real numbers (numbers with decimal parts).
@@ -385,7 +401,7 @@ Example representation of `3.14159` as a `float`: `0 0000100 1100100100001111110
 
 ---
 
-## Floating-Point Number Types (Part 2)
+## Floating-Point Number Types
 
 * Keywords: `float`, `double`, `long double`
 
@@ -415,7 +431,7 @@ int main() {
 
 ---
 
-## Character Type (Part 1)
+## Character Type
 
 * Keyword: `char`
 * Can be `signed` (default on many systems) or explicitly `unsigned`.
@@ -431,7 +447,7 @@ char letter_char = 'A'; // Initialize with character literal (use single quotes)
 
 ---
 
-## Character Type (Part 2)
+## Character Type
 
 * A `char` uses its 1 byte (8 bits) to represent characters mapped to integers.
 * The range is typically 0 to 255 (for `unsigned char`) or -128 to 127 (for `signed char`).
@@ -439,7 +455,7 @@ char letter_char = 'A'; // Initialize with character literal (use single quotes)
 
 ---
 
-## Character Type (Part 3): Common ASCII Values
+## Character Type: Common ASCII Values
 
 You should recognize these common character codes:
 
@@ -506,7 +522,7 @@ Code 50: Value=50 Symbol=2
 
 ---
 
-## Naming Variables: Identifiers (Part 1)
+## Naming Variables: Identifiers
 
 Rules for valid variable names (identifiers) in C:
 * Can contain letters (a-z, A-Z), digits (0-9), and the underscore (`_`).
@@ -837,7 +853,7 @@ scanf("%d", &i); // Reads an integer, stores it at the address of i
 Reading an integer and a floating-point number:
 
 **Code:**
-```c {all|7|10|12|14|all}{lines:true, maxHeight:'200px'}
+```c {all|7|10,12|14|all}{lines:true, maxHeight:'200px'}
 #include <stdio.h>
 
 int main() {
@@ -857,7 +873,7 @@ int main() {
 ```
 
 **Example Interaction:**
-```text 
+```text{*|1|2|3|*}{at:'1'}
 Initial values: quantity = 0, price = 0.000000
 Enter quantity (integer) and price (float), separated by space: 15 9.99
 Values after input: quantity = 15, price = 9.990000

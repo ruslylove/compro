@@ -726,9 +726,11 @@ int main() {
 
 ## `switch` Example: Month Names
 
+<Transform scale="0.9">
+
 **Problem:** Print the name of the month based on its number (1-12).
 
-```c {*}{lines:true, maxHeight:'380px'}
+```c {*}{lines:true}
 #include <stdio.h>
 
 int main() {
@@ -753,6 +755,8 @@ int main() {
     return 0;
 }
 ```
+
+</Transform>
 
 ---
 
