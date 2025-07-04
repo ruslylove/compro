@@ -80,7 +80,7 @@ Hexadecimal: 31
 
 ---
 layout: image-right
-image: ./lectures/img/binary_conversion.png
+image: binary_conversion.png
 ---
 
 ## Number System Conversions: Practice
@@ -127,7 +127,7 @@ Resulting binary fraction : `10.11`
 
 ---
 layout: image-right
-image: https://ruslylove.github.io/compro/assets/data_in_memory-D1DbNiao.png
+image: data_in_memory.png
 ---
 
 ## How Data Resides in Memory
