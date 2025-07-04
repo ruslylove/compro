@@ -25,6 +25,7 @@ mdc: true
 #  ogImage: https://cover.sli.dev
 # lineNumbers: true
 favicon: '/img/favicon_c_new.png'
+download: true
 
 ---
 
