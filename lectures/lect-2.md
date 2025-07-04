@@ -404,12 +404,27 @@ int main() {
 * Like integers, they use a fixed number of bytes (`float`: usually 4, `double`: usually 8).
 * This means they cannot represent *all* real numbers perfectly; there's limited range and precision.
 
-<img src = "https://numeral-systems.com/media/ieee-754/ieee-754-floating-point.webp">
+<Transform scale="0.8">
+
+```mermaid
+graph LR
+    subgraph 32-Bit Float
+        direction LR
+        A[Sign <br> 1 bit] --> B[Exponent <br> 8 bits] --> C[Mantissa <br> 23 bits]
+    end
+    style A fill:#cde4ff
+    style B fill:#d5e8d4
+    style C fill:#fff2cc
+```
+
+</Transform>
+<!--
+<img src = "https://numeral-systems.com/media/ieee-754/ieee-754-floating-point.webp"> -->
 Example representation of `3.14159` as a `float`: `0 0000100 110010010000111111001110`
 
 * Sign: 0 (positive)
 * Exponent: Represents the scale
-* Significand: Represents the significant digits
+* Mantissa: Represents the significant digits
 
 ---
 
