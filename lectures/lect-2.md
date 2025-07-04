@@ -26,7 +26,7 @@ Semester 1/2025
 
 ---
 layout: image-right
-image: "/lectures/img/binary_computer.png"
+image: ./lectures/img/binary_computer.png
 ---
 
 ## How Computers See Everything: Binary
@@ -80,7 +80,7 @@ Hexadecimal: 31
 
 ---
 layout: image-right
-image: /lectures/img/binary_conversion.png
+image: ./lectures/img/binary_conversion.png
 ---
 
 ## Number System Conversions: Practice
@@ -127,7 +127,7 @@ Resulting binary fraction : `10.11`
 
 ---
 layout: image-right
-image: /lectures/img/data_in_memory.png
+image: ./lectures/img/data_in_memory.png
 ---
 
 ## How Data Resides in Memory
