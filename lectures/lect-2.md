@@ -126,7 +126,7 @@ Resulting binary fraction : `10.11`
 
 
 ---
-layout: image-right
+layout: image-left
 image: ./lectures/img/data_in_memory.png
 ---
 
