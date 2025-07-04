@@ -126,13 +126,15 @@ Resulting binary fraction : `10.11`
 
 
 ---
-layout: image-left
-image: ./lectures/img/data_in_memory.png
+layout: image-right
+image: /lectures/img/data_in_memory.png
 ---
 
 ## How Data Resides in Memory
 
 <Transform scale="0.8">
+
+<img src="./img/data_in_memory.png">
 
 * Data within computer memory is always stored in binary.
 * Consider the integer 49, which is `110001` in binary.
