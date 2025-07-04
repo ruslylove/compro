@@ -80,7 +80,7 @@ Hexadecimal: 31
 
 ---
 layout: image-right
-image: ./lectures/img/binary_conversion.png
+image: ./img/binary_conversion.png
 ---
 
 ## Number System Conversions: Practice
