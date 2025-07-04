@@ -1,6 +1,6 @@
 ---
 theme: seriph
-background: ./lectures/img/binary_computer.png
+background: https://cover.sli.dev
 transition: slide-left
 layout: cover
 title: Lecture 2 - Basic Data Types & Using Expressions
