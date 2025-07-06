@@ -152,6 +152,8 @@ layout: two-cols
 
 * When multiple data items are stored, they occupy consecutive memory locations (assuming each uses 1 byte here).
 
+<img src="/one_byte_meme.png" style="margin:auto;height:300px;padding-top:50px">
+
 :: right ::
 
 <Transform scale="0.85">
@@ -922,7 +924,7 @@ Values after input: quantity = 15, price = 9.990000
 ## What are Expressions?
 
 An expression in C is a valid combination of:
-* **Constants:** Fixed values like `5`, `3.14`, `'A'`. (Includes `const` variables).
+* **Constants:** Fixed values like `5`, `3.14`, `'A'` (Includes `const` variables).
 * **Variables:** Named storage locations like `count`, `average`, `initial_char`.
 * **Operators:** Symbols that perform operations like `+`, `-`, `*`, `/`, `%`, `=`, `==`, `&&`.
 * **Function Calls:** Executing functions that may return a value, e.g., `printf(...)`, `scanf(...)`, `sqrt(x)`.
@@ -1031,10 +1033,10 @@ What are the results of these expressions?
 
 | Expression | Result? |
 |---|---|
-| `11 / 2` | ? |
-| `11 % 2` | ? |
-| `11 / 2.0`| ? |
-| `5.0 / 2` | ? |
+| `11 / 2` | <v-click hide> ? </v-click><v-click>5 </v-click> |
+| `11 % 2` | <v-click hide> ? </v-click><v-click>1 </v-click> |
+| `11 / 2.0`| <v-click hide> ? </v-click><v-click>5.5 </v-click> |
+| `5.0 / 2` | <v-click hide> ? </v-click><v-click>2.5 </v-click> |
 
 ---
 
@@ -1060,30 +1062,46 @@ Let's check the results:
 | $\frac{x - 7}{2 + 3y}$ | `(x - 7) / (2 + 3 * y)` | Parentheses are essential to enforce the correct order of operations (numerator and denominator evaluated separately before division). |
 
 ---
+layout: two-cols
+---
 
 ## Practice Evaluating C Expressions (Part 2)
 
 Calculate the value of each C expression:
 
+
 | C Expression | Value? |
 |---|---|
-| `2 * (-3)` | ? |
-| `4 * 5 - 15` | ? |
-| `4 + 2 * 5` | ? |
-| `7 / 2` | ? |
-| `7 / 2.0` | ? |
-| `2 / 5` | ? |
-| `2.0 / 5.0` | ? |
-| `2 / 5 * 5` | ? |
-| `2.0 + 1.0 + 5 / 2` | ? |
-| `5 % 2` | ? |
-| `4 * 5 / 2 + 5 % 2` | ? |
+| `2 * (-3)` |  <v-click hide> ? </v-click><v-click>-6 </v-click> |
+| `4 * 5 - 15` |  <v-click hide> ? </v-click><v-click>5 </v-click> |
+| `4 + 2 * 5` |  <v-click hide> ? </v-click><v-click>14 </v-click> |
+| `7 / 2` |  <v-click hide> ? </v-click><v-click>3 </v-click> |
+| `7 / 2.0` |  <v-click hide> ? </v-click><v-click>3.5 </v-click> |
+| `2 / 5` |  <v-click hide> ? </v-click><v-click>0 </v-click> |
+
+:: right ::
+
+<div style="padding-top:128px">
+
+| C Expression | Value? |
+|---|---|
+| `2.0 / 5.0` |  <v-click hide> ? </v-click><v-click>0.4 </v-click> |
+| `2 / 5 * 5` |  <v-click hide> ? </v-click><v-click>0 </v-click> |
+| `2.0 + 1.0 + 5 / 2` |  <v-click hide> ? </v-click><v-click>5.0 </v-click> |
+| `5 % 2` |  <v-click hide> ? </v-click><v-click>1 </v-click> |
+| `4 * 5 / 2 + 5 % 2` |  <v-click hide> ? </v-click><v-click>11 </v-click> |
+
+</div>
+
+
 
 ---
 
 ## Practice Evaluating C Expressions (Part 3) - Results
 
 Check your answers:
+
+<Transform scale="0.6">
 
 | C Expression | Value | Explanation |
 |---|---|---|
@@ -1098,6 +1116,8 @@ Check your answers:
 | `2.0 + 1.0 + 5 / 2` | `5.0` | `2.0 + 1.0 + (5 / 2)` -> `2.0 + 1.0 + 2` -> `3.0 + 2` -> `5.0` |
 | `5 % 2` | `1` | Modulus (remainder) |
 | `4 * 5 / 2 + 5 % 2` | `11` | `((4 * 5) / 2) + (5 % 2)` -> `(20 / 2) + 1` -> `10 + 1` |
+
+</Transform>
 
 ---
 
@@ -1349,3 +1369,32 @@ Result: a = 4, b = 2
     // rounded_val = (int)floor(source_val); // floor(5.9) is 5.0. (int)5.0 is 5.
     // rounded_val = (int)ceil(source_val);  // ceil(5.9) is 6.0. (int)6.0 is 6.
     ```
+
+---
+layout: default
+---
+
+## Summary
+
+<Transform scale="0.75">
+
+*   **Data Representation:** Computers use binary (0s and 1s) to represent all data.
+*   **C Data Types:**
+    *   `int`, `short`, `long` for whole numbers (signed/unsigned).
+    *   `float`, `double` for decimal numbers.
+    *   `char` for single characters (stored as ASCII values).
+*   **Variables & Constants:**
+    *   Variables are named storage locations. Use clear, conventional names (`camelCase` or `snake_case`).
+    *   `const` variables cannot be changed after initialization.
+*   **Input/Output:**
+    *   `printf()` to display formatted output using specifiers (`%d`, `%f`, `%c`).
+    *   `scanf()` to read user input, requiring the address-of operator (`&`).
+*   **Operators & Expressions:**
+    *   Arithmetic (`+`, `-`, `*`, `/`, `%`), relational, logical operators.
+    *   Operator precedence determines the order of evaluation. Use `()` for clarity.
+    *   Integer division `/` truncates; floating-point division preserves decimals.
+*   **Type Conversion:**
+    *   **Implicit:** Automatic conversion to a "wider" type (e.g., `int` to `double`).
+    *   **Explicit (Casting):** Forcing a conversion with `(new_type)value`.
+
+</Transform>

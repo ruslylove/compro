@@ -329,6 +329,8 @@ This rubric evaluates your lab submission across four key areas:
 3.  **Logic & Problem-Solving** (Is the approach sound?)
 4.  **Adherence to Requirements** (Did you follow instructions?)
 
+<img src="/no_ai.png" style="height:200px;margin:auto;padding-top:30px">
+
 ---
 
 ## Grading Scale

@@ -53,6 +53,8 @@ layout: two-cols
     * Attendance: 10%
     * Exam: 60%
 
+<img src="/no_ai.png" style="height:250px;padding-left:50px;padding-top:30px">
+
 ---
 
 ## Course Structure
