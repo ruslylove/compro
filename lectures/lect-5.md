@@ -564,7 +564,30 @@ int main() {
 
 ---
 
-## Conditional Compilation (`#ifdef`, `#ifndef`, `#endif`)
+---
+layout: default
+---
+
+## Summary
+<Transform scale="0.85">
+
+*   **Functions:** Reusable blocks of code that improve modularity and readability. Key components are the return type, name, parameters, and body.
+*   **Declaration vs. Definition:** A function must be *declared* (prototype) before it is *called* so the compiler knows its signature. The *definition* contains the actual code.
+*   **Pass-by-Value:** C passes arguments to functions by value, meaning the function receives a *copy* and cannot modify the original argument variable.
+*   **Recursion:** A function that calls itself. Requires a **base case** to stop the recursion and a **recursive step** that moves closer to the base case.
+*   **Scope & Lifetime:**
+    *   **Scope** (where a variable is accessible): Local/Block scope vs. Global/File scope.
+    *   **Lifetime** (how long a variable exists): Automatic (local) vs. Static (global, `static` locals).
+*   **Preprocessor & Macros:**
+    *   The preprocessor modifies code *before* compilation.
+    *   `#include` incorporates header files.
+    *   `#define` creates text-substitution macros for constants or simple operations.
+
+</Transform>
+
+<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
+<Link to="lab5" title="Go to Lab5"/>
+</div>
 
 * Allows you to include or exclude blocks of code from compilation based on whether a macro identifier has been defined (using `#define`).
 * **`#ifdef IDENTIFIER`**: Includes the code between it and `#endif` *if* `IDENTIFIER` is defined.

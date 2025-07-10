@@ -491,7 +491,29 @@ int main() {
 
 ---
 
-## `strcmp()` Example
+---
+layout: default
+---
+
+## Summary
+<Transform scale="0.85">
+
+*   **1D Arrays:** A fixed-size, sequential collection of elements of the same type, accessed via a zero-based index (e.g., `my_array[0]`)
+*   **2D Arrays:** An "array of arrays" used to represent grids or matrices, accessed with two indices (e.g., `matrix[row][col]`)
+*   **Array Bounds:** C does not check if an array index is valid. Accessing an array out of bounds (e.g., `arr[size]`) leads to undefined behavior and is a common, serious bug.
+*   **Strings in C:** Implemented as arrays of characters (`char`).
+*   **Null Terminator:** C strings are terminated by a special null character (`'\0'`) to mark their end.
+*   **String Functions (`<string.h>`):** A standard library for string manipulation, including:
+    *   `strlen()`: Get string length (excluding `'\0'`).
+    *   `strcpy()`: Copy a string (unsafe).
+    *   `strcat()`: Concatenate strings (unsafe).
+    *   `strcmp()`: Compare two strings lexicographically.
+
+</Transform>
+
+<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
+<Link to="lab6" title="Go to Lab6"/>
+</div>
 
 * Compares two strings alphabetically.
 

@@ -5,6 +5,7 @@ transition: slide-left
 layout: cover
 title: Lab 9 - Pointers and File Operations
 class: lab
+routeAlias: lab9
 ---
 
 # Computer Programming
@@ -15,201 +16,115 @@ Semester: 1/2025
 
 ---
 
+## Objectives
+
+*   **Master pointer fundamentals and arithmetic**
+    *   Declare, initialize, and dereference pointers.
+    *   Use pointer arithmetic to navigate arrays efficiently without using array indices.
+*   **Use pointers with functions and arrays**
+    *   Pass pointers to functions to allow direct modification of caller data (pass-by-reference).
+    *   Implement algorithms using pointer notation for array access.
+*   **Perform fundamental file I/O operations**
+    *   Open, read from, write to, and close text files.
+    *   Use `fopen`, `fprintf`, `fgetc`, and `fclose`.
+    *   Handle file-related errors, such as a failure to open a file.
+*   **Manage memory dynamically**
+    *   Allocate and free memory on the heap using `malloc` and `free`.
+
+---
+
 ## Lab Outline
 
-1.  Pointer Exercises
-2.  File Operation Exercise
+*   **Exercise 1: Flip Array Elements using Pointers**
+    *   Modify an array in-place using pointer arithmetic.
+*   **Exercise 2: Calculate Dot Product using Pointers**
+    *   Access multiple arrays in parallel using pointers.
+*   **Exercise 3: Alphabet Frequency from File**
+    *   Combine file reading with array manipulation.
+*   **Exercise 4: Simple File Writing**
+    *   Practice creating and writing to a new file.
+*   **Exercise 5: Dynamic Array with `malloc`**
+    *   Learn to allocate memory at runtime.
+*   **Exercise 6: Copy a File**
+    *   Read from one file and write the contents to another.
 
 ---
 
 ## Exercise 1: Flip Array Elements using Pointers
 
-* **Task:** Create a function `void flip(int *a, int sz)` that reverses the elements of an integer array *in place*.
-* **Requirements:**
-    1.  The function takes a pointer `a` to the first element of the array and the array size `sz`.
-    2.  Inside the `flip` function, use pointer arithmetic (not array indexing `[]`) to access and swap elements.
-    3.  Also create a function `void print_array(int *a, int sz)` to display the array contents using pointer arithmetic.
-    4.  In `main`, declare an array, print it, call `flip`, and then print it again to show it's reversed.
-* **Example:** `a = {11, 4, 31, 2, 5}` should become `a = {5, 2, 31, 4, 11}`.
-* **Hint (Swap Logic):** Use two pointers, one starting at the beginning (`p = a`) and one at the end (`q = a + sz - 1`). Swap the values they point to (`*p`, `*q`). Move `p` forward (`p++`) and `q` backward (`q--`). Repeat until `p` and `q` cross each other (stop when `p >= q`).
-
----
-
-## Code Snippet: `flip` function
-
-```c
-#include <stdio.h>
-
-// Function to print array using pointers
-void print_array(int *a, int sz) {
-    int *p;
-    int *end = a + sz; // Pointer to one past the last element
-    printf("[ ");
-    for (p = a; p < end; p++) {
-        printf("%d ", *p); // Dereference pointer to get value
-    }
-    printf("]\n");
-}
-
-// Function to flip array elements using pointers
-void flip(int *a, int sz) {
-    int *p = a;          // Pointer to the start
-    int *q = a + sz - 1; // Pointer to the end
-    int temp;
-
-    // Loop while start pointer is before end pointer
-    while (p < q) {
-        // Swap values pointed to by p and q
-        temp = *p;
-        *p = *q;
-        *q = temp;
-
-        // Move pointers towards the center
-        p++;
-        q--;
-    }
-}
-
-int main() {
-    int my_array[] = {11, 4, 31, 2, 5, 12, 15};
-    int size = sizeof(my_array) / sizeof(my_array[0]); // Calculate array size
-
-    printf("Original array: ");
-    print_array(my_array, size);
-
-    flip(my_array, size); // Reverse the array
-
-    printf("Flipped array:  ");
-    print_array(my_array, size);
-
-    return 0;
-}
-```
+*   **Task:** Create a function `void flip(int *a, int sz)` that reverses an integer array *in place*.
+*   **📝 Flowchart First:** Draw a flowchart for the `flip` function. It should visualize the two-pointer swapping logic.
+*   **Requirements:**
+    1.  The function must use pointer arithmetic (e.g., `*p`, `p++`), not array indexing (`a[i]`).
+    2.  Use two pointers, one at the start and one at the end, moving towards the center and swapping elements.
+    3.  In `main`, declare an array, print it, call `flip`, and print it again.
+*   **Example:** `{11, 4, 31, 2, 5}` becomes `{5, 2, 31, 4, 11}`.
 
 ---
 
 ## Exercise 2: Calculate Dot Product using Pointers
 
-* **Task:** Define a function `float dotprod(float *a, float *b, int sz)` that calculates the dot product (scalar product) of two float arrays `a` and `b`, both of size `sz`.
-* **Dot Product Formula:** $result = \sum_{i=0}^{sz-1} a_i \times b_i$
-* **Requirements:**
-    1.  The function takes pointers to the first elements of the two arrays (`a`, `b`) and their common size `sz`.
-    2.  Use pointers (not array indexing `[]`) inside the function to iterate through the arrays and calculate the sum of the products of corresponding elements.
-    3.  Return the resulting dot product (a float).
-    4.  In `main`, declare and initialize two float arrays, call `dotprod`, and print the result.
+*   **Task:** Define a function `float dotprod(float *a, float *b, int sz)` that calculates the dot product of two float arrays.
+*   **📝 Flowchart First:** Draw a flowchart for the `dotprod` function, showing the loop that accumulates the sum using pointers.
+*   **Dot Product:** $result = \sum_{i=0}^{sz-1} a_i \times b_i$
+*   **Requirements:**
+    1.  Use pointers, not array indexing, to iterate through the arrays.
+    2.  Return the resulting `float` dot product.
+    3.  In `main`, create two float arrays, call `dotprod`, and print the result.
 
 ---
 
-## Code Snippet: `dotprod` function
+## Exercise 3: Alphabet Frequency from File
 
-```c
-#include <stdio.h>
-
-// Function to calculate dot product using pointers
-float dotprod(float *a, float *b, int sz) {
-    float *p_a = a;      // Pointer for array a
-    float *p_b = b;      // Pointer for array b
-    float *end_a = a + sz; // Pointer to one past the end of a
-    float sum = 0.0f;
-
-    // Loop until pointer reaches the end
-    while (p_a < end_a) {
-        // Multiply corresponding elements and add to sum
-        sum += (*p_a) * (*p_b);
-
-        // Move both pointers to the next element
-        p_a++;
-        p_b++;
-    }
-    return sum;
-}
-
-int main() {
-    float vec1[] = {1.0f, 2.0f, 3.0f};
-    float vec2[] = {4.0f, 5.0f, 6.0f};
-    int size = sizeof(vec1) / sizeof(vec1[0]);
-    float result;
-
-    result = dotprod(vec1, vec2, size); // Calculate dot product
-
-    // Expected: (1*4) + (2*5) + (3*6) = 4 + 10 + 18 = 32
-    printf("Dot product = %.2f\n", result);
-
-    return 0;
-}
-```
-
----
-
-## Exercise 3: Alphabet Frequency Count
-
-* **Task:** Write a program that reads text from a file named `input.txt` and counts the frequency of occurrence of each alphabet letter (case-insensitive).
-* **Requirements:**
-    1.  Assume `input.txt` exists and contains some text.
-    2.  Read the file character by character until the end of the file (EOF) is reached.
-    3.  For each character read, determine if it's an alphabet letter (`'a'`-`'z'` or `'A'`-`'Z'`).
-    4.  Treat uppercase and lowercase letters the same (e.g., count 'a' and 'A' together).
-    5.  Keep track of the counts for each of the 26 letters.
-    6.  After reading the entire file, print the frequency counts for only those letters that appeared at least once.
-* **Hints:**
-    * Use an integer array `counts[26]` initialized to zeros, where `counts[0]` corresponds to 'a'/'A', `counts[1]` to 'b'/'B', etc.
-    * Use `fopen("input.txt", "r")` to open the file. Remember to check for `NULL`.
-    * Use `fgetc(fp)` to read one character at a time. It returns `EOF` at the end of the file.
-    * Convert uppercase letters to lowercase (e.g., using `tolower()` from `<ctype.h>` or by adding `'a' - 'A'`) before calculating the array index (`index = lower_char - 'a'`).
-    * Check if a character `c` is alphabetic using `isalpha(c)` from `<ctype.h>` or manually (`(c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')`).
-    * After reading, loop through your `counts` array and print the letter and its count if the count is greater than zero.
-    * Remember to `fclose(fp)`.
-
----
-
-## Lab Outline
-
-1.  Pointer Exercises
-2.  **File Operation Exercise**
+*   **Task:** Read text from `input.txt` and count the frequency of each letter (case-insensitive).
+*   **📝 Flowchart First:** Draw a high-level flowchart showing the main steps: Open File -> Loop (Read Char -> Process Char) -> Close File -> Print Results.
+*   **Requirements:**
+    1.  Open `input.txt` in read mode (`"r"`). Handle file opening errors.
+    2.  Read the file character by character until `EOF`.
+    3.  Use an integer array `counts[26]` to store frequencies.
+    4.  For each character, if it's a letter, convert it to lowercase and increment the corresponding counter in your array.
+    5.  After reading, print the counts for letters that appeared at least once.
+    6.  Remember to `fclose()` the file.
 
 ---
 
 ## Exercise 4: Simple File Writing
 
-* **Task:** Write a C program that creates (or overwrites) a text file named `hi.txt` and writes a single line of text into it.
-* **Requirements:**
-    1.  Open `hi.txt` in write mode (`"w"`). Handle potential file opening errors.
-    2.  Write the string `"Hello, this is [Your Name]"` into the file (replace `[Your Name]` with your actual name).
-    3.  Close the file properly.
-* **Hints:**
-    * Use `fopen("hi.txt", "w")`. Check the returned `FILE*` pointer against `NULL`.
-    * Use `fprintf(fp, "Hello, this is %s\n", your_name_string);` to write the formatted string.
-    * Use `fclose(fp);`.
+*   **Task:** Write a program that creates a file named `hi.txt` and writes a single line of text to it.
+*   **Requirements:**
+    1.  Open `hi.txt` in write mode (`"w"`). Check if the `FILE*` is `NULL`.
+    2.  Use `fprintf()` to write a string like `"Hello, this is [Your Name]"` into the file.
+    3.  Close the file using `fclose()`.
+    4.  Print a confirmation message to the console.
 
 ---
 
-## Code Snippet: File Writing
+## Exercise 5: Dynamic Array with `malloc`
 
-```c
-#include <stdio.h>
+*   **Task:** Write a program that asks the user how many numbers they want to enter, allocates memory dynamically for them, reads the numbers, and then prints them.
+*   **Concept:** `malloc` (memory allocation) allocates a block of memory on the heap and returns a pointer to it. This is essential when you don't know the size of an array at compile time.
+*   **Requirements:**
+    1.  Ask the user for an integer `n`.
+    2.  Allocate space for `n` integers using `malloc`: `int *arr = (int*) malloc(n * sizeof(int));`.
+    3.  Check if `malloc` returned `NULL` (which indicates an error).
+    4.  If successful, loop `n` times to read integers from the user into the allocated array.
+    5.  Print the contents of the array.
+    6.  **Crucially**, free the allocated memory using `free(arr);`.
 
-int main() {
-    char your_name[] = "Ruslee Sutthaweekul"; // Replace with your name
-    FILE *fp = NULL; // File pointer
+---
 
-    // Open file in write mode
-    fp = fopen("hi.txt", "w");
+## Exercise 6: Copy a File
 
-    // Check if file opened successfully
-    if (fp == NULL) {
-        perror("Error: File cannot be opened for writing");
-        return 1; // Indicate error
-    }
+*   **Task:** Write a program that copies the content of a source file (`source.txt`) to a destination file (`destination.txt`).
+*   **📝 Flowchart First:** Draw a flowchart for the file copy logic. It should include opening both files, the main read/write loop, and closing both files.
+*   **Requirements:**
+    1.  Open `source.txt` in read mode and `destination.txt` in write mode.
+    2.  Handle errors for both file openings.
+    3.  Read the source file character by character in a loop (`while ((c = fgetc(source_fp)) != EOF)`).
+    4.  Write each character to the destination file using `fputc(c, dest_fp)`.
+    5.  Close both files.
+    6.  Before running, create a `source.txt` file with some sample text. After running, verify that `destination.txt` was created and contains the same text.
 
-    // Write the string to the file
-    fprintf(fp, "Hello, this is %s\n", your_name);
-
-    // Close the file (important!)
-    fclose(fp);
-
-    printf("Successfully wrote to hi.txt\n");
-
-    return 0;
-}
-```
-*After running this program, check your working directory for a file named `hi.txt` containing the specified text.*
+---
+src: ./assessment.md
+---

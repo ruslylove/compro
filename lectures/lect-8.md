@@ -575,7 +575,29 @@ double (*process_data_ptr)(float *);
 
 ---
 
-## Function Pointer Example
+---
+layout: default
+---
+
+## Summary
+<Transform scale="0.85">
+
+*   **Pointers:** Variables that store memory addresses of other variables.
+*   **Operators:**
+    *   `&` (Address-Of): Gets the memory address of a variable.
+    *   `*` (Dereference): Accesses the value at the address a pointer holds.
+*   **Pointers and Arrays:** An array name decays into a pointer to its first element. `arr[i]` is equivalent to `*(arr + i)`.
+*   **Dynamic Memory Allocation (`<stdlib.h>`):**
+    *   `malloc()`: Allocates a block of memory on the heap. Returns a pointer or `NULL` on failure.
+    *   `free()`: Deallocates memory to prevent memory leaks. Every `malloc` needs a corresponding `free`.
+*   **Linked Lists:** A dynamic data structure where nodes containing data are linked via pointers. They can grow and shrink at runtime.
+*   **Function Pointers:** Pointers that store the address of a function, allowing functions to be passed as arguments (callbacks).
+
+</Transform>
+
+<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
+<Link to="lab8" title="Go to Lab8"/>
+</div>
 
 ```c
 #include <stdio.h>

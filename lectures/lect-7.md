@@ -539,7 +539,25 @@ int main() {
 
 ---
 
-## `enum` Value Assignment Details
+---
+layout: default
+---
+
+## Summary
+<Transform scale="0.85">
+
+*   **`struct` (Structure):** A composite data type that groups variables (members) of different types under a single name. Used to create records (e.g., a `Student` struct with name, age, GPA).
+    *   Members are accessed with the **dot operator** (`.`) for variables (`student.age`) and the **arrow operator** (`->`) for pointers (`student_ptr->age`).
+*   **`typedef`:** Creates a synonym or alias for a data type, often used to simplify `struct` declarations.
+*   **`union`:** A data type where all members share the *same* memory location. Its size is determined by its largest member. Only one member can hold a valid value at a time.
+*   **`enum` (Enumeration):** Creates a set of named integer constants, improving code readability by replacing "magic numbers" with descriptive names (e.g., `enum Color {RED, GREEN, BLUE}`).
+*   **Memory Padding:** Compilers may add padding bytes within `struct`s to align members for efficient CPU access, so `sizeof(struct)` may be greater than the sum of its members' sizes.
+
+</Transform>
+
+<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
+<Link to="lab7" title="Go to Lab7"/>
+</div>
 
 * If no values are explicitly assigned, the first enumerator gets `0`, and subsequent enumerators get the value of the previous one plus `1`.
 * If a value is assigned, subsequent unassigned enumerators continue incrementing from the last assigned value.

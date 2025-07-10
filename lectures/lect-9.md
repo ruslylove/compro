@@ -293,7 +293,29 @@ int main() {
 
 ---
 
-## File Operation Summary
+---
+layout: default
+---
+
+## Summary
+<Transform scale="0.85">
+
+*   **File I/O:** C programs use functions from `<stdio.h>` to interact with files for persistent storage.
+*   **`FILE*` Pointer:** A special pointer (or handle) returned by `fopen()` that represents the connection to a file.
+*   **Core Operations:**
+    1.  **Open:** Use `fopen("filename", "mode")`. Common modes are `"r"` (read), `"w"` (write, overwrites), and `"a"` (append). **Always check the return value for `NULL`**.
+    2.  **Process:**
+        *   **Read:** `fscanf()` (formatted), `fgets()` (line-based, safer).
+        *   **Write:** `fprintf()` (formatted), `fputs()` (string).
+    3.  **Close:** Use `fclose(file_pointer)` to save changes and release system resources. **This is crucial.**
+*   **Text vs. Binary:** Use text modes (`r`, `w`) for human-readable files and binary modes (`rb`, `wb`) for non-text data to prevent character translation issues.
+*   **Standard Streams:** `stdin` (keyboard), `stdout` (screen), and `stderr` (screen for errors) are automatically available `FILE*` streams.
+
+</Transform>
+
+<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
+<Link to="lab9" title="Go to Lab9"/>
+</div>
 
 * Files provide persistent storage.
 * Use `<stdio.h>` functions for file I/O.
