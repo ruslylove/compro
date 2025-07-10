@@ -1374,9 +1374,8 @@ Result: a = 4, b = 2
 layout: default
 ---
 
-## Summary
-
-<Transform scale="0.75">
+## Summary 
+<Transform scale="0.77">
 
 *   **Data Representation:** Computers use binary (0s and 1s) to represent all data.
 *   **C Data Types:**
@@ -1396,5 +1395,11 @@ layout: default
 *   **Type Conversion:**
     *   **Implicit:** Automatic conversion to a "wider" type (e.g., `int` to `double`).
     *   **Explicit (Casting):** Forcing a conversion with `(new_type)value`.
-
+    
 </Transform>
+
+<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
+<Link to="lab2" title="Go to Lab2"/>
+</div>
+
+

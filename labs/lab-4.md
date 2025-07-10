@@ -5,6 +5,7 @@ transition: slide-left
 layout: cover
 title: Lab 4 - Loops
 class: lab
+routeAlias: lab4
 ---
 
 # Computer Programming
@@ -16,10 +17,62 @@ Semester: 1/2025
 
 ---
 
-## Exercise 1: Approximate exp(x)
+## Lab Outline
+
+* **Exercise 1: Guess the Number Game**
+    * Use a `do-while` loop to create an interactive game.
+* **Exercise 2: Prime Number Checker**
+    * Use a `for` loop with a `break` statement for an efficient check.
+* **Exercise 3: Pyramid Pattern**
+    * Use nested `for` loops to print a character-based pattern.
+* **Exercise 4: Approximate exp(x)**
+    * Use a `while` loop for an iterative calculation based on a precision threshold.
+* **Exercise 5: Decimal Fraction to Binary**
+    * Use a `while` loop for a numerical conversion algorithm.
+* **Exercise 6: Perfect Numbers**
+    * Use nested `for` loops to find numbers with a specific property.
+
+---
+
+## Objectives
+
+* **Master looping constructs for iterative tasks**
+    * Implement `while` loops for condition-based repetition (e.g., Taylor series).
+    * Use `do-while` loops for tasks that must execute at least once (e.g., games).
+    * Build counter-controlled `for` loops for a known number of iterations.
+    * Create `nested loops` to solve problems with 2D patterns or exhaustive searches (e.g., perfect numbers, pyramids).
+* **Apply loop control statements**
+    * Use `break` to exit a loop early when a condition is met (e.g., prime number check).
+* **Develop algorithmic thinking**
+    * Translate mathematical formulas and algorithms into C code (e.g., $e^x$, binary conversion).
+    * Decompose problems into logical steps suitable for flowcharting and implementation.
+
+---
+
+## Exercise 1: Guess the Number Game
+
+* **Task:** Write a simple "guess the number" game.
+* **📝 Flowchart First:** A flowchart is required for this game. It should illustrate the `do-while` loop structure for handling guesses.
+* **Logic:**
+    1.  Define a "secret number" in your code (e.g., `int secret_number = 42;`).
+    2.  Use a `do-while` loop to repeatedly prompt the user to enter their guess.
+    3.  Inside the loop, read the user's guess.
+    4.  Provide feedback:
+        * If the guess is too high, print "Too high! Try again."
+        * If the guess is too low, print "Too low! Try again."
+    5.  The loop should continue as long as the user's guess is not equal to the secret number.
+    6.  Once the user guesses correctly, the loop terminates. Print a congratulatory message like "Correct! You guessed the number."
+* **Challenge:** Add a counter to track how many guesses the user took.
+
+---
+
+## Exercise 2: Prime Number Checker
+
+<Transform scale="0.8">
 
 * **Task:** Write a C program to approximate the value of $e^x$ using its Taylor series expansion:
   $e^{x}=\sum_{n=0}^{\infty}\frac{x^{n}}{n!} = 1 + \frac{x}{1!} + \frac{x^{2}}{2!} + \frac{x^{3}}{3!} + ...$
+* **📝 Flowchart First:** Before coding, draw a flowchart that visualizes the iterative process of summing terms until the precision threshold is met.
 * **Requirements:**
     * Read the value of `x` from the user.
     * Keep adding terms to the sum as long as the absolute value of the current term (`term = x^n / n!`) is greater than a predefined precision (e.g., `1e-6`).
@@ -32,49 +85,15 @@ Semester: 1/2025
         * Increment the term counter (`n`).
     * Include `<math.h>` for `fabs()`. Link with `-lm` if needed.
 
----
+</Transform>
 
-## Code Skeleton: Approximate exp(x)
-
-```c
-#include <stdio.h>
-#include <math.h> // For fabs()
-
-int main() {
-    const double PRECISION = 1e-6; // Define precision threshold
-    double term = 1.0; // First term (n=0, x^0/0!)
-    double sum = 0.0;
-    double x;
-    int n = 0; // Term counter
-
-    printf("Enter value for x: ");
-    scanf("%lf", &x); // Use %lf for double
-
-    // Loop while the absolute value of the term is significant
-    while (fabs(term) > PRECISION) {
-        // Add current term to sum
-        sum += term;
-
-        // Prepare for next term
-        n++; // Increment term counter
-
-        // Calculate next term based on current term
-        // term_new = term_old * x / n
-        term = term * x / n;
-    }
-
-    printf("Approximate value of exp(%.2f) = %lf\n", x, sum);
-    printf("Actual value (using math.h): %lf\n", exp(x)); // For comparison
-
-    return 0;
-}
-```
 
 ---
 
-## Exercise 2: Perfect Numbers
+## Exercise 3: Pyramid Pattern
 
 * **Task:** Find and print all **perfect numbers** within the range [1, 10000].
+* **📝 Flowchart First:** A flowchart is required for this exercise. It should clearly show the nested loop structure for checking each number and summing its divisors.
 * **Definition:** A perfect number is a positive integer that is equal to the sum of its proper positive divisors (the sum of its positive divisors excluding the number itself).
 * **Example:** 6 is a perfect number because its proper divisors are 1, 2, and 3, and $1 + 2 + 3 = 6$. Another example is 28 ($1 + 2 + 4 + 7 + 14 = 28$).
 * **Approach:**
@@ -85,45 +104,12 @@ int main() {
 
 ---
 
-## Code: Finding Perfect Numbers
+## Exercise 4: Approximate exp(x)
 
-```c
-#include <stdio.h>
-
-int main() {
-    int j, i, sum_of_divisors;
-
-    printf("Perfect numbers between 1 and 10000:\n");
-
-    // Outer loop: Check each number 'j' in the range
-    for (j = 1; j <= 10000; j++) {
-        sum_of_divisors = 0; // Reset sum for each 'j'
-
-        // Inner loop: Find proper divisors 'i' of 'j'
-        // (Optimization: only need to check up to j/2)
-        for (i = 1; i <= j / 2; i++) {
-            if (j % i == 0) { // Check if 'i' is a divisor
-                sum_of_divisors += i;
-            }
-        }
-
-        // Check if the sum of proper divisors equals the number itself
-        if (sum_of_divisors == j && j != 1) { // (1 is not considered perfect conventionally)
-            printf("%d\t", j);
-        }
-    } // End outer loop
-
-    printf("\n");
-    return 0;
-}
-// Expected Output: 6    28    496    8128
-```
-
----
-
-## Exercise 3: Decimal Fraction to Binary
+<Transform scale="0.8">
 
 * **Task:** Convert a decimal fraction (a number between 0 and 1, e.g., 0.625) into its binary representation.
+* **📝 Flowchart First:** Draw a flowchart to illustrate the "Multiply by 2" algorithm. Show how the loop continues and how each binary digit is determined.
 * **Algorithm (Multiply by 2 Method):**
     1. Start with the decimal fraction `d`.
     2. Multiply `d` by 2.
@@ -137,50 +123,46 @@ int main() {
     * Result: 0.101 (binary)
 * **Implementation:** Write a C program that takes a decimal fraction input and prints its binary representation up to a certain number of places.
 
+</Transform>
+
 ---
 
-## Code: Decimal Fraction to Binary
+## Exercise 5: Decimal Fraction to Binary
 
-```c
-#include <stdio.h>
+* **Task:** Write a C program that takes an integer `N` as input and prints a pyramid of stars (`*`) with `N` rows.
+* **📝 Flowchart First:** A flowchart is required. It should clearly show the nested loop structure: one for rows, one for leading spaces, and one for stars.
+* **Example (for N = 5):**
+    ```
+        *
+       ***
+      *****
+     *******
+    *********
+    ```
+* **Hints:**
+    * You will need nested `for` loops.
+    * The outer loop will control the rows (from 1 to `N`).
+    * An inner loop is needed to print the leading spaces for each row. The number of spaces decreases as the row number increases.
+    * Another inner loop is needed to print the stars. The number of stars is `2 * row_number - 1`.
 
-#define MAX_BINARY_DIGITS 20 // Limit the number of binary digits to print
+---
 
-int main() {
-    double decimal_fraction;
-    int binary_digit;
-    int count = 0;
+## Exercise 6: Perfect Numbers
 
-    printf("Enter a decimal fraction between 0 and 1 (e.g., 0.625): ");
-    scanf("%lf", &decimal_fraction);
+* **Task:** Write a C program that asks the user for a positive integer and determines if it is a prime number.
+* **📝 Flowchart First:** Draw a flowchart for your prime-checking logic. Show how the loop can terminate early using a `break`.
+* **Definition:** A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself.
+* **Logic:**
+    1. Handle the base cases: numbers less than or equal to 1 are not prime. 2 is prime.
+    2. For a number `n > 2`, loop from `i = 2` up to `sqrt(n)` (or `n / 2`).
+    3. In each iteration, check if `n % i == 0`.
+    4. If a divisor is found, the number is not prime. You can set a flag and use `break` to exit the loop immediately, as no more checks are needed.
+    5. If the loop completes without finding any divisors, the number is prime.
+* **Output:** Print a message like `"[number] is a prime number."` or `"[number] is not a prime number."`
 
-    if (decimal_fraction <= 0 || decimal_fraction >= 1) {
-        printf("Input must be between 0 and 1.\n");
-        return 1;
-    }
-
-    printf("Binary representation: 0.");
-
-    // Loop until fraction becomes 0 or max digits reached
-    while (decimal_fraction > 0 && count < MAX_BINARY_DIGITS) {
-        // Multiply by 2
-        decimal_fraction *= 2.0;
-
-        // Get the integer part (0 or 1)
-        binary_digit = (int)decimal_fraction;
-
-        // Print the binary digit
-        printf("%d", binary_digit);
-
-        // Subtract integer part to get the new fractional part
-        decimal_fraction -= binary_digit; // Or use fmod(decimal_fraction, 1.0)
-
-        count++;
-    }
-
-    printf("\n");
-    return 0;
-}
-```
-
-
+---
+src: ../lectures/flow_chart_loop.md
+---
+---
+src: ./assessment.md
+---

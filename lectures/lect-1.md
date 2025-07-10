@@ -589,3 +589,20 @@ image: https://asset-cdn.tecky.io/2021/10/20/programming_languages_family_trees_
         * GCC (GNU Compiler Collection - Recommended, standard on Linux/macOS)
         * ICC (Intel C Compiler - Known for optimization)
         * Turbo C (Historically significant, less common now)
+
+---
+layout: default
+---
+
+## Summary
+
+
+*   **Course Overview:** Syllabus, grading, and policies for the Computer Programming course.
+*   **Fundamentals of Computers:** Basic architecture (CPU, Memory, I/O), and the role of gates and latches.
+*   **Introduction to Programming:** Why we program, the evolution from machine code to high-level languages, and the role of compilers.
+*   **C Programming Basics:** A brief history of C, its characteristics, and a first look at a simple C program.
+*   **Compilation Process:** Detailed steps from source code to executable (preprocessing, compiling, assembling, linking).
+*   **Development Environments:** Overview of IDEs and text editors paired with compilers for C programming.
+
+<br>
+<Link to="lab1" title="Go to Lab1"/>

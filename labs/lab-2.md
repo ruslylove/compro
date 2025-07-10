@@ -5,6 +5,7 @@ transition: slide-left
 layout: cover
 title: Lab 2 - Expressions
 class: lab
+routeAlias: lab2 
 ---
 
 # Computer Programming
@@ -18,7 +19,35 @@ Semester: 1/2025
 
 ## Lab Outline
 
-* Exercises involving C expressions, operators, and formatted output.
+* **Exercise 1: Formatted Output**
+    * Use `printf` with field width and alignment to format integers.
+* **Exercise 2: Octal and Hexadecimal Output**
+    * Display a number in different bases using `%o` and `%x`.
+* **Exercise 3: Conditional Operator and Square Root**
+    * Combine the ternary operator and the `sqrt()` function.
+* **Exercise 4: Average Calculation**
+    * Perform floating-point arithmetic to calculate an average.
+* **Exercise 5: Character Capitalization**
+    * Convert character case using ASCII properties and conditional logic.
+* **Exercise 6: Swap Variable Values**
+    * Implement a classic variable swap using a temporary variable.
+
+---
+
+## Objectives
+
+* **Master formatted output with `printf()`**
+    * Control field width and alignment (e.g., `%-5d`).
+    * Display numbers in different bases (octal `%o`, hexadecimal `%x`).
+* **Apply various C operators to build expressions**
+    * Use arithmetic operators for calculations (e.g., average).
+    * Use the conditional (ternary) operator for simple decisions.
+    * Use relational and logical operators for character classification.
+* **Incorporate standard library functions**
+    * Use `sqrt()` from the math library (`<math.h>`).
+* **Solve classic programming logic problems**
+    * Implement variable swapping.
+    * Perform character case conversion based on ASCII values.
 
 ---
 
@@ -88,10 +117,15 @@ Semester: 1/2025
 
 ## Exercise 5: Character Capitalization
 
+
+
 * **Task:** Write a C program that:
     1.  Accepts a single character input from the user.
     2.  If the input character is a lowercase letter (`'a'` through `'z'`), output its corresponding uppercase letter.
     3.  Otherwise (if it's not a lowercase letter), output the original character unchanged.
+
+<Transform scale="0.8">
+
 * **Examples:**
     * Input: `a`, Output: `A`
     * Input: `f`, Output: `F`
@@ -101,6 +135,8 @@ Semester: 1/2025
     * Recall that characters are represented by ASCII integer values.
     * You can compare characters directly (e.g., `ch >= 'a' && ch <= 'z'`).
     * The ASCII value difference between a lowercase letter and its corresponding uppercase letter is constant (e.g., `'a' - 'A'` is the same as `'b' - 'B'`, etc., which is 32). You can use this difference for conversion.
+
+</Transform>
 
 ---
 
@@ -117,3 +153,7 @@ Semester: 1/2025
     After swap: a = 20, b = 10
     ```
 * **Hint:** You will likely need a third, temporary integer variable to hold one of the values during the swap process.
+
+---
+src: ./assessment.md
+---

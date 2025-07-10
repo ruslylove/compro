@@ -15,6 +15,9 @@ src: ./flow_chart_selection.md
 src: ./lect-4.md
 ---
 ---
+src: ./flow_chart_loop.md
+---
+---
 src: ./lect-5.md
 ---
 ---

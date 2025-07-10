@@ -17,13 +17,16 @@ Semester 1/2025
 
 ## Lecture Outline
 
-1.  Understanding Loops
-    * The `while` loop
-    * The `do-while` loop
-    * The `for` loop
-    * Practical examples using loops
-2.  Related Control Flow Keywords (`break`, `continue`)
+1.  **Looping Constructs**
+    *   `while` Loop: Pre-test condition.
+    *   `do-while` Loop: Post-test condition.
+    *   `for` Loop: Initialization, condition, and update.
+2.  Loop Control Statements
+    *   `break`: Terminating a loop.
+    *   `continue`: Skipping an iteration.
 3.  Introduction to Debugging
+    *   Using `printf` for tracing.
+    *   Debugger Tools & Common Bugs.
 
 ---
 
@@ -353,9 +356,16 @@ int main() {
 
 ## Lecture Outline
 
-1.  Understanding Loops
-2.  **Related Control Flow Keywords** (`break`, `continue`)
+1.  Looping Constructs
+    *   `while` Loop: Pre-test condition.
+    *   `do-while` Loop: Post-test condition.
+    *   `for` Loop: Initialization, condition, and update.
+2.  **Loop Control Statements**
+    *   `break`: Terminating a loop.
+    *   `continue`: Skipping an iteration.
 3.  Introduction to Debugging
+    *   Using `printf` for tracing.
+    *   Debugger Tools & Common Bugs.
 
 ---
 
@@ -462,9 +472,16 @@ int main() {
 
 ## Lecture Outline
 
-1.  Understanding Loops
-2.  Related Control Flow Keywords (`break`, `continue`)
+1.  Looping Constructs
+    *   `while` Loop: Pre-test condition.
+    *   `do-while` Loop: Post-test condition.
+    *   `for` Loop: Initialization, condition, and update.
+2.  Loop Control Statements
+    *   `break`: Terminating a loop.
+    *   `continue`: Skipping an iteration.
 3.  **Introduction to Debugging**
+    *   Using `printf` for tracing.
+    *   Debugger Tools & Common Bugs.
 
 ---
 
@@ -580,3 +597,24 @@ if (i % 2 == 1); // Stray semicolon, condition has no effect
     2.  **Memory Related Bugs:** Errors involving incorrect use of pointers, array bounds, memory allocation/deallocation (e.g., accessing freed memory, buffer overflows, null pointer dereferences). These are often harder to track down and can cause crashes or unpredictable behavior.
 
 *Remember: Compiler errors (syntax mistakes) are not runtime bugs, they prevent the program from being created in the first place.*
+---
+layout: default
+---
+
+## Summary
+<Transform scale="0.85">
+
+*   **Loops for Repetition:** Loops (`while`, `do-while`, `for`) are essential for executing a block of code multiple times.
+*   **`while` Loop:** A pre-test loop. The condition is checked *before* each iteration. It may run zero or more times.
+*   **`do-while` Loop:** A post-test loop. The condition is checked *after* each iteration. It always runs at least once.
+*   **`for` Loop:** Combines initialization, condition, and update in one line. Ideal for counter-controlled loops where the number of iterations is known.
+*   **Loop Control:**
+    *   `break`: Immediately terminates the innermost loop or `switch` statement.
+    *   `continue`: Skips the rest of the current iteration and proceeds to the next.
+*   **Debugging:** The process of finding and fixing errors. Simple `printf` tracing is a basic technique, but using a debugger tool provides more powerful features like breakpoints and stepping through code.
+
+</Transform>
+
+<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
+<Link to="lab4" title="Go to Lab4"/>
+</div>

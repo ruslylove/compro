@@ -769,3 +769,29 @@ int main() {
     * You need to check complex conditions involving ranges (e.g., `score >= 90`).
     * You are comparing non-integer types (like floats, though direct equality check for floats is often problematic).
     * The conditions are not based on simple equality with constants.
+---
+layout: default
+---
+
+## Summary
+<Transform scale="0.9">
+
+*   **Program Structure:** C programs consist of preprocessor directives (`#include`), a `main` function, variables, statements (ending in `;`), and comments (`//` or `/* ... */`).
+*   **Sequential Flow:** By default, statements execute in order from top to bottom.
+*   **Conditional Flow (`if-else`):**
+    *   `if (condition)` executes a block if the condition is true (non-zero).
+    *   `if-else` provides an alternative block for when the condition is false.
+    *   `if-else if-else` ladders check multiple, mutually exclusive conditions.
+*   **Operators for Conditions:**
+    *   **Relational:** `>` , `<`, `>=`, `<=`
+    *   **Equality:** `==` (equal), `!=` (not equal). Avoid the common mistake of using `=` for comparison.
+    *   **Logical:** `&&` (AND), `||` (OR), `!` (NOT), with short-circuiting behavior.
+*   **`switch` Statement:**
+    *   An efficient way to select a code path based on an integer or character value.
+    *   Uses `case`, `break`, and an optional `default`.
+
+</Transform>
+
+<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
+<Link to="lab3" title="Go to Lab3"/>
+</div>
