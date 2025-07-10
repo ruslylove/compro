@@ -345,9 +345,12 @@ d = -128
 
 ---
 
-## The Issue of Integer Overflow
+## Integer Overflow
 
 Consider this code. Is there a problem?
+
+
+<Transform scale="0.8">
 
 ```c
 int main() {
@@ -357,25 +360,21 @@ int main() {
 }
 ```
 
----
+ <v-click> Yes, there's a problem with: </v-click>
 
-## The Issue of Integer Overflow
-
-Yes, there's a problem with:
-```c
-int main() {
-  unsigned short b = 65537; // Trying to store 65537
-  return 0;
-}
-```
+<v-after>
 
 * The variable `b` cannot actually hold 65537 because the maximum for `unsigned short` is 65535.
 * **Overflow** occurs. For unsigned types, the value typically "wraps around".
 * Calculation: `65537 % 65536 = 1`. So, `b` will likely hold the value `1`.
 
----
+</v-after>
+
+<v-click>
+
 
 **What about this case?**
+
 ```c 
 int main() {
   // Signed short max is 32767
@@ -388,6 +387,13 @@ int main() {
 }
 ```
 
+</v-click>
+
+</Transform>
+
+---
+layout: image-right
+image: /overflow.png
 ---
 
 ## The Issue of Integer Overflow
@@ -397,36 +403,50 @@ int main() {
 * Always be mindful of the potential range of values your variables might need to hold.
 * Try to estimate the maximum possible value to choose an appropriate data type.
 
+
+
+
 ---
 
 ## Floating-Point Number Types
+
+<Transform scale="0.7">
 
 * Keywords: `float`, `double`, `long double`
 * Used to represent real numbers (numbers with decimal parts).
 * Like integers, they use a fixed number of bytes (`float`: usually 4, `double`: usually 8).
 * This means they cannot represent *all* real numbers perfectly; there's limited range and precision.
-
-<Transform scale="0.8">
+  * **Sign (1 bit):** 0 for positive, 1 for negative.
+  * **Exponent (8 bits):** Represents the scale of the number. It's stored with a bias of 127.
+  * **Mantissa (23 bits):** Represents the significant digits (the fractional part) of the number.
 
 ```mermaid
-graph LR
-    subgraph 32-Bit Float
+flowchart LR
+    subgraph "32-Bit Float (IEEE 754)"
         direction LR
-        A[Sign <br> 1 bit] --> B[Exponent <br> 8 bits] --> C[Mantissa <br> 23 bits]
+        S[Sign <br> 1 bit]:::sign --> E[Exponent <br> 8 bits]:::exponent --> M[Mantissa  <br> 23 bits]:::mantissa
     end
-    style A fill:#cde4ff
-    style B fill:#d5e8d4
-    style C fill:#fff2cc
+
+    subgraph "Example: 3.14159"
+        direction LR
+        S_val["0"]:::sign_val --> E_val["10000000"]:::exponent_val --> M_val["10010010000111111011011"]:::mantissa_val
+    end
+
+    classDef sign fill:#cde4ff,stroke:#333,stroke-width:2px
+    classDef exponent fill:#d5e8d4,stroke:#333,stroke-width:2px
+    classDef mantissa fill:#fff2cc,stroke:#333,stroke-width:2px
+    classDef sign_val fill:#cde4ff,stroke:#333,stroke-width:1px,font-family:monospace
+    classDef exponent_val fill:#d5e8d4,stroke:#333,stroke-width:1px,font-family:monospace
+    classDef mantissa_val fill:#fff2cc,stroke:#333,stroke-width:1px,font-family:monospace
 ```
 
-</Transform>
-<!--
-<img src = "https://numeral-systems.com/media/ieee-754/ieee-754-floating-point.webp"> -->
-Example representation of `3.14159` as a `float`: `0 0000100 110010010000111111001110`
 
-* Sign: 0 (positive)
-* Exponent: Represents the scale
-* Mantissa: Represents the significant digits
+
+$$\text{Decimal Value} = (-1)^S \times (1.\text{Mantissa})_2 \times 2^{\text{Exponent}_{\text{actual}}}$$
+
+
+
+</Transform>
 
 ---
 
@@ -459,6 +479,9 @@ int main() {
 *(Expected Output: Size of float: 4 bytes, Size of double: 8 bytes)*
 
 ---
+layout: image-right
+image: /letters.png
+---
 
 ## Character Type
 
@@ -474,13 +497,6 @@ char letter_code = 65;  // Initialize with ASCII value
 char letter_char = 'A'; // Initialize with character literal (use single quotes)
 ```
 
----
-
-## Character Type
-
-* A `char` uses its 1 byte (8 bits) to represent characters mapped to integers.
-* The range is typically 0 to 255 (for `unsigned char`) or -128 to 127 (for `signed char`).
-* The **ASCII** (American Standard Code for Information Interchange) table defines the standard mapping between common characters and integers (0-127).
 
 ---
 
@@ -488,14 +504,14 @@ char letter_char = 'A'; // Initialize with character literal (use single quotes)
 
 You should recognize these common character codes:
 
-| Character(s) | ASCII Value(s) |
-|---|---|
-| Digits `'0'` to `'9'` | 48 to 57 |
-| Uppercase `'A'` to `'Z'` | 65 to 90 |
-| Lowercase `'a'` to `'z'` | 97 to 122 |
-| Space (`' '`) | 32 |
-| Newline (`'\n'`) | 10 |
-| Tab (`'\t'`) | 9 |
+| Character(s) | ASCII Value(s) (Decimal) | ASCII Value(s) (Hexadecimal) |
+|---|---|---|
+| Digits `'0'` to `'9'` | 48 to 57 | `0x30` to `0x39` |
+| Uppercase `'A'` to `'Z'` | 65 to 90 | `0x41` to `0x5A` |
+| Lowercase `'a'` to `'z'` | 97 to 122 | `0x61` to `0x7A` |
+| Space (`' '`) | 32 | `0x20` |
+| Newline (`'\n'`) | 10 | `0x0A` |
+| Tab (`'\t'`) | 9 | `0x09` |
 
 ---
 
@@ -527,16 +543,30 @@ Code 50: Value=50 Symbol=2
 
 ## Summary of Data Type Sizes
 
-* `char`: 1 byte
-* `short`: 2 bytes
-* `int`: 4 bytes
-* `long`: 4 bytes (32-bit system) or 8 bytes (64-bit system)
-* `float`: 4 bytes
-* `double`: 8 bytes
+<Transform scale="0.75">
 
-* Choose data types based on the required range and precision.
-* Avoid using larger types like `double` or `long` unnecessarily, as it consumes more memory.
-* Note: A "string" in C is not a primitive type; it's typically handled as an array of `char`.
+
+| **Integer Types** | |
+|---|---|
+| `char` | 1 byte |
+| `short` | 2 bytes |
+| `int` | 4 bytes |
+| `long` | 4 bytes on 32-bit, 8 bytes on 64-bit |
+
+| **Floating-Point Types** | |
+|---|---|
+| `float` | 4 bytes |
+| `double` | 8 bytes |
+| `long double` | 8 bytes (on 32-bit) or 8 (on 64-bit) |
+
+
+
+
+* Choose data types based on the required range and precision. Avoid using larger types like `double` or `long` unnecessarily, as it consumes more memory.
+
+*Note: A "string" in C is not a primitive type; it's typically handled as an array of `char`.*
+
+</Transform>
 
 ---
 
@@ -550,6 +580,8 @@ Code 50: Value=50 Symbol=2
 6.  Understanding Implicit and Explicit Data Type Conversion
 
 ---
+layout: two-cols
+---
 
 ## Naming Variables: Identifiers
 
@@ -559,9 +591,16 @@ Rules for valid variable names (identifiers) in C:
 * Names are case-sensitive (`myVar` is different from `myvar`).
 * Cannot be a C reserved keyword (like `int`, `float`, `return`, `while`, etc.).
 
----
+:: right ::
+
+<div style="margin-left:30px">
+
+
 
 Which are valid?
+
+<v-clicks>
+
 * `distance` ✓
 * `milesPerHour` ✓
 * `x-ray` × (Hyphen `-` is not allowed)
@@ -572,19 +611,26 @@ Which are valid?
 * `_hi` ✓
 * `return` × (Reserved keyword)
 
+</v-clicks>
+
+
+</div>
+
+
+
+
 ---
 
-## Naming Variables: Style Conventions (Part 2)
+## Naming Variables: Style Conventions
 
-Good style practices:
+👍 Good style practices: 
 * Use meaningful names that indicate the variable's purpose.
 * Be consistent with naming conventions (choose one and stick to it):
     * `camelCaseIdentifiers` (start lowercase, capitalize inner words)
     * `snake_case_identifiers` (use underscores to separate words)
 * Use indentation consistently (usually 4 spaces or one tab) to show code structure within blocks (`{}`).
 
----
-
+<Transform scale="0.8">
 Example:
 ```c
 #include <stdio.h>
@@ -602,13 +648,16 @@ int main() {
 }
 ```
 
+</Transform>
+
+
 ---
 
 ## Using Descriptive Variable Names
 
 Avoid short, cryptic names that make code hard to understand.
 
-**Less Clear:**
+**👎Less Clear:**
 ```c
 /* Volume calc */
 int a, b, c; // What are a, b, c?
@@ -618,7 +667,7 @@ b = 2;
 c = (1/3) * a * a * b;
 ```
 
-**Much Better:**
+**👍Much Better:**
 ```c
 /* Calculate the volume of a square pyramid */
 float base_length, pyramid_height, volume; // Use float for non-integer results
@@ -685,13 +734,15 @@ int main() {
 
 ---
 
-## Outputting Values: `printf()` Basics (Part 1)
+## Outputting Values: `printf()` Basics
+
+<Transform scale="0.7">
+
 
 * Syntax: `printf("format string with %identifiers", argument1, argument2, ...);`
 * A standard C library function (defined in `stdio.h`).
 * Used to print formatted output to the console (screen).
 * The "format string" contains regular text and special **identifiers** (like `%d`, `%f`, `%c`) that correspond to the arguments provided after the string.
----
 
 **Code Example:**
 ```c {all|8|9|10|12|*}{lines:true}
@@ -718,18 +769,22 @@ Grade: A
 Result - Score: 95, Grade: A
 ```
 
+</Transform>
+
+
 ---
 
-## Outputting Values: `printf()` identifiers (Part 2)
+## Outputting Values: `printf()` identifiers 
+
+<Transform scale="0.8">
 
 * Identifier (like `%d`) specify where and how an argument's value should be inserted into the output string.
 * Each identifier corresponds to one argument following the format string, in sequential order.
 * The type of identifier must match the type of the data being printed (e.g., use `%d` for an `int`, `%f` for a `float`).
 * You need exactly one argument for each identifier in the format string.
 
----
 
-**Code Example:**
+Code Example:
 ```c
 #include <stdio.h>
 
@@ -742,12 +797,17 @@ int main() {
 }
 ```
 
+
 **Output:**
 ```text
 Quantity: 3
 Items: 5
 Price: 7.400000
 ```
+
+</Transform>
+
+
 
 ---
 
@@ -812,17 +872,15 @@ As hex: code_num = 4f, letter = 6e
 
 ---
 
-## Special Characters: Escape Sequences (Part 1)
+## Special Characters: Escape Sequences
 
 * How do we represent characters that don't have a simple visual symbol, like "Tab" or "Newline"?
 * How do we print characters that have special meaning in C strings, like the double quote `"` or the backslash `\` itself?
 * We use **escape sequences**, which start with a backslash (`\`).
-
----
-
-## Special Characters: Escape Sequences (Part 2)
-
 * The backslash (`\`) signals that the next character (or sequence) has a special meaning.
+
+<Transform scale="0.9">
+
 
 | Escape Sequence | Represents |
 |---|---|
@@ -831,6 +889,9 @@ As hex: code_num = 4f, letter = 6e
 | `\b` | Backspace |
 | `\r` | Carriage Return (moves cursor to beginning of current line) |
 | `\\` | Literal Backslash (`\`) |
+
+</Transform>
+
 
 ---
 
@@ -881,7 +942,8 @@ scanf("%d", &i); // Reads an integer, stores it at the address of i
 
 Reading an integer and a floating-point number:
 
-**Code:**
+**Code Example:**
+
 ```c {all|7|10,12|14|all}{lines:true, maxHeight:'200px'}
 #include <stdio.h>
 
@@ -907,6 +969,7 @@ Initial values: quantity = 0, price = 0.000000
 Enter quantity (integer) and price (float), separated by space: 15 9.99
 Values after input: quantity = 15, price = 9.990000
 ```
+
 
 ---
 
@@ -949,6 +1012,8 @@ Expressions evaluate to produce a value.
 
 ## Arithmetic Operator Precedence
 
+<Transform scale="0.8">
+
 The order in which operations are performed matters.
 
 **Simplified Precedence Rules:**
@@ -963,13 +1028,14 @@ The order in which operations are performed matters.
 * If operators have the same precedence, they are usually evaluated left-to-right.
 * Use parentheses `()` to override default precedence or make the order explicit and clear.
 
----
-
 *Example:* Average of 1, 2, 4.
 
 `1 + 2 + 4 / 3` is evaluated as `1 + 2 + (4 / 3)` -> `1 + 2 + 1` -> `4` (because `4/3` is integer division).
 
 To get the correct average, use: `(1 + 2 + 4) / 3` or `(1.0 + 2.0 + 4.0) / 3.0`.
+
+</Transform>
+
 
 ---
 
@@ -986,7 +1052,11 @@ How are these evaluated?
 
 ---
 
-## The Division Operator `/` (Part 1)
+## The Division Operator `/` 
+
+<Transform scale="0.8">
+
+
 
 * The result type often depends on the operand types.
 * **Integer Division:** If **both** operands are integers (`int`, `char`, `short`, `long`), the result is also an integer. The fractional part (remainder) is discarded (truncated).
@@ -997,10 +1067,6 @@ How are these evaluated?
 | `17 / 5` | `3` | 17 divided by 5 is 3.4, truncated to 3 |
 | `-7 / 3` | `-2` | -7 divided by 3 is -2.33..., truncated towards zero to -2 |
 
----
-
-## The Division Operator `/` (Part 2)
-
 * **Floating-Point Division:** If **at least one** operand is a floating-point type (`float`, `double`), the result is a floating-point type. The other operand is implicitly converted (promoted) to float/double if necessary.
 
 | Expression | Result | Reason |
@@ -1008,6 +1074,8 @@ How are these evaluated?
 | `5.0 / 2` | `2.5` | `2` is promoted to `2.0`, result is `double` |
 | `17 / 5.0` | `3.4` | `17` is promoted to `17.0`, result is `double` |
 | `5.0 / 2.0`| `2.5` | Both are `double`, result is `double` |
+
+</Transform>
 
 ---
 
@@ -1027,33 +1095,20 @@ How are these evaluated?
 
 ---
 
-## Practice Evaluating Arithmetic (Part 1)
+## Practice Evaluating Arithmetic 
 
 What are the results of these expressions?
 
-| Expression | Result? |
-|---|---|
-| `11 / 2` | <v-click hide> ? </v-click><v-click>5 </v-click> |
-| `11 % 2` | <v-click hide> ? </v-click><v-click>1 </v-click> |
-| `11 / 2.0`| <v-click hide> ? </v-click><v-click>5.5 </v-click> |
-| `5.0 / 2` | <v-click hide> ? </v-click><v-click>2.5 </v-click> |
-
----
-
-## Practice Evaluating Arithmetic (Part 2) - Answers
-
-Let's check the results:
-
 | Expression | Result | Explanation |
 |---|---|---|
-| `11 / 2` | `5` | Integer division (11/2 = 5.5 -> truncated to 5) |
-| `11 % 2` | `1` | Remainder of 11 divided by 2 |
-| `11 / 2.0`| `5.5` | Floating-point division (11 promoted to 11.0) |
-| `5.0 / 2` | `2.5` | Floating-point division (2 promoted to 2.0) |
+| `11 / 2` | <v-click hide> ? </v-click><v-click at="+0">5 </v-click>|<v-click> Integer division (11/2 = 5.5 -> truncated to 5) </v-click> |
+| `11 % 2` | <v-click hide> ? </v-click><v-click at="+0">1 </v-click> |<v-click>  Remainder of 11 divided by 2</v-click> |
+| `11 / 2.0`| <v-click hide> ? </v-click><v-click at="+0">5.5 </v-click> |<v-click> Floating-point division (11 promoted to 11.0)</v-click> |
+| `5.0 / 2` | <v-click hide> ? </v-click><v-click at="+0">2.5 </v-click> |<v-click>  Floating-point division (2 promoted to 2.0)</v-click> |
 
 ---
 
-## Translating Math to C Expressions (Part 1)
+## Translating Math to C Expressions 
 
 | Mathematical Notation | C Expression | Important Notes |
 |---|---|---|
@@ -1065,19 +1120,19 @@ Let's check the results:
 layout: two-cols
 ---
 
-## Practice Evaluating C Expressions (Part 2)
+## Practice Evaluating C Expressions 
 
 Calculate the value of each C expression:
 
 
 | C Expression | Value? |
 |---|---|
-| `2 * (-3)` |  <v-click hide> ? </v-click><v-click>-6 </v-click> |
-| `4 * 5 - 15` |  <v-click hide> ? </v-click><v-click>5 </v-click> |
-| `4 + 2 * 5` |  <v-click hide> ? </v-click><v-click>14 </v-click> |
-| `7 / 2` |  <v-click hide> ? </v-click><v-click>3 </v-click> |
-| `7 / 2.0` |  <v-click hide> ? </v-click><v-click>3.5 </v-click> |
-| `2 / 5` |  <v-click hide> ? </v-click><v-click>0 </v-click> |
+| `2 * (-3)` |  <v-click hide> ? </v-click><v-click at="+0">-6 </v-click> |
+| `4 * 5 - 15` |  <v-click hide> ? </v-click><v-click at="+0">5 </v-click> |
+| `4 + 2 * 5` |  <v-click hide> ? </v-click><v-click at="+0">14 </v-click> |
+| `7 / 2` |  <v-click hide> ? </v-click><v-click at="+0">3 </v-click> |
+| `7 / 2.0` |  <v-click hide> ? </v-click><v-click at="+0">3.5 </v-click> |
+| `2 / 5` |  <v-click hide> ? </v-click><v-click at="+0">0 </v-click> |
 
 :: right ::
 
@@ -1085,11 +1140,11 @@ Calculate the value of each C expression:
 
 | C Expression | Value? |
 |---|---|
-| `2.0 / 5.0` |  <v-click hide> ? </v-click><v-click>0.4 </v-click> |
-| `2 / 5 * 5` |  <v-click hide> ? </v-click><v-click>0 </v-click> |
-| `2.0 + 1.0 + 5 / 2` |  <v-click hide> ? </v-click><v-click>5.0 </v-click> |
-| `5 % 2` |  <v-click hide> ? </v-click><v-click>1 </v-click> |
-| `4 * 5 / 2 + 5 % 2` |  <v-click hide> ? </v-click><v-click>11 </v-click> |
+| `2.0 / 5.0` |  <v-click hide> ? </v-click><v-click at="+0">0.4 </v-click> |
+| `2 / 5 * 5` |  <v-click hide> ? </v-click><v-click at="+0">0 </v-click> |
+| `2.0 + 1.0 + 5 / 2` |  <v-click hide> ? </v-click><v-click at="+0">5.0 </v-click> |
+| `5 % 2` |  <v-click hide> ? </v-click><v-click at="+0">1 </v-click> |
+| `4 * 5 / 2 + 5 % 2` |  <v-click hide> ? </v-click><v-click at="+0">11 </v-click> |
 
 </div>
 
@@ -1097,7 +1152,7 @@ Calculate the value of each C expression:
 
 ---
 
-## Practice Evaluating C Expressions (Part 3) - Results
+## Practice Evaluating C Expressions - Results
 
 Check your answers:
 
@@ -1139,7 +1194,7 @@ int main() {
 
 ---
 
-## Compound Assignment Operators (Part 1)
+## Compound Assignment Operators 
 
 These provide a concise way to modify a variable based on its current value.
 
@@ -1159,7 +1214,7 @@ These provide a concise way to modify a variable based on its current value.
 
 ---
 
-## Compound Assignment Operators (Part 2)
+## Compound Assignment Operators 
 
 More Examples:
 ```c
@@ -1176,7 +1231,7 @@ c %= 2+3; // Equivalent to: c = c % (2+3); (c becomes 5 % 5 = 0)
 
 ---
 
-## Increment and Decrement Operators (Part 1)
+## Increment and Decrement Operators 
 
 Special shortcuts for adding or subtracting 1.
 
@@ -1189,8 +1244,10 @@ Special shortcuts for adding or subtracting 1.
 * When used alone as a statement (`i++;` or `++i;`), the effect is simply `i = i + 1`. The difference matters when used *within* a larger expression or assignment.
 
 ---
+layout: two-cols
+---
 
-## Pre- vs. Post-Increment/Decrement (Part 2)
+## Pre- vs. Post-Increment/Decrement 
 
 The difference is crucial when assigning the result or using it in comparisons:
 
@@ -1203,7 +1260,7 @@ The difference is crucial when assigning the result or using it in comparisons:
 
 (Similar logic applies to `--`)
 
----
+:: right ::
 
 **Example Walkthrough:**
 ```c
@@ -1225,7 +1282,7 @@ int main() {
 
 ---
 
-## Pre- vs. Post-Decrement Example (Part 3)
+## Pre- vs. Post-Decrement Example 
 
 Test your understanding with decrement:
 ```c
@@ -1245,8 +1302,9 @@ int main() {
 }
 ```
 
-**Output:**
-<v-click>
+**Output: <v-click hide>?</v-click>**
+
+<v-click at="+0">
 ```text
 Final: a = 4, b = 2
 ```
@@ -1256,14 +1314,14 @@ Final: a = 4, b = 2
 
 ## The Conditional (Ternary) Operator
 
+<Transform scale="0.8">
+
 * Syntax: `condition ? expression_if_true : expression_if_false`
 * A shorthand way to express a simple if-else choice within an expression.
 * It takes three operands:
     1.  `condition`: An expression evaluated as true (non-zero) or false (zero).
     2.  `expression_if_true`: The value the entire ternary expression takes if `condition` is true.
     3.  `expression_if_false`: The value the entire ternary expression takes if `condition` is false.
-
----
 
 **Example:** Find the maximum of `b` and `i`.
 ```c
@@ -1285,6 +1343,9 @@ int main() {
 Result: a = 4, b = 2
 ```
 
+</Transform>
+
+
 ---
 
 ## Outline
@@ -1298,7 +1359,9 @@ Result: a = 4, b = 2
 
 ---
 
-## Implicit Type Conversion (Promotion)
+## Implicit Type Conversion (Promotion/Demotion)
+
+<Transform scale="0.8">
 
 * C often automatically converts values from "narrower" data types (like `char` or `int`) to "wider" types (like `float` or `double`) within expressions to avoid losing information during calculations. This is called **promotion**.
 * Consider `char + int + float + double`:
@@ -1319,20 +1382,20 @@ Result: a = 4, b = 2
 ```
 
 * These conversions happen implicitly (automatically).
-
----
-
 * **Demotion** (converting wider to narrower, e.g., `double` to `int`) happens automatically during assignment but can lose data (truncation).
     ```c
     int count = 0;
     count = 5.1; // double 5.1 is implicitly converted to int 5.
                  // Fractional part is lost. Risky if not intended.
     ```
+</Transform>
 
+
+---
+layout: two-cols
 ---
 
 ## Explicit Type Conversion (Casting)
-
 * You can force a type conversion using the **cast operator**: `(target_type)expression`.
 * This explicitly tells the compiler to treat the `expression`'s value as `target_type`.
 
@@ -1348,6 +1411,8 @@ Result: a = 4, b = 2
   // Step 6: result = (double) -> Assignment.
 ```
 
+:: right ::
+
 * Casting to a narrower type explicitly is still risky and truncates data:
 ```c
     int rounded_down = 0;
@@ -1357,7 +1422,6 @@ Result: a = 4, b = 2
                                      // rounded_down gets value 5.
 ```
 
----
 
 * If you need mathematical rounding (not truncation) when converting float to int, use functions from `math.h`:
    ```c
@@ -1369,6 +1433,8 @@ Result: a = 4, b = 2
     // rounded_val = (int)floor(source_val); // floor(5.9) is 5.0. (int)5.0 is 5.
     // rounded_val = (int)ceil(source_val);  // ceil(5.9) is 6.0. (int)6.0 is 6.
     ```
+
+
 
 ---
 layout: default
@@ -1401,5 +1467,3 @@ layout: default
 <div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
 <Link to="lab2" title="Go to Lab2 👩‍🔬"/>
 </div>
-
-

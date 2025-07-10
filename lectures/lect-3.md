@@ -17,107 +17,63 @@ Semester 1/2025
 
 ## Lecture Outline
 
-1.  **Fundamental Components of C Programs**
-2.  Basic Program Structure
-3.  Sequential Program Execution
-4.  Conditional Execution (`if-else`)
-    * Including Logical Operators
-5.  Working with Conditions
+1.  **C Program Anatomy**
+2.  Sequential Program Execution
+3.  Conditional Execution (`if-else`)
+    * Relational & Equality Operators
+    * Logical Operators
+4. Nested `if-else`
+    * `if-else if-else` ladder
+    * `switch` statement
 
 ---
+layout: two-cols
+---
 
-## Revisiting the First Program
+## C Program Anatomy
 
-* Create a file, typically named `main.c`.
-* Use a text editor to write the code:
+A C program is built from a few key components, following a standard structure.
+
+**Core Components:**
+*   **`#include <stdio.h>`**: A **preprocessor directive** that includes standard library definitions (like `printf`).
+*   **`int main() { ... }`**: The mandatory **main function** where program execution begins.
+*   **Statements**: Instructions like `variable = value;` or `printf(...)`. Each ends with a semicolon **`;`**.
+*   **Comments**: Explanations ignored by the compiler, written as `// single-line` or `/* multi-line */`.
+*   **`return 0;`**: Exits the `main` function, signaling success.
+
+::right::
+
+**Basic Structure:**
 
 ```c
-// Include standard input/output library definitions
+// 1. Preprocessor Directives
 #include <stdio.h>
 
-// Define the main function where execution begins
-int main() { // Start of the main function block
-    // Use printf to display text on the screen
-    printf("Hello World!\n");
+// 2. The main() Function
+int main() {
+    // 3. Variable Declarations
+    int score = 100; // A statement
 
-    // Indicate successful program termination
+    // 4. Program Logic (Statements)
+    printf("Score is: %d\n", score);
+
+    // 5. Return Statement
     return 0;
-} // End of the main function block
-```
-
----
-
-## Key Program Components Explained
-
-* **`#include <stdio.h>`:** This is a **preprocessor directive**. It instructs the compiler to include the contents of the `stdio.h` file, which contains declarations for standard input/output functions like `printf`.
-* **`int main() { ... }`:** This defines the required **`main` function**. Program execution always starts here. `int` signifies that the function returns an integer value to the operating system. The curly braces `{}` enclose the function's code block.
-* **`printf("Hello World!\n");`:** This is a **statement** that calls the `printf` function to display output. The text within the double quotes is the argument, and `\n` represents a newline character. Statements typically end with a semicolon `;`.
-* **`return 0;`:** Another **statement** that exits the `main` function and returns the value `0` (conventionally meaning success) to the operating system.
-
----
-
-## Other Essential Program Elements
-
-* **Variables:** Named storage locations for data (e.g., `int age = 25;`). We covered these in the previous lecture.
-* **Comments:** Explanatory text ignored by the compiler.
-    * Multi-line comments: Start with `/*` and end with `*/`.
-    * Single-line comments: Start with `//` and continue to the end of the line. Comments are crucial for making code understandable.
-
-```c
-/* This is a
-   multi-line comment. */
-int score = 100; // This is a single-line comment.
+}
 ```
 
 ---
 
 ## Lecture Outline
 
-1.  Fundamental Components of C Programs
-2.  **Basic Program Structure**
-3.  Sequential Program Execution
-4.  Conditional Execution (`if-else`)
-    * Including Logical Operators
-5.  Working with Conditions
-
----
-
-## Basic C Program Structure
-
-A typical simple C program follows this structure:
-
-```c
-// 1. Preprocessor Directives (like #include)
-#include <stdio.h>
-// ... other includes if needed ...
-
-// 2. The main Function (entry point)
-int main() { // Start of main block
-    // 3. Variable Declarations (optional, but good practice)
-    //    int number;
-    //    float price;
-
-    // 4. Program Statements (instructions to be executed)
-    //    number = 10;
-    //    price = 9.99;
-    printf("Executing program...\n");
-    //    ... more statements ...
-
-    // 5. Return Statement (usually 0 for success)
-    return 0;
-} // End of main block
-```
-
----
-
-## Lecture Outline
-
-1.  Fundamental Components of C Programs
-2.  Basic Program Structure
-3.  **Sequential Program Execution**
-4.  Conditional Execution (`if-else`)
-    * Including Logical Operators
-5.  Working with Conditions
+1.  C Program Anatomy
+2.  **Sequential Program Execution**
+3.  Conditional Execution (`if-else`)
+    * Relational & Equality Operators
+    * Logical Operators
+4. Nested `if-else`
+    * `if-else if-else` ladder
+    * `switch` statement
 
 ---
 
@@ -240,12 +196,14 @@ int main() {
 
 ## Lecture Outline
 
-1.  Fundamental Components of C Programs
-2.  Basic Program Structure
-3.  Sequential Program Execution
-4.  **Conditional Execution** (`if-else`)
-    * Including Logical Operators
-5.  Working with Conditions
+1.  C Program Anatomy
+2.  Sequential Program Execution
+3.  **Conditional Execution (`if-else`)**
+    * Relational & Equality Operators
+    * Logical Operators
+4. Nested `if-else`
+    * `if-else if-else` ladder
+    * `switch` statement
 
 ---
 
@@ -352,13 +310,14 @@ int main() {
 
 ## Lecture Outline
 
-1.  Fundamental Components of C Programs
-2.  Basic Program Structure
-3.  Sequential Program Execution
-4.  Conditional Execution (`if-else`)
+1.  C Program Anatomy
+2.  Sequential Program Execution
+3.  Conditional Execution (`if-else`)
     * **Relational & Equality Operators**
     * Logical Operators
-5.  Working with Conditions
+4. Nested `if-else`
+    * `if-else if-else` ladder
+    * `switch` statement
 
 ---
 
@@ -392,13 +351,14 @@ int main() {
 
 ## Lecture Outline
 
-1.  Fundamental Components of C Programs
-2.  Basic Program Structure
-3.  Sequential Program Execution
-4.  Conditional Execution (`if-else`)
+1.  C Program Anatomy
+2.  Sequential Program Execution
+3.  Conditional Execution (`if-else`)
     * Relational & Equality Operators
     * **Logical Operators**
-5.  Working with Conditions
+4. Nested `if-else`
+    * `if-else if-else` ladder
+    * `switch` statement
 
 ---
 
@@ -488,17 +448,6 @@ Logical operators have lower precedence than relational/equality operators, whic
 *Use parentheses `()` to clarify or override precedence.*
 Example: `a > b && c < d` is evaluated as `(a > b) && (c < d)`.
 
----
-
-## Lecture Outline
-
-1.  Fundamental Components of C Programs
-2.  Basic Program Structure
-3.  Sequential Program Execution
-4.  Conditional Execution (`if-else`)
-5.  Working with Conditions
-    * **Combining Operators**
-    * Common Mistakes
 
 ---
 
@@ -557,13 +506,14 @@ if (a == 5) { // Compares current value of 'a' with 5.
 
 ## Lecture Outline
 
-1.  Fundamental Components of C Programs
-2.  Basic Program Structure
-3.  Sequential Program Execution
-4.  Conditional Execution (`if-else`)
-    * **Nested** `if-else`
+1.  C Program Anatomy
+2.  Sequential Program Execution
+3.  Conditional Execution (`if-else`)
+    * Relational & Equality Operators
+    * Logical Operators
+4. **Nested `if-else`**
+    * `if-else if-else` ladder
     * `switch` statement
-5.  Working with Conditions
 
 ---
 
@@ -628,6 +578,19 @@ int main() {
 
 ---
 
+## Lecture Outline
+
+1.  C Program Anatomy
+2.  Sequential Program Execution
+3.  Conditional Execution (`if-else`)
+    * Relational & Equality Operators
+    * Logical Operators
+4. Nested `if-else`
+    * **`if-else if-else` ladder**
+    * `switch` statement
+
+---
+
 ## The `if-else if-else` Ladder
 
 * A common pattern for checking multiple mutually exclusive conditions in sequence.
@@ -683,13 +646,15 @@ int main() {
 
 ## Lecture Outline
 
-1.  Fundamental Components of C Programs
-2.  Basic Program Structure
-3.  Sequential Program Execution
-4.  Conditional Execution (`if-else`)
-    * Nested `if-else`
+1.  C Program Anatomy
+2.  Sequential Program Execution
+3.  Conditional Execution (`if-else`)
+    * Relational & Equality Operators
+    * Logical Operators
+4. Nested `if-else`
+    * `if-else if-else` ladder
     * **`switch` statement**
-5.  Working with Conditions
+
 ---
 
 ## The `switch` Statement
