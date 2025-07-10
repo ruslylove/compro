@@ -68,6 +68,41 @@ Semester: 1/2025
 
 ## Exercise 2: Prime Number Checker
 
+* **Task:** Write a C program that asks the user for a positive integer and determines if it is a prime number.
+* **📝 Flowchart First:** Draw a flowchart for your prime-checking logic. Show how the loop can terminate early using a `break`.
+* **Definition:** A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself.
+* **Logic:**
+    1. Handle the base cases: numbers less than or equal to 1 are not prime. 2 is prime.
+    2. For a number `n > 2`, loop from `i = 2` up to `sqrt(n)` (or `n / 2`).
+    3. In each iteration, check if `n % i == 0`.
+    4. If a divisor is found, the number is not prime. You can set a flag and use `break` to exit the loop immediately, as no more checks are needed.
+    5. If the loop completes without finding any divisors, the number is prime.
+* **Output:** Print a message like `"[number] is a prime number."` or `"[number] is not a prime number."`
+
+---
+
+## Exercise 3: Pyramid Pattern
+
+* **Task:** Write a C program that takes an integer `N` as input and prints a pyramid of stars (`*`) with `N` rows.
+* **📝 Flowchart First:** A flowchart is required. It should clearly show the nested loop structure: one for rows, one for leading spaces, and one for stars.
+* **Example (for N = 5):**
+    ```
+        *
+       ***
+      *****
+     *******
+    *********
+    ```
+* **Hints:**
+    * You will need nested `for` loops.
+    * The outer loop will control the rows (from 1 to `N`).
+    * An inner loop is needed to print the leading spaces for each row. The number of spaces decreases as the row number increases.
+    * Another inner loop is needed to print the stars. The number of stars is `2 * row_number - 1`.
+
+---
+
+## Exercise 4: Approximate exp(x)
+
 <Transform scale="0.8">
 
 * **Task:** Write a C program to approximate the value of $e^x$ using its Taylor series expansion:
@@ -87,24 +122,9 @@ Semester: 1/2025
 
 </Transform>
 
-
 ---
 
-## Exercise 3: Pyramid Pattern
-
-* **Task:** Find and print all **perfect numbers** within the range [1, 10000].
-* **📝 Flowchart First:** A flowchart is required for this exercise. It should clearly show the nested loop structure for checking each number and summing its divisors.
-* **Definition:** A perfect number is a positive integer that is equal to the sum of its proper positive divisors (the sum of its positive divisors excluding the number itself).
-* **Example:** 6 is a perfect number because its proper divisors are 1, 2, and 3, and $1 + 2 + 3 = 6$. Another example is 28 ($1 + 2 + 4 + 7 + 14 = 28$).
-* **Approach:**
-    1. Use an outer loop to iterate through numbers `j` from 1 to 10000.
-    2. For each `j`, use an inner loop to find all its proper divisors (`i` from 1 up to `j/2`).
-    3. Sum these divisors.
-    4. If the sum equals `j`, then `j` is a perfect number, so print it.
-
----
-
-## Exercise 4: Approximate exp(x)
+## Exercise 5: Decimal Fraction to Binary
 
 <Transform scale="0.8">
 
@@ -127,38 +147,17 @@ Semester: 1/2025
 
 ---
 
-## Exercise 5: Decimal Fraction to Binary
-
-* **Task:** Write a C program that takes an integer `N` as input and prints a pyramid of stars (`*`) with `N` rows.
-* **📝 Flowchart First:** A flowchart is required. It should clearly show the nested loop structure: one for rows, one for leading spaces, and one for stars.
-* **Example (for N = 5):**
-    ```
-        *
-       ***
-      *****
-     *******
-    *********
-    ```
-* **Hints:**
-    * You will need nested `for` loops.
-    * The outer loop will control the rows (from 1 to `N`).
-    * An inner loop is needed to print the leading spaces for each row. The number of spaces decreases as the row number increases.
-    * Another inner loop is needed to print the stars. The number of stars is `2 * row_number - 1`.
-
----
-
 ## Exercise 6: Perfect Numbers
 
-* **Task:** Write a C program that asks the user for a positive integer and determines if it is a prime number.
-* **📝 Flowchart First:** Draw a flowchart for your prime-checking logic. Show how the loop can terminate early using a `break`.
-* **Definition:** A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself.
-* **Logic:**
-    1. Handle the base cases: numbers less than or equal to 1 are not prime. 2 is prime.
-    2. For a number `n > 2`, loop from `i = 2` up to `sqrt(n)` (or `n / 2`).
-    3. In each iteration, check if `n % i == 0`.
-    4. If a divisor is found, the number is not prime. You can set a flag and use `break` to exit the loop immediately, as no more checks are needed.
-    5. If the loop completes without finding any divisors, the number is prime.
-* **Output:** Print a message like `"[number] is a prime number."` or `"[number] is not a prime number."`
+* **Task:** Find and print all **perfect numbers** within the range [1, 10000].
+* **📝 Flowchart First:** A flowchart is required for this exercise. It should clearly show the nested loop structure for checking each number and summing its divisors.
+* **Definition:** A perfect number is a positive integer that is equal to the sum of its proper positive divisors (the sum of its positive divisors excluding the number itself).
+* **Example:** 6 is a perfect number because its proper divisors are 1, 2, and 3, and $1 + 2 + 3 = 6$. Another example is 28 ($1 + 2 + 4 + 7 + 14 = 28$).
+* **Approach:**
+    1. Use an outer loop to iterate through numbers `j` from 1 to 10000.
+    2. For each `j`, use an inner loop to find all its proper divisors (`i` from 1 up to `j/2`).
+    3. Sum these divisors.
+    4. If the sum equals `j`, then `j` is a perfect number, so print it.
 
 ---
 src: ../lectures/flow_chart_loop.md
