@@ -586,7 +586,7 @@ layout: default
 </Transform>
 
 <div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
-<Link to="lab5" title="Go to Lab5"/>
+<Link to="lab5" title="Go to Lab5 👩‍🔬"/>
 </div>
 
 * Allows you to include or exclude blocks of code from compilation based on whether a macro identifier has been defined (using `#define`).

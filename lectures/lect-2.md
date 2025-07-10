@@ -1399,7 +1399,7 @@ layout: default
 </Transform>
 
 <div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
-<Link to="lab2" title="Go to Lab2"/>
+<Link to="lab2" title="Go to Lab2 👩‍🔬"/>
 </div>
 
 

@@ -793,5 +793,5 @@ layout: default
 </Transform>
 
 <div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
-<Link to="lab3" title="Go to Lab3"/>
+<Link to="lab3" title="Go to Lab3 👩‍🔬"/>
 </div>

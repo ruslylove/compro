@@ -538,8 +538,6 @@ int main() {
 ```
 
 ---
-
----
 layout: default
 ---
 
@@ -555,9 +553,13 @@ layout: default
 
 </Transform>
 
-<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
-<Link to="lab7" title="Go to Lab7"/>
-</div>
+
+
+---
+
+## Summary (Cont.)
+
+<Transform scale="0.77">
 
 * If no values are explicitly assigned, the first enumerator gets `0`, and subsequent enumerators get the value of the previous one plus `1`.
 * If a value is assigned, subsequent unassigned enumerators continue incrementing from the last assigned value.
@@ -587,3 +589,9 @@ int main() {
 }
 ```
 * Be mindful of implicit assignments when explicitly setting values.
+
+</Transform>
+
+<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
+<Link to="lab7" title="Go to Lab7 👩‍🔬"/>
+</div>

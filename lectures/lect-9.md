@@ -314,7 +314,7 @@ layout: default
 </Transform>
 
 <div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
-<Link to="lab9" title="Go to Lab9"/>
+<Link to="lab9" title="Go to Lab9 👩‍🔬"/>
 </div>
 
 * Files provide persistent storage.

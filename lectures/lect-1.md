@@ -604,5 +604,6 @@ layout: default
 *   **Compilation Process:** Detailed steps from source code to executable (preprocessing, compiling, assembling, linking).
 *   **Development Environments:** Overview of IDEs and text editors paired with compilers for C programming.
 
-<br>
-<Link to="lab1" title="Go to Lab1"/>
+<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
+<Link to="lab1" title="Go to Lab1 👩‍🔬"/>
+</div>

@@ -512,7 +512,7 @@ layout: default
 </Transform>
 
 <div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
-<Link to="lab6" title="Go to Lab6"/>
+<Link to="lab6" title="Go to Lab6 👩‍🔬"/>
 </div>
 
 * Compares two strings alphabetically.
