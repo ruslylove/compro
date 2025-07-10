@@ -26,8 +26,8 @@ To run the interactive slide show on your local machine, you need to have Node.j
 
 1.  **Clone the repository:**
     ```bash
-    git clone <repository-url>
-    cd <repository-directory>
+    git clone https://github.com/ruslylove/compro.git
+    cd compro
     ```
 2.  **Install dependencies:**
     ```bash
