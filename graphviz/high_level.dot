@@ -1,0 +1,56 @@
+digraph LanguageLayers {
+    // Graph attributes for a clean look
+    rankdir="TB"; // Top-to-Bottom layout
+    splines=ortho;
+    graph [bgcolor="#ffffff", fontname="Helvetica", fontsize=14, dpi = 96];
+    node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=12];
+    edge [fontname="Helvetica", fontsize=10];
+
+    // Define nodes for each layer with colors
+    HighLevel [
+        label="High-Level Language\n(e.g., C, Python, Java)",
+        fillcolor="#cde4ff"
+    ];
+    Assembly [
+        label="Assembly Language",
+        fillcolor="#d5e8d4"
+    ];
+    Machine [
+        label="Machine Language\n(Binary Code)",
+        fillcolor="#fff2cc"
+    ];
+    Hardware [
+        label="Hardware\n(CPU)",
+        shape=cylinder,
+        fillcolor="#f8cecc"
+    ];
+
+    // Define translator nodes
+    Compiler [
+        label="Compiler",
+        shape=parallelogram,
+        style=filled,
+        fillcolor="#e1d5e7"
+    ];
+    Assembler [
+        label="Assembler",
+        shape=parallelogram,
+        style=filled,
+        fillcolor="#e1d5e7"
+    ];
+
+    // Define the flow and relationships
+    HighLevel   -> Compiler  [label=" is translated by"];
+    Compiler    -> Assembly;
+    Assembly    -> Assembler [label=" is assembled by"];
+    Assembler   -> Machine;
+    Machine     -> Hardware  [label=" is executed by", style=dashed];
+
+    // Ensure vertical ranking
+    {rank=same; HighLevel;}
+    {rank=same; Compiler;}
+    {rank=same; Assembly;}
+    {rank=same; Assembler;}
+    {rank=same; Machine;}
+    {rank=same; Hardware;}
+}

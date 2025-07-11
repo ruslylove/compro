@@ -25,6 +25,7 @@ Semester 1/2025
 4. Nested `if-else`
     * `if-else if-else` ladder
     * `switch` statement
+5.  Visualizing Logic with Flowcharts
 
 ---
 layout: two-cols
@@ -74,6 +75,7 @@ int main() {
 4. Nested `if-else`
     * `if-else if-else` ladder
     * `switch` statement
+5.  Visualizing Logic with Flowcharts
 
 ---
 
@@ -204,6 +206,7 @@ int main() {
 4. Nested `if-else`
     * `if-else if-else` ladder
     * `switch` statement
+5.  Visualizing Logic with Flowcharts
 
 ---
 
@@ -318,6 +321,7 @@ int main() {
 4. Nested `if-else`
     * `if-else if-else` ladder
     * `switch` statement
+5.  Visualizing Logic with Flowcharts
 
 ---
 
@@ -359,6 +363,7 @@ int main() {
 4. Nested `if-else`
     * `if-else if-else` ladder
     * `switch` statement
+5.  Visualizing Logic with Flowcharts
 
 ---
 
@@ -514,6 +519,7 @@ if (a == 5) { // Compares current value of 'a' with 5.
 4. **Nested `if-else`**
     * `if-else if-else` ladder
     * `switch` statement
+5.  Visualizing Logic with Flowcharts
 
 ---
 
@@ -588,6 +594,7 @@ int main() {
 4. Nested `if-else`
     * **`if-else if-else` ladder**
     * `switch` statement
+5.  Visualizing Logic with Flowcharts
 
 ---
 
@@ -654,6 +661,7 @@ int main() {
 4. Nested `if-else`
     * `if-else if-else` ladder
     * **`switch` statement**
+5.  Visualizing Logic with Flowcharts
 
 ---
 
@@ -735,11 +743,14 @@ int main() {
     * You are comparing non-integer types (like floats, though direct equality check for floats is often problematic).
     * The conditions are not based on simple equality with constants.
 ---
+src: ./flow_chart_selection.md
+---
+---
 layout: default
 ---
 
 ## Summary
-<Transform scale="0.9">
+<Transform scale="0.85">
 
 *   **Program Structure:** C programs consist of preprocessor directives (`#include`), a `main` function, variables, statements (ending in `;`), and comments (`//` or `/* ... */`).
 *   **Sequential Flow:** By default, statements execute in order from top to bottom.
@@ -754,6 +765,7 @@ layout: default
 *   **`switch` Statement:**
     *   An efficient way to select a code path based on an integer or character value.
     *   Uses `case`, `break`, and an optional `default`.
+*   **Flowcharts:** Visual diagrams for planning program logic using standard symbols to represent steps, decisions, and flow.
 
 </Transform>
 

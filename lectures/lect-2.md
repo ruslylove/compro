@@ -103,16 +103,20 @@ Your turn! 🧑‍🎓 Convert the decimal number 60 into:
     * $3\times16^{1}+12\times16^{0}=60$ (Note: C represents 12)
 
 ---
-
+layout: two-cols
+---
 ## Number System Conversions: Fractions
 
 Converting a decimal fraction to binary, e.g., `0.3125`:
 
-
-
 Resulting binary fraction : `0.0101`
 
 $0 \times 2^{-1} + 1 \times 2^{-2} + 0 \times 2^{-3} + 1 \times 2^{-4} = 0.3125$
+
+
+
+
+
 
 <v-clicks>
 
@@ -123,6 +127,24 @@ $1 \times 2^{1} + 0 \times 2^{0} + 1 \times 2^{-1} + 1 \times 2^{-2} = 2.75$
 Resulting binary fraction : `10.11`
 
 </v-clicks>
+
+:: right ::
+
+<v-click>
+
+**Calculation:**
+
+* Converting a decimal number with a fractional part to binary, e.g., `2.75`:
+    * Convert the integer part (2) to binary: `10`
+    * Convert the fractional part (0.75) to binary:
+        * $0.75 \times 2 = 1.50 \rightarrow 1$ (first bit after decimal)
+        * $0.50 \times 2 = 1.00 \rightarrow 1$ (second bit after decimal)
+        * Stop when fractional part is 0.
+    * Combine: `10.11`
+
+</v-click>
+
+
 
 
 ---
@@ -150,9 +172,18 @@ layout: two-cols
 
 ## How Data Resides in Memory
 
-* When multiple data items are stored, they occupy consecutive memory locations (assuming each uses 1 byte here).
+<Transform scale="0.8">
 
-<img src="/one_byte_meme.png" style="margin:auto;height:300px;padding-top:50px">
+* When multiple data items are stored, they occupy consecutive memory locations (assuming each uses 1 byte here).
+* An important consideration: What is the range of numbers representable within a fixed size, like 1 byte (8 bits)?
+* If no sign is used (unsigned): binary `00000000` to `11111111` corresponding to decimal 0 to 255.
+* With 1 byte, we can represent $2^8 = 256$ distinct values.
+
+<img src="/one_byte_meme.png" style="margin:auto;height:200px;width:200px;padding-top:10px">
+
+</Transform>
+
+
 
 :: right ::
 
@@ -174,19 +205,9 @@ layout: two-cols
 
 ---
 
-## How Data Resides in Memory
+## Sign and Unsigned 
 
-* An important consideration: What is the range of numbers representable within a fixed size, like 1 byte (8 bits)?
-* If no sign is used (unsigned): binary `00000000` to `11111111`.
-    * This corresponds to decimal 0 to 255.
-* With 1 byte, we can represent $2^8 = 256$ distinct values.
-* Memory limitations mean we can only represent a finite range of numbers.
-
----
-
-## How Data Resides in Memory
-
-❓If one bit is dedicated to the *sign*, how many different numbers can we represent in 1 byte?
+* If one bit is dedicated to the *sign*, how many different numbers can we represent in 1 byte?
 
 | Bit Position | 7 (Sign) | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
 |---|---|---|---|---|---|---|---|---|
@@ -215,7 +236,7 @@ In both cases, you are still representing 256 distinct numerical values.
 | -33 | `10100001` (Sign-Mag) | `11011110` | `11011111` |
 
 * Positive numbers have the same representation in original, one's, and two's complement.
-* **One's Complement:** Invert all bits (0->1, 1->0).
+* **One's Complement:** Invert all bits (0→1, 1→0).
 * **Two's Complement:** Invert all bits, then add 1. This is the standard way computers represent signed integers.
 * Why use complements? They simplify subtraction by turning it into an addition operation.
 * Try finding the one's and two's complement for -17.

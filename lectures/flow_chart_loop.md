@@ -5,6 +5,40 @@ layout: default
 
 Flowcharts are especially useful for understanding how loops control the flow of a program. They clearly illustrate the repetition, the condition that sustains it, and the point of exit.
 
+<div style="position:fixed;bottom:0;right:250px;padding-bottom:10px">
+
+```mermaid {scale:0.5}
+
+graph TD
+    subgraph "while Loop (Pre-test)"
+        A_init[Initialize] --> A_cond{Condition?};
+        A_cond -- True --> A_body[Loop Body];
+        A_body --> A_update[Update];
+        A_update --> A_cond;
+        A_cond -- False --> A_exit((Exit));
+    end
+
+    subgraph "do-while Loop (Post-test)"
+        B_init[Initialize] --> B_body[Loop Body];
+        B_body --> B_update[Update];
+        B_update --> B_cond{Condition?};
+        B_cond -- True --> B_body;
+        B_cond -- False --> B_exit((Exit));
+    end
+
+    subgraph "for Loop (Pre-test)"
+        C_init[Initialize] --> C_cond{Condition?};
+        C_cond -- True --> C_body[Loop Body];
+        C_body --> C_update[Update];
+        C_update --> C_cond;
+        C_cond -- False --> C_exit((Exit));
+    end
+```
+
+</div>
+
+
+
 ---
 layout: two-cols
 ---

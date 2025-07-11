@@ -27,15 +27,24 @@ Semester 1/2025
 3.  Introduction to Debugging
     *   Using `printf` for tracing.
     *   Debugger Tools & Common Bugs.
+4.  Visualizing Logic with Flowcharts for Loops
 
+---
+layout: two-cols-header
 ---
 
 ## Motivating Example: Repetitive Calculation
+<br>
+<br>
 
 * **Problem:** Calculate the sum $S = \sum_{x=1}^{5} \frac{1}{x^2}$ (i.e., $1/1^2 + 1/2^2 + 1/3^2 + 1/4^2 + 1/5^2$).
-* **Using only sequential code (as learned so far):**
 
-```c {*}{maxHeight:'300px'}
+
+::right::
+
+<div style="padding-left:50px">
+
+```c {*}
 int main() {
     int x = 1;
     double S = 0.0;
@@ -55,6 +64,12 @@ int main() {
 }
 ```
 
+</div>
+
+
+::left::
+
+* **Using only sequential code (as learned so far):**
 * This approach is manageable for a small number of terms (like 5).
 * **Challenge:** What if we needed to calculate the sum for 1000 terms? Writing the code sequentially becomes extremely tedious and impractical. We need a way to handle repetition efficiently.
 
@@ -63,12 +78,14 @@ int main() {
 ## Lecture Outline
 
 1.  **Understanding Loops**
-    * The `while` loop
-    * The `do-while` loop
-    * The `for` loop
-    * Practical examples using loops
-2.  Related Control Flow Keywords (`break`, `continue`)
+    *   `while` Loop: Pre-test condition.
+    *   `do-while` Loop: Post-test condition.
+    *   `for` Loop: Initialization, condition, and update.
+2.  Loop Control Statements
+    *   `break`: Terminating a loop.
+    *   `continue`: Skipping an iteration.
 3.  Introduction to Debugging
+4.  Visualizing Logic with Flowcharts for Loops
 
 ---
 
@@ -318,12 +335,20 @@ int main() {
 ```
 
 ---
+layout: two-cols-header
+---
 
 ## Nested Loops Example: Printing a Pattern
 
 * Placing one loop inside another (nested loops) is common for working with 2D structures or creating patterns.
 
 **Problem:** Print a right-angled triangle pattern of stars.
+
+:: left ::
+
+
+<div style="padding-right:50px">
+
 ```
 *
 **
@@ -332,7 +357,11 @@ int main() {
 *****
 ```
 
-```c {*}{maxHeight:'200px'}
+</div>
+
+:: right ::
+
+```c {*}{lines:true}
 #include <stdio.h>
 
 int main() {
@@ -352,6 +381,10 @@ int main() {
 }
 ```
 
+
+
+
+
 ---
 
 ## Lecture Outline
@@ -366,6 +399,7 @@ int main() {
 3.  Introduction to Debugging
     *   Using `printf` for tracing.
     *   Debugger Tools & Common Bugs.
+4.  Visualizing Logic with Flowcharts for Loops
 
 ---
 
@@ -408,6 +442,8 @@ int main() {
 ```
 ::right::
 
+<div style="padding-left:30px">
+
 *Output:*
 ```text
 Checking 1
@@ -426,6 +462,9 @@ Checking 7
 Found number divisible by 7: 7
 Loop finished or exited via break.
 ```
+
+</div>
+
 
 ---
 
@@ -482,13 +521,20 @@ int main() {
 3.  **Introduction to Debugging**
     *   Using `printf` for tracing.
     *   Debugger Tools & Common Bugs.
+4.  Visualizing Logic with Flowcharts for Loops
 
 ---
+layout: image-right
+image: "/debug.png"
+---
 
-## What is Debugging?
 
-* **Bug:** An error, flaw, or fault in a computer program that causes it to produce an incorrect or unexpected result, or to behave in unintended ways.
-* **Debugging:** The process of finding and resolving bugs within computer programs.
+## What is Debugging? 
+
+<br>
+
+* 🐛 **Bug:** An error, flaw, or fault in a computer program that causes it to produce an incorrect or unexpected result, or to behave in unintended ways.
+* 🔍 **Debugging:** The process of finding and resolving bugs within computer programs.
 * It's a crucial skill for any programmer, as errors are common during development.
 
 ---
@@ -597,6 +643,28 @@ if (i % 2 == 1); // Stray semicolon, condition has no effect
     2.  **Memory Related Bugs:** Errors involving incorrect use of pointers, array bounds, memory allocation/deallocation (e.g., accessing freed memory, buffer overflows, null pointer dereferences). These are often harder to track down and can cause crashes or unpredictable behavior.
 
 *Remember: Compiler errors (syntax mistakes) are not runtime bugs, they prevent the program from being created in the first place.*
+
+---
+
+## Lecture Outline
+
+1.  Looping Constructs
+    *   `while` Loop: Pre-test condition.
+    *   `do-while` Loop: Post-test condition.
+    *   `for` Loop: Initialization, condition, and update.
+2.  Loop Control Statements
+    *   `break`: Terminating a loop.
+    *   `continue`: Skipping an iteration.
+3.  Introduction to Debugging
+    *   Using `printf` for tracing.
+    *   Debugger Tools & Common Bugs.
+4.  **Visualizing Logic with Flowcharts for Loops**
+
+
+
+---
+src: ./flow_chart_loop.md
+---
 ---
 layout: default
 ---
@@ -607,11 +675,12 @@ layout: default
 *   **Loops for Repetition:** Loops (`while`, `do-while`, `for`) are essential for executing a block of code multiple times.
 *   **`while` Loop:** A pre-test loop. The condition is checked *before* each iteration. It may run zero or more times.
 *   **`do-while` Loop:** A post-test loop. The condition is checked *after* each iteration. It always runs at least once.
-*   **`for` Loop:** Combines initialization, condition, and update in one line. Ideal for counter-controlled loops where the number of iterations is known.
+*   **`for` Loop:** Combines initialization, condition, and update in one line. Ideal for counter-controlled loops.
 *   **Loop Control:**
     *   `break`: Immediately terminates the innermost loop or `switch` statement.
     *   `continue`: Skips the rest of the current iteration and proceeds to the next.
 *   **Debugging:** The process of finding and fixing errors. Simple `printf` tracing is a basic technique, but using a debugger tool provides more powerful features like breakpoints and stepping through code.
+*   **Flowcharts for Loops:** Visual diagrams that illustrate the repetition, condition, and exit points for `while`, `do-while`, and `for` loops.
 
 </Transform>
 

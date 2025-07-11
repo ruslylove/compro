@@ -119,7 +119,40 @@ layout: two-cols-header
     * **Communication Paths (Buses):** Address Bus, Data Bus, Instruction Bus connecting components.
 
 ::right::
-<img src="https://images.tpointtech.com/computer/images/computer-components.png">
+
+<!-- 
+<img src="https://images.tpointtech.com/computer/images/computer-components.png"> -->
+
+```mermaid
+graph TD
+    %% --- Define the nodes first for clarity ---
+    Input[Input Devices<br>e.g., Keyboard, Mouse] --> CPU
+    
+    subgraph " "
+        %% direction LR
+        CPU[CPU<br>Central Processing Unit]
+        Memory[("Memory (RAM)<br><i>Volatile Storage</i>")]
+        Storage[("Storage Devices<br><i>e.g., Hard Disk, SSD</i>")]
+        Memory <--> CPU
+        Storage <--> CPU
+    end
+
+    CPU --> Output[Output Devices<br>e.g., Monitor, Printer]
+
+    
+
+    %% --- Define connections to the central CPU ---
+    %%Memory <--> CPU
+    %%Storage <--> CPU
+
+    %% --- Optional Styling ---
+    style CPU fill:#dae8fc,stroke:#333,stroke-width:2px,font-weight:bold
+    style Input fill:#cde4ff,stroke:#333
+    style Output fill:#d5e8d4,stroke:#333
+    style Memory fill:#fff2cc,stroke:#333
+    style Storage fill:#f8cecc,stroke:#333
+
+```
 
 ---
 
@@ -189,12 +222,17 @@ image: https://cdn.educba.com/academy/wp-content/uploads/2023/12/Machine-Languag
 
 
 ---
+layout: two-cols
+---
 
 ## Need for High-Level Languages?
  
 * At the lowest level, computer instructions are just sequences of binary digits (0s and 1s) - **machine code**.
 * The hardware (CPU) can only directly execute these binary instructions.
-<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*bXbjWyhMLUXZGxJNP__WJQ.png" style="height:300px;margin:auto;margin-top:50px">
+
+::right::
+
+<img src="/high_level.png" style="height:450px;margin:auto"/>
 
 
 
