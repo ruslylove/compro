@@ -23,8 +23,8 @@ Semester: 1/2025
     * Use `printf` with field width and alignment to format integers.
 * **Exercise 2: Octal and Hexadecimal Output**
     * Display a number in different bases using `%o` and `%x`.
-* **Exercise 3: Conditional Operator and Square Root**
-    * Combine the ternary operator and the `sqrt()` function.
+* **Exercise 3: Integer Arithmetic with Division and Modulus**
+    * Use `/` and `%` to extract digits from an integer.
 * **Exercise 4: Average Calculation**
     * Perform floating-point arithmetic to calculate an average.
 * **Exercise 5: Character Capitalization**
@@ -41,13 +41,14 @@ Semester: 1/2025
     * Display numbers in different bases (octal `%o`, hexadecimal `%x`).
 * **Apply various C operators to build expressions**
     * Use arithmetic operators for calculations (e.g., average).
-    * Use the conditional (ternary) operator for simple decisions.
+    * Use integer division (`/`) and modulus (`%`) to solve problems.
     * Use relational and logical operators for character classification.
 * **Incorporate standard library functions**
-    * Use `sqrt()` from the math library (`<math.h>`).
+    * Use `printf()` and `scanf()` for I/O.
 * **Solve classic programming logic problems**
     * Implement variable swapping.
     * Perform character case conversion based on ASCII values.
+    * Extract digits from a number.
 
 ---
 
@@ -91,17 +92,20 @@ Semester: 1/2025
 
 ---
 
-## Exercise 3: Conditional Operator and Square Root
+## Exercise 3: Integer Arithmetic with Division and Modulus
 
 * **Task:** Write a C program that:
-    1.  Accepts two integer inputs, `a` and `b`, from the user.
-    2.  Determines the maximum (larger) of the two numbers.
-    3.  Calculates and outputs the square root of the maximum value found.
+    1.  Accepts a three-digit integer from the user (e.g., 479).
+    2.  Calculates the sum of its individual digits.
+    3.  Prints the sum.
+* **Example:**
+    *   Input: `479`
+    *   Sum of digits: `4 + 7 + 9 = 20`
+    *   Output: `The sum of the digits is: 20`
 * **Hints:**
-    * Use the conditional (ternary) operator `(condition ? value_if_true : value_if_false)` to find the maximum efficiently.
-    * Use the `sqrt()` function to calculate the square root. This function returns a `double`.
-    * You must include the math library header file: `#include <math.h>`.
-    * When compiling code that uses `math.h` functions, you might need to link the math library explicitly using the `-lm` flag with `gcc`: `gcc your_code.c -o your_program -lm`.
+    *   Use the integer division operator (`/`) to remove the last digit. For example, `479 / 10` results in `47`.
+    *   Use the modulus operator (`%`) to get the last digit. For example, `479 % 10` results in `9`.
+    *   You will need to apply these operators multiple times to isolate each digit.
 
 ---
 
