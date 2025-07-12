@@ -414,7 +414,7 @@ int main() {
 
 ---
 layout: image-right
-image: /overflow.png
+image: overflow.png
 ---
 
 ## The Issue of Integer Overflow
@@ -501,7 +501,7 @@ int main() {
 
 ---
 layout: image-right
-image: /letters.png
+image: letters.png
 ---
 
 ## Character Type
