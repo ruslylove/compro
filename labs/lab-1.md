@@ -11,9 +11,9 @@ routeAlias: lab1
 # Computer Programming
 ## Lab 1: Introduction to C Programming
 
-Presented by: Dr. Ruslee Sutthaweekul
+Presented by {{ $slidev.configs.presenter }}
 
-Semester: 1/2025
+Semester {{ $slidev.configs.semester }}
 
 
 ---

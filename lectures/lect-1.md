@@ -9,9 +9,9 @@ title: Lecture 1 - Introduction and Overview
 # Computer Programming
 ## Lecture 1: Introduction and Overview
 
-Presented by: Dr. Ruslee Sutthaweekul
+Presented by {{ $slidev.configs.presenter }}
 
-Semester 1/2025
+Semester {{ $slidev.configs.semester }}
 
 ---
 

@@ -5,7 +5,7 @@ theme: seriph
 # like them? see https://unsplash.com/collections/94734566/slidev
 background: https://cover.sli.dev
 # some information about your slides (markdown enabled)
-title: 010153002 Computer Programming by Dr.Ruslee
+title: Welcome to 010153002 Computer Programming
 info: |
   ## Slidev Starter Template
   Presentation slides for developers.
@@ -26,11 +26,16 @@ mdc: true
 # lineNumbers: true
 favicon: '/img/favicon_c_new.png'
 
+presenter: Dr.Ruslee Sutthaweekul
+semester: 1/2025
+
 ---
 
 # Welcome to 010153002 Computer Programming
 
-Dr. Ruslee Sutthaweekul
+Presented by {{ $slidev.configs.presenter }}
+
+Semester {{ $slidev.configs.semester }}
 
 <div @click="$slidev.nav.next" class="mt-12 py-1" hover:bg="white op-10">
   Press Space for next page <carbon:arrow-right />
@@ -40,7 +45,7 @@ Dr. Ruslee Sutthaweekul
   <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="slidev-icon-btn">
     <carbon:edit />
   </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" class="slidev-icon-btn">
+  <a href="https://github.com/ruslylove/compro" target="_blank" class="slidev-icon-btn">
     <carbon:logo-github />
   </a>
 </div>

@@ -11,9 +11,9 @@ routeAlias: lab5
 # Computer Programming
 ## Lab 5: Functions and Variables
 
-Presented by: Dr. Ruslee Sutthaweekul
+Presented by {{ $slidev.configs.presenter }}
 
-Semester: 1/2025
+Semester {{ $slidev.configs.semester }}
 
 ---
 

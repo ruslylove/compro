@@ -11,9 +11,9 @@ routeAlias: lab2
 # Computer Programming
 ## Lab 2: Expressions
 
-Presented by: Dr. Ruslee Sutthaweekul
+Presented by {{ $slidev.configs.presenter }}
 
-Semester: 1/2025
+Semester {{ $slidev.configs.semester }}
 
 ---
 

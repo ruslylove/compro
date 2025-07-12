@@ -11,9 +11,9 @@ routeAlias: lab6
 # Computer Programming
 ## Lab 6: Functions and Arrays
 
-Presented by: Dr. Ruslee Sutthaweekul
+Presented by {{ $slidev.configs.presenter }}
 
-Semester: 1/2025
+Semester {{ $slidev.configs.semester }}
 
 ---
 

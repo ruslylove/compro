@@ -9,9 +9,9 @@ title: Lecture 3 - Sequential and Conditional Program Flow
 # Computer Programming
 ## Lecture 3: Sequential and Conditional Program Flow
 
-Presented by: Dr. Ruslee Sutthaweekul
+Presented by {{ $slidev.configs.presenter }}
 
-Semester 1/2025
+Semester {{ $slidev.configs.semester }}
 
 ---
 

@@ -9,9 +9,9 @@ title: Lecture 7 - struct, union, and enum
 # Computer Programming
 ## Lecture 7: struct, union, and enum
 
-Presented by: Dr. Ruslee Sutthaweekul
+Presented by {{ $slidev.configs.presenter }}
 
-Semester 1/2025
+Semester {{ $slidev.configs.semester }}
 
 ---
 

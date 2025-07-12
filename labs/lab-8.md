@@ -11,9 +11,9 @@ routeAlias: lab8
 # Computer Programming
 ## Lab 8: struct and union
 
-Presented by: Dr. Ruslee Sutthaweekul
+Presented by {{ $slidev.configs.presenter }}
 
-Semester: 1/2025
+Semester {{ $slidev.configs.semester }}
 
 ---
 

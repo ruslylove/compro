@@ -11,8 +11,9 @@ routeAlias: lab9
 # Computer Programming
 ## Lab 9: Pointers and File Operations
 
-Presented by: Dr. Ruslee Sutthaweekul
-Semester: 1/2025
+Presented by {{ $slidev.configs.presenter }}
+
+Semester {{ $slidev.configs.semester }}
 
 ---
 

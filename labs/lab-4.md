@@ -11,9 +11,9 @@ routeAlias: lab4
 # Computer Programming
 ## Lab 4: Loops
 
-Presented by: Dr. Ruslee Sutthaweekul
+Presented by {{ $slidev.configs.presenter }}
 
-Semester: 1/2025
+Semester {{ $slidev.configs.semester }}
 
 ---
 

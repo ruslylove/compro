@@ -11,9 +11,9 @@ routeAlias: lab3
 # Computer Programming
 ## Lab 3: if-else and switch-case
 
-Presented by: Dr. Ruslee Sutthaweekul
+Presented by {{ $slidev.configs.presenter }}
 
-Semester: 1/2025
+Semester {{ $slidev.configs.semester }}
 
 ---
 
