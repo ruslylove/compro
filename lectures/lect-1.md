@@ -184,7 +184,7 @@ List of Components in the Image (Possible Answers):
 
 ---
 layout: image-right
-image: /chip.png
+image: chip.png
 ---
 
 ## Fundamental Chip Elements
@@ -225,7 +225,7 @@ image: /chip.png
 
 ---
 layout: image-right
-image: /human_machine.png
+image: human_machine.png
 ---
 
 ## Need for High-Level Languages?
@@ -283,7 +283,7 @@ layout: two-cols
 
 ---
 layout: image-right
-image: /compiler.png
+image: compiler.png
 ---
 
 ## Role of Compilers
