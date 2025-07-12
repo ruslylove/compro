@@ -155,15 +155,36 @@ graph TD
 ```
 
 ---
+layout: two-cols-header
+---
+
 
 ## Identifying Computer Components
 
 * Can you recognize the various internal parts of a computer?
-<img src="https://quizizz.com/media/resource/gs/quizizz-media/quizzes/e6088b45-4eb9-4ac3-b556-810995d8ddd5">
+
+::left::
+
+<img src="/components_2.png" style="padding-bottom:50px;height:450px">
+
+::right::
+
+List of Components in the Image (Possible Answers):
+
+1.  **CPU (Central Processing Unit)**
+2.  **RAM (Random Access Memory) Stick**
+3.  **Motherboard**
+4.  **Graphics Card**
+5.  **Hard Drive (or SSD)**
+6.  **Power Supply Unit (PSU)**
+7.  **Keyboard**
+8.  **Mouse**
+9.  **Monitor**
+10. **Speakers**
 
 ---
 layout: image-right
-image: https://www.electronics-lab.com/wp-content/uploads/2021/02/1280px-Three_IC_circuit_chips-1024x832.jpg
+image: /chip.png
 ---
 
 ## Fundamental Chip Elements
@@ -185,7 +206,7 @@ image: https://www.electronics-lab.com/wp-content/uploads/2021/02/1280px-Three_I
 
 ---
 
-## Why Do We Program? (Part 1)
+## Why Do We Program?
 
 * Programming allows us to instruct computers.
 * Early computing pioneers:
@@ -195,7 +216,7 @@ image: https://www.electronics-lab.com/wp-content/uploads/2021/02/1280px-Three_I
 
 ---
 
-## Why Do We Program? (Part 2)
+## Computer Instructions
 
 * Fundamentally, programming provides the **instructions** that tell the CPU what to do.
 * The CPU fetches both instructions and the necessary **data** from memory.
@@ -203,38 +224,17 @@ image: https://www.electronics-lab.com/wp-content/uploads/2021/02/1280px-Three_I
 <img src="https://math.hws.edu/javanotes/c1/overview-fig1.png">
 
 ---
-layout: two-cols-header
-image: https://cdn.educba.com/academy/wp-content/uploads/2023/12/Machine-Language.jpg
+layout: image-right
+image: /human_machine.png
 ---
 
 ## Need for High-Level Languages?
-## Human 💁 <- translator -> Machine 🤖
-::left::
-* Humans communicate using natural languages (English, Chinese, etc.).
+## Human 💁 <-> Machine 🤖
+
+* Humans communicate using natural languages (English, Thai, etc.).
 * To communicate with computers, we need a language they understand, or a way to translate our instructions.
 * Computer languages act as the medium for this communication.
 * We need either a language the computer directly understands (machine code) or an interpreter/translator for a more human-readable language.
-
-::right::
-
-<img src="https://cdn.educba.com/academy/wp-content/uploads/2023/12/Machine-Language.jpg" style="margin:auto">
-
-
-
----
-layout: two-cols
----
-
-## Need for High-Level Languages?
- 
-* At the lowest level, computer instructions are just sequences of binary digits (0s and 1s) - **machine code**.
-* The hardware (CPU) can only directly execute these binary instructions.
-
-::right::
-
-<img src="/high_level.png" style="height:450px;margin:auto"/>
-
-
 
 ---
 layout: two-cols
@@ -280,36 +280,21 @@ layout: two-cols
         ```
 * This is easier than binary but still very low-level and tied to specific hardware.
 
----
-
-
-## From Binary to High-Level Code
-
-
-
-* **High-Level Languages (like C):** Provide a much more abstract and human-friendly way to write instructions, closer to mathematical notation or natural language logic.
-    * Machine Code: `010101...`
-    * Assembly: `MOV D1, ...`
-    * High-Level (C example): `a = 3 + 5;`
-* A single high-level statement often translates to multiple machine instructions.
-
-<img src="https://web.stanford.edu/class/cs101/software-translation.png">
-
 
 ---
-layout: two-cols
+layout: image-right
+image: /compiler.png
 ---
 
-## Role of Translators/Compilers
+## Role of Compilers
 
-* How does high-level code run on hardware that only understands binary?
-    * We write our program as text in a file, following the rules (syntax/grammar) of the high-level language (e.g., C).
-    * A special program called a **translator** or **compiler** reads this text file.
-    * The compiler converts the human-readable instructions into the equivalent binary machine code.
-    * The resulting machine code can then be executed directly by the computer's CPU.
-* Different programming languages (C, Java, Python, etc.) have different grammars and require different translators/compilers.
+<Transform :scale="0.85">
 
-::right::
+
+* We write our program as text in a file, following the rules (syntax/grammar) of the high-level language (e.g., C).
+* A special program called a **compiler** reads this text file and converts the human-readable instructions into the equivalent binary machine code.
+* The resulting machine code can then be executed directly by the computer's CPU.
+* Different programming languages (C, Java, Python, etc.) have different grammars and require different compilers.
 
 ```
  High-Level Code ----> Compiler ----> Machine Code
@@ -321,9 +306,7 @@ layout: two-cols
                                      ...
 ```
 
-<img src="https://preview.redd.it/rmbhk6hr22x31.jpg?width=640&crop=smart&auto=webp&s=7b47b088e8074f2241e7aece2ae294caa5e8d277" style="height:250px;margin:auto;margin-top:50px">
-
-
+</Transform>
 
 
 ---
