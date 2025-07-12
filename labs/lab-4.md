@@ -159,9 +159,10 @@ Semester {{ $slidev.configs.semester }}
     3. Sum these divisors.
     4. If the sum equals `j`, then `j` is a perfect number, so print it.
 
+<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
+<Link to="/labs/lab-1#assessment-criteria" title="Go to Assessment Rubric 📝"/>
+</div>
+
 ---
 src: ../lectures/flow_chart_loop.md
----
----
-src: ./assessment.md
 ---

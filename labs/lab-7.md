@@ -3,13 +3,13 @@ theme: seriph
 background: https://cover.sli.dev
 transition: slide-left
 layout: cover
-title: Lab 7 - Functions and Arrays (2)
+title: Lab 7 - Strings and Arrays
 class: lab
 routeAlias: lab7
 ---
 
 # Computer Programming
-## Lab 7: Functions and Arrays (2)
+## Lab 7: Strings and Arrays
 
 Presented by {{ $slidev.configs.presenter }}
 
@@ -138,6 +138,7 @@ Semester {{ $slidev.configs.semester }}
     2.  If there are multiple words with the same max length, the first one found is sufficient.
     3.  In `main`, test with a sentence like `"The quick brown fox jumped over the lazy dog"`. The function should identify and print `"jumped"`.
 
----
-src: ./assessment.md
----
+
+<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
+<Link to="/labs/lab-1#assessment-criteria" title="Go to Assessment Rubric 📝"/>
+</div>

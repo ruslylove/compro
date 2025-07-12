@@ -126,6 +126,7 @@ Semester {{ $slidev.configs.semester }}
     5.  Close both files.
     6.  Before running, create a `source.txt` file with some sample text. After running, verify that `destination.txt` was created and contains the same text.
 
----
-src: ./assessment.md
----
+
+<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
+<Link to="/labs/lab-1#assessment-criteria" title="Go to Assessment Rubric 📝"/>
+</div>

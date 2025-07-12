@@ -35,16 +35,9 @@ layout: two-cols
 
 A C program is built from a few key components, following a standard structure.
 
-**Core Components:**
-*   **`#include <stdio.h>`**: A **preprocessor directive** that includes standard library definitions (like `printf`).
-*   **`int main() { ... }`**: The mandatory **main function** where program execution begins.
-*   **Statements**: Instructions like `variable = value;` or `printf(...)`. Each ends with a semicolon **`;`**.
-*   **Comments**: Explanations ignored by the compiler, written as `// single-line` or `/* multi-line */`.
-*   **`return 0;`**: Exits the `main` function, signaling success.
-
-::right::
-
 **Basic Structure:**
+
+<div style="padding-right:50px">
 
 ```c
 // 1. Preprocessor Directives
@@ -63,6 +56,20 @@ int main() {
 }
 ```
 
+</div>
+
+
+::right::
+
+**Core Components:**
+*   **`#include <stdio.h>`**: A **preprocessor directive** that includes standard library definitions (like `printf`).
+*   **`int main() { ... }`**: The mandatory **main function** where program execution begins.
+*   **Statements**: Instructions like `variable = value;` or `printf(...)`. Each ends with a semicolon **`;`**.
+*   **Comments**: Explanations ignored by the compiler, written as `// single-line` or `/* multi-line */`.
+*   **`return 0;`**: Exits the `main` function, signaling success.
+
+
+
 ---
 
 ## Lecture Outline
@@ -77,6 +84,8 @@ int main() {
     * `switch` statement
 5.  Visualizing Logic with Flowcharts
 
+---
+layout: two-cols
 ---
 
 ## Sequential Control Flow
@@ -95,6 +104,23 @@ int main() {
 }
 ```
 
+:: right ::
+
+<div style="padding-left:150px">
+```mermaid {scale:1}
+graph TD
+    A([Start]) --> C[/Print Step 1/];
+    C --> D[/Print Step 2/];
+    D --> E[/Print Step 3/];
+    E --> F([End]);
+```
+
+</div>
+
+
+
+---
+layout: two-cols
 ---
 
 ## Example: Swapping Two Variables (Sequential)
@@ -109,7 +135,7 @@ b = a; // Now b is also 5 (original value of a is lost!)
 ```
 
 **Correct Approach (Using a temporary variable):**
-```c {*}{lines:true, maxHeight:'120px'}
+```c {*}{lines:true, maxHeight:'150px'}
 #include <stdio.h>
 
 int main() {
@@ -127,6 +153,7 @@ int main() {
     return 0;
 }
 ```
+:: right ::
 
 *Output:*
 ```text
@@ -134,13 +161,29 @@ Before swap: a = 3, b = 5
 After swap: a = 5, b = 3
 ```
 
+<div style="padding-left:150px">
+
+```mermaid {scale:0.7}
+graph TD
+    A([Start]) --> B[/Print a, b/];
+    B --> C[temp = a<br> a = b<br> b = temp];
+    C --> D[/Print a, b/];
+    D --> E([End]);
+```    
+
+</div>
+
+
+
+---
+layout: two-cols
 ---
 
 ## Example: Calculating Circle Area (Sequential)
 
 **Problem:** Calculate the area of a circle given its radius. Formula: Area = π * r²
 
-```c
+```c {*}{lines:true, maxHeight:'300px'}
 #include <stdio.h>
 
 int main() {
@@ -162,8 +205,26 @@ int main() {
     return 0;
 }
 ```
+:: right ::
 
 *This program follows a sequence: define constants/variables, get input, calculate, display output.*
+
+
+<div style="padding-left:150px">
+
+
+
+```mermaid {scale:0.8}
+graph TD
+    A([Start]) --> B[/Enter radius/];
+    B --> C[area = PI * radius * radius];
+    C --> D[/Print area/];
+    D --> E([End]);
+```
+
+</div>
+
+        
 
 ---
 
@@ -209,6 +270,9 @@ int main() {
 5.  Visualizing Logic with Flowcharts
 
 ---
+layout: image-right
+image: conditional_flow.png
+---
 
 ## Conditional Control Flow
 
@@ -217,8 +281,11 @@ int main() {
 * This is achieved using **conditional control** statements.
 
 ---
+layout: two-cols
+---
 
-## The `if` Clause (Simple Form)
+
+## The `if` Clause
 
 * Executes a block of code **only if** a specified condition is true (evaluates to non-zero).
 * **Syntax:**
@@ -233,13 +300,30 @@ int main() {
     ```
 * The `condition` is typically an expression that results in a true (non-zero) or false (zero) value, often using relational operators (`>`, `<`, `==`, etc.).
 * If the condition is false (0), the entire block within the `{}` is skipped.
+
+
+:: right ::
+
 * Curly braces `{}` are technically optional if there's only one statement inside, but using them is **highly recommended** for clarity and avoiding errors.
 
+  *flow chart:*
+```mermaid {scale:0.65}
+graph TD
+    A(...) --> B{condition};
+    B -- True --> C[Execute statements in block];
+    C --> D(...);
+    B -- False --> D;
+```
+
+---
+layout: two-cols
 ---
 
 ## Simple `if` Example
 
 **Problem:** Print a message only if a number is positive.
+
+<Transform scale="0.85">
 
 ```c
 #include <stdio.h>
@@ -261,6 +345,38 @@ int main() {
 }
 ```
 
+*Output (if user enters 5):*
+```text
+Enter an integer: 5
+The number 5 is positive.
+End of program.
+```
+
+</Transform>
+
+
+:: right ::
+<div style="padding-left:10px">
+
+*Output (if user enters -3):*
+```text
+Enter an integer: -3
+End of program.
+```
+
+```mermaid {scale:0.55}
+graph TD
+    A([Start]) --> B[/Enter an integer/];
+    B --> C{"number > 0"};
+    C -- True --> D[Print The number is positive.];
+    C -- False --> E[Print End of program.];
+    D --> E;
+    E --> F([End]);
+```
+</div>
+
+---
+layout: two-cols
 ---
 
 ## The `if-else` Clause
@@ -281,7 +397,30 @@ int main() {
     ```
 * Exactly one of the two blocks (the `if` block or the `else` block) will be executed.
 
+:: right ::
+
+<div style="padding-left:50px">
+
+*flow chart:*
+
+</div>
+<div style="padding-left:100px">
+
+```mermaid
+graph TD
+    A(...) --> B{condition};
+    B -- True --> C[Execute statements A...];
+    B -- False --> D[Execute statements B...];
+    C --> E(...);
+    D --> E;
+```
+</div>
+
+
 ---
+layout: two-cols
+---
+
 
 ## `if-else` Example
 
@@ -308,6 +447,40 @@ int main() {
     return 0;
 }
 ```
+
+:: right ::
+
+<div style="padding-left:30px">
+
+<Transform scale="1">
+
+*Output (if user enters 4):*
+```text
+4 is an even number.
+```
+
+*Output (if user enters 7):*
+```text
+7 is an odd number.
+```
+</Transform>
+</div>
+
+<div style="padding-left:100px">
+
+```mermaid {scale:0.42}
+graph TD
+    A([Start]) --> B[/Enter number/];
+    B --> C{"number % 2 == 0"};
+    C -- True --> D[Print The number is even.];
+    C -- False --> E[Print The number is odd.];
+    D --> E;
+    E --> F([End]);
+```
+
+</div>
+
+
 
 ---
 

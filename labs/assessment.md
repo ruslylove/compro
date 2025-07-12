@@ -1,4 +1,21 @@
 ---
+routeAlias: assessment 
+theme: seriph
+background: https://cover.sli.dev
+transition: slide-left
+layout: cover
+title: Assessment Rubric
+class: lab
+ 
+---
+
+# Computer Programming
+## Assesment Rubric
+
+Semester {{ $slidev.configs.semester }}
+
+
+---
 
 ## Assessment Criteria
 

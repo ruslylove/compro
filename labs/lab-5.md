@@ -3,13 +3,13 @@ theme: seriph
 background: https://cover.sli.dev
 transition: slide-left
 layout: cover
-title: Lab 5 - Functions and Variables
+title: Lab 5 - Functions
 class: lab
 routeAlias: lab5
 ---
 
 # Computer Programming
-## Lab 5: Functions and Variables
+## Lab 5: Functions
 
 Presented by {{ $slidev.configs.presenter }}
 
@@ -134,6 +134,7 @@ Semester {{ $slidev.configs.semester }}
     This function has been called 5 time(s).
     ```
 
----
-src: ./assessment.md
----
+
+<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
+<Link to="/labs/lab-1#assessment-criteria" title="Go to Assessment Rubric 📝"/>
+</div>

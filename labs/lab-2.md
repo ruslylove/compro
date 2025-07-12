@@ -158,6 +158,6 @@ Semester {{ $slidev.configs.semester }}
     ```
 * **Hint:** You will likely need a third, temporary integer variable to hold one of the values during the swap process.
 
----
-src: ./assessment.md
----
+<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
+<Link to="assessment" title="Go to Assessment Rubric 📝"/>
+</div>

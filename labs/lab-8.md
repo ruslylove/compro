@@ -133,6 +133,7 @@ Semester {{ $slidev.configs.semester }}
     4.  Assign values to the bit-fields (e.g., `s.isActive = 1; s.permissionLevel = 2;`).
     5.  Print the values to verify they are stored correctly.
 
----
-src: ./assessment.md
----
+
+<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
+<Link to="/labs/lab-1#assessment-criteria" title="Go to Assessment Rubric 📝"/>
+</div>

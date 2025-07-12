@@ -149,13 +149,19 @@ Semester {{ $slidev.configs.semester }}
         *   Else (no sides are equal), it's `"Scalene"`.
 * **Output:** Print the type of triangle or the error message.
 
+
+
 </Transform>
+
+<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
+<Link to="/labs/lab-1#assessment-criteria" title="Go to Assessment Rubric 📝"/>
+</div>
 
 ---
 src: ../lectures/flow_chart_selection.md
 ---
 
 
----
-src: ./assessment.md
----
+
+
+

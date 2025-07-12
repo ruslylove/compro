@@ -138,6 +138,7 @@ Semester {{ $slidev.configs.semester }}
     3.  If the `key` is not found after checking all elements, the function should return `-1`.
     4.  In `main`, create an array, ask the user for a number to search for, call `linearSearch`, and report whether the number was found and at what index.
 
----
-src: ./assessment.md
----
+
+<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
+<Link to="/labs/lab-1#assessment-criteria" title="Go to Assessment Rubric 📝"/>
+</div>

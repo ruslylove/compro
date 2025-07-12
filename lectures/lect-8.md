@@ -573,7 +573,6 @@ double (*process_data_ptr)(float *);
     int result2 = (*operation_ptr)(20, 8); // Explicit dereference also works
     ```
 
----
 
 ---
 layout: default
