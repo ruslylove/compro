@@ -78,7 +78,7 @@ Semester {{ $slidev.configs.semester }}
     * Height: A positive floating-point number representing height in meters.
 * **Logic:** Use nested `if-else` statements to implement the following rules:
     * **If gender is female (`'f'`):**
-        * If height is less than 1.6m, recommend `"Taiji"`.
+        * If height is less than 1.6m, recommend `"TaiChi"`.
         * Otherwise (height >= 1.6m), recommend `"Volleyball"`.
     * **If gender is male (`'m'`):**
         * If height is less than 1.7m, recommend `"Football"`.
@@ -154,7 +154,7 @@ Semester {{ $slidev.configs.semester }}
 </Transform>
 
 <div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
-<Link to="/labs/lab-1#assessment-criteria" title="Go to Assessment Rubric 📝"/>
+<Link to="assessment" title="Go to Assessment Rubric 📝"/>
 </div>
 
 ---

@@ -128,5 +128,5 @@ Semester {{ $slidev.configs.semester }}
 
 
 <div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
-<Link to="/labs/lab-1#assessment-criteria" title="Go to Assessment Rubric 📝"/>
+<Link to="assessment" title="Go to Assessment Rubric 📝"/>
 </div>

@@ -160,7 +160,7 @@ Semester {{ $slidev.configs.semester }}
     4. If the sum equals `j`, then `j` is a perfect number, so print it.
 
 <div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
-<Link to="/labs/lab-1#assessment-criteria" title="Go to Assessment Rubric 📝"/>
+<Link to="assessment" title="Go to Assessment Rubric 📝"/>
 </div>
 
 ---
