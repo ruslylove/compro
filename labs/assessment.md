@@ -4,7 +4,7 @@ theme: seriph
 background: https://cover.sli.dev
 transition: slide-left
 layout: cover
-title: Assessment Rubric
+title: Lab Assessment Rubric
 class: lab
  
 ---
