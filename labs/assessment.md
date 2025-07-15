@@ -10,7 +10,7 @@ class: lab
 ---
 
 # Computer Programming
-## Lab Report Assesment Rubric
+## Lab Report Assessment Rubric
 
 Semester {{ $slidev.configs.semester }}
 
