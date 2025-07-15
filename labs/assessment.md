@@ -4,13 +4,13 @@ theme: seriph
 background: https://cover.sli.dev
 transition: slide-left
 layout: cover
-title: Lab Assessment Rubric
+title: Lab Report Assessment Rubric
 class: lab
  
 ---
 
 # Computer Programming
-## Assesment Rubric
+## Lab Report Assesment Rubric
 
 Semester {{ $slidev.configs.semester }}
 
