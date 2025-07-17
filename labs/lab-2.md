@@ -28,7 +28,7 @@ Semester {{ $slidev.configs.semester }}
 * **Exercise 4: Average Calculation**
     * Perform floating-point arithmetic to calculate an average.
 * **Exercise 5: Character Capitalization**
-    * Convert character case using ASCII properties and conditional logic.
+    * Convert character case using ASCII properties.
 * **Exercise 6: Swap Variable Values**
     * Implement a classic variable swap using a temporary variable.
 
@@ -121,23 +121,18 @@ Semester {{ $slidev.configs.semester }}
 
 ## Exercise 5: Character Capitalization
 
-
-
 * **Task:** Write a C program that:
     1.  Accepts a single character input from the user.
     2.  If the input character is a lowercase letter (`'a'` through `'z'`), output its corresponding uppercase letter.
-    3.  Otherwise (if it's not a lowercase letter), output the original character unchanged.
+    3. Assuming that the user only input a single lower case character (no need to check the input range).
 
 <Transform scale="0.8">
 
 * **Examples:**
     * Input: `a`, Output: `A`
     * Input: `f`, Output: `F`
-    * Input: `Z`, Output: `Z`
-    * Input: `;`, Output: `;`
 * **Hints:**
     * Recall that characters are represented by ASCII integer values.
-    * You can compare characters directly (e.g., `ch >= 'a' && ch <= 'z'`).
     * The ASCII value difference between a lowercase letter and its corresponding uppercase letter is constant (e.g., `'a' - 'A'` is the same as `'b' - 'B'`, etc., which is 32). You can use this difference for conversion.
 
 </Transform>
