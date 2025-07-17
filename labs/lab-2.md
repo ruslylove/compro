@@ -125,17 +125,12 @@ Semester {{ $slidev.configs.semester }}
     1.  Accepts a single character input from the user.
     2.  If the input character is a lowercase letter (`'a'` through `'z'`), output its corresponding uppercase letter.
     3. Assuming that the user only input a single lower case character (no need to check the input range).
-
-<Transform scale="0.8">
-
 * **Examples:**
     * Input: `a`, Output: `A`
     * Input: `f`, Output: `F`
 * **Hints:**
     * Recall that characters are represented by ASCII integer values.
     * The ASCII value difference between a lowercase letter and its corresponding uppercase letter is constant (e.g., `'a' - 'A'` is the same as `'b' - 'B'`, etc., which is 32). You can use this difference for conversion.
-
-</Transform>
 
 ---
 
