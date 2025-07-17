@@ -481,6 +481,61 @@ graph TD
 </div>
 
 
+---
+
+## The Conditional (Ternary) Operator
+
+<Transform scale="0.9">
+
+* Syntax: `condition ? expression_if_true : expression_if_false`
+* A shorthand way to express a simple if-else choice within an expression.
+* It takes three operands:
+    1.  `condition`: An expression evaluated as true (non-zero) or false (zero).
+    2.  `expression_if_true`: The value the entire ternary expression takes if `condition` is true.
+    3.  `expression_if_false`: The value the entire ternary expression takes if `condition` is false.
+
+**Example:** Find the maximum of `b` and `i`.
+```c
+int main() {
+  int a, b = 3, i = 4;
+
+  // If (b > i) is true, a = b. Otherwise, a = i.
+  a = (b > i) ? b : i; // (3 > 4) is false, so a gets the value of i (4).
+
+  // If (b == 3) is true, set b to 2. Otherwise, set b to 1.
+  b = (b == 3) ? 2 : 1; // (3 == 3) is true, so b gets the value 2.
+
+  printf("Result: a = %d, b = %d\n", a, b);
+}
+```
+
+</Transform>
+
+<div style="position:fixed;bottom:130px;right:150px;padding-bottom:30px">
+
+**Output:**
+```text
+Result: a = 4, b = 2
+```
+
+</div>
+
+<div style="position:fixed;bottom:50px;right:10px;padding-bottom:30px">
+
+```mermaid {scale:0.5}
+graph TD
+    A([Start]) --> B{b > i};
+    B -- True --> C[a = b];
+    B -- False --> D[a = i];
+    C --> E{b == 3};
+    D --> E;
+    E -- True --> F[b = 2];
+    E -- False --> G[b = 1];
+    F --> H[/Print: a, b/];
+    G --> H;
+    H --> I([End]);
+```
+</div>
 
 ---
 

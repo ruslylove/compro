@@ -150,6 +150,7 @@ Resulting binary fraction : `10.11`
 ---
 layout: image-right
 image: data_in_memory.png
+hide: true
 ---
 
 ## How Data Resides in Memory
@@ -273,7 +274,7 @@ In both cases, you are still representing 256 distinct numerical values.
 
 ## Integer Types in C
 
-* Keywords: `int`, `short int` (or `short`), `long int` (or `long`).
+* Keywords: `char`, `int`, `short int` (or `short`), `long int` (or `long`).
 * Modifiers: `signed` (allows negative/positive, default) or `unsigned` (only non-negative).
 * The exact byte size (and thus range) of `short`, `int`, `long` can vary depending on the system architecture (e.g., 32-bit vs 64-bit).
 
@@ -292,14 +293,15 @@ unsigned short b1;// Range: 0 to 65,535
 layout: two-cols
 ---
 
-## Visualizing Integer Type Sizes
+## Integer Type Sizes
 
-* Keywords: `int`, `short`, `long`
+* Keywords: `char`, `int`, `short`, `long`
 * Can be `signed` or `unsigned`.
 * Size depends on the system.
 
 **Typical Ranges Reminder:**
 ```c
+char x;           // Ranne: -128 to 127
 int a;            // Range: approx -2.1 billion to +2.1 billion
 short b;          // Range: -32,768 to 32,767
 long c;           // Range: often same as int on 32-bit, wider on 64-bit
@@ -322,10 +324,10 @@ The memory size for integer types can vary. Both `signed` and `unsigned` version
 
 ```mermaid
 xychart-beta horizontal
-  title "Typical Byte Sizes of C Integer Types"
-  x-axis "Data Type" ["short / unsigned short", "int / unsigned int", "long"]
+  title "Typical Byte Sizes of C Integer Types (64-bit Linux)"
+  x-axis "Data Type" ["char / unsigned char", "short / unsigned short", "int / unsigned int", "long / unsigned long"]
   y-axis "Size in Bytes" 0 --> 8
-  bar [2, 4, 8]
+  bar [1, 2, 4, 8]
 ```
 </div>
 
@@ -1330,41 +1332,6 @@ int main() {
 Final: a = 4, b = 2
 ```
 </v-click>
-
----
-
-## The Conditional (Ternary) Operator
-
-<Transform scale="0.8">
-
-* Syntax: `condition ? expression_if_true : expression_if_false`
-* A shorthand way to express a simple if-else choice within an expression.
-* It takes three operands:
-    1.  `condition`: An expression evaluated as true (non-zero) or false (zero).
-    2.  `expression_if_true`: The value the entire ternary expression takes if `condition` is true.
-    3.  `expression_if_false`: The value the entire ternary expression takes if `condition` is false.
-
-**Example:** Find the maximum of `b` and `i`.
-```c
-int main() {
-  int a, b = 3, i = 4;
-
-  // If (b > i) is true, a = b. Otherwise, a = i.
-  a = (b > i) ? b : i; // (3 > 4) is false, so a gets the value of i (4).
-
-  // If (b == 3) is true, set b to 2. Otherwise, set b to 1.
-  b = (b == 3) ? 2 : 1; // (3 == 3) is true, so b gets the value 2.
-
-  printf("Result: a = %d, b = %d\n", a, b);
-}
-```
-
-**Output:**
-```text
-Result: a = 4, b = 2
-```
-
-</Transform>
 
 
 ---
