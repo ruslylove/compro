@@ -93,6 +93,7 @@ Your turn! 🧑‍🎓 Convert the decimal number 60 into:
 
 ---
 
+
 ## Number System Conversions: Back to Decimal
 
 * Binary `111100` to Decimal:
@@ -101,6 +102,19 @@ Your turn! 🧑‍🎓 Convert the decimal number 60 into:
     * $7\times8^{1}+4\times8^{0}=60$
 * Hexadecimal `3C` to Decimal:
     * $3\times16^{1}+12\times16^{0}=60$ (Note: C represents 12)
+
+
+<br>
+
+<Transform scale="0.75">
+
+| **Decimal**           | 0      | 1      | 2      | 3      | 4      | 5      | 6      | 7      | 8      | 9      | 10     | 11     | 12     | 13     | 14     | 15     |
+|:-----------------|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|
+| **Binary** | `0000` | `0001` | `0010` | `0011` | `0100` | `0101` | `0110` | `0111` | `1000` | `1001` | `1010` | `1011` | `1100` | `1101` | `1110` | `1111` |
+| **Hexadecimal**  | `0`    | `1`    | `2`    | `3`    | `4`    | `5`    | `6`    | `7`    | `8`    | `9`    | `A`    | `B`    | `C`    | `D`    | `E`    | `F`    |
+
+</Transform>
+
 
 ---
 layout: two-cols
@@ -417,6 +431,7 @@ int main() {
 ---
 layout: image-right
 image: overflow.png
+hide: true
 ---
 
 ## The Issue of Integer Overflow
@@ -433,7 +448,7 @@ image: overflow.png
 
 ## Floating-Point Number Types
 
-<Transform scale="0.7">
+<Transform scale="0.85">
 
 * Keywords: `float`, `double`, `long double`
 * Used to represent real numbers (numbers with decimal parts).
@@ -443,7 +458,7 @@ image: overflow.png
   * **Exponent (8 bits):** Represents the scale of the number. It's stored with a bias of 127.
   * **Mantissa (23 bits):** Represents the significant digits (the fractional part) of the number.
 
-```mermaid
+```mermaid {scale:0.7}
 flowchart LR
     subgraph "32-Bit Float (IEEE 754)"
         direction LR
@@ -646,7 +661,7 @@ Which are valid?
 
 ## Naming Variables: Style Conventions
 
-👍 Good style practices: 
+🌼 Good style practices: 
 * Use meaningful names that indicate the variable's purpose.
 * Be consistent with naming conventions (choose one and stick to it):
     * `camelCaseIdentifiers` (start lowercase, capitalize inner words)
