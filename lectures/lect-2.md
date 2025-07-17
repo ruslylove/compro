@@ -334,7 +334,7 @@ The memory size for integer types can vary. Both `signed` and `unsigned` version
 
 :: right ::
 
-<div style="margin-top:80px">
+<div style="margin-top:50px">
 
 ```mermaid
 xychart-beta horizontal
@@ -344,6 +344,11 @@ xychart-beta horizontal
   bar [1, 2, 4, 8]
 ```
 </div>
+
+<br>
+
+> * The `sizeof()` operator tells you the size (in bytes) of a type or variable:
+
 
 
 
