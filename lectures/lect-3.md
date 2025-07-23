@@ -683,8 +683,14 @@ Example: `a > b && c < d` is evaluated as `(a > b) && (c < d)`.
 
 
 ---
+layout: two-cols-header
+---
+
+
 
 ## Combining Operators Example
+
+:: left ::
 
 **Problem:** Check if a number `x` is within the range [0, 10] (inclusive).
 
@@ -697,6 +703,38 @@ if (x >= 0 && x <= 10) {
     printf("x is outside the range [0, 10]\n");
 }
 ```
+
+:: right ::
+
+The condition `x >= 0 && x <= 10` requires a number to be in two ranges simultaneously.
+
+<div class="text-sm" style="padding-left:20px">
+
+```text
+Condition 1: x >= 0
+... ------|-----------|-----------|------ ...
+         -1           0           1
+                      [------------------>
+                      (true region)
+
+Condition 2: x <= 10
+... ------|-----------|-----------|------ ...
+          9          10          11
+<--------------------]
+     (true region)
+
+Combined View (AND)
+... ------|-----------| ... |-----------|------ ...
+         -1           0    10          11
+                      [=====]
+                  (final true region)
+```
+
+</div>
+---
+
+## Combining Operators Example (cont.)
+
 
 **Problem:** Check if a character `ch` is NOT a vowel (uppercase or lowercase).
 
@@ -713,6 +751,7 @@ if (!(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' ||
 *(Alternatively, check if it IS a vowel and use the else block)*
 
 ---
+
 
 ## Common Mistake: `=` vs `==`
 
@@ -750,8 +789,14 @@ if (a == 5) { // Compares current value of 'a' with 5.
 5.  Visualizing Logic with Flowcharts
 
 ---
+layout: two-cols
+---
 
 ## Nested `if-else` Clauses
+
+<Transform scale="0.75">
+
+
 
 * You can place `if` or `if-else` statements inside the blocks of other `if` or `else` statements. This allows for more complex decision-making structures.
 
@@ -776,13 +821,39 @@ if (condition1) {
 
 * Indentation is crucial for readability but doesn't affect the logic. The `else` always pairs with the nearest unmatched `if` unless braces `{}` dictate otherwise.
 
+</Transform>
+
+
+
+::right::
+
+```mermaid
+graph TD
+    A(...) --> B{condition1};
+    B -- True --> C{condition2};
+    B -- False --> D{condition3};
+    C -- True --> E[Block 1.1];
+    C -- False --> F[Block 1.2];
+    D -- True --> G[Block 2.1];
+    D -- False --> H[Block 2.2];
+    E --> I(...);
+    F --> I;
+    G --> I;
+    H --> I;
+```
+
+
+---
+layout: two-cols-header
 ---
 
 ## Nested `if-else` Example: Max of Three
 
 **Problem:** Find the largest of three numbers: `a`, `b`, `c`.
 
-```c {*}{lines:true, maxHeight:'380px'}
+:: left ::
+
+```c {*}{lines:true, maxHeight:'360px'}
 #include <stdio.h>
 
 int main() {
@@ -810,6 +881,29 @@ int main() {
 }
 ```
 
+::right::
+
+<div style="padding-left:50px;padding-top:0px">
+
+```mermaid {scale:0.55}
+graph TD
+    A([Start]) --> B{a > b};
+    B -- True --> C{a > c};
+    B -- False --> D{b > c};
+    C -- True --> E[max = a];
+    C -- False --> F[max = c];
+    D -- True --> G[max = b];
+    D -- False --> H[max = c];
+    E --> I[/Print max/];
+    F --> I;
+    G --> I;
+    H --> I;
+    I --> J([End]);
+```
+
+</div>
+
+
 ---
 
 ## Lecture Outline
@@ -824,6 +918,8 @@ int main() {
     * `switch` statement
 5.  Visualizing Logic with Flowcharts
 
+---
+layout: two-cols
 ---
 
 ## The `if-else if-else` Ladder
@@ -847,13 +943,39 @@ else {
 
 * Only one block in the entire ladder will be executed.
 
+::right::
+
+<div style="padding-left:100px">
+
+```mermaid {scale:0.55}
+graph TD
+    A(...) --> B{condition1};
+    B -- True --> C[Block 1];
+    B -- False --> D{condition2};
+    C --> Z(...);
+    D -- True --> E[Block 2];
+    D -- False --> F{...};
+    E --> Z;
+    F -- True --> G[Block n];
+    F -- False --> H[Else Block];
+    G --> Z;
+    H --> Z;
+```
+
+</div>
+
+
+
+
+---
+layout: two-cols
 ---
 
-## `if-else if-else` Example: Grading
+## `if-else if-else` Ladder Example: Grading
 
 **Problem:** Assign a letter grade based on a score.
 
-```c
+```c {*}{maxHeight:'340px', lines:true}
 #include <stdio.h>
 
 int main() {
@@ -877,6 +999,31 @@ int main() {
 }
 ```
 
+::right::
+
+<div style="padding-left:50px; padding-top:0px">
+
+```mermaid {scale:0.4}
+graph TD
+    A([Start]) --> B{score >= 90};
+    B -- True --> C[grade = 'A'];
+    B -- False --> D{score >= 80};
+    C --> Z[/Print grade/];
+    D -- True --> E[grade = 'B'];
+    D -- False --> F{score >= 70};
+    E --> Z;
+    F -- True --> G[grade = 'C'];
+    F -- False --> H{score >= 60};
+    G --> Z;
+    H -- True --> I[grade = 'D'];
+    H -- False --> J[grade = 'F'];
+    I --> Z;
+    J --> Z;
+    Z --> Y([End]);
+```
+
+</div>
+
 ---
 
 ## Lecture Outline
@@ -891,6 +1038,10 @@ int main() {
     * **`switch` statement**
 5.  Visualizing Logic with Flowcharts
 
+
+
+---
+layout: two-cols
 ---
 
 ## The `switch` Statement
@@ -913,6 +1064,27 @@ int main() {
     }
     ```
 
+::right::
+
+<div style="padding-left:10px;padding-top:100px">
+
+```mermaid
+graph TD
+    A(...) --> B{expression?};
+    B -- value 1 --> C[Case 1 Statements];
+    B -- value 2 --> D[Case 2 Statements];
+    B -- ... --> E[...];
+    B -- other --> F[Default Statements];
+    C --> G[break];
+    D --> H[break];
+    E --> I[break];
+    F --> J[break];
+    G --> K(...);
+    H --> K;
+    I --> K;
+    J --> K;
+```
+</div>
 ---
 
 ## `switch` Statement Details 
@@ -923,13 +1095,20 @@ int main() {
 * **Fall-through:** If you **omit** `break`, execution will continue ("fall through") into the statements of the *next* `case` label below it. This is sometimes intentional but often a bug if forgotten.
 * `default:`: An optional label. The code here executes if *none* of the other `case` values match the `expression`.
 
+
+
+---
+layout: two-cols-header
 ---
 
 ## `switch` Example: Month Names
 
-<Transform scale="0.9">
 
 **Problem:** Print the name of the month based on its number (1-12).
+
+:: left ::
+
+<Transform scale="0.8">
 
 ```c {*}{lines:true}
 #include <stdio.h>
@@ -957,7 +1136,32 @@ int main() {
 }
 ```
 
+
 </Transform>
+
+::right::
+
+<div style="padding-left:100px;position:fixed;right:0">
+
+
+```mermaid {scale:0.55}
+graph LR
+    A([Start]) --> B{month_num?};
+    B -- 1 --> C[Print January];
+    B -- 2 --> D[Print February];
+    B -- 3 --> E[Print March];
+    B -- ... --> F[...];
+    B -- 12 --> G[Print December];
+    B -- other --> H[Print Invalid];
+    C --> Z([End]);
+    D --> Z;
+    E --> Z;
+    F --> Z;
+    G --> Z;
+    H --> Z;
+```
+</div>
+
 
 ---
 
