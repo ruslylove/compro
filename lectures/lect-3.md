@@ -226,6 +226,9 @@ graph TD
 
         
 
+
+---
+layout: two-cols
 ---
 
 ## Example: Fahrenheit to Celsius (Sequential)
@@ -253,7 +256,24 @@ int main() {
 }
 ```
 
+
+::right::
+
 *Again, the steps are executed in order: get input, calculate, display output.*
+
+
+<div style="padding-left:150px">
+
+```mermaid {scale:0.8}
+graph TD
+    A([Start]) --> B[/Enter fahrenheit/];
+    B --> C["celsius = (fahrenheit - 32) * 5 / 9"];
+    C --> D[/Print celsius/];
+    D --> E([End]);
+```
+
+</div>
+
 
 ---
 
@@ -307,6 +327,9 @@ layout: two-cols
 * Curly braces `{}` are technically optional if there's only one statement inside, but using them is **highly recommended** for clarity and avoiding errors.
 
   *flow chart:*
+
+<div style="padding-left:100px">
+
 ```mermaid {scale:0.65}
 graph TD
     A(...) --> B{condition};
@@ -314,6 +337,9 @@ graph TD
     C --> D(...);
     B -- False --> D;
 ```
+
+</div>
+
 
 ---
 layout: two-cols
@@ -363,6 +389,8 @@ End of program.
 Enter an integer: -3
 End of program.
 ```
+</div>
+<div style="padding-left:120px">
 
 ```mermaid {scale:0.55}
 graph TD
@@ -466,7 +494,7 @@ int main() {
 </Transform>
 </div>
 
-<div style="padding-left:100px">
+<div style="padding-left:150px">
 
 ```mermaid {scale:0.42}
 graph TD
