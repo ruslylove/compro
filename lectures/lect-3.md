@@ -494,9 +494,9 @@ int main() {
 </Transform>
 </div>
 
-<div style="padding-left:150px">
+<div style="padding-left:50px">
 
-```mermaid {scale:0.42}
+```mermaid {scale:0.5}
 graph TD
     A([Start]) --> B[/Enter number/];
     B --> C{"number % 2 == 0"};
