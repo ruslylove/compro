@@ -502,7 +502,7 @@ graph TD
     B --> C{"number % 2 == 0"};
     C -- True --> D[Print The number is even.];
     C -- False --> E[Print The number is odd.];
-    D --> E;
+    D --> F;
     E --> F([End]);
 ```
 
