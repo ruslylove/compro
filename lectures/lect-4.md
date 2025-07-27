@@ -33,7 +33,7 @@ Semester {{ $slidev.configs.semester }}
 layout: two-cols-header
 ---
 
-## Motivating Example: Repetitive Calculation
+## Motivation: Repetitive Calculation
 <br>
 <br>
 
@@ -100,6 +100,8 @@ int main() {
     4.  **Loop Body:** The block of statements executed during each repetition.
 
 ---
+layout: two-cols
+---
 
 ## The `while` Loop
 
@@ -119,13 +121,31 @@ int main() {
     2. If `condition` is true (non-zero), execute the loop body, then go back to step 1.
     3. If `condition` is false (zero), skip the loop body and continue execution after the loop.
 
+::right::
+
+<div style="padding-left:120px">
+
+```mermaid
+graph TD
+    A([...]) --> B{Condition?};
+    B -- True --> C[Loop Body];
+    C --> B;
+    B -- False --> D([...]);
+```
+
+</div>
+
 ---
+layout: two-cols
+---
+
 
 ## `while` Loop Example: Sum Calculation
 
 * **Problem:** Calculate $S = \sum_{x=1}^{5} \frac{1}{x^2}$ using a `while` loop.
 
-```c {*}{maxHeight:'350px'}
+
+```c {*}{maxHeight:'250px'}
 #include <stdio.h>
 
 int main() {
@@ -152,11 +172,54 @@ int main() {
 
 * This code achieves the same result as the sequential version but is much more scalable for a larger number of terms.
 
+::right::
+
+<div style="padding-left:50px">
+```mermaid {scale:0.8}
+graph TD
+    subgraph while
+        C
+        D
+        E
+    end
+    
+    A([Start]) --> B[Initialize x=1, S=0.0];
+    B --> C{x <= 5?};
+    C -- True --> D["S += 1.0 / (x * x)"];
+    D --> E[x += 1];
+    E --> C;
+    C -- False --> F[/Print S/];
+    F --> G([End]);
+```
+
+</div>
+
+---
+layout: two-cols
 ---
 
 ## The `do-while` Loop
 
+
+
 * Executes the loop body **once before** checking the condition for the first time. Guarantees the loop body runs at least once.
+
+<div style="padding-left:120px">
+
+```mermaid {scale:0.75}
+graph TD
+    A([Start]) --> B[Loop Body];
+    B --> C{Condition?};
+    C -- True --> B;
+    C -- False --> D([End]);
+```
+
+</div>
+
+::right::
+
+<Transform scale="0.9">
+
 * **Syntax:**
     ```c
     // Initialization (before the loop)
@@ -167,18 +230,34 @@ int main() {
     } while (condition); // Condition checked here, after the body runs
     // Execution continues here after the loop finishes
     ```
+* Notice the semicolon `;` required after the `while (condition)`.
+
+
+
+
 * **Logic:**
     1. Execute the loop body.
     2. Evaluate `condition`.
     3. If `condition` is true (non-zero), go back to step 1.
     4. If `condition` is false (zero), continue execution after the loop.
-* Notice the semicolon `;` required after the `while (condition)`.
+</Transform>
 
+
+
+
+
+
+
+
+---
+layout: two-cols-header
 ---
 
 ## `do-while` Loop Example: Input Validation
 
 * **Problem:** Keep asking the user to enter a positive number until they comply.
+
+::left::
 
 ```c
 #include <stdio.h>
@@ -203,7 +282,42 @@ int main() {
 
 * The `do-while` loop is suitable here because we need to get the input *before* we can check if it's valid.
 
+::right::
+
+<div style="position:fixed;bottom:30px;right:20px">
+
+
+```mermaid {scale:0.55}
+graph TD
+
+    subgraph do-while
+        E
+    subgraph if
+        F
+        G
+    end
+        H
+    end
+
+    
+    
+        A([Start]) -->  E[/Read number/];
+        E --> F{number <= 0?};
+        F -- True --> G[/Print Invalid Input/];
+        G --> H;
+        F -- False --> H{number <= 0?};
+        H -- True --> E;
+    H --> I[/Print Thank you/];
+    I --> J([End]);
+
+    style if fill:#ccf;
+
+```
+
+</div>
+
 ---
+
 
 ## Comparing `while` and `do-while`
 
@@ -214,17 +328,13 @@ int main() {
 | **Use Case** | General looping when 0 iterations is possible | Looping where at least one execution is always needed (e.g., menu display, initial input) |
 
 ---
+layout: two-cols
+---
 
 ## The `for` Loop
 
 * Often used when the number of iterations is known or can be controlled by a counter. It conveniently combines initialization, condition checking, and update into one line.
-* **Syntax:**
-    ```c
-    for (initialization; condition; update) {
-        // Loop Body: Statements to repeat
-    }
-    // Execution continues here after the loop finishes
-    ```
+
 * **Logic:**
     1. Execute `initialization` (only once, before the loop starts).
     2. Evaluate `condition`.
@@ -234,13 +344,37 @@ int main() {
         c. Go back to step 2.
     4. If `condition` is false (zero), skip the loop body and continue execution after the loop.
 
+::right::
+* **Syntax:**
+    ```c
+    for (initialization; condition; update) {
+        // Loop Body: Statements to repeat
+    }
+    // Execution continues here after the loop finishes
+    ```
+
+<div style="padding-left:120px">
+
+```mermaid {scale:0.6}
+graph TD
+    A([...]) --> B[Initialization];
+    B --> C{Condition?};
+    C -- True --> D[Loop Body];
+    D --> E[Update];
+    E --> C;
+    C -- False --> F([...]);
+```
+
+</div>
+---
+layout: two-cols
 ---
 
 ## `for` Loop Example: Sum Calculation
 
 * **Problem:** Calculate $S = \sum_{x=1}^{5} \frac{1}{x^2}$ using a `for` loop.
 ````md magic-move
-```c {*|7-8|7-10|7-10,13-14}{lines: true}
+```c {*|7-8|7-10|7-10,13-14}{lines: true,maxHeight:'300px'}
 #include <stdio.h>
 
 int main() {
@@ -261,7 +395,7 @@ int main() {
     return 0;
 }
 ```
-```c {7-10|*}{lines: true}
+```c {7-10|*}{lines: true,maxHeight:'300px'}
 #include <stdio.h>
 
 int main() {
@@ -281,9 +415,50 @@ int main() {
 }
 ```
 ````
+
+::right::
 * This is often considered the most idiomatic way to write loops controlled by a simple counter.
 
+<div style="padding-left:80px">
+
+```mermaid {scale:0.5}
+graph TD
+
+    subgraph f["for"]
+
+    subgraph Initializatoin
+        B2
+    end
+    subgraph Condition
+        C
+    end
+    D
+    subgraph Update
+        E
+    end
+
+    end
+
+
+    A([Start]) --> B[S=0.0];
+    B --> B2[x=1]
+    B2 --> C{x <= 5?};
+    C -- True --> D["S += 1.0 / (x * x)"];
+    D --> E[x++ ];
+    E --> C;
+    C -- False --> F[Print S];
+    F --> G([End]);
+
+    classDef forx fill:#ada,stroke:#333;
+    class B2,C,E forx;
+    
+
+```
+
+</div>
+
 ---
+
 
 ## Flexibility of the `for` Loop
 
@@ -465,6 +640,65 @@ Loop finished or exited via break.
 
 </div>
 
+---
+layout: two-cols
+---
+
+## `break` Example: Finding First Number Divisible by 7
+
+*Code:*
+```c {*}
+#include <stdio.h>
+
+int main() {
+    int i;
+
+    for (i = 1; i <= 20; i++) {
+        printf("Checking %d\n", i);
+        if (i % 7 == 0) {
+            printf("Found number divisible by 7: %d\n", i);
+            break; // Exit the loop immediately
+        }
+        // This part is skipped after break
+        printf("... still searching ...\n");
+    }
+    // Execution continues here after the break
+    printf("Loop finished or exited via break.\n");
+    return 0;
+}
+```
+::right::
+
+```mermaid {scale:0.45}
+graph TD
+    subgraph for
+        B
+        C
+        D
+        subgraph if
+        E
+        F
+        end
+        G
+        H
+    end
+    
+    A([Start]) --> B[i = 1];
+    B --> C{i <= 20?};
+    C -- True --> D[/Print "Checking i"/];
+    D --> E{i % 7 == 0?};
+    E -- True --> F[/Print "Found number..."/];
+    F --break--> J[/Print "Loop finished..."/];
+    E -- False --> G[/Print "... still searching ..."/];
+    G --> H[i++ ];
+    H --> C;
+    C -- False --> J;
+    J --> K([End]);
+
+    style if fill:#ccf;
+
+```
+
 
 ---
 
@@ -480,6 +714,9 @@ continue;
 ```
 
 ---
+layout: two-cols
+---
+
 
 ## `continue` Example: Summing Only Odd Numbers
 
@@ -505,6 +742,42 @@ int main() {
     printf("Sum of odd numbers (1-10): %d\n", sum); // Output: 25 (1+3+5+7+9)
     return 0;
 }
+```
+
+::right::
+
+```mermaid {scale:0.46}
+
+graph TD
+
+    subgraph for
+        C
+        D
+        subgraph if
+        E
+        F
+        end
+        G
+        H
+        I
+    end
+
+
+    A([Start]) --> B[sum = 0];
+    B --> C[i = 1];
+    C --> D{i <= 10?};
+    D -- True --> E{i % 2 == 0?};
+    E -- True --> F[/Print "Skipping..."/];
+    E -- False --> G[/Print "Adding..."/];
+    G --> H[sum = sum + i];
+    F --continue--> I[i++];
+    H --> I;
+    I --> D;
+    D -- False --> J[/Print "Sum..."/];
+    J --> K([End]);
+
+    style if fill:#ccf;
+
 ```
 
 ---
@@ -665,6 +938,7 @@ if (i % 2 == 1); // Stray semicolon, condition has no effect
 ---
 src: ./flow_chart_loop.md
 ---
+
 ---
 layout: default
 ---
