@@ -175,12 +175,14 @@ int main() {
 ::right::
 
 <div style="padding-left:50px">
-```mermaid {scale:0.8}
+```mermaid {scale:0.75}
 graph TD
     subgraph while
         C
+        subgraph loop-body["Loop Body"]
         D
         E
+        end
     end
     
     A([Start]) --> B[Initialize x=1, S=0.0];
@@ -190,6 +192,9 @@ graph TD
     E --> C;
     C -- False --> F[/Print S/];
     F --> G([End]);
+
+    style loop-body fill:#ccf;
+
 ```
 
 </div>
@@ -287,15 +292,17 @@ int main() {
 <div style="position:fixed;bottom:30px;right:20px">
 
 
-```mermaid {scale:0.55}
+```mermaid {scale:0.5}
 graph TD
 
     subgraph do-while
-        E
-    subgraph if
-        F
-        G
-    end
+        subgraph loop-body["Loop Body"]
+            E
+            subgraph if
+                F
+                G
+            end
+        end
         H
     end
 
@@ -311,6 +318,8 @@ graph TD
     I --> J([End]);
 
     style if fill:#ccf;
+    style loop-body fill:#cfc;
+
 
 ```
 
@@ -421,22 +430,23 @@ int main() {
 
 <div style="padding-left:80px">
 
-```mermaid {scale:0.5}
+```mermaid {scale:0.45}
 graph TD
 
     subgraph f["for"]
 
-    subgraph Initializatoin
-        B2
-    end
-    subgraph Condition
-        C
-    end
-    D
-    subgraph Update
-        E
-    end
-
+        subgraph Initialization
+            B2
+        end
+        subgraph Condition
+            C
+        end
+        subgraph Loop-Body
+            D
+        end
+        subgraph Update
+            E
+        end
     end
 
 
@@ -451,6 +461,7 @@ graph TD
 
     classDef forx fill:#ada,stroke:#333;
     class B2,C,E forx;
+    style f fill:#ccf,stroke:#333;
     
 
 ```
@@ -510,7 +521,7 @@ int main() {
 ```
 
 ---
-layout: two-cols-header
+layout: two-cols
 ---
 
 ## Nested Loops Example: Printing a Pattern
@@ -519,24 +530,7 @@ layout: two-cols-header
 
 **Problem:** Print a right-angled triangle pattern of stars.
 
-:: left ::
-
-
-<div style="padding-right:50px">
-
-```
-*
-**
-***
-****
-*****
-```
-
-</div>
-
-:: right ::
-
-```c {*}{lines:true}
+```c {*}{lines:true,maxHeight:'250px'}
 #include <stdio.h>
 
 int main() {
@@ -555,6 +549,63 @@ int main() {
     return 0;
 }
 ```
+
+::right::
+
+<div style="padding-left:50px">
+
+```mermaid {scale:0.46}
+graph TD
+
+    subgraph for-outer
+        C
+        D
+        subgraph for-inner
+            E
+            F
+            G
+            H
+        end
+        
+        I
+        J
+    end
+
+    A([Start]) --> B[rows = 5];
+    B --> C[i = 1];
+    C --> D{i <= rows?};
+    D -- True --> E[j = 1];
+    E --> F{j <= i?};
+    F -- True --> G[/Print "*"/];
+    G --> H[j++ ];
+    H --> F;
+    F -- False --> I[/Print Newline/];
+    I --> J[i++ ];
+    J --> D;
+    D -- False --> K([End]);
+
+    style for-inner fill:#ccf,stroke:#333;
+    style for-outer stroke:#333;
+
+
+```
+
+</div>
+
+<div style="position:fixed;bottom:100px;right:50px">
+
+```text{none|1|1-2|1-3|1-4|1-5}
+*
+**
+***
+****
+*****
+```
+
+</div>
+
+
+
 
 
 
