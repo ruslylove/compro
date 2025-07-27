@@ -314,7 +314,7 @@ graph TD
         G --> H;
         F -- False --> H{number <= 0?};
         H -- True --> E;
-    H --> I[/Print Thank you/];
+    H -- False--> I[/Print Thank you/];
     I --> J([End]);
 
     style if fill:#ccf;
