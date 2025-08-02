@@ -1,0 +1,39 @@
+digraph factorial_trace {
+    graph [dpi="300"];
+    rankdir=TB;
+    node [shape=box, style=rounded];
+    edge [fontsize=10];
+
+    main [label="main()"]
+    f5 [label="factorial(5)"]
+    f4 [label="factorial(4)"]
+    f3 [label="factorial(3)"]
+    f2 [label="factorial(2)"]
+    f1 [label="factorial(1)\n(base case)"]
+    result [label="Result: 120", shape=ellipse, style=filled, fillcolor=lightgreen];
+
+
+    main -> f5 [label=" calls"];
+
+    subgraph cluster_calls {
+        label = "Call Stack Trace";
+        style=dashed;
+        f5 -> f4 [label=" calls"];
+        f4 -> f3 [label=" calls"];
+        f3 -> f2 [label=" calls"];
+        f2 -> f1 [label=" calls"];
+    }
+
+
+    subgraph cluster_returns {
+        label = "Return Values";
+        style=dashed;
+        f1 -> f2 [label=" returns 1", constraint=false, style=dashed];
+        f2 -> f3 [label=" returns 2 * 1 = 2",  constraint=false, style=dashed];
+        f3 -> f4 [label=" returns 3 * 2 = 6",  constraint=false, style=dashed];
+        f4 -> f5 [label=" returns 4 * 6 = 24",  constraint=false, style=dashed];
+        f5 -> main [label=" returns 5 * 24 = 120", constraint=false, style=dashed];
+    }
+
+    main -> result [style=invis];
+}

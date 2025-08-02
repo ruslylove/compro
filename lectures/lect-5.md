@@ -55,13 +55,13 @@ Semester {{ $slidev.configs.semester }}
 
 ## Lecture Outline
 
-1.  **Functions:**
+1.  Functions:
     * **Declaration:** Telling the compiler about a function's existence.
     * **Definition:** Providing the actual code for the function.
     * **Calling:** Executing the function.
-2.  **Recursive Functions**
-3.  **Variable Visibility (Scope) and Lifetime**
-4.  **Preprocessor Directives and Macros**
+2.  Recursive Functions
+3.  Variable Visibility (Scope) and Lifetime
+4.  Preprocessor Directives and Macros
 
 ---
 layout: two-cols-header
@@ -247,7 +247,7 @@ int main() {
     * It looks like the first line of the function definition, but ends with a semicolon `;` and doesn't include the function body `{}`.
     * Parameter names are optional in the declaration, but types are required.
 
-```c
+```c {*}{lines:'true',maxHeight:'160px'}
 // Function Declaration (Prototype)
 int max(int num1, int num2); // Tells compiler 'max' exists
 
@@ -262,6 +262,7 @@ int max(int num1, int num2) {
     return (num1 > num2) ? num1 : num2;
 }
 ```
+
 * **Why declare?** Allows functions to be defined in any order or even in separate files. Standard library functions (like `printf`) are declared in header files (`stdio.h`) that we `#include`.
 
 ---
@@ -281,9 +282,14 @@ int max(int num1, int num2) {
 * **Pass-by-Value:** In C, arguments are passed **by value**. This means a *copy* of the argument's value is sent to the function. The function works with this copy. **Modifying the parameter variable inside the function does *not* affect the original argument variable in the caller.**
 
 ---
+layout: two-cols-header
+---
 
 ## Function Call Example: Pass-by-Value
 
+:: left ::
+
+*function try_to_modify:*
 ```c
 #include <stdio.h>
 
@@ -306,6 +312,8 @@ int main() {
     return 0;
 }
 ```
+:: right ::
+
 *Output:*
 ```text
 In main (before call): original_value = 10
@@ -327,10 +335,10 @@ In main (after call): original_value = 10
 
 ## Lecture Outline
 
-1.  **Functions:** Declaration, Definition, and Calling Mechanics
+1.  Functions: Declaration, Definition, and Calling Mechanics
 2.  **Recursive Functions**
-3.  **Variable Visibility (Scope) and Lifetime**
-4.  **Preprocessor Directives and Macros**
+3.  Variable Visibility (Scope) and Lifetime
+4.  Preprocessor Directives and Macros
 
 ---
 
@@ -343,15 +351,19 @@ In main (after call): original_value = 10
     2.  **Recursive Step:** The part where the function calls itself, typically with modified arguments that move closer to the base case.
 
 ---
+layout: two-cols-header
+---
 
 ## Recursion Example: Factorial
+
+:: left ::
 
 * **Problem:** Calculate N! (N * (N-1) * ... * 1).
 * **Recursive Definition:**
     * Base Case: `factorial(0) = 1`
     * Recursive Step: `factorial(N) = N * factorial(N-1)` for N > 0.
 
-```c
+```c {*|4-14|18|4|6|10|12|4|6|10|12|4|6|10|12|4|6|10|12|4|6|7|12|12|12|12|18}{maxHeight:'200px',lines:'true'}
 #include <stdio.h>
 
 // Recursive factorial function
@@ -373,19 +385,32 @@ int main() {
     return 0;
 }
 ```
+
 *Each call `factorial(n)` pushes a new frame onto the call stack until `factorial(0)` is reached (base case). Then the results are multiplied back up as the stack unwinds.*
 
+:: right ::
+
+<img src="/recursion.png" style="height:450px;padding-left:50px">
+
+
+---
+layout: two-cols-header
 ---
 
 ## Recursion Example: Fibonacci Sequence
 
+
+
 * **Problem:** Calculate the Nth Fibonacci number (F(N)).
 * **Sequence:** 0, 1, 1, 2, 3, 5, 8, 13, ...
+
+:: left ::
+
 * **Recursive Definition:**
     * Base Cases: `F(0) = 0`, `F(1) = 1`
     * Recursive Step: `F(N) = F(N-1) + F(N-2)` for N > 1.
 
-```c
+```c {*}{maxHeight:'200px',lines:'true'}
 #include <stdio.h>
 
 // Recursive Fibonacci function
@@ -409,7 +434,13 @@ int main() {
     return 0;
 }
 ```
+
 *Note: This recursive Fibonacci implementation is elegant but highly inefficient due to repeated calculations. An iterative (loop-based) approach is usually preferred.*
+
+:: right ::
+
+<img src="/fibonacci_trace.png" style="padding-left:20px">
+
 
 ---
 
@@ -429,10 +460,10 @@ int main() {
 
 ## Lecture Outline
 
-1.  **Functions:** Declaration, Definition, and Calling Mechanics
-2.  **Recursive Functions**
+1.  Functions: Declaration, Definition, and Calling Mechanics
+2.  Recursive Functions
 3.  **Variable Visibility (Scope) and Lifetime**
-4.  **Preprocessor Directives and Macros**
+4.  Preprocessor Directives and Macros
 
 ---
 
@@ -452,7 +483,7 @@ int main() {
 
 ## Scope Example
 
-```c
+```c {*}{maxHeight:'430px',lines:'true'}
 #include <stdio.h>
 
 // File Scope (Global Variable)
@@ -510,7 +541,7 @@ int main() { // 'main' is also a function
     2.  **Scope:** Remains local (only accessible within that function/block).
     3.  **Initialization:** Initialized only *once*, the first time the function is called. Retains its value across subsequent calls.
 
-```c
+```c {*}{maxHeight:'270px'}
 #include <stdio.h>
 
 void counter_function() {
@@ -537,9 +568,9 @@ int main() {
 
 ## Lecture Outline
 
-1.  **Functions:** Declaration, Definition, and Calling Mechanics
-2.  **Recursive Functions**
-3.  **Variable Visibility (Scope) and Lifetime**
+1.  Functions: Declaration, Definition, and Calling Mechanics
+2.  Recursive Functions
+3.  Variable Visibility (Scope) and Lifetime
 4.  **Preprocessor Directives and Macros**
 
 ---
@@ -573,7 +604,7 @@ int main() {
 * **Convention:** Use uppercase for macro constants to distinguish them from variables.
 * **No semicolon `;` at the end!**
 
-```c
+```c {*}{maxHeight:'200px'}
 #include <stdio.h>
 
 // Define symbolic constants
@@ -600,7 +631,7 @@ int main() {
 * **Syntax:** `#define MACRO_NAME(param1, param2, ...) replacement_text`
 * **Warning:** Function-like macros can be tricky and have pitfalls due to simple text replacement, especially regarding operator precedence and multiple evaluations of arguments. Use parentheses generously in the replacement text!
 
-```c
+```c {*}{maxHeight:'200px'}
 #include <stdio.h>
 
 // Simple macro (constant)
@@ -624,21 +655,23 @@ int main() {
     return 0;
 }
 ```
+
 * **Pitfall Example:** `#define SQUARE_BAD(x) x * x`. If called as `SQUARE_BAD(num + 1)`, it expands to `num + 1 * num + 1`, which calculates incorrectly due to operator precedence.
 
----
 
 ---
-layout: default
+layout: two-cols
 ---
 
 ## Summary
-<Transform scale="0.85">
 
 *   **Functions:** Reusable blocks of code that improve modularity and readability. Key components are the return type, name, parameters, and body.
 *   **Declaration vs. Definition:** A function must be *declared* (prototype) before it is *called* so the compiler knows its signature. The *definition* contains the actual code.
 *   **Pass-by-Value:** C passes arguments to functions by value, meaning the function receives a *copy* and cannot modify the original argument variable.
 *   **Recursion:** A function that calls itself. Requires a **base case** to stop the recursion and a **recursive step** that moves closer to the base case.
+
+:: right ::
+
 *   **Scope & Lifetime:**
     *   **Scope** (where a variable is accessible): Local/Block scope vs. Global/File scope.
     *   **Lifetime** (how long a variable exists): Automatic (local) vs. Static (global, `static` locals).
@@ -647,43 +680,7 @@ layout: default
     *   `#include` incorporates header files.
     *   `#define` creates text-substitution macros for constants or simple operations.
 
-</Transform>
 
 <div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
 <Link to="lab5" title="Go to Lab5 👩‍🔬"/>
 </div>
-
-* Allows you to include or exclude blocks of code from compilation based on whether a macro identifier has been defined (using `#define`).
-* **`#ifdef IDENTIFIER`**: Includes the code between it and `#endif` *if* `IDENTIFIER` is defined.
-* **`#ifndef IDENTIFIER`**: Includes the code between it and `#endif` *if* `IDENTIFIER` is *not* defined. (Often used for include guards in header files).
-* **`#endif`**: Marks the end of the conditional block.
-
-**Use Case: Debugging Code**
-```c
-#include <stdio.h>
-
-// Define DEBUG macro to enable debug prints
-// Comment this line out to disable them
-#define DEBUG
-
-int main() {
-    int value = 42;
-
-    // This block is included only if DEBUG is defined
-    #ifdef DEBUG
-    printf("DEBUG: Starting process with value = %d\n", value);
-    #endif // DEBUG
-
-    // ... main program logic ...
-    value *= 2;
-
-    // Another conditional debug print
-    #ifdef DEBUG
-    printf("DEBUG: Value after processing = %d\n", value);
-    #endif // DEBUG
-
-    printf("Final value: %d\n", value);
-    return 0;
-}
-```
-* By defining or undefining `DEBUG`, you can easily switch debugging output on or off without manually adding/removing `printf` statements throughout the code.
