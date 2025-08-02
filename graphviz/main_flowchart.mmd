@@ -1,0 +1,6 @@
+graph TD
+    A[Start] --> B["int a = 10, b = 20"];
+    B --> C{{"maximum = max(a, b)"}}; 
+    C --> D["printf(\"The maximum is: %d\\n\", maximum)"];
+    D --> E["return 0"];
+    E --> F[End];

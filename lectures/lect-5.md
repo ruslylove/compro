@@ -39,21 +39,17 @@ Semester {{ $slidev.configs.semester }}
 
 ---
 
-## Why Use Functions? Advantages (Part 1)
+## Why Use Functions? Advantages
 
 * We are already familiar with using standard library functions like `printf`, `scanf`, `sqrt`, etc.
 * Creating our own functions offers significant benefits:
     * **Modularity:** Breaks down complex problems into smaller, manageable, independent units.
     * **Reusability:** Write a piece of code once (in a function) and call it multiple times from different parts of the program, avoiding repetition.
+        * Imagine calculating the factorial $n!$ multiple times in a program. Instead of repeating the factorial calculation logic each time, we can write a single `factorial` function and call it whenever needed.
+        * This principle of "Don't Repeat Yourself" (DRY) is fundamental to good software engineering.
     * **Readability:** Well-named functions make code easier to understand by describing *what* a block of code does rather than just *how* it does it.
     * **Maintainability & Debugging:** Easier to test, debug, and update smaller, isolated functions than one large block of code.
 
----
-
-## Why Use Functions? Advantages (Part 2)
-
-* Imagine calculating the factorial $n!$ multiple times in a program. Instead of repeating the factorial calculation logic each time, we can write a single `factorial` function and call it whenever needed.
-* This principle of "Don't Repeat Yourself" (DRY) is fundamental to good software engineering.
 
 ---
 
@@ -68,12 +64,18 @@ Semester {{ $slidev.configs.semester }}
 4.  **Preprocessor Directives and Macros**
 
 ---
+layout: two-cols-header
+---
 
 ## Function Definition: Syntax
 
+:: left ::
+
 * Defining a function means providing the code that executes when the function is called.
+
+
 * **General Syntax:**
-    ```c 
+    ```c
     return_type function_name(parameter_list) {
         // Function Body:
         // Declarations and statements...
@@ -84,17 +86,24 @@ Semester {{ $slidev.configs.semester }}
 * **Components:**
     * `return_type`: The data type of the value the function sends back (e.g., `int`, `float`, `char`, `void` if nothing is returned).
     * `function_name`: A unique identifier for the function.
-    * `parameter_list`: A comma-separated list of variable declarations (type and name) for the inputs the function receives (e.g., `int count`, `float price`). Can be empty or `void` if no parameters.
-    * `Function Body`: The block of code `{ ... }` containing the logic.
-    * `return return_value;`: Sends a value back to the caller. The `return_value` must match the `return_type`. Omitted if `return_type` is `void`.
 
+:: right ::
+
+* `parameter_list`: A comma-separated list of variable declarations (type and name) for the inputs the function receives (e.g., `int count`, `float price`). Can be empty or `void` if no parameters.
+* `Function Body`: The block of code `{ ... }` containing the logic.
+* `return return_value;`: Sends a value back to the caller. The `return_value` must match the `return_type`. Omitted if `return_type` is `void`.
+
+---
+layout: two-cols-header
 ---
 
 ## Function Definition Example 1: `max`
 
+:: left ::
+
 * **Problem:** Create a function that returns the larger of two integers.
 
-```c {*|15-21|17|18|1-13|2|3|5|8|12|19|*}{lines: true}
+```c {*|15-21|17|18|1-13|2|3|5|8|12|19|*}{lines: true,maxHeight: '400px'}
 // Function Definition
 int max(int num1, int num2) { // Returns int, takes two int parameters
     int result; // Local variable within the function
@@ -118,13 +127,45 @@ int main() {
 }
 ```
 
+:: right ::
+
+<div style="padding-left:50px">
+```mermaid
+graph TD
+    A([Start]) --> B["a = 10, b = 20"];
+    B --> C[["maximum = max(a, b)"]]; 
+    C --> D[/"print maximum"/];
+    D --> E([End]);
+```
+</div>
+
+<div style="position:fixed;top:160px;right:350px;">
+```mermaid {scale:0.55}
+graph TD
+    A(["max(num1, num2)"]) --> B{num1 > num2?};
+    B -- True --> C[result = num1];
+    B -- False --> D[result = num2];
+    C --> E;
+    D --> E([return result]);
+```
+</div>
+
+
+
+
 ---
+layout: two-cols-header
+---
+
 
 ## Function Definition Example 2: `sum`
 
+:: left ::
+
+
 * **Problem:** Calculate the sum of integers from 1 to N.
 
-```c
+```c {*}{lines:'true'}
 // Function Definition
 int sum(int n) { // Returns int, takes one int parameter
     int i;
@@ -146,6 +187,29 @@ int main() {
     return 0;
 }
 ```
+:: right ::
+
+<div style="padding-left:50px">
+```mermaid
+graph TD
+    A([Start]) --> B["limit = 5"];
+    B --> C[["result = sum(limit)"]]; 
+    C --> D[/"print result"/];
+    D --> E([End]);
+```
+</div>
+
+<div style="position:fixed;top:130px;right:380px;">
+```mermaid {scale:0.55}
+graph TD
+    A(["sum(n)"]) --> B[total = 0, i = 0];
+    B --> C{i <= n?};
+    C -- True --> D[total += i];
+    D --> F[i++] --> C;
+    C -- False --> E([return total]);
+```
+</div>
+
 
 ---
 

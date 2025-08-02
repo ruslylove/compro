@@ -1,0 +1,20 @@
+digraph max_function_flowchart {
+    rankdir=TB;
+    node [shape=box, fontname="Helvetica"];
+
+    start [label="Start", shape=oval];
+    input [label="Input num1, num2", shape=parallelogram];
+    decision [label="Is num1 > num2?", shape=diamond];
+    assign_num1 [label="result = num1"];
+    assign_num2 [label="result = num2"];
+    return_result [label="Return result", shape=parallelogram];
+    end_node [label="End", shape=oval];
+
+    start -> input;
+    input -> decision;
+    decision -> assign_num1 [label=" Yes"];
+    decision -> assign_num2 [label=" No"];
+    assign_num1 -> return_result;
+    assign_num2 -> return_result;
+    return_result -> end_node;
+}
