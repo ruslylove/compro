@@ -40,16 +40,16 @@ Semester {{ $slidev.configs.semester }}
 
 *   **Exercise 1: Maximum of Three Numbers**
     *   A simple function to practice parameters and return values.
-*   **Exercise 2: Greatest Common Divisor (GCD)**
-    *   Implement a classic algorithm (Euclidean) as a function.
+*   **Exercise 2: Temperature Converter**
+    *   Practice modular design with multiple functions.
 *   **Exercise 3: Approximate cos(x)**
     *   Use a function to encapsulate a complex mathematical calculation.
-*   **Exercise 4: Largest Prime Number**
-    *   Combine loops and functions to solve a number theory problem.
-*   **Exercise 5: Factorial with Recursion**
-    *   Introduce the concept of a function calling itself.
-*   **Exercise 6: Static Variable Counter**
-    *   Demonstrate variable scope and lifetime with the `static` keyword.
+*   **Exercise 4: Greatest Common Divisor (GCD)**
+    *   Implement a classic algorithm (Euclidean) as a function.
+*   **Exercise 5: Sum of Digits with Recursion**
+    *   Solve a problem using a simple recursive function.
+*   **Exercise 6: Simple Event Logger**
+    *   Demonstrate a practical use of a `static` variable.
 
 ---
 
@@ -63,15 +63,19 @@ Semester {{ $slidev.configs.semester }}
 
 ---
 
-## Exercise 2: Greatest Common Divisor (GCD)
+## Exercise 2: Temperature Converter
 
-*   **Task:** Write a C program to calculate the Greatest Common Divisor (GCD) of two integers.
-*   **📝 Flowchart First:** Before coding, draw a flowchart for the Euclidean algorithm that you will implement in the `gcd` function.
+*   **Task:** Write a C program that provides a menu to convert temperatures between Celsius and Fahrenheit.
+*   **📝 Flowchart First:** Before coding, draw a flowchart for the main logic of your program. It should show how the menu is displayed, how the user's choice is read, and how the appropriate function is called.
 *   **Requirements:**
-    1.  Read two integer numbers as input within the `main()` function.
-    2.  Implement a function `int gcd(int a, int b)` to calculate the GCD.
-    3.  Call the `gcd` function from `main()` and print the resulting GCD.
-*   **Hint:** The Euclidean algorithm is an efficient method. For positive integers a and b, it's based on the principle that `gcd(a, b) = gcd(b, a % b)`. The base case is `gcd(a, 0) = a`.
+    1.  Implement two functions:
+        *   `double celsiusToFahrenheit(double celsius);`
+        *   `double fahrenheitToCelsius(double fahrenheit);`
+    2.  In `main()`, display a menu asking the user to choose a conversion type (e.g., 1 for C to F, 2 for F to C).
+    3.  Based on the user's choice, prompt for the temperature, call the appropriate function, and print the converted result with a clear label.
+*   **Formulas:**
+    *   Fahrenheit = (Celsius × 9/5) + 32
+    *   Celsius = (Fahrenheit − 32) × 5/9
 
 ---
 
@@ -88,50 +92,48 @@ Semester {{ $slidev.configs.semester }}
 
 ---
 
-## Exercise 4: Largest Prime Number
+## Exercise 4: Greatest Common Divisor (GCD)
 
-*   **Task:** Write a C program to find the largest prime number that is less than a given integer `N`.
-*   **📝 Flowchart First:** Draw a flowchart for this program. It should show the main loop that calls the `isPrime` helper function.
+*   **Task:** Write a C program to calculate the Greatest Common Divisor (GCD) of two integers.
+*   **📝 Flowchart First:** Before coding, draw a flowchart for the Euclidean algorithm that you will implement in the `gcd` function.
 *   **Requirements:**
-    1.  Read an integer `N` as input within the `main()` function.
-    2.  Implement a helper function `int isPrime(int num)` that returns `1` if `num` is prime and `0` otherwise.
-    3.  In `main()`, loop downwards from `N-1`. For each number, call your `isPrime` function.
-    4.  The first number found to be prime is the largest prime less than `N`. Print this number and stop searching.
+    1.  Read two integer numbers as input within the `main()` function.
+    2.  Implement a function `int gcd(int a, int b)` to calculate the GCD.
+    3.  Call the `gcd` function from `main()` and print the resulting GCD.
+*   **Hint:** The Euclidean algorithm is an efficient method. For positive integers a and b, it's based on the principle that `gcd(a, b) = gcd(b, a % b)`. The base case is `gcd(a, 0) = a`. 
+**Note:** This definition naturally leads to a recursive solution, but you can also implement it using a loop (iteratively). For this exercise, try to implement the recursive approach.
 
 ---
 
-## Exercise 5: Factorial with Recursion
+## Exercise 5: Sum of Digits with Recursion
 
-*   **Task:** Write a C program to calculate the factorial of a non-negative integer using recursion.
-*   **Definition:** The factorial of `n` (denoted `n!`) is the product of all positive integers up to `n`.
-    *   $n! = n \times (n-1) \times (n-2) \times ... \times 1$
-    *   $0! = 1$ (by definition)
-*   **Recursive Formula:**
-    *   `factorial(n) = n * factorial(n-1)`
-    *   Base Case: `factorial(0) = 1`
+*   **Task:** Write a C program to calculate the sum of the digits of a positive integer using recursion.
+*   **Example:** For the number `987`, the sum is `9 + 8 + 7 = 24`.
+*   **Recursive Thinking:**
+    *   How can you break this problem down? The sum of digits for `987` is `7 + (sum of digits for 98)`.
+    *   **Recursive Step:** `sum_digits(n) = (n % 10) + sum_digits(n / 10)`
+    *   **Base Case:** What is the simplest input? If the number has only one digit (`n < 10`), the sum is just the number itself.
 *   **Requirements:**
-    1.  Implement a function `long long factorial(int n)` that calculates the factorial recursively.
-    2.  In `main()`, get an integer from the user, call the `factorial` function, and print the result.
-    3.  Handle the case where the input is negative (factorial is not defined).
+    1.  Implement a function `int sumDigits(int n)` that calculates the sum of digits recursively.
+    2.  In `main()`, get a positive integer from the user, call the `sumDigits` function, and print the result.
 
 ---
 
-## Exercise 6: Static Variable Counter
+## Exercise 6: Simple Event Logger
 
-*   **Task:** Write a program to demonstrate the use of a `static` local variable.
-*   **Concept:** A `static` local variable retains its value between function calls. It is initialized only once.
+*   **Task:** Create a logging function that prefixes each message with a unique, sequential ID number.
+*   **Concept:** Use a `static` local variable to keep track of the log entry number. This demonstrates a practical use case where a function needs to maintain state across multiple calls without using global variables.
 *   **Requirements:**
-    1.  Create a function `void counter_func(void)`.
-    2.  Inside `counter_func`, declare a `static int count = 0;`.
-    3.  Increment and print the `count` variable inside this function.
-    4.  In `main()`, call `counter_func()` multiple times (e.g., in a loop for 5 times).
+    1.  Create a function `void log_event(const char* message)`.
+    2.  Inside `log_event`, declare a `static int event_id = 1;`.
+    3.  The function should print the message prefixed with the current `event_id`, like `Log [1]: User logged in.`.
+    4.  Increment the `event_id` after printing.
+    5.  In `main()`, call `log_event()` with different string messages to show the counter increasing.
 *   **Expected Output:**
     ```
-    This function has been called 1 time(s).
-    This function has been called 2 time(s).
-    This function has been called 3 time(s).
-    This function has been called 4 time(s).
-    This function has been called 5 time(s).
+    Log [1]: System startup.
+    Log [2]: User authentication successful.
+    Log [3]: Data file loaded.
     ```
 
 
