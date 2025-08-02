@@ -18,9 +18,18 @@ Semester {{ $slidev.configs.semester }}
 ## Lecture Outline
 
 1.  **Arrays**
-    * One-Dimensional (1D) Arrays
-    * Two-Dimensional (2D) Arrays
-2.  **Strings** (as Character Arrays)
+    *   One-Dimensional (1D) Arrays
+        *   Declaration, Initialization & Access
+        *   Passing to Functions (Pass-by-Reference)
+        *   Bounds Checking & `sizeof`
+    *   Two-Dimensional (2D) Arrays
+        *   Declaration, Initialization & Access
+        *   Memory Layout (Row-Major)
+        *   Passing to Functions
+2.  **Strings (as Character Arrays)**
+    *   The Null-Terminated String (`\0`)
+    *   Initialization & I/O (`scanf`/`printf`)
+    *   Standard Library Functions (`<string.h>`)
 
 ---
 
@@ -42,9 +51,18 @@ Semester {{ $slidev.configs.semester }}
 ## Lecture Outline
 
 1.  **Arrays**
-    * **One-Dimensional (1D) Arrays**
-    * Two-Dimensional (2D) Arrays
-2.  **Strings** (as Character Arrays)
+    *   **One-Dimensional (1D) Arrays**
+        *   **Declaration, Initialization & Access**
+        *   **Passing to Functions (Pass-by-Reference)**
+        *   **Bounds Checking & `sizeof`**
+    *   Two-Dimensional (2D) Arrays
+        *   Declaration, Initialization & Access
+        *   Memory Layout (Row-Major)
+        *   Passing to Functions
+2.  **Strings (as Character Arrays)**
+    *   The Null-Terminated String (`\0`)
+    *   Initialization & I/O (`scanf`/`printf`)
+    *   Standard Library Functions (`<string.h>`)
 
 ---
 
@@ -102,7 +120,7 @@ float prices[5]; // Elements are prices[0], prices[1], ..., prices[4]
 * Use the array name followed by the index in square brackets `[]` to access or modify an element. Remember, indexing starts at 0.
 * `array_name[index]`
 
-```c
+```c {*}{maxHeight:'300px',lines:true}
 #include <stdio.h>
 
 int main() {
@@ -132,60 +150,175 @@ int main() {
 ```
 
 ---
+layout: two-cols-header
+---
 
 ## Example: Student Scores Revisited (Using Arrays)
 
-* Let's solve the earlier problem (sum, average, max, min of 10 scores) using an array.
+:: left ::
 
-```c
+*   This code is much cleaner and easily adaptable for 100 or 1000 students by just changing `NUM_STUDENTS`.
+
+```c {*}{maxHeight: '330px', lines: 'true'}
 #include <stdio.h>
-
-#define NUM_STUDENTS 10 // Use a constant for the size
+#define NUM_STUDENTS 10
 
 int main() {
     float scores[NUM_STUDENTS];
-    float sum = 0.0, average = 0.0;
-    float max_score, min_score;
+    float sum = 0.0, average, max, min;
     int i;
 
     // Input scores using a loop
-    printf("Enter scores for %d students:\n", NUM_STUDENTS);
+    printf("Enter %d scores:\n", NUM_STUDENTS);
     for (i = 0; i < NUM_STUDENTS; i++) {
-        printf("Student %d: ", i + 1);
-        scanf("%f", &scores[i]); // Read into array element
-        sum += scores[i]; // Add to sum
+        scanf("%f", &scores[i]);
+        sum += scores[i];
     }
 
     // Calculate average
     average = sum / NUM_STUDENTS;
 
     // Find max and min scores
-    max_score = scores[0]; // Assume first is max/min initially
-    min_score = scores[0];
-    for (i = 1; i < NUM_STUDENTS; i++) { // Start from the second element
-        if (scores[i] > max_score) {
-            max_score = scores[i];
-        }
-        if (scores[i] < min_score) {
-            min_score = scores[i];
-        }
+    max = min = scores[0];
+    for (i = 1; i < NUM_STUDENTS; i++) {
+        if (scores[i] > max) max = scores[i];
+        if (scores[i] < min) min = scores[i];
     }
 
     // Output results
-    printf("\n--- Results ---\n");
-    printf("Sum of scores: %.2f\n", sum);
-    printf("Average score: %.2f\n", average);
-    printf("Maximum score: %.2f\n", max_score);
-    printf("Minimum score: %.2f\n", min_score);
+    printf("Average: %.2f\n", average);
+    printf("Max: %.2f, Min: %.2f\n", max, min);
+    return 0;
+}
+```
+
+:: right ::
+
+```mermaid {scale:0.48}
+graph TD
+
+        A([Start]) --> B["NUM_STUDENTS=10, sum=0.0, i=0"];
+        B --> C{"i < NUM_STUDENTS?"};
+        C -- Yes --> D[/"read score[i]"/];
+        D --> D1["sum = sum + score[i]"] --> i++ --> C;
+        C -- No --> E["average = sum / NUM_STUDENTS"] --> xx((A));
+
+        style xx fill:#ff3;
+```
+
+<div style="top:20px;right:10px;position:absolute">
+```mermaid {scale:0.4}
+graph TD
+
+        xx((A)) --> F["max = scores[0], <br>min = scores[0], i=1"];
+        F --> G{"i < NUM_STUDENTS?"};
+        G -- Yes --> H{"score[i] > max?"};
+        H -- Yes --> I["max = score[i]"] --> J; 
+        H -- No --> J{"score[i] < min?"} -- No --> I2[i++] --> G;;
+        J -- Yes --> K["min = score[i]"] --> I2;
+        G -- No --> L[/"print average<br>print max<br>print min"/];
+        L --> M([End]);
+
+        style xx fill:#ff3;
+```
+</div>
+
+
+---
+
+## Example: Frequency Counting
+
+* Another common task is to count how many times each element appears in an array.
+* A simple way to do this for integer arrays with a known, limited range of values is to use a second "frequency" array.
+* The index of the frequency array corresponds to a value in the original array.
+
+```c {*}{maxHeight:'300px',lines:true}
+#include <stdio.h>
+
+// Assume values in the array are in the range 0-99
+#define MAX_VALUE 100
+
+int main() {
+    int data[] = {4, 8, 4, 1, 1, 8, 9, 4, 5};
+    int count = sizeof(data) / sizeof(data[0]);
+
+    // frequency[i] will store the count of number 'i'
+    int frequency[MAX_VALUE] = {0}; // Initialize all counts to zero
+
+    // Populate the frequency array
+    for (int i = 0; i < count; i++) {
+        int value = data[i];
+        if (value >= 0 && value < MAX_VALUE) {
+            frequency[value]++;
+        }
+    }
+
+    // Print the frequencies
+    printf("Element Frequencies:\n");
+    for (int i = 0; i < MAX_VALUE; i++) {
+        if (frequency[i] > 0) {
+            printf("Value %d appeared %d time(s).\n", i, frequency[i]);
+        }
+    }
 
     return 0;
 }
 ```
-* This code is much cleaner and easily adaptable for 100 or 1000 students by just changing `NUM_STUDENTS`.
 
 ---
 
+## Passing 1D Arrays to Functions
+
+* When you pass an array to a function, you are not passing a copy of the entire array. Instead, you are passing the **memory address** of its first element.
+* This means the function can directly access and **modify** the original array elements in the calling function. This is known as **pass-by-reference** behavior.
+* **Function Parameter Syntax:**
+    * `void myFunction(int arr[], int size)` (preferred, clear it's an array)
+    * `void myFunction(int* arr, int size)` (equivalent, uses pointer syntax)
+* You must also pass the array's size as a separate parameter because the function itself doesn't know how big the array is.
+
+---
+
+## Passing 1D Arrays to Functions: Example
+
+```c {*}{maxHeight:'430px',lines:true}
+#include <stdio.h>
+
+// This function takes an array and its size, and prints all its elements.
+void printArray(int arr[], int size) {
+    printf("Array contents: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+// This function modifies an element in the original array.
+void modifyArray(int arr[], int index, int newValue) {
+    if (index >= 0) { // Basic bounds check
+        arr[index] = newValue;
+    }
+}
+
+int main() {
+    int my_numbers[] = {10, 20, 30, 40, 50};
+    int count = 5;
+
+    printArray(my_numbers, count); // Pass array and size
+
+    modifyArray(my_numbers, 2, 999); // Modify the element at index 2
+
+    printf("After modification:\n");
+    printArray(my_numbers, count); // The original array is changed!
+    // Output: Array contents: 10 20 999 40 50
+
+    return 0;
+}
+```
+
+---
+ 
 ## Array Bounds and Potential Errors
+
 
 * A critical point in C: The language **does not automatically check** if the index you use to access an array element is within the valid range (0 to `size - 1`).
 * Accessing elements outside these bounds (`array[-1]`, `array[size]`, `array[size + 1]`, etc.) leads to **undefined behavior**.
@@ -199,7 +332,7 @@ int main() {
 
 ## Out-of-Bounds Access Example
 
-```c
+```c {*}{maxHeight:'400px',lines:true}
 #include <stdio.h>
 
 int main() {
@@ -228,6 +361,7 @@ int main() {
     return 0;
 }
 ```
+
 * Always be careful with array indices, especially in loops and calculations.
 
 ---
@@ -235,9 +369,18 @@ int main() {
 ## Lecture Outline
 
 1.  **Arrays**
-    * One-Dimensional (1D) Arrays
-    * **Two-Dimensional (2D) Arrays**
-2.  **Strings** (as Character Arrays)
+    *   One-Dimensional (1D) Arrays
+        *   Declaration, Initialization & Access
+        *   Passing to Functions (Pass-by-Reference)
+        *   Bounds Checking & `sizeof`
+    *   **Two-Dimensional (2D) Arrays**
+        *   **Declaration, Initialization & Access**
+        *   **Memory Layout (Row-Major)**
+        *   **Passing to Functions**
+2.  **Strings (as Character Arrays)**
+    *   The Null-Terminated String (`\0`)
+    *   Initialization & I/O (`scanf`/`printf`)
+    *   Standard Library Functions (`<string.h>`)
 
 ---
 
@@ -295,7 +438,7 @@ int matrix[][3] = { {1,1,1}, {2,2,2} }; // Compiler determines 2 rows
     * Valid row indices: `0` to `num_rows - 1`.
     * Valid column indices: `0` to `num_cols - 1`.
 
-```c
+```c {*}{maxHeight:'300px',lines:true}
 #include <stdio.h>
 
 int main() {
@@ -327,10 +470,98 @@ int main() {
 
 ---
 
+## Passing 2D Arrays to Functions
+
+* When passing a 2D array to a function, you must specify the size of the **columns**. The number of rows can be omitted.
+* **Why?** The compiler needs the column size to calculate the memory offset for `array[row][col]`. It uses the formula: `address = base_address + (row * num_cols + col) * sizeof(element)`.
+* **Function Parameter Syntax:**
+    * `void myFunction(int arr[][COLS], int num_rows)` (preferred)
+    * `void myFunction(int (*arr)[NUM_COLS], int num_rows)` (equivalent pointer syntax)
+
+```c {*}{maxHeight:'200px',lines:true}
+#include <stdio.h>
+#define ROWS 2
+#define COLS 3
+
+// Function must know the number of columns
+void print2DArray(int arr[][COLS], int num_rows) {
+    for (int r = 0; r < num_rows; r++) {
+        for (int c = 0; c < COLS; c++) {
+            printf("%d ", arr[r][c]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int matrix[ROWS][COLS] = {{1, 2, 3}, {4, 5, 6}};
+    print2DArray(matrix, ROWS);
+    return 0;
+}
+```
+
+---
+
+## Common 2D Array Operations: Matrix Summation
+
+* A practical example is adding two matrices together. The matrices must have the same dimensions.
+
+```c {*}{maxHeight:'380px',lines:true}
+#include <stdio.h> 
+#define ROWS 2
+#define COLS 3
+
+// Function to add two matrices and store the result in a third
+void addMatrices(int a[][COLS], int b[][COLS], int result[][COLS], int num_rows) {
+    for (int r = 0; r < num_rows; r++) {
+        for (int c = 0; c < COLS; c++) {
+            result[r][c] = a[r][c] + b[r][c];
+        }
+    }
+}
+
+int main() {
+    int matrixA[ROWS][COLS] = {{1, 2, 3}, {4, 5, 6}};
+    int matrixB[ROWS][COLS] = {{10, 11, 12}, {13, 14, 15}};
+    int sum[ROWS][COLS];
+
+    addMatrices(matrixA, matrixB, sum, ROWS);
+
+    // (Code to print the 'sum' matrix would go here)
+    printf("Resultant Matrix:\n");
+    for (int r = 0; r < ROWS; r++) {
+        for (int c = 0; c < COLS; c++) {
+            printf("%d ", sum[r][c]);
+        }
+        printf("\n");
+    }
+    // Output:
+    // 11 13 15
+    // 17 19 21
+
+    return 0;
+}
+```
+
+
+
+---
+
 ## Lecture Outline
 
 1.  **Arrays**
-2.  **Strings** (as Character Arrays)
+    *   One-Dimensional (1D) Arrays
+        *   Declaration, Initialization & Access
+        *   Passing to Functions (Pass-by-Reference)
+        *   Bounds Checking & `sizeof`
+    *   Two-Dimensional (2D) Arrays
+        *   Declaration, Initialization & Access
+        *   Memory Layout (Row-Major)
+        *   Passing to Functions
+2.  **Strings (as Character Arrays)**
+    *   **The Null-Terminated String (`\0`)**
+    *   **Initialization & I/O (`scanf`/`printf`)**
+    *   **Standard Library Functions (`<string.h>`)**
 
 ---
 
@@ -365,6 +596,7 @@ Index: | 0 | 1 | 2 | 3 | 4 | 5 | 6 | ... | 19 |
 Value: |'H'|'e'|'l'|'l'|'o'|'\0'| ? | ... | ?  |
                                   (Unused/Garbage)
 ```
+
 * The null terminator `\0` is crucial for standard string functions to know where the string ends.
 
 ---
@@ -383,7 +615,7 @@ Value: |'H'|'e'|'l'|'l'|'o'|'\0'| ? | ... | ?  |
 ## String I/O Example
 
 ```c
-#include <stdio.h>
+#include <stdio.h> 
 
 int main() {
     char first_name[30]; // Array to hold the first name + null terminator
@@ -408,9 +640,21 @@ int main() {
 ## Lecture Outline
 
 1.  **Arrays**
-2.  **Strings** (as Character Arrays)
-    * **String Manipulation Functions (`<string.h>`)**
+    *   One-Dimensional (1D) Arrays
+        *   Declaration, Initialization & Access
+        *   Passing to Functions (Pass-by-Reference)
+        *   Bounds Checking & `sizeof`
+    *   Two-Dimensional (2D) Arrays
+        *   Declaration, Initialization & Access
+        *   Memory Layout (Row-Major)
+        *   Passing to Functions
+2.  **Strings (as Character Arrays)**
+    *   The Null-Terminated String (`\0`)
+    *   Initialization & I/O (`scanf`/`printf`)
+    *   **Standard Library Functions (`<string.h>`)**
 
+---
+layout: two-cols
 ---
 
 ## Standard String Functions (`<string.h>`)
@@ -420,13 +664,17 @@ int main() {
 * **Common Functions:**
     * `strlen(str)`: Returns the length of the string `str` (number of characters *before* the null terminator).
     * `strcpy(dest, src)`: Copies the string `src` (including `\0`) into the destination array `dest`. **Unsafe:** Doesn't check if `dest` is large enough.
-    * `strncpy(dest, src, n)`: Safer copy; copies at most `n` characters. Doesn't guarantee null termination if `n` is reached before `src` ends.
-    * `strcat(dest, src)`: Appends the string `src` to the end of the string in `dest`. `dest` must be large enough to hold the combined string + `\0`. **Unsafe:** Doesn't check size.
-    * `strncat(dest, src, n)`: Safer append; appends at most `n` characters from `src`. Always null-terminates.
-    * `strcmp(str1, str2)`: Compares two strings lexicographically (alphabetically). Returns:
-        * `0` if `str1` is equal to `str2`.
-        * `< 0` if `str1` comes before `str2`.
-        * `> 0` if `str1` comes after `str2`.
+
+:: right ::
+
+* `strncpy(dest, src, n)`: Safer copy; copies at most `n` characters. Doesn't guarantee null termination if `n` is reached before `src` ends.
+* `strcat(dest, src)`: Appends the string `src` to the end of the string in `dest`. `dest` must be large enough to hold the combined string + `\0`. **Unsafe:** Doesn't check size.
+* `strncat(dest, src, n)`: Safer append; appends at most `n` characters from `src`. Always null-terminates.
+* `strcmp(str1, str2)`: Compares two strings lexicographically (alphabetically). Returns:
+    * `0` if `str1` is equal to `str2`.
+    * `< 0` if `str1` comes before `str2`.
+    * `> 0` if `str1` comes after `str2`.
+
 
 ---
 
@@ -466,7 +714,7 @@ int main() {
 * `strcat`: Concatenates (appends) strings.
 * **Remember:** These standard versions are **unsafe** as they don't check destination buffer sizes! Safer alternatives like `strncpy` and `strncat` (or platform-specific functions like `strcpy_s`, `strcat_s`) are generally recommended.
 
-```c
+```c {*}{maxHeight:'250px',lines:true}
 #include <stdio.h>
 #include <string.h>
 
@@ -491,33 +739,11 @@ int main() {
 
 ---
 
----
-layout: default
----
-
-## Summary
-<Transform scale="0.85">
-
-*   **1D Arrays:** A fixed-size, sequential collection of elements of the same type, accessed via a zero-based index (e.g., `my_array[0]`)
-*   **2D Arrays:** An "array of arrays" used to represent grids or matrices, accessed with two indices (e.g., `matrix[row][col]`)
-*   **Array Bounds:** C does not check if an array index is valid. Accessing an array out of bounds (e.g., `arr[size]`) leads to undefined behavior and is a common, serious bug.
-*   **Strings in C:** Implemented as arrays of characters (`char`).
-*   **Null Terminator:** C strings are terminated by a special null character (`'\0'`) to mark their end.
-*   **String Functions (`<string.h>`):** A standard library for string manipulation, including:
-    *   `strlen()`: Get string length (excluding `'\0'`).
-    *   `strcpy()`: Copy a string (unsafe).
-    *   `strcat()`: Concatenate strings (unsafe).
-    *   `strcmp()`: Compare two strings lexicographically.
-
-</Transform>
-
-<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
-<Link to="lab6" title="Go to Lab6 👩‍🔬"/>
-</div>
+## `strcpy()` Example
 
 * Compares two strings alphabetically.
 
-```c
+```c {*}{maxHeight:'380px',lines:true}
 #include <stdio.h>
 #include <string.h>
 
@@ -530,14 +756,42 @@ int main() {
     int result2 = strcmp(str2, str1); // "banana" vs "apple"
     int result3 = strcmp(str1, str3); // "apple" vs "apple"
 
-    printf("\"%s\" vs \"%s\": %d\n", str1, str2, result1); // Output: < 0 (negative)
-    printf("\"%s\" vs \"%s\": %d\n", str2, str1, result2); // Output: > 0 (positive)
-    printf("\"%s\" vs \"%s\": %d\n", str1, str3, result3); // Output: 0 (equal)
+    printf("%s" vs "%s": %d\n", str1, str2, result1); // Output: < 0 (negative)
+    printf("%s" vs "%s": %d\n", str2, str1, result2); // Output: > 0 (positive)
+    printf("%s" vs "%s": %d\n", str1, str3, result3); // Output: 0 (equal)
 
     if (strcmp(str1, str3) == 0) {
-        printf("\"%s\" and \"%s\" are identical.\n", str1, str3);
+        printf("%s" and "%s" are identical.\n", str1, str3);
     }
 
     return 0;
 }
 ```
+
+
+---
+layout: two-cols
+---
+
+## Summary
+
+*   **1D Arrays:** A fixed-size, sequential collection of elements of the same type, accessed via a zero-based index (e.g., `my_array[0]`)
+*   **2D Arrays:** An "array of arrays" used to represent grids or matrices, accessed with two indices (e.g., `matrix[row][col]`)
+*   **Array Bounds:** C does not check if an array index is valid. Accessing an array out of bounds (e.g., `arr[size]`) leads to undefined behavior and is a common, serious bug.
+*   **Strings in C:** Implemented as arrays of characters (`char`).
+*   **Null Terminator:** C strings are terminated by a special null character (`'\0'`) to mark their end.
+
+:: right :: 
+
+*   **String Functions (`<string.h>`):** A standard library for string manipulation, including:
+    *   `strlen()`: Get string length (excluding `\0`).
+    *   `strcpy()`: Copy a string (unsafe).
+    *   `strcat()`: Concatenate strings (unsafe).
+    *   `strcmp()`: Compare two strings lexicographically.
+
+
+<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
+<Link to="lab6" title="Go to Lab6 👩‍🔬"/>
+</div>
+
+
