@@ -5,7 +5,7 @@ theme: seriph
 # like them? see https://unsplash.com/collections/94734566/slidev
 background: https://cover.sli.dev
 # some information about your slides (markdown enabled)
-title: Welcome to 010153002 Computer Programming
+title: Welcome to Computer Programming
 info: |
   ## Slidev Starter Template
   Presentation slides for developers.
@@ -32,7 +32,7 @@ subject: 010153002 Computer Programming
 
 ---
 
-# Welcome to 010153002 Computer Programming
+# Welcome to {{ $slidev.configs.subject }}
 
 Presented by {{ $slidev.configs.presenter }}
 
