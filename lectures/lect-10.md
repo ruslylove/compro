@@ -6,7 +6,7 @@ layout: cover
 title: Lecture 10 - Bitwise Operations
 ---
 
-# Computer Programming
+# {{ $slidev.configs.subject }}
 ## Lecture 10: Bitwise Operations
 
 Presented by {{ $slidev.configs.presenter }}

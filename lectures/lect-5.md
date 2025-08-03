@@ -6,7 +6,7 @@ layout: cover
 title: Lecture 5 - Functions and Macros
 ---
 
-# Computer Programming
+# {{ $slidev.configs.subject }}
 ## Lecture 5: Functions and Macros
 
 Presented by {{ $slidev.configs.presenter }}

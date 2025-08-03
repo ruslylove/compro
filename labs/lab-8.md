@@ -8,7 +8,7 @@ class: lab
 routeAlias: lab8
 ---
 
-# Computer Programming
+# {{ $slidev.configs.subject }}
 ## Lab 8: struct and union
 
 Presented by {{ $slidev.configs.presenter }}

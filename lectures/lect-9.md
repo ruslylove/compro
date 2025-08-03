@@ -6,7 +6,7 @@ layout: cover
 title: Lecture 9 - File Operations
 ---
 
-# Computer Programming
+# {{ $slidev.configs.subject }}
 ## Lecture 9: File Operations
 
 Presented by {{ $slidev.configs.presenter }}

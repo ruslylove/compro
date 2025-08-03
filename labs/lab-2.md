@@ -8,7 +8,7 @@ class: lab
 routeAlias: lab2 
 ---
 
-# Computer Programming
+# {{ $slidev.configs.subject }}
 ## Lab 2: Expressions
 
 Presented by {{ $slidev.configs.presenter }}

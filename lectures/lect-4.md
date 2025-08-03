@@ -6,7 +6,7 @@ layout: cover
 title: Lecture 4 - Loop Control Structures
 ---
 
-# Computer Programming
+# {{ $slidev.configs.subject }}
 ## Lecture 4: Loop Control Structures
 
 Presented by {{ $slidev.configs.presenter }}

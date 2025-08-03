@@ -6,7 +6,7 @@ layout: cover
 title: Lecture 8 - Pointers
 ---
 
-# Computer Programming
+# {{ $slidev.configs.subject }}
 ## Lecture 8: Pointers
 
 Presented by {{ $slidev.configs.presenter }}

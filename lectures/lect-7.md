@@ -6,7 +6,7 @@ layout: cover
 title: Lecture 7 - struct, union, and enum
 ---
 
-# Computer Programming
+# {{ $slidev.configs.subject }}
 ## Lecture 7: struct, union, and enum
 
 Presented by {{ $slidev.configs.presenter }}

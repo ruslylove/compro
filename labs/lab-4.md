@@ -8,7 +8,7 @@ class: lab
 routeAlias: lab4
 ---
 
-# Computer Programming
+# {{ $slidev.configs.subject }}
 ## Lab 4: Loops
 
 Presented by {{ $slidev.configs.presenter }}

@@ -6,7 +6,7 @@ layout: cover
 title: Lecture 6 - Arrays and Strings
 ---
 
-# Computer Programming
+# {{ $slidev.configs.subject }}
 ## Lecture 6: Arrays and Strings
 
 Presented by {{ $slidev.configs.presenter }}

@@ -6,7 +6,7 @@ layout: cover
 title: Lecture 2 - Basic Data Types & Using Expressions
 ---
 
-# Computer Programming
+# {{ $slidev.configs.subject }}
 ## Lecture 2: Basic Data Types & Using Expressions
 
 Presented by {{ $slidev.configs.presenter }}

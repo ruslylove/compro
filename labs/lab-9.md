@@ -8,7 +8,7 @@ class: lab
 routeAlias: lab9
 ---
 
-# Computer Programming
+# {{ $slidev.configs.subject }}
 ## Lab 9: Pointers and File Operations
 
 Presented by {{ $slidev.configs.presenter }}

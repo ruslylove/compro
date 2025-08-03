@@ -6,7 +6,7 @@ layout: cover
 title: Lecture 1 - Introduction and Overview
 ---
 
-# Computer Programming
+# {{ $slidev.configs.subject }}
 ## Lecture 1: Introduction and Overview
 
 Presented by {{ $slidev.configs.presenter }}

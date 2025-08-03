@@ -8,7 +8,7 @@ class: lab
 routeAlias: lab7
 ---
 
-# Computer Programming
+# {{ $slidev.configs.subject }}
 ## Lab 7: Strings and Arrays
 
 Presented by {{ $slidev.configs.presenter }}

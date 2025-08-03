@@ -8,7 +8,7 @@ class: lab
 routeAlias: lab3
 ---
 
-# Computer Programming
+# {{ $slidev.configs.subject }}
 ## Lab 3: if-else and switch-case
 
 Presented by {{ $slidev.configs.presenter }}

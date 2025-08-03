@@ -28,6 +28,7 @@ favicon: '/img/favicon_c_new.png'
 
 presenter: Dr.Ruslee Sutthaweekul
 semester: 1/2025
+subject: 010153002 Computer Programming
 
 ---
 
