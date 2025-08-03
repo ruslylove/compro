@@ -414,17 +414,17 @@ graph TD
 
     subgraph "foo(int myfoo) function"
         B["myfoo = 10"]
+        D[myfoo = myfoo - 1]
     end
 
     C("Call foo(x)")
-    D[myfoo = myfoo - 1]
+    
     E(Return)
 
     A --> C
     C -- "Pass-by-Value: <br>Copy value of x to myfoo" --> B
     B --> D
     D -- "myfoo is now 9" --> E
-    B --> E
     E -- "x is unchanged" --> A
 ```
 
