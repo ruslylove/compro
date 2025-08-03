@@ -14,13 +14,33 @@ Presented by {{ $slidev.configs.presenter }}
 Semester {{ $slidev.configs.semester }}
 
 ---
+layout: two-cols
+---
 
 ## Lecture Outline
 
-1.  **Functions:** Declaration, Definition, and Calling Mechanics
-2.  Recursive Functions
-3.  Variable Visibility (Scope) and Lifetime
-4.  Preprocessor Directives and Macros
+1.  **Functions: The Building Blocks**
+    *   Declaration, Definition, and Calling
+    *   Prototypes and Header Files (`.h`/`.c`)
+    *   Argument Passing: Pass-by-Value
+
+2.  **Recursive Functions**
+    *   Base Cases and Recursive Steps
+    *   Examples: Factorial and Fibonacci
+    *   Recursion vs. Iteration
+
+:: right ::
+
+3.  **Variable Scope and Lifetime**
+    *   Local vs. Global Scope
+    *   Automatic vs. Static Lifetime
+    *   The `static` Keyword
+
+
+
+4.  **The Preprocessor and Macros**
+    *   `#include` for Header Files
+    *   `#define` for Constants and Function-Like Macros
 
 ---
 
@@ -39,7 +59,7 @@ Semester {{ $slidev.configs.semester }}
 
 ---
 
-## Why Use Functions? Advantages
+## Why Use Functions? 
 
 * We are already familiar with using standard library functions like `printf`, `scanf`, `sqrt`, etc.
 * Creating our own functions offers significant benefits:
@@ -55,13 +75,14 @@ Semester {{ $slidev.configs.semester }}
 
 ## Lecture Outline
 
-1.  Functions:
-    * **Declaration:** Telling the compiler about a function's existence.
-    * **Definition:** Providing the actual code for the function.
-    * **Calling:** Executing the function.
+1.  **Functions: The Building Blocks**
+    *   **Declaration, Definition, and Calling**
+    *   Prototypes and Header Files (`.h`/`.c`)
+    *   Argument Passing: Pass-by-Value
+
 2.  Recursive Functions
-3.  Variable Visibility (Scope) and Lifetime
-4.  Preprocessor Directives and Macros
+3.  Variable Scope and Lifetime
+4.  The Preprocessor and Macros
 
 ---
 layout: two-cols-header
@@ -266,20 +287,149 @@ int max(int num1, int num2) {
 * **Why declare?** Allows functions to be defined in any order or even in separate files. Standard library functions (like `printf`) are declared in header files (`stdio.h`) that we `#include`.
 
 ---
+layout: two-cols-header
+---
 
-## Header Files (`.h`) vs. Source Files (`.c`)
+## Header Files (`.h`) vs. Source Files (`.c`): Example
+
+:: left ::
 
 * **Declarations (`.h` files):** Function prototypes, global variable declarations (`extern`), type definitions (`struct`, `enum`), and macro definitions (`#define`) are often placed in header files. These files describe the *interface* of a code module.
 * **Definitions (`.c` files):** The actual function bodies (code implementations) and global variable definitions are placed in source files. These files contain the *implementation*.
 * **Usage:** Source files (`.c`) typically `#include` the header files (`.h`) they need to access the declared functions, variables, etc. This promotes modularity and organization in larger projects.
 
+:: right ::
+
+<div style="padding-top: 20px;">
+```mermaid
+graph TD
+    subgraph "Source Files"
+        A["main.c"]
+        B["math_utils.c"]
+    end
+
+    subgraph "Header File"
+        C["math_utils.h"]
+    end
+
+    D["Compiler"]
+    E["my_program"]
+ 
+
+    A -- "#include "math_utils.h"" --> C
+    B -- "#include "math_utils.h"" --> C
+    A --> D
+    B --> D
+    D --> E
+```
+</div>
+
 ---
+layout: two-cols-header
+---
+
+### Complilation with Header Files (`.h`) Source Files (`.c`)
+
+:: left ::
+
+<div style="padding-right:20px">
+
+
+**`math_utils.h` (Header File)**
+```c
+// This is a header guard. It prevents the header
+// from being included multiple times.
+#ifndef MATH_UTILS_H
+#define MATH_UTILS_H
+
+// Function prototype (declaration)
+// Describes what the function does, but not how.
+int add(int a, int b);
+
+#endif // MATH_UTILS_H
+```
+
+**`math_utils.c` (Source File)**
+```c
+#include "math_utils.h" // Include the header for consistency
+
+// Function definition (implementation)
+// This is the actual code for the function.
+int add(int a, int b) {
+    return a + b;
+}
+```
+
+</div>
+
+
+:: right ::
+
+**`main.c` (Main Program)**
+```c
+#include <stdio.h>
+#include "math_utils.h" // Include our custom header
+
+int main() {
+    int x = 5, y = 7;
+    // We can use add() because its prototype
+    // was included from math_utils.h
+    int result = add(x, y);
+    printf("The sum is: %d\n", result);
+    return 0;
+}
+```
+
+**Compilation**
+To compile this multi-file project:
+```bash
+gcc main.c math_utils.c -o my_program
+```
+
+
+
+
+---
+layout: two-cols
+---
+
 
 ## Function Calling
 
 * To execute a function, you "call" it by using its name followed by parentheses `()`.
 * If the function takes parameters, you provide values (arguments) inside the parentheses, matching the types declared in the parameter list.
 * **Pass-by-Value:** In C, arguments are passed **by value**. This means a *copy* of the argument's value is sent to the function. The function works with this copy. **Modifying the parameter variable inside the function does *not* affect the original argument variable in the caller.**
+
+:: right ::
+
+<div style="padding-left:90px">
+
+*Pass-by-Value Example:*
+
+```mermaid {scale:0.64}
+graph TD
+    subgraph "main() function"
+        A["x = 10"]
+    end
+
+    subgraph "foo(int myfoo) function"
+        B["myfoo = 10"]
+    end
+
+    C("Call foo(x)")
+    D[myfoo = myfoo - 1]
+    E(Return)
+
+    A --> C
+    C -- "Pass-by-Value: <br>Copy value of x to myfoo" --> B
+    B --> D
+    D -- "myfoo is now 9" --> E
+    B --> E
+    E -- "x is unchanged" --> A
+```
+
+</div>
+
 
 ---
 layout: two-cols-header
@@ -289,14 +439,17 @@ layout: two-cols-header
 
 :: left ::
 
+<div style="padding-right:25px">
+
+
 *function try_to_modify:*
-```c
+```c 
 #include <stdio.h>
 
 // Function tries to modify its parameter (a copy)
 void try_to_modify(int x) {
     printf("Inside function (before): x = %d\n", x);
-    x = 99; // Modifies the local copy 'x'
+    x = 9; // Modifies the local copy 'x'
     printf("Inside function (after): x = %d\n", x);
 }
 
@@ -312,16 +465,20 @@ int main() {
     return 0;
 }
 ```
+</div>
+
 :: right ::
 
 *Output:*
 ```text
 In main (before call): original_value = 10
 Inside function (before): x = 10
-Inside function (after): x = 99
+Inside function (after): x = 9
 In main (after call): original_value = 10
 ```
 
+---
+hide: true
 ---
 
 ## Function Call Stack (Conceptual)
@@ -335,10 +492,15 @@ In main (after call): original_value = 10
 
 ## Lecture Outline
 
-1.  Functions: Declaration, Definition, and Calling Mechanics
+1.  Functions: The Building Blocks
+
 2.  **Recursive Functions**
-3.  Variable Visibility (Scope) and Lifetime
-4.  Preprocessor Directives and Macros
+    *   **Base Cases and Recursive Steps**
+    *   Examples: Factorial and Fibonacci
+    *   Recursion vs. Iteration
+
+3.  Variable Scope and Lifetime
+4.  The Preprocessor and Macros
 
 ---
 
@@ -460,10 +622,15 @@ int main() {
 
 ## Lecture Outline
 
-1.  Functions: Declaration, Definition, and Calling Mechanics
+1.  Functions: The Building Blocks
 2.  Recursive Functions
-3.  **Variable Visibility (Scope) and Lifetime**
-4.  Preprocessor Directives and Macros
+
+3.  **Variable Scope and Lifetime**
+    *   **Local vs. Global Scope**
+    *   **Automatic vs. Static Lifetime**
+    *   The `static` Keyword
+
+4.  The Preprocessor and Macros
 
 ---
 
@@ -568,10 +735,13 @@ int main() {
 
 ## Lecture Outline
 
-1.  Functions: Declaration, Definition, and Calling Mechanics
+1.  Functions: The Building Blocks
 2.  Recursive Functions
-3.  Variable Visibility (Scope) and Lifetime
-4.  **Preprocessor Directives and Macros**
+3.  Variable Scope and Lifetime
+
+4.  **The Preprocessor and Macros**
+    *   `#include` for Header Files
+    *   `#define` for Constants and Function-Like Macros
 
 ---
 
