@@ -8,12 +8,10 @@ class: lab
 routeAlias: lab8
 ---
 
-# {{ $slidev.configs.subject }}
-## Lab 8: struct and union
-
-Presented by {{ $slidev.configs.presenter }}
-
-Semester {{ $slidev.configs.semester }}
+# Lab 8: struct and union
+## {{ $slidev.configs.subject }}
+### Semester {{ $slidev.configs.semester }}
+#### Presented by {{ $slidev.configs.presenter }}
 
 ---
 

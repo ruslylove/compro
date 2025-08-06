@@ -6,12 +6,10 @@ layout: cover
 title: Lecture 10 - Bitwise Operations
 ---
 
-# {{ $slidev.configs.subject }}
-## Lecture 10: Bitwise Operations
-
-Presented by {{ $slidev.configs.presenter }}
-
-Semester {{ $slidev.configs.semester }}
+# Lecture 10: Bitwise Operations
+## {{ $slidev.configs.subject }}
+### Semester {{ $slidev.configs.semester }}
+#### Presented by {{ $slidev.configs.presenter }}
 
 ---
 

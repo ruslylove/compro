@@ -8,12 +8,10 @@ class: lab
 routeAlias: lab1 
 ---
 
-# {{ $slidev.configs.subject }}
-## Lab 1: Introduction to C Programming
-
-Presented by {{ $slidev.configs.presenter }}
-
-Semester {{ $slidev.configs.semester }}
+# Lab 1: Introduction to C Programming
+## {{ $slidev.configs.subject }}
+### Semester {{ $slidev.configs.semester }}
+#### Presented by {{ $slidev.configs.presenter }}
 
 
 ---

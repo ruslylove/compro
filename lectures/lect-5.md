@@ -6,12 +6,10 @@ layout: cover
 title: Lecture 5 - Functions and Macros
 ---
 
-# {{ $slidev.configs.subject }}
-## Lecture 5: Functions and Macros
-
-Presented by {{ $slidev.configs.presenter }}
-
-Semester {{ $slidev.configs.semester }}
+# Lecture 5: Functions and Macros
+## {{ $slidev.configs.subject }}
+### Semester {{ $slidev.configs.semester }}
+#### Presented by {{ $slidev.configs.presenter }}
 
 ---
 layout: two-cols

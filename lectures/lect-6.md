@@ -6,12 +6,10 @@ layout: cover
 title: Lecture 6 - Arrays and Strings
 ---
 
-# {{ $slidev.configs.subject }}
-## Lecture 6: Arrays and Strings
-
-Presented by {{ $slidev.configs.presenter }}
-
-Semester {{ $slidev.configs.semester }}
+# Lecture 6: Arrays and Strings
+## {{ $slidev.configs.subject }}
+### Semester {{ $slidev.configs.semester }}
+#### Presented by {{ $slidev.configs.presenter }}
 
 ---
 

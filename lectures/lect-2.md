@@ -6,12 +6,11 @@ layout: cover
 title: Lecture 2 - Basic Data Types & Using Expressions
 ---
 
-# {{ $slidev.configs.subject }}
-## Lecture 2: Basic Data Types & Using Expressions
 
-Presented by {{ $slidev.configs.presenter }}
-
-Semester {{ $slidev.configs.semester }}
+# Lecture 2: Basic Data Types & Using Expressions
+## {{ $slidev.configs.subject }}
+### Semester {{ $slidev.configs.semester }}
+#### Presented by {{ $slidev.configs.presenter }}
 
 ---
 

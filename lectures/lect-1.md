@@ -6,12 +6,10 @@ layout: cover
 title: Lecture 1 - Introduction and Overview
 ---
 
-# {{ $slidev.configs.subject }}
-## Lecture 1: Introduction and Overview
-
-Presented by {{ $slidev.configs.presenter }}
-
-Semester {{ $slidev.configs.semester }}
+# Lecture 1: Introduction and Overview
+## {{ $slidev.configs.subject }}
+### Semester {{ $slidev.configs.semester }}
+#### Presented by {{ $slidev.configs.presenter }}
 
 ---
 

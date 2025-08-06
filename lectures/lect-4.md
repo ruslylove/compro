@@ -6,12 +6,10 @@ layout: cover
 title: Lecture 4 - Loop Control Structures
 ---
 
-# {{ $slidev.configs.subject }}
-## Lecture 4: Loop Control Structures
-
-Presented by {{ $slidev.configs.presenter }}
-
-Semester {{ $slidev.configs.semester }}
+# Lecture 4: Loop Control Structures
+## {{ $slidev.configs.subject }}
+### Semester {{ $slidev.configs.semester }}
+#### Presented by {{ $slidev.configs.presenter }}
 
 ---
 

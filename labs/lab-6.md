@@ -8,12 +8,10 @@ class: lab
 routeAlias: lab6
 ---
 
-# {{ $slidev.configs.subject }}
-## Lab 6: Functions and Arrays
-
-Presented by {{ $slidev.configs.presenter }}
-
-Semester {{ $slidev.configs.semester }}
+# Lab 6: Functions and Arrays
+## {{ $slidev.configs.subject }}
+### Semester {{ $slidev.configs.semester }}
+#### Presented by {{ $slidev.configs.presenter }}
 
 ---
 

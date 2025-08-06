@@ -8,12 +8,10 @@ class: lab
 routeAlias: lab7
 ---
 
-# {{ $slidev.configs.subject }}
-## Lab 7: Strings and Arrays
-
-Presented by {{ $slidev.configs.presenter }}
-
-Semester {{ $slidev.configs.semester }}
+# Lab 7: Strings and Arrays
+## {{ $slidev.configs.subject }}
+### Semester {{ $slidev.configs.semester }}
+#### Presented by {{ $slidev.configs.presenter }}
 
 ---
 

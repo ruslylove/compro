@@ -8,12 +8,10 @@ class: lab
 routeAlias: lab9
 ---
 
-# {{ $slidev.configs.subject }}
-## Lab 9: Pointers and File Operations
-
-Presented by {{ $slidev.configs.presenter }}
-
-Semester {{ $slidev.configs.semester }}
+# Lab 9: Pointers and File Operations
+## {{ $slidev.configs.subject }}
+### Semester {{ $slidev.configs.semester }}
+#### Presented by {{ $slidev.configs.presenter }}
 
 ---
 

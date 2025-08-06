@@ -8,12 +8,10 @@ class: lab
 routeAlias: lab4
 ---
 
-# {{ $slidev.configs.subject }}
-## Lab 4: Loops
-
-Presented by {{ $slidev.configs.presenter }}
-
-Semester {{ $slidev.configs.semester }}
+# Lab 4: Loops
+## {{ $slidev.configs.subject }}
+### Semester {{ $slidev.configs.semester }}
+#### Presented by {{ $slidev.configs.presenter }}
 
 ---
 

@@ -8,12 +8,10 @@ class: lab
 routeAlias: lab2 
 ---
 
-# {{ $slidev.configs.subject }}
-## Lab 2: Expressions
-
-Presented by {{ $slidev.configs.presenter }}
-
-Semester {{ $slidev.configs.semester }}
+# Lab 2: Expressions
+## {{ $slidev.configs.subject }}
+### Semester {{ $slidev.configs.semester }}
+#### Presented by {{ $slidev.configs.presenter }}
 
 ---
 

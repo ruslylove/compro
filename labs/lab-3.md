@@ -8,12 +8,10 @@ class: lab
 routeAlias: lab3
 ---
 
-# {{ $slidev.configs.subject }}
-## Lab 3: if-else and switch-case
-
-Presented by {{ $slidev.configs.presenter }}
-
-Semester {{ $slidev.configs.semester }}
+# Lab 3: if-else and switch-case
+## {{ $slidev.configs.subject }}
+### Semester {{ $slidev.configs.semester }}
+#### Presented by {{ $slidev.configs.presenter }}
 
 ---
 

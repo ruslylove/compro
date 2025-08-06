@@ -6,12 +6,11 @@ layout: cover
 title: Lecture 3 - Sequential and Conditional Program Flow
 ---
 
-# {{ $slidev.configs.subject }}
-## Lecture 3: Sequential and Conditional Program Flow
 
-Presented by {{ $slidev.configs.presenter }}
-
-Semester {{ $slidev.configs.semester }}
+# Lecture 3: Sequential and Conditional Program Flow
+## {{ $slidev.configs.subject }}
+### Semester {{ $slidev.configs.semester }}
+#### Presented by {{ $slidev.configs.presenter }}
 
 ---
 

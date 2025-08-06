@@ -6,12 +6,10 @@ layout: cover
 title: Lecture 9 - File Operations
 ---
 
-# {{ $slidev.configs.subject }}
-## Lecture 9: File Operations
-
-Presented by {{ $slidev.configs.presenter }}
-
-Semester {{ $slidev.configs.semester }}
+# Lecture 9: File Operations
+## {{ $slidev.configs.subject }}
+### Semester {{ $slidev.configs.semester }}
+#### Presented by {{ $slidev.configs.presenter }}
 
 ---
 
