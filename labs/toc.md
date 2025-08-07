@@ -3,29 +3,29 @@ src: ./assessment.md
 transition: slide-left
 ---
 ---
-src: ./lab-1.md
+src: ./lab-1-introduction-to-c-programming.md
 ---
 ---
-src: ./lab-2.md
+src: ./lab-2-expressions.md
 ---
 ---
-src: ./lab-3.md
+src: ./lab-3-if-else-and-switch-case.md
 ---
 ---
-src: ./lab-4.md
+src: ./lab-4-loops.md
 ---
 ---
-src: ./lab-5.md
+src: ./lab-5-functions.md
 ---
 ---
-src: ./lab-6.md
+src: ./lab-6-functions-and-arrays.md
 ---
 ---
-src: ./lab-7.md
+src: ./lab-7-strings-and-arrays.md
 ---
 ---
-src: ./lab-8.md
+src: ./lab-8-struct-and-union.md
 ---
 ---
-src: ./lab-9.md
+src: ./lab-9-pointers-and-file-operations.md
 ---

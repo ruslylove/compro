@@ -1,34 +1,34 @@
 ---
-src: ./lect-1.md
+src: ./lecture-1-introduction-and-overview.md
 transition: slide-left
 ---
 ---
-src: ./lect-2.md
+src: ./lecture-2-basic-data-types-and-using-expressions.md
 ---
 ---
-src: ./lect-3.md
+src: ./lecture-3-sequential-and-conditional-program-flow.md
 ---
 ---
-src: ./lect-4.md
+src: ./lecture-4-loop-control-structures.md
 ---
 ---
-src: ./lect-5.md
+src: ./lecture-5-functions-and-macros.md
 ---
 ---
-src: ./lect-6.md
+src: ./lecture-6-arrays-and-strings.md
 ---
 ---
-src: ./lect-7.md
+src: ./lecture-7-struct-union-and-enum.md
 ---
 ---
-src: ./lect-8.md
+src: ./lecture-8-pointers.md
 ---
 ---
-src: ./lect-9.md
+src: ./lecture-9-file-operations.md
 ---
 ---
-src: ./lect-10.md
+src: ./lecture-10-bitwise-operations.md
 ---
 ---
-src: ./lect-11.md
+src: ./lecture-11-make-and-makefile-cmake.md
 ---
