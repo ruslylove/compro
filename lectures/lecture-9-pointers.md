@@ -3,7 +3,7 @@ theme: seriph
 background: https://cover.sli.dev
 transition: slide-left
 layout: cover
-title: Lecture 8 - Pointers
+title: Lecture 9 - Pointers
 ---
 
 # Lecture 8: Pointers

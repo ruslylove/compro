@@ -3,7 +3,7 @@ theme: seriph
 background: https://cover.sli.dev
 transition: slide-left
 layout: cover
-title: Lecture 9 - File Operations
+title: Lecture 10 - File Operations
 ---
 
 # Lecture 9: File Operations

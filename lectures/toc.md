@@ -15,20 +15,23 @@ src: ./lecture-4-loop-control-structures.md
 src: ./lecture-5-functions-and-macros.md
 ---
 ---
-src: ./lecture-6-arrays-and-strings.md
+src: ./lecture-6-arrays.md
 ---
 ---
-src: ./lecture-7-struct-union-and-enum.md
+src: ./lecture-7-strings.md
 ---
 ---
-src: ./lecture-8-pointers.md
+src: ./lecture-8-struct-union-and-enum.md
 ---
 ---
-src: ./lecture-9-file-operations.md
+src: ./lecture-9-pointers.md
 ---
 ---
-src: ./lecture-10-bitwise-operations.md
+src: ./lecture-10-file-operations.md
 ---
 ---
-src: ./lecture-11-make-and-makefile-cmake.md
+src: ./lecture-11-bitwise-operations.md
+---
+---
+src: ./lecture-12-make-and-makefile-cmake.md
 ---

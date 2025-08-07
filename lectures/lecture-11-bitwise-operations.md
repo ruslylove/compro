@@ -3,7 +3,7 @@ theme: seriph
 background: https://cover.sli.dev
 transition: slide-left
 layout: cover
-title: Lecture 10 - Bitwise Operations
+title: Lecture 11 - Bitwise Operations
 ---
 
 # Lecture 10: Bitwise Operations

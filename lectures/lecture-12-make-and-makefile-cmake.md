@@ -3,7 +3,7 @@ theme: seriph
 background: https://cover.sli.dev
 transition: slide-left
 layout: cover
-title: Lecture 11 - make & Makefile / CMake
+title: Lecture 12 - make & Makefile / CMake
 ---
 
 # Lecture 11: make & Makefile / CMake
