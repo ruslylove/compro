@@ -116,13 +116,15 @@ layout: two-cols-header
 layout: two-cols-header
 ---
 
-## Function Definition Example 1: `max`
+## Function Definition Example: `max`
 
 :: left ::
 
 * **Problem:** Create a function that returns the larger of two integers.
 
-```c {*|15-21|17|18|1-13|2|3|5|8|12|19|*}{lines: true,maxHeight: '400px'}
+```c {4-23}{lines: true,maxHeight: '400px'}
+#include <stdio.h>
+
 // Function Definition
 int max(int num1, int num2) { // Returns int, takes two int parameters
     int result; // Local variable within the function
@@ -177,7 +179,7 @@ layout: two-cols-header
 ---
 
 
-## Function Definition Example 2: `sum`
+## Function Definition Example: `sum`
 
 :: left ::
 
@@ -185,6 +187,7 @@ layout: two-cols-header
 * **Problem:** Calculate the sum of integers from 1 to N.
 
 ```c {*}{lines:'true'}
+#include <stdio.h>
 // Function Definition
 int sum(int n) { // Returns int, takes one int parameter
     int i;
@@ -234,10 +237,12 @@ graph TD
 
 ## Functions Returning `void`
 
+
 * If a function doesn't need to send a value back to the caller (e.g., it just performs an action like printing), its `return_type` should be `void`.
 * A `return;` statement (with no value) can be used to exit a `void` function early, but it's often omitted if execution naturally reaches the end of the function body.
 
 ```c
+#include <stdio.h>
 // Function Definition (returns nothing)
 void print_greeting(int times) { // Returns void
     int i;
@@ -247,7 +252,6 @@ void print_greeting(int times) { // Returns void
     printf("\n");
     // No return value needed (or just 'return;')
 }
-
 // Example Usage
 int main() {
     print_greeting(3); // Call the function
@@ -257,11 +261,186 @@ int main() {
 ```
 
 ---
+layout: two-cols
+---
+
+## Function Types: `void` return, `void` parameters
+
+*   A function that performs an action but doesn't return any value and doesn't need any input.
+
+```c {*}{lines:'true'}
+#include <stdio.h> 
+
+// Function Definition
+void print_message(void) { // Returns void, takes no parameters
+    printf("This is a message from a void function.\n");
+}
+
+// Example Usage
+int main() {
+    print_message(); // Call the function
+    return 0;
+}
+```
+
+:: right ::
+
+*Output:*
+```text
+This is a message from a void function.
+```
+
+*   Useful for simple actions like printing a fixed message or performing an internal setup.
+
+<br>
+<div style="padding-left:100px">
+```mermaid
+graph TD
+    A["main()"] -.void parameter.-> B["print_message(void)"]
+    B -. void return .-> A
+```
+</div>
+
+---
+layout: two-cols
+---
+
+## Function Types: `value` return, `void` parameters
+*   A function that calculates or retrieves a value and returns it, but doesn't need any input from the caller.
+
+```c {*}{lines:'true'}
+#include <stdio.h> 
+
+// Function Definition
+int get_fixed_value(void) { // Returns int, takes no parameters
+    return 42; // Returns a fixed integer value
+}
+
+// Example Usage
+int main() {
+    int value = get_fixed_value(); // Call the function
+    printf("The fixed value is: %d\n", value);
+    return 0;
+}
+```
+
+:: right ::
+
+*Output:*
+```text
+42
+```
+
+*   Useful for functions that provide a constant, generate a random number, or read a global setting.
+
+<br>
+
+<div style="padding-left:100px">
+```mermaid
+graph TD
+    A["main()"] -.void parameter.-> B["get_fixed_value(void)"]
+    B -- return int --> A
+```
+</div>
+
+---
+layout: two-cols
+---
+
+## Function Types: `value` return, with `parameters`
+*   A function that takes input(s), performs a computation or operation, and returns a result. This is a very common type of function.
+
+```c {*}{lines:'true'}
+#include <stdio.h> 
+
+// Function Definition
+double multiply(double a, double b) { // Returns double, takes two double parameters
+    return a * b;
+}
+
+// Example Usage
+int main() {
+    double num1 = 10.5, num2 = 2.0;
+    double product = multiply(num1, num2); // Call the function
+    printf("Product: %.2f\n", product);
+    return 0;
+}
+```
+
+:: right ::
+
+*Output:*
+```text
+Product: 21.00
+```
+
+*   These functions are the workhorses for calculations and data transformations.
+
+<br>
+
+<div style="padding-left:60px">
+```mermaid
+graph TD
+    A["main()"] -- arguments: double,double --> B["multiply(double a, double b)"]
+    B -- return: double  --> A
+```
+</div>
+
+
+---
+layout: two-cols
+---
+
+## Function Types: `void` return, with `parameters`
+*   A function that takes input(s) and performs an action based on those inputs, but doesn't return any value.
+
+```c {*}{lines:'true'}
+#include <stdio.h> 
+
+// Function Definition
+void print_sum_and_diff(int x, int y) { // Returns void, takes two int parameters
+    printf("Sum: %d\n", x + y);
+    printf("Difference: %d\n", x - y);
+}
+
+// Example Usage
+int main() {
+    print_sum_and_diff(50, 15); // Call the function
+    return 0;
+}
+```
+
+:: right ::
+
+*Output:*
+```text
+Sum: 65
+Difference: 35
+```
+
+*   Useful for functions that directly interact with the user (e.g., printing), modify global variables, or perform I/O operations.
+
+<br>
+
+<div style="padding-left:100px">
+```mermaid
+graph TD
+    A["main()"] --arguments: int, int --> B["print_sum_and_diff(int x, int y)"]
+    B -. void return .-> A
+```
+
+</div>
+
+---
+layout: two-cols-header
+---
 
 ## Function Declaration (Prototypes)
-
 * Before you can *call* a function, the compiler needs to know about its existence, return type, name, and parameter types.
 * You achieve this by providing a **function declaration** (also called a **prototype**) *before* the first call.
+
+:: left ::
+
 * **Syntax:** `return_type function_name(parameter_type_list);`
     * It looks like the first line of the function definition, but ends with a semicolon `;` and doesn't include the function body `{}`.
     * Parameter names are optional in the declaration, but types are required.
@@ -281,6 +460,8 @@ int max(int num1, int num2) {
     return (num1 > num2) ? num1 : num2;
 }
 ```
+
+:: right ::
 
 * **Why declare?** Allows functions to be defined in any order or even in separate files. Standard library functions (like `printf`) are declared in header files (`stdio.h`) that we `#include`.
 
@@ -476,10 +657,55 @@ In main (after call): original_value = 10
 ```
 
 ---
+layout: two-cols-header
+hide: true
+---
+
+## Function Call Example: Multiple Parameters
+
+:: left ::
+
+* **Problem:** Create a function to display a product's details.
+
+```c {*}{lines:'true'}
+#include <stdio.h>
+
+// Function Definition
+// Takes an integer, a float, and a character
+void display_product(int id, float price, char grade) {
+    printf("Product Details:\n");
+    printf("  ID: %d\n", id);
+    printf("  Price: %.2f\n", price);
+    printf("  Grade: %c\n", grade);
+}
+
+// Example Usage
+int main() {
+    // Call the function with different data types
+    display_product(1001, 19.99, 'A');
+    return 0;
+}
+```
+
+:: right ::
+
+*Output:*
+```text
+Product Details:
+  ID: 1001
+  Price: 19.99
+  Grade: A
+```
+
+*   This example shows how a single function can accept arguments of various basic data types (`int`, `float`, `char`).
+*   The function call must provide arguments in the correct order and of the correct type as specified in the function's parameter list.
+
+---
 hide: true
 ---
 
 ## Function Call Stack (Conceptual)
+
 
 * When a function is called, the system uses a **call stack** to manage execution:
     1.  **Push:** Information about the current function (like where to return to) and space for the called function's local variables and parameters (copies of arguments) are pushed onto the stack.
@@ -523,7 +749,7 @@ layout: two-cols-header
     * Base Case: `factorial(0) = 1`
     * Recursive Step: `factorial(N) = N * factorial(N-1)` for N > 0.
 
-```c {*|4-14|18|4|6|10|12|4|6|10|12|4|6|10|12|4|6|10|12|4|6|7|12|12|12|12|18}{maxHeight:'200px',lines:'true'}
+```c {4-14}{maxHeight:'200px',lines:'true'}
 #include <stdio.h>
 
 // Recursive factorial function
@@ -570,7 +796,7 @@ layout: two-cols-header
     * Base Cases: `F(0) = 0`, `F(1) = 1`
     * Recursive Step: `F(N) = F(N-1) + F(N-2)` for N > 1.
 
-```c {*}{maxHeight:'200px',lines:'true'}
+```c {4-14}{maxHeight:'200px',lines:'true'}
 #include <stdio.h>
 
 // Recursive Fibonacci function
