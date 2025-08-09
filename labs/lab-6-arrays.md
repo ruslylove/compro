@@ -102,7 +102,7 @@ layout: two-cols-header
         *   Use a second array, `frequency[10]`, to count the occurrences of each number (assuming numbers are 0-9).
     4.  **Median:** The middle value of a *sorted* dataset.
         *   To find the median, you must first sort the `data` array, you may apply the frequency counting concept for sorting.
-    5.  Print the calculated mean, median, and mode.
+    5.  Print the calculated `mean`, `median`, and `mode`.
 
 ---
 layout: two-cols-header
@@ -123,7 +123,7 @@ layout: two-cols-header
 :: right ::
  
 4.  Write a function `void printGrid(int grid[][3], int rows)` that takes the 2D array and prints it.
-5.  The function should use nested loops to iterate through the grid. It should print a `* ` (star and space) for a `1` and `  ` (two spaces) for a `0`.
+5.  The function should use nested loops to iterate through the grid. It should print a `* ` (star and space) for a `1` and ` ` ` ` (two spaces) for a `0`.
 6.  Call `printGrid` from `main` to display the chosen dice face.
 7.  Your program should handle invalid input (numbers not between 1 and 6).
 *   **Example Output (for input 5):**
