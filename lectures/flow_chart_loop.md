@@ -1,5 +1,6 @@
 ---
 layout: default
+transition: slide-left
 ---
 ## Visualizing Logic: Flowcharts for Loops
 

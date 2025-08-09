@@ -1,6 +1,5 @@
 ---
-layout: default
----
+
 ## Visualizing Logic: Introduction to Flowcharts
 
 Before writing complex code, it's helpful to visualize the program's logic. A **flowchart** is a diagram that represents the step-by-step flow of a program.

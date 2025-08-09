@@ -25,11 +25,11 @@ mdc: true
 #  ogImage: https://cover.sli.dev
 # lineNumbers: true
 favicon: '/img/favicon_c_new.png'
+download: true
 
 presenter: Dr. Ruslee Sutthaweekul
 semester: 1/2025
 subject: 010153002 Computer Programming
-
 ---
 
 # Welcome to {{ $slidev.configs.subject }}
