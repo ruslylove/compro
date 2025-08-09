@@ -4,6 +4,7 @@ background: https://cover.sli.dev
 transition: slide-left
 layout: cover
 title: Lecture 6 - Arrays
+routeAlias: lecture6
 ---
 
 # Lecture 6: Arrays
