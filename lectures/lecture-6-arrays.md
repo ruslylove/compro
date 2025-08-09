@@ -32,7 +32,7 @@ title: Lecture 6 - Arrays
 
 ---
 
-## Motivating Example: Handling Multiple Data Items
+## Motivating: Handling Multiple Data Items
 
 * **Problem:** Consider needing to process the math scores for 10 students in a class. Tasks might include calculating the sum, average, max/min score, or ranking them.
 * **Approach Using Only Simple Variables:** We would need to declare 10 separate `float` variables (e.g., `x1`, `x2`, ..., `x10`). Reading input and calculating the sum would involve repetitive code for each variable:
@@ -43,7 +43,15 @@ title: Lecture 6 - Arrays
     scanf("%f", &x2); sum += x2;
     // ... repeat 10 times ...
     ```
-* **Challenge:** This becomes extremely cumbersome if we have 100 or 1000 students. We need a more efficient way to store and process collections of similar data. This leads us to **Arrays**.
+* **Challenge:** This becomes extremely cumbersome if we have 100 or 1000 students. 
+* **Using Loop?** How can we access different variables in a loop using a loop counter (e.g., `i`)?
+    ```c
+    for(int i=1; i<=10; i++) {
+      scanf("%f", &xi); sum += xi; // This is NOT valid C code!
+    }
+    
+    ```
+* This is where **Arrays** come in. An array lets us store and manage a collection of similar data items under a single `name`, accessed by a numerical `index`.
 
 ---
 
@@ -68,11 +76,39 @@ float prices[5]; // Elements are prices[0], prices[1], ..., prices[4]
 ```
 
 ---
+layout: two-cols-header
+---
+
+## Arrays in Memory: Indexing and Addresses
+A key feature of arrays is that their elements are stored in a single, unbroken block of memory. This is called **contiguous storage**.
+::left::
+* When you declare an array like `int data[5];`, the compiler reserves a continuous block of memory large enough to hold 5 integers.
+* The array's name (e.g., `data`) acts as a reference to the **base address**—the memory location of the very first element (`data[0]`)
+* When you access an element like `data[i]`, the computer performs a quick calculation to find its memory address:
+    
+    `address(data[i]) = base_address + (i * sizeof(int))`
+
+::right::
+* Consider `int data[5];` where `sizeof(int)` is 4 bytes and the array's base address is `0x1000`.
+
+```text
+      Index:      [0]      [1]      [2]      [3]      [4]
+                 +--------+--------+--------+--------+--------+
+Array `data`:    |        |        |        |        |        |
+                 +--------+--------+--------+--------+--------+
+Memory Address:  0x1000   0x1004   0x1008   0x100C   0x1010
+```
+
+*   **`data[0]`**: Located at `0x1000 + (0 * 4)` which is `0x1000`.
+*   **`data[3]`**: Located at `0x1000 + (3 * 4)` which is `0x1000 + 12`, or `0x100C` in hexadecimal.
+
+This is why indices start at 0. The index is an **offset** from the base address.
+
+---
 
 ## Array Initialization
 
 * You can initialize an array when you declare it using curly braces `{}`.
-* **Methods:**
     1.  **Full Initialization:** Provide values for all elements.
         ```c
         int numbers[5] = {10, 20, 30, 40, 50};
@@ -95,13 +131,18 @@ float prices[5]; // Elements are prices[0], prices[1], ..., prices[4]
         ```
 
 ---
+layout: two-cols-header
+---
 
 ## Accessing and Processing Array Elements
 
+
+
 * Use the array name followed by the index in square brackets `[]` to access or modify an element.
+::left::
 * Loops are the natural way to process all elements of an array.
 
-```c {*}{maxHeight:'300px',lines:true}
+```c {*}{lines:true}
 #include <stdio.h>
 
 int main() {
@@ -123,6 +164,22 @@ int main() {
     return 0;
 }
 ```
+
+::right::
+
+```mermaid {scale:0.53}
+graph TD
+    A([Start]) --> B["values[5] = {10, 20, 30, 40, 50}"]
+    B --> C[/"Print values[2]"/]
+    C --> D["values[3] = 44<br> i = 0"]
+    D --> F{i < 5?}
+    F -- Yes --> G["Print values[i] and a space"]
+    G --> H["i++"]
+    H --> F
+    F -- No --> I["Print newline character"]
+    I --> J([End])
+```
+
 
 ---
 
@@ -199,13 +256,15 @@ int main() {
 ```mermaid {scale:0.48}
 graph TD
 
-        A([Start]) --> B["NUM_STUDENTS=10, sum=0.0, i=0"];
+        A([Start]) --> A2["NUM_STUDENTS=10"]
+        A2 --> B["sum=0.0, <br> i=0"];
         B --> C{"i < NUM_STUDENTS?"};
         C -- Yes --> D[/"read score[i]"/];
         D --> D1["sum = sum + score[i]"] --> i++ --> C;
         C -- No --> E["average = sum / NUM_STUDENTS"] --> xx((A));
 
         style xx fill:#ff3;
+        style A fill:#6f6;
 ```
 
 <div style="top:20px;right:10px;position:absolute">
@@ -218,21 +277,24 @@ graph TD
         H -- Yes --> I["max = score[i]"] --> J; 
         H -- No --> J{"score[i] < min?"} -- No --> I2[i++] --> G;;
         J -- Yes --> K["min = score[i]"] --> I2;
-        G -- No --> L[/"print average<br>print max<br>print min"/];
+        G -- No --> L[/"print average, max, min"/];
         L --> M([End]);
 
         style xx fill:#ff3;
+        style M fill:#f66;
 ```
 </div>
 
-
+---
+layout: two-cols-header
 ---
 
 ## Example: Frequency Counting
+:: left ::
+*   A common task is to count how many times each number appears in a dataset.
+*   We use a second "frequency" array where the *index* corresponds to a value from the original `data` array.
 
-* Another common task is to count how many times each element appears in an array.
-* A simple way to do this for integer arrays with a known, limited range of values is to use a second "frequency" array.
-* The index of the frequency array corresponds to a value in the original array.
+
 
 ```c {*}{maxHeight:'300px',lines:true}
 #include <stdio.h>
@@ -266,6 +328,37 @@ int main() {
     return 0;
 }
 ```
+
+::right::
+
+<div style="top:10px;right:10px;position:absolute">
+```mermaid {scale:0.33}
+graph TD
+    subgraph Populate the frequency array
+        A([Start]) --> B["MAX_VALUE=100"]
+        B --> C["data = {4, 8, 4, 1, 1, 8, 9, 4, 5}<br>count = size of data <br>frequency[0..99] = 0 <br>i = 0"]
+        C --> D{i < count?}
+        D -- Yes --> E["`value = data[i]`"]
+        E --> F{"0 <= value < MAX_VALUE?"}
+        F -- Yes --> G["`frequency[value]++`"]
+        F -- No --> H
+        G --> H["i++"]
+        H --> D
+    end
+    subgraph Print frequency array
+        D -- No --> I["i = 0"]
+        I --> J{"i < MAX_VALUE?"}
+        J -- Yes --> K{"frequency[i] > 0?"}
+        K -- Yes --> L["Print frequency[i]"]
+        L --> M["i++"]
+        K -- No --> M
+        M --> J
+    end
+    J -- No --> N([End])
+```
+
+</div>
+
 
 ---
 
@@ -386,6 +479,8 @@ int table[2][3] = {
 };
 ```
 
+
+
 ---
 
 ## Initializing 2D Arrays
@@ -474,12 +569,56 @@ int main() {
 ```
 
 ---
+layout: two-cols-header
+---
+
+## 2D Arrays in Memory: Row-Major Order
+
+::left::
+* Even though we visualize a 2D array as a grid, in memory it is still a single, contiguous block of data. C stores 2D arrays in **row-major order**.
+* To find the address of an element `data[r][c]`, the computer needs to know the number of columns (`NUM_COLS`) to calculate the offset correctly. The formula is:
+    
+    `addr(data[r][c]) = base + (r * NUM_COLS + c) * sizeof(type)`
+
+    *   `r * NUM_COLS`: Skips over the previous rows.
+    *   `+ c`: Moves to the correct column in the current row.
+* This is why the column size **must** be specified when passing a 2D array to a function.
+
+::right::
+
+* Consider `int data[2][3];` where `sizeof(int)` is 4 bytes and the base address is `0x2000`.
+
+    **Logical Grid:**
+    ```text
+          [0]  [1]  [2]
+    [0]    A    B    C
+    [1]    D    E    F
+    ```
+
+    **Physical Memory Layout (Row-Major):**
+    ```text
+        Row 0 Elements      Row 1 Elements
+        +----+----+----+    +----+----+----+ 
+        | A  | B  | C  |    | D  | E  | F  |
+        +----+----+----+    +----+----+----+ 
+    Mem: 0x2000 ... 0x2008  0x200C ... 0x2014
+    ```
+
+<Transform scale="0.8">
+
+*   **`data[0][0]`**: `0x2000 + (0 * 3 + 0) * 4 = 0x2000`
+*   **`data[1][1]`**: `0x2000 + (1 * 3 + 1) * 4 = 0x2000 + 16 = 0x2010`
+</Transform>
+
+---
+layout: two-cols
+---
 
 ## Common 2D Array Operations: Matrix Summation
 
-* A practical example is adding two matrices together. The matrices must have the same dimensions.
+* Matrix addition is a fundamental operation where two matrices of the **same dimensions** are added together to produce a third matrix, also of the same dimensions.
 
-```c {*}{maxHeight:'380px',lines:true}
+```c {*}{maxHeight:'280px',lines:true}
 #include <stdio.h> 
 #define ROWS 2
 #define COLS 3
@@ -516,9 +655,100 @@ int main() {
 }
 ```
 
+:: right ::
+
+
+* The operation is performed **element-wise**. This means that each element in the resulting matrix is the sum of the elements at the corresponding positions in the original two matrices.
+* This logic is implemented in the C code using nested loops that iterate through each row (`r`) and column (`c`), performing the addition `a[r][c] + b[r][c]` for every element.
+* For two matrices, A and B, the element at row `i` and column `j` of the sum matrix C is calculated as: $S_{ij} = A_{ij} + B_{ij}$
+
+$$
+\begin{pmatrix}
+1 & 2 & 3 \\ 
+4 & 5 & 6 
+\end{pmatrix} 
+\begin{pmatrix}                                                                                                                                                                                             
+10 & 11 & 12 \\ 
+13 & 14 & 15                                                                                                                                                                               
+\end{pmatrix}                                                                                                                                                                                               
+=                                                                                                                                                                                                          
+\begin{pmatrix}                                                                                                                                                                                             
+11 & 13 & 15 \\ 
+17 & 19 & 21                                                                                                                                                                               
+\end{pmatrix}                                                                                                                                                                                               
+$$         
+
+---
+layout: two-cols
+---
+
+## 2D Array Example: Binary Image
+* A 2D array is perfect for representing a simple grid, like a monochrome image. Each element in the array corresponds to a pixel.
+
+<div style="padding-right:30px">
+
+*output:*
+```text
+      * *       
+      * *       
+      * *       
+* * * * * * * * 
+* * * * * * * * 
+      * *       
+      * *       
+      * *       
+```
+
+</div>
+
+::right::
+
+* Here, we use `1` for the foreground (the character `*`) and `0` for the background (a space).
+* The code iterates through each row and column, printing the corresponding character to "draw" the image in the console.
+
+```c {*}{maxHeight:'250px',lines:true}
+#include <stdio.h>
+
+#define ROWS 8
+#define COLS 8
+
+int main() {
+    // A 2D array representing a simple cross sign
+    int image[ROWS][COLS] = {
+        {0, 0, 0, 1, 1, 0, 0, 0},
+        {0, 0, 0, 1, 1, 0, 0, 0},
+        {0, 0, 0, 1, 1, 0, 0, 0},
+        {1, 1, 1, 1, 1, 1, 1, 1},
+        {1, 1, 1, 1, 1, 1, 1, 1},
+        {0, 0, 0, 1, 1, 0, 0, 0},
+        {0, 0, 0, 1, 1, 0, 0, 0},
+        {0, 0, 0, 1, 1, 0, 0, 0}
+    };
+
+    // Loop to print the image
+    for (int r = 0; r < ROWS; r++) {
+        for (int c = 0; c < COLS; c++) {
+            if (image[r][c] == 1) {
+                printf("* ");
+            } else {
+                printf("  ");
+            }
+        }
+        printf("\n");
+    }
+    return 0;
+}
+```
+
+* This demonstrates a fundamental concept in computer graphics.
+
+
+
+
 ---
 
 ## Summary
+
 
 *   **1D Arrays:** A fixed-size, sequential collection of elements of the same type, accessed via a zero-based index (e.g., `my_array[0]`).
 *   **2D Arrays:** An "array of arrays" used to represent grids or matrices, accessed with two indices (e.g., `matrix[row][col]`).
