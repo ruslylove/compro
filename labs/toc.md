@@ -18,7 +18,7 @@ src: ./lab-4-loops.md
 src: ./lab-5-functions.md
 ---
 ---
-src: ./lab-6-functions-and-arrays.md
+src: ./lab-6-arrays.md
 ---
 ---
 src: ./lab-7-strings-and-arrays.md

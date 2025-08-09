@@ -362,6 +362,65 @@ graph TD
 
 ---
 
+## Example: Sorting with Bubble Sort
+<div style="padding-right:130px">
+
+*   **Bubble Sort** is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted.
+*   The outer loop ensures that we pass through the array enough times to sort it completely.
+*   The inner loop "bubbles" the largest unsorted element to its correct position at the end of the unsorted part of the array.
+
+</div>
+
+<div style="padding-right:150px">
+```c {*|8-17}{maxHeight:'250px', lines: 'true'}
+#include <stdio.h>
+
+int main() {
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    int n = sizeof(arr)/sizeof(arr[0]);
+
+    int i, j, temp;
+    for (i = 0; i < n - 1; i++) {
+        for (j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // swap arr[j] and arr[j+1]
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+    
+    printf("Sorted array: \n");
+    // (code to print array would go here)
+    return 0;
+}
+```
+</div>
+
+
+<div style="top:20px;right:10px;position:absolute">
+```mermaid {scale:0.45}
+graph TD
+    A([Start]) --> B["i = 0"]
+    B --> C{"i < n-1?"}
+    C -- Yes --> D["j = 0"]
+    D --> E{"j < n-i-1?"}
+    E -- Yes --> F{"arr[j] > arr[j+1]?"}
+    F -- Yes --> G["Swap arr[j], arr[j+1]"]
+    F -- No --> H["j++"]
+    G --> H
+    H --> E
+    E -- No --> I["i++"]
+    I --> C
+    C -- No --> J([End])
+```
+</div>
+
+
+
+---
+
 ## Passing 1D Arrays to Functions
 
 * When you pass an array to a function, you are not passing a copy of the entire array. Instead, you are passing the **memory address** of its first element.
