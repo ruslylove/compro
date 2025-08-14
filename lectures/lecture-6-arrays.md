@@ -418,58 +418,6 @@ graph TD
 ```
 </div>
 
-
-
----
-
-## Passing 1D Arrays to Functions
-
-* When you pass an array to a function, you are not passing a copy of the entire array. Instead, you are passing the **memory address** of its first element.
-* This means the function can directly access and **modify** the original array elements. This is known as **pass-by-reference** behavior.
-* **Function Parameter Syntax:**
-    * `void myFunction(int arr[], int size)` (preferred, clear it's an array)
-    * `void myFunction(int* arr, int size)` (equivalent, uses pointer syntax)
-* You must also pass the array's size as a separate parameter because the function itself doesn't know how big the array is. (`sizeof(arr)` inside the function would just give the size of a pointer, not the whole array).
-
----
-
-## Passing 1D Arrays to Functions: Example
-
-```c {*}{maxHeight:'430px',lines:true}
-#include <stdio.h>
-
-// This function takes an array and its size, and prints all its elements.
-void printArray(int arr[], int size) {
-    printf("Array contents: ");
-    for (int i = 0; i < size; i++) {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
-}
-
-// This function modifies an element in the original array.
-void modifyArray(int arr[], int index, int newValue) {
-    if (index >= 0) { // Basic bounds check
-        arr[index] = newValue;
-    }
-}
-
-int main() {
-    int my_numbers[] = {10, 20, 30, 40, 50};
-    int count = 5;
-
-    printArray(my_numbers, count); // Pass array and size
-
-    modifyArray(my_numbers, 2, 999); // Modify the element at index 2
-
-    printf("After modification:\n");
-    printArray(my_numbers, count); // The original array is changed!
-    // Output: Array contents: 10 20 999 40 50
-
-    return 0;
-}
-```
-
 ---
  
 ## Array Bounds and Potential Errors
@@ -517,6 +465,111 @@ int main() {
 ```
 
 * Always be careful with array indices, especially in loops and calculations.
+
+---
+
+## Passing 1D Arrays to Functions
+
+* When you pass an array to a function, you are not passing a copy of the entire array. Instead, you are passing the **memory address** of its first element.
+* This means the function can directly access and **modify** the original array elements. This is known as **pass-by-reference** behavior.
+* **Function Parameter Syntax:**
+    * `void myFunction(int arr[], int size)` (preferred, clear it's an array)
+    * `void myFunction(int* arr, int size)` (equivalent, uses pointer syntax)
+* You must also pass the array's size as a separate parameter because the function itself doesn't know how big the array is. (`sizeof(arr)` inside the function would just give the size of a pointer, not the whole array).
+
+
+
+---
+
+## Passing 1D Arrays to Functions: Example
+
+```c {*}{maxHeight:'430px',lines:true}
+#include <stdio.h>
+
+// This function takes an array and its size, and prints all its elements.
+void printArray(int arr[], int size) {
+    printf("Array contents: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+// This function modifies an element in the original array.
+void modifyArray(int arr[], int index, int newValue) {
+    if (index >= 0) { // Basic bounds check
+        arr[index] = newValue;
+    }
+}
+
+int main() {
+    int my_numbers[] = {10, 20, 30, 40, 50};
+    int count = 5;
+
+    printArray(my_numbers, count); // Pass array and size
+
+    modifyArray(my_numbers, 2, 999); // Modify the element at index 2
+
+    printf("After modification:\n");
+    printArray(my_numbers, count); // The original array is changed!
+    // Output: Array contents: 10 20 999 40 50
+
+    return 0;
+}
+```
+
+---
+layout: two-cols-header
+---
+
+## Pass-by-Value vs. Pass-by-Reference
+
+::left::
+
+### Pass-by-Value (e.g., `int`, `float`)
+
+*   A **copy** of the argument's value is passed to the function.
+*   Changes inside the function **do not** affect the original variable.
+
+<div style="padding-right:30px">
+
+```c
+void increment(int num) {
+    num = num + 1; // num is a copy
+}
+
+int main() {
+    int x = 10;
+    increment(x);
+    // x is still 10
+    return 0;
+}
+```
+</div>
+
+::right::
+
+### Pass-by-Reference (Arrays)
+
+*   A **reference** (memory address) to the original array is passed.
+*   Changes inside the function **do** affect the original array.
+
+```c
+void double_elements(int arr[], int size) {
+    for (int i=0; i<size; i++) {
+        arr[i] *= 2; // Modifies original
+    }
+}
+
+int main() {
+    int data[] = {1, 2, 3};
+    double_elements(data, 3);
+    // data is now {2, 4, 6}
+    return 0;
+}
+```
+
+
 
 ---
 
