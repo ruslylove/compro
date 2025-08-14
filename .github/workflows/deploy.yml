@@ -31,9 +31,6 @@ jobs:
       - name: Install dependencies
         run: nci
 
-      - name: Install Playwright for Slidev export
-        run: npm i -D playwright-chromium
-
       - name: Build
         run: nr build --base /${{github.event.repository.name}} 
 
