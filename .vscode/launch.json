@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/rus/development/compro/code",
-      "program": "/Users/rus/development/compro/code/build/Debug/outDebug"
+      "cwd": "/Users/rus/Development/slidev/compro/code",
+      "program": "/Users/rus/Development/slidev/compro/code/build/Debug/outDebug"
     }
   ]
 }
