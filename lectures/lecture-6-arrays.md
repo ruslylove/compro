@@ -744,45 +744,31 @@ layout: two-cols
 
 ## 2D Array Example: Binary Image
 * A 2D array is perfect for representing a simple grid, like a monochrome image. Each element in the array corresponds to a pixel.
-
-<div style="padding-right:30px">
-
-*output:*
-```text
-      * *       
-      * *       
-      * *       
-* * * * * * * * 
-* * * * * * * * 
-      * *       
-      * *       
-      * *       
-```
-
-</div>
+* Here, we use `1` for the foreground (the character `*`) and `0` for the background (a space).
+* The code iterates through each row and column, printing the corresponding character to "draw" the image in the console.
+* This demonstrates a fundamental concept in computer graphics.
 
 ::right::
 
-* Here, we use `1` for the foreground (the character `*`) and `0` for the background (a space).
-* The code iterates through each row and column, printing the corresponding character to "draw" the image in the console.
+*code:*
 
-```c {*}{maxHeight:'250px',lines:true}
+```c {*}{maxHeight:'260px',lines:true}
 #include <stdio.h>
 
 #define ROWS 8
 #define COLS 8
 
 int main() {
-    // A 2D array representing a simple cross sign
+    // A 2D array representing the letter 'F'
     int image[ROWS][COLS] = {
-        {0, 0, 0, 1, 1, 0, 0, 0},
-        {0, 0, 0, 1, 1, 0, 0, 0},
-        {0, 0, 0, 1, 1, 0, 0, 0},
-        {1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 1, 1, 1, 1, 1, 1, 1},
-        {0, 0, 0, 1, 1, 0, 0, 0},
-        {0, 0, 0, 1, 1, 0, 0, 0},
-        {0, 0, 0, 1, 1, 0, 0, 0}
+        {1, 1, 1, 1, 1, 0, 0, 0},
+        {1, 0, 0, 0, 0, 0, 0, 0},
+        {1, 1, 1, 1, 0, 0, 0, 0},
+        {1, 0, 0, 0, 0, 0, 0, 0},
+        {1, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0}
     };
 
     // Loop to print the image
@@ -800,11 +786,95 @@ int main() {
 }
 ```
 
-* This demonstrates a fundamental concept in computer graphics.
+*output:*
+
+```text
+* * * * *   
+*           
+* * * *     
+*           
+*           
+```
 
 
 
+---
+layout: two-cols-header
+---
 
+## 2D Array Example: Image Manipulation
+
+Transformations can be applied by mapping pixels from an original image to a new one.
+
+:: left ::
+
+*   **Horizontal Flip:** Reverse pixels in each row.
+    `new[r][c] = old[r][COLS - 1 - c]`
+*   **Vertical Flip:** Reverse the order of rows.
+    `new[r][c] = old[ROWS - 1 - r][c]`
+*   **Transpose:** Swap rows with columns.
+    `new[c][r] = old[r][c]`
+
+```c
+// Example: Transpose
+for (int r=0; r<ROWS; r++) {
+    for (int c=0; c<COLS; c++) {
+        transposed[c][r] = image[r][c];
+    }
+}
+```
+
+::right::
+<div class="grid grid-cols-2 gap-11 items-start" style="padding-left:30px;padding-bottom:10px">
+<div>
+
+**Original**
+```text
+* * * * *   
+*           
+* * * *     
+*           
+*           
+```
+</div>
+<div>
+
+**Horizontal Flip**
+```text
+   * * * * *
+           *
+     * * * *
+           *
+           *
+```
+
+</div>
+
+<div>
+
+**Vertical Flip**
+```text
+*           
+*           
+* * * *     
+*           
+* * * * *   
+```
+
+</div>
+
+<div>
+
+**Transpose**
+```text
+* * * * *
+*   *    
+*   *    
+*   *    
+*        
+```
+</div>
+</div>
 ---
 
 ## Summary
