@@ -3,12 +3,12 @@ theme: seriph
 background: https://cover.sli.dev
 transition: slide-left
 layout: cover
-title: Lab 7 - Strings and Arrays
+title: Lab 7 - Strings
 class: lab
 routeAlias: lab7
 ---
 
-# Lab 7: Strings and Arrays
+# Lab 7: Strings
 ## {{ $slidev.configs.subject }}
 ### Semester {{ $slidev.configs.semester }}
 #### Presented by {{ $slidev.configs.presenter }}

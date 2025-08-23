@@ -67,6 +67,8 @@ Value: |'H'|'e'|'l'|'l'|'o'|'\0'| ? | ... | ?  |
 * The null terminator `\0` is crucial for standard string functions to know where the string ends.
 
 ---
+layout: two-cols
+---
 
 ## String Input/Output (`scanf`, `printf`)
 
@@ -74,22 +76,28 @@ Value: |'H'|'e'|'l'|'l'|'o'|'\0'| ? | ... | ?  |
 * **`printf("%s", char_array);`**: Prints characters from the array starting at the given address until it encounters the null terminator `\0`.
 * **`scanf("%s", char_array);`**: Reads characters from standard input (keyboard) and stores them into the `char_array`.
     * It automatically adds the null terminator `\0` after the characters read.
-    * **WARNING:** `scanf("%s", ...)` stops reading at the first whitespace character (space, tab, newline). More importantly, it **does not check the size of the array**. If the user types more characters than the array can hold, it will cause a **buffer overflow** - a major security vulnerability!
 
-```c
-#include <stdio.h> 
 
-int main() {
-    char name[10]; // Small buffer to demonstrate the danger
+:: right ::
 
-    printf("Enter your name: ");
-    scanf("%s", name); // DANGEROUS! If user types "Christopher", it overflows.
+* **WARNING:** `scanf("%s", ...)` stops reading at the first whitespace character (space, tab, newline). More importantly, it **does not check the size of the array**. If the user types more characters than the array can hold, it will cause a **buffer overflow** - a major security vulnerability!
 
-    printf("Hello, %s!\n", name);
-    return 0;
-}
-```
+    ```c {*}
+    #include <stdio.h> 
 
+    int main() {
+        char name[10]; // Small buffer to demonstrate the danger
+
+        printf("Enter your name: ");
+        scanf("%s", name); // DANGEROUS! If user types "Christopher", it overflows.
+
+        printf("Hello, %s!\n", name);
+        return 0;
+    }
+    ```
+
+---
+layout: two-cols
 ---
 
 ## Safer String Input: `fgets`
@@ -101,28 +109,31 @@ int main() {
     * `stream`: The input source (e.g., `stdin` for keyboard).
 * **Behavior:**
     * Reads characters until a newline `\n` is found, `EOF` is reached, or `size - 1` characters have been read.
-    * **Includes the newline character `\n`** in the buffer if it was read. You often need to remove it.
-    * Always null-terminates the string.
 
-```c {*}{maxHeight:'300px',lines:true}
-#include <stdio.h>
-#include <string.h> // For strcspn
 
-#define BUFFER_SIZE 20
+:: right ::
 
-int main() {
-    char full_name[BUFFER_SIZE];
+* **Includes the newline character `\n`** in the buffer if it was read. You often need to remove it.
+* Always null-terminates the string.
+    ```c {*}
+    #include <stdio.h>
+    #include <string.h> // For strcspn
 
-    printf("Enter your full name: ");
-    if (fgets(full_name, BUFFER_SIZE, stdin) != NULL) {
-        // Remove the trailing newline, if it exists
-        full_name[strcspn(full_name, "\n")] = 0;
-        
-        printf("Welcome, %s!\n", full_name);
+    #define BUFFER_SIZE 20
+
+    int main() {
+        char full_name[BUFFER_SIZE];
+
+        printf("Enter your full name: ");
+        if (fgets(full_name, BUFFER_SIZE, stdin) != NULL) {
+            // Remove the trailing newline, if it exists
+            full_name[strcspn(full_name, "\n")] = 0;
+            
+            printf("Welcome, %s!\n", full_name);
+        }
+        return 0;
     }
-    return 0;
-}
-```
+    ```
 
 ---
 
@@ -141,6 +152,8 @@ int main() {
 | `strcmp(str1, str2)` | Compares two strings lexicographically. |
 
 ---
+layout: two-cols
+---
 
 ## `strlen()` and `strcmp()`
 
@@ -150,8 +163,9 @@ int main() {
     * Returns `0` if `str1` is equal to `str2`.
     * Returns `> 0` if `str1` comes after `str2`.
 
-```c {*}{maxHeight:'300px',lines:true}
-#include <stdio.h>
+:: right ::
+
+```c {*}
 #include <string.h>
 
 int main() {
@@ -175,13 +189,18 @@ int main() {
 ```
 
 ---
+layout: two-cols
+---
+
 
 ## `strcpy()` and `strcat()` (Unsafe vs. Safer)
 
 * **Unsafe versions (`strcpy`, `strcat`)** are a common source of bugs and security holes because they don't check if the destination buffer is large enough.
 * **Safer versions (`strncpy`, `strncat`)** are preferred. They take a size argument to prevent writing past the end of the buffer.
 
-```c {*}{maxHeight:'300px',lines:true}
+:: right ::
+
+```c {*}
 #include <stdio.h>
 #include <string.h>
 
@@ -213,7 +232,7 @@ int main() {
 * An array of strings is essentially a 2D array of characters.
 * **Declaration:** `char array_name[num_strings][max_string_length];`
 
-```c {*}{maxHeight:'300px',lines:true}
+```c {4-23}{maxHeight:'360px',lines:true}
 #include <stdio.h>
 #include <string.h>
 
@@ -238,6 +257,7 @@ int main() {
     return 0;
 }
 ```
+
 
 ---
 

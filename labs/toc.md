@@ -21,7 +21,7 @@ src: ./lab-5-functions.md
 src: ./lab-6-arrays.md
 ---
 ---
-src: ./lab-7-strings-and-arrays.md
+src: ./lab-7-string.md
 ---
 ---
 src: ./lab-8-struct-and-union.md
