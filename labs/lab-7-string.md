@@ -17,28 +17,29 @@ routeAlias: lab7
 
 ## Objectives
 
-*   **Perform advanced array and string manipulation**
-    *   Implement complex algorithms for sorting, searching, and data transformation on arrays.
-    *   Write functions for sophisticated string processing, such as parsing and cleaning.
-*   **Work with multi-dimensional arrays**
-    *   Pass 2D arrays to functions to represent and manipulate matrices or grids.
-*   **Develop robust in-place algorithms**
-    *   Create functions that modify arrays or strings directly in memory without needing extra copies, saving space.
-*   **Combine loops, conditional logic, and functions**
-    *   Solve multi-step problems by integrating different programming constructs into a cohesive solution.
+*   **Master string manipulation within functions:**
+    *   Pass strings to functions for in-place modification (e.g., Title Case, Reverse String).
+    *   Pass arrays of strings (2D character arrays) to functions for searching.
+*   **Implement common string processing algorithms:**
+    *   Parse strings to count character frequencies or find the longest word.
+    *   Clean and normalize string data by removing redundant whitespace.
+*   **Develop efficient in-place modification techniques:**
+    *   Modify strings directly in memory using two-pointer/index approaches.
+*   **Utilize the C standard libraries for string operations:**
+    *   Apply functions from `<string.h>` (like `strcmp`) and `<ctype.h>` (like `tolower`, `toupper`) to solve problems.
 
 ---
 
 ## Lab Outline
 
 *   **Exercise 1: Character Frequency Count**
-    *   Use an array as a frequency map to count character occurrences in a string.
-*   **Exercise 2: Insert into Sorted Array**
-    *   Manipulate a sorted array to insert new elements while maintaining order.
+    *   Count character occurrences in a string.
+*   **Exercise 2: Convert String to Title Case**
+    *   Practice passing a string to a function for in-place modification.
 *   **Exercise 3: Remove Redundant Blanks from String**
     *   Perform in-place string cleaning and normalization.
-*   **Exercise 4: Matrix Addition**
-    *   Work with 2D arrays by passing them to a function.
+*   **Exercise 4: Search for a Name in a List**
+    *   Practice passing an array of strings to a function.
 *   **Exercise 5: Reverse a String In-Place**
     *   Modify a character array directly to reverse its contents.
 *   **Exercise 6: Find the Longest Word**
@@ -60,22 +61,25 @@ routeAlias: lab7
 
 ---
 
-## Exercise 2: Insert into Sorted Array
+## Exercise 2: Convert String to Title Case
 
-*   **Task:** Write a function to insert a number into a sorted integer array while maintaining its sorted order.
-*   **📝 Flowchart First:** Draw a flowchart for the insertion logic. It must show how to find the correct position and how to shift elements to make space.
-*   **Function Signature:** `int insertIntoSorted(int arr[], int currentSize, int capacity, int key)`
-    *   `arr`: The sorted array.
-    *   `currentSize`: The number of elements currently in the array.
-    *   `capacity`: The maximum size of the array.
-    *   `key`: The integer to insert.
-    *   **Return:** The new size of the array, or -1 if the array is full.
+*   **Task:** Write a function that converts a string to "title case," where the first letter of each word is capitalized and the rest are lowercase.
+*   **📝 Flowchart First:** Draw a flowchart for the `toTitleCase` function. It should show the loop and the conditional logic for capitalizing or lowercasing each character.
+*   **Function Signature:** `void toTitleCase(char str[])`
 *   **Requirements:**
-    1.  Find the position where `key` should be inserted.
-    2.  Shift all elements from that position to the right by one.
-    3.  Place `key` into its correct spot.
-    4.  In `main`, start with a partially-filled sorted array and insert several new numbers, printing the array after each insertion.
+    1.  The function must modify the string **in-place**.
+    2.  The first character of the string should always be capitalized.
+    3.  Any character that follows a space should be capitalized.
+    4.  All other alphabetic characters should be converted to lowercase.
+    5.  Use `toupper()` and `tolower()` from `<ctype.h>`.
+    6.  In `main`, create a test string like `"hELLo wORLd, how ARE yoU?"`,<br> print it, call `toTitleCase`, and print the modified string.
 
+<div style="position:fixed;bottom:170px;right:40px;padding-bottom:30px">
+
+*   **Example:**
+    *   Input: `"a lIttLe tEa pOt"`
+    *   Output: `"A Little Tea Pot"`
+</div>
 ---
 
 ## Exercise 3: Remove Redundant Blanks from String
@@ -91,18 +95,25 @@ routeAlias: lab7
 *   **Hint (In-place):** Use a "read" index `i` and a "write" index `j`. Iterate with `i` through the original string. Copy a character from `str[i]` to `str[j]` only if it's not a redundant space. Increment `j` only when you write a character.
 
 ---
+layout: two-cols-header
+---
 
-## Exercise 4: Matrix Addition
+## Exercise 4: Search for a Name in a List
 
-*   **Task:** Write a function that performs matrix addition.
-*   **Function Signature:** `void addMatrices(int A[][3], int B[][3], int C[][3], int rows, int cols)`
-*   **Logic:** To add two matrices, you add their corresponding elements. `C[i][j] = A[i][j] + B[i][j]`.
+*   **Task:** Write a function that searches for a specific name within an array of strings.
+:: left ::
+*   **Function Signature:** `int findName(const char names[][50], int size, const char searchKey[])`
+    *   `names`: The 2D character array (array of strings).
+    *   `size`: The number of names in the array.
+    *   `searchKey`: The string (name) to search for.
+    *   **Return:** The index of the name if found; otherwise, return -1.
 *   **Requirements:**
-    1.  Implement the `addMatrices` function. It will take two input matrices (`A`, `B`) and store the result in a third matrix (`C`).
-    2.  Also create a `void printMatrix(int M[][3], int rows, int cols)` function.
-    3.  In `main`, define and initialize two 2D arrays (e.g., 3x3).
-    4.  Declare a third 2D array to hold the result.
-    5.  Call `addMatrices`, then call `printMatrix` to display the resulting matrix.
+    1.  In `main`, define an array of strings, e.g., `char nameList[5][50] = {"Alice", "Bob", "Charlie", "David", "Eve"};`.
+:: right ::
+2.  Prompt the user to enter a name to search for.
+3.  Implement the `findName` function. Inside, use a loop and `strcmp()` from `<string.h>` to compare the `searchKey` with each name in the `names` array.
+4.  Call `findName` from `main`.
+5.  Based on the return value, print a message indicating whether the name was found and at what index (e.g., `"Found 'Charlie' at index 2."` or `"'Frank' was not found."`).
 
 ---
 
@@ -111,12 +122,12 @@ routeAlias: lab7
 *   **Task:** Write a function that reverses a string in-place.
 *   **Function Signature:** `void reverseString(char str[])`
 *   **Algorithm:**
-    1.  Use two pointers (or indices), one at the start of the string and one at the end.
-    2.  Swap the characters at the start and end pointers.
-    3.  Move the start pointer forward and the end pointer backward.
-    4.  Repeat until the pointers meet or cross each other.
+    1.  Use two indices, one at the start of the string and one at the end.
+    2.  Swap the characters at the start and end indices.
+    3.  increase the start index and decrease the end index.
+    4.  Repeat until the indices are equal to each other.
 *   **Requirements:**
-    1.  Implement the `reverseString` function. It must not create a new copy of the string.
+    1.  Implement the `reverseString` function. It **must not create a new copy** of the string.
     2.  In `main`, create a string, print it, call `reverseString`, and print the reversed result.
     3.  Example: `"hello"` should become `"olleh"`.
 
