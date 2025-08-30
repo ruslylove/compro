@@ -12,6 +12,8 @@ title: Lecture 7 - Strings
 #### Presented by {{ $slidev.configs.presenter }}
 
 ---
+layout: two-cols
+---
 
 ## Lecture Outline
 
@@ -27,8 +29,18 @@ title: Lecture 7 - Strings
     *   Copying: `strcpy` (unsafe) & `strncpy` (safer)
     *   Concatenation: `strcat` (unsafe) & `strncat` (safer)
     *   Comparison: `strcmp`
-4.  **Arrays of Strings**
+
+:: right ::
+
+4.  **Strings and Functions**
+    *   Passing Strings to Functions
+5.  **Arrays of Strings**
     *   Declaration and Processing
+    *   Passing Arrays of Strings to Functions
+6.  **Advanced String Examples**
+    *   Example 1: Palindrome Checker
+    *   Example 2: String Tokenization (`strtok`)
+    *   Example 3: Basic String to Integer (`atoi`)
 
 ---
 
@@ -226,6 +238,42 @@ int main() {
 ```
 
 ---
+layout: two-cols
+---
+
+## Passing Strings to Functions
+
+*   Since strings are character arrays, they follow the same rules as passing other arrays to functions: they are **passed by reference**.
+*   The function receives the memory address of the first character of the string.
+*   This means the function can **directly modify** the original string in the calling function.
+*   In a function parameter list, `char str[]` is equivalent to `char *str`.
+*   Use `const char str[]` if the function should not modify the string. This is good practice for read-only operations.
+
+:: right ::
+
+```c {*}
+#include <stdio.h>
+#include <ctype.h> // For toupper()
+
+// This function modifies the string in-place
+void to_uppercase(char str[]) {
+    for (int i = 0; str[i] != '\0'; i++) {
+        str[i] = toupper(str[i]);
+    }
+}
+
+int main() {
+    char message[] = "hello world";
+    
+    printf("Original: %s\n", message);
+    to_uppercase(message); // Pass the string (its address)
+    printf("Uppercase: %s\n", message); // The original is changed
+
+    return 0;
+}
+```
+
+---
 
 ## Arrays of Strings
 
@@ -258,7 +306,182 @@ int main() {
 }
 ```
 
+---
+layout: two-cols
+---
 
+## Passing Arrays of Strings to Functions
+
+*   To pass a 2D character array (an array of strings) to a function, you must specify the size of the second dimension (the max string length).
+*   This is because the compiler needs to know the column size to calculate memory offsets.
+*   **Syntax:** `void function_name(char arr[][MAX_LEN], int num_strings)`
+
+:: right ::
+
+```c {*}
+#include <stdio.h>
+
+#define NUM_NAMES 4
+#define MAX_NAME_LEN 20
+
+// The second dimension size (20) must be specified
+void print_names(char names[][MAX_NAME_LEN], int size) {
+    printf("--- List of Names ---\n");
+    for (int i = 0; i < size; i++) {
+        printf("- %s\n", names[i]);
+    }
+}
+
+int main() {
+    char names[NUM_NAMES][MAX_NAME_LEN] = {
+        "Alice", "Bob", "Charlie", "David"
+    };
+    print_names(names, NUM_NAMES);
+    return 0;
+}
+```
+---
+layout: two-cols
+---
+
+## Example 1: Palindrome Checker
+
+*   A **palindrome** is a word or phrase that reads the same forwards and backwards (e.g., "racecar", "madam").
+*   **Algorithm:**
+    1.  Use two indices: `left` starting at the beginning (0) and `right` starting at the end (`strlen(str) - 1`).
+    2.  In a loop, compare the characters at `str[left]` and `str[right]`.
+    3.  If they are ever different, it's not a palindrome.
+    4.  If they are the same, move the pointers closer: `left++`, `right--`.
+    5.  Stop when `left` is no longer less than `right`.
+
+:: right ::
+
+```c {*}
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h> // For bool type
+
+// Use const because we are not modifying the string
+bool is_palindrome(const char str[]) {
+    int left = 0;
+    int right = strlen(str) - 1;
+
+    while (left < right) {
+        if (str[left] != str[right]) {
+            return false; // Mismatch found
+        }
+        left++;
+        right--;
+    }
+    return true; // All characters matched
+}
+
+int main() {
+    char test1[] = "racecar";
+    char test2[] = "hello";
+    printf("\"%s\" is a palindrome? %s\n", test1, is_palindrome(test1) ? "Yes" : "No");
+    printf("\"%s\" is a palindrome? %s\n", test2, is_palindrome(test2) ? "Yes" : "No");
+    return 0;
+}
+```
+
+---
+layout: two-cols
+---
+
+## Example 2: String Tokenization (`strtok`)
+
+*   **Tokenization** is the process of breaking a string into smaller parts (tokens) based on a set of delimiters (like space, comma, etc.).
+*   The `<string.h>` library provides `strtok()` for this.
+*   **`char *strtok(char *str, const char *delims);`**
+    *   **First call:** `strtok(original_string, " ,.-");`
+        *   Finds the first token.
+        *   It **modifies the original string** by placing `\0` where the delimiter was found.
+
+:: right ::
+
+*   **Subsequent calls:** `strtok(NULL, " ,.-");`
+    *   Continues searching from where it left off.
+    *   Returns `NULL` when no more tokens are found.
+
+
+
+```c {*}{maxHeight:'360px',lines:true}
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char sentence[] = "C is a powerful, general-purpose language.";
+    const char delimiters[] = " ,.-"; // Space, comma, dot, hyphen
+    
+    printf("Original: \"%s\"\n", sentence);
+    printf("Tokens:\n");
+
+    // Get the first token
+    char *token = strtok(sentence, delimiters);
+
+    // Loop through the rest of the tokens
+    while (token != NULL) {
+        printf("  - %s\n", token);
+        token = strtok(NULL, delimiters);
+    }
+
+    return 0;
+}
+```
+
+---
+layout: two-cols
+---
+
+## Example 3: Basic String to Integer (`atoi`)
+
+*   Often you need to convert a string of digits (e.g., `"123"`) into its integer equivalent (e.g., `123`).
+*   The standard library has `atoi()` in `<stdlib.h>`, but implementing a simple version is a great exercise.
+*   **Algorithm:**
+    1.  Initialize an integer `result = 0`.
+    2.  Iterate through each character of the string.
+    3.  For each character, multiply the current `result` by 10.
+    4.  Convert the character to its digit value (`'5' - '0' = 5`) and add it to `result`.
+:: right ::
+
+*   `result = result * 10 + (str[i] - '0');`
+
+
+
+```c {*}{maxHeight:'430px',lines:true}
+#include <stdio.h>
+
+// A simple version of atoi, handles positive integers only
+int simple_atoi(const char str[]) {
+    int result = 0;
+    int i = 0;
+
+    // Iterate through each character of the string
+    while (str[i] != '\0') {
+        // Check if it's a digit
+        if (str[i] >= '0' && str[i] <= '9') {
+            result = result * 10 + (str[i] - '0');
+        } else {
+            // Handle non-digit characters if necessary (e.g., break)
+            break; 
+        }
+        i++;
+    }
+    return result;
+}
+
+int main() {
+    char num_str[] = "1998";
+    int value = simple_atoi(num_str);
+    printf("String \"%s\" as an integer is %d\n", num_str, value);
+    printf("Calculation: %d * 2 = %d\n", value, value * 2);
+    return 0;
+}
+```
+
+---
+layout: two-cols
 ---
 
 ## Summary
@@ -267,13 +490,15 @@ int main() {
 *   **String I/O:**
     *   `printf("%s", ...)` is used for output.
     *   `scanf("%s", ...)` is simple but **unsafe** due to buffer overflow risk.
-    *   `fgets()` is the preferred, safer method for reading string input as it limits the number of characters read.
-*   **`<string.h>` Library:** Provides essential functions for string manipulation.
-    *   `strlen()`: Finds the length.
-    *   `strcmp()`: Compares two strings.
-    *   `strcpy()` / `strcat()`: Unsafe copy/concatenation. **Avoid if possible.**
-    *   `strncpy()` / `strncat()`: Safer versions that require a size limit.
-*   **Arrays of Strings:** Can be implemented as 2D character arrays.
+    *   `fgets()` is the preferred, safer method for reading string input.
+*   **`<string.h>` Library:** Provides essential functions (`strlen`, `strcmp`, `strncpy`, `strncat`, etc.) that operate on null-terminated strings.
+
+::right::
+
+*   **Passing to Functions:**
+    *   Strings (as `char[]` or `char*`) are passed by reference, allowing functions to modify the original string.
+    *   Arrays of strings (`char arr[][LEN]`) can also be passed, but the second dimension's size must be specified.
+*   **Arrays of Strings:** Can be implemented as 2D character arrays, e.g., `char names[10][50];`.
 
 <div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
 <Link to="lecture-8-struct-union-and-enum" title="Go to Lecture 8 ➡️"/>
