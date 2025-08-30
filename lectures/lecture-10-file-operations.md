@@ -6,7 +6,7 @@ layout: cover
 title: Lecture 10 - File Operations
 ---
 
-# Lecture 9: File Operations
+# Lecture 10: File Operations
 ## {{ $slidev.configs.subject }}
 ### Semester {{ $slidev.configs.semester }}
 #### Presented by {{ $slidev.configs.presenter }}

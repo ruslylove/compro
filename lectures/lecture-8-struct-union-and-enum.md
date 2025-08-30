@@ -6,7 +6,7 @@ layout: cover
 title: Lecture 8 - struct, union, and enum
 ---
 
-# Lecture 7: struct, union, and enum
+# Lecture 8: struct, union, and enum
 ## {{ $slidev.configs.subject }}
 ### Semester {{ $slidev.configs.semester }}
 #### Presented by {{ $slidev.configs.presenter }}

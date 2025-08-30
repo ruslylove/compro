@@ -6,7 +6,7 @@ layout: cover
 title: Lecture 9 - Pointers
 ---
 
-# Lecture 8: Pointers
+# Lecture 9: Pointers
 ## {{ $slidev.configs.subject }}
 ### Semester {{ $slidev.configs.semester }}
 #### Presented by {{ $slidev.configs.presenter }}

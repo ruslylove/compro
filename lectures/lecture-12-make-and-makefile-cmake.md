@@ -6,7 +6,7 @@ layout: cover
 title: Lecture 12 - make & Makefile / CMake
 ---
 
-# Lecture 11: make & Makefile / CMake
+# Lecture 12: make & Makefile / CMake
 ## {{ $slidev.configs.subject }}
 ### Semester {{ $slidev.configs.semester }}
 #### Presented by {{ $slidev.configs.presenter }}
