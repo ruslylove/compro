@@ -12,6 +12,8 @@ title: Lecture 8 - struct, union, and enum
 #### Presented by {{ $slidev.configs.presenter }}
 
 ---
+layout: two-cols
+---
 
 ## Motivating Example: Complex Student Records
 
@@ -22,6 +24,9 @@ title: Lecture 8 - struct, union, and enum
     4.  Gender (string/char array or char)
     5.  Height (float)
     6.  GPA (float)
+
+:: right ::
+
 * **Approach Using Only Arrays/Simple Variables:** We could use parallel arrays: one for names, one for numbers, one for ages, etc.
     ```c
     char std_names[40][64];
@@ -30,6 +35,10 @@ title: Lecture 8 - struct, union, and enum
     char std_genders[40][5];
     // ... etc.
     ```
+
+
+
+
 * **Challenge:** Managing these parallel arrays becomes very complex. Keeping track of which index corresponds to which student across all arrays is error-prone. There's no single entity representing *a student*. We need a way to group related data of different types together.
 
 ---
@@ -42,7 +51,7 @@ title: Lecture 8 - struct, union, and enum
 
 ---
 
-## Composite Data Types: `struct` (Part 1)
+## Composite Data Types: `struct`
 
 * While using parallel arrays is possible, it's inconvenient for managing records with different data types.
 * C allows us to define **composite data types** using the `struct` keyword.
@@ -50,8 +59,10 @@ title: Lecture 8 - struct, union, and enum
 * This creates a new, custom data type template.
 
 ---
+layout: two-cols
+---
 
-## Defining a `struct` (Part 2)
+## Defining a `struct`
 
 * **Syntax:**
     ```c
@@ -66,6 +77,8 @@ title: Lecture 8 - struct, union, and enum
 * `memberX_name`: Name of a variable within the structure.
 * `data_type`: The type of that member (can be primitive types, arrays, other structs, pointers, etc.).
 
+:: right ::
+
 **Example: Student Record Structure**
 ```c
 struct Student {
@@ -77,6 +90,7 @@ struct Student {
     float gpa;
 }; // Semicolon is mandatory here
 ```
+
 * This defines a *template* called `Student`. It doesn't create any variables yet.
 
 ---
@@ -85,7 +99,6 @@ struct Student {
 
 1.  **`struct` (Structures)**
     * Declaration, Definition, Member Access
-    * Pointers to Structs
     * Nested Structs
     * `typedef` with Structs
     * Memory Allocation & Padding
@@ -99,7 +112,7 @@ struct Student {
 * Once a `struct` template is defined, you can declare variables of that structure type.
 * **Syntax:** `struct StructureTagName variable_name;`
 
-```c
+```c {*}{maxHeight:'330px'}
 // Define the template
 struct Student {
     char student_name[64];
@@ -130,7 +143,7 @@ int main() {
 * To access or modify individual members within a `struct` variable, use the **dot operator (`.`)**.
 * **Syntax:** `structure_variable_name.member_name`
 
-```c
+```c {*}{maxHeight:'350px'}
 #include <stdio.h>
 #include <string.h> // For strcpy
 
@@ -192,6 +205,8 @@ int main() {
 ```
 
 ---
+hide: true
+---
 
 ## Pointers to `struct`s
 
@@ -217,6 +232,8 @@ int main() {
 }
 ```
 
+---
+hide: true
 ---
 
 ## Accessing Members via Pointers: Arrow Operator (`->`)
@@ -261,7 +278,7 @@ int main() {
 
 * A `struct` can contain members that are themselves other `struct`s.
 
-```c
+```c {*}{maxHeight:'370px'}
 #include <stdio.h>
 #include <string.h>
 
