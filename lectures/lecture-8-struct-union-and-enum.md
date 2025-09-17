@@ -93,6 +93,9 @@ struct Student {
 
 * This defines a *template* called `Student`. It doesn't create any variables yet.
 
+<img src="/student_struct.png" style="width:180px;margin:auto"/>
+
+
 ---
 
 ## Lecture Outline
