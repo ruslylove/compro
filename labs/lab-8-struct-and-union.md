@@ -3,12 +3,12 @@ theme: seriph
 background: https://cover.sli.dev
 transition: slide-left
 layout: cover
-title: Lab 8 - struct and union
+title: Lab 8 - struct, union and enum
 class: lab
 routeAlias: lab8
 ---
 
-# Lab 8: struct and union
+# Lab 8: struct, union and enum
 ## {{ $slidev.configs.subject }}
 ### Semester {{ $slidev.configs.semester }}
 #### Presented by {{ $slidev.configs.presenter }}
@@ -20,14 +20,15 @@ routeAlias: lab8
 *   **Define and use `struct` to group related data**
     *   Create custom data types that aggregate variables of different types.
     *   Declare `struct` variables and access their members using the dot (`.`) operator.
+*   **Use `enum` to create named constants for better readability**
+    *   Define enumerations and use them to represent states or categories.
 *   **Work with structs and functions**
-    *   Pass structs to functions by value and by pointer.
+    *   Pass structs to functions by value.
     *   Return structs from functions.
 *   **Manage collections of data with arrays of structs**
     *   Declare and manipulate arrays where each element is a complex `struct`.
 *   **Understand and use `union` for memory optimization**
     *   Define unions to store different data types in the same memory location.
-    *   Recognize the memory-saving benefits and access rules for unions.
 *   **Explore advanced struct features like nesting and bit-fields**
 
 ---
@@ -40,8 +41,8 @@ routeAlias: lab8
     *   Use an array of structs to create a simple database.
 *   **Exercise 3: Defining and Using a Union**
     *   Explore how unions store data and their memory footprint.
-*   **Exercise 4: Modifying a Struct with a Pointer**
-    *   Learn to pass structs by reference for efficient modification.
+*   **Exercise 4: Product Catalog with Enum**
+    *   Use `enum` to represent categories within a `struct`.
 *   **Exercise 5: Nested Structs**
     *   Create structs that contain other structs as members.
 *   **Exercise 6: Data Packing with Bit-Fields**
@@ -56,7 +57,7 @@ routeAlias: lab8
 *   **Requirements:**
     1.  Define a `struct Compx` with `float` members `real` and `imag`.
     2.  Implement `struct Compx multComp(struct Compx d1, struct Compx d2)` that returns the product of two complex numbers.
-        *   Formula: $(a + bi) 	imes (c + di) = (ac - bd) + (ad + bc)i$.
+        *   Formula: $(a + bi) \times (c + di) = (ac - bd) + (ad + bc)i$.
     3.  Implement `void printCompx(struct Compx a)` that prints a complex number in the format `a + bi` (e.g., `0.30 + 0.50i` or `1.20 - 0.80i`).
     4.  In `main`, create two `Compx` variables, multiply them, and print the result.
 
@@ -87,15 +88,17 @@ routeAlias: lab8
 
 ---
 
-## Exercise 4: Modifying a Struct with a Pointer
+## Exercise 4: Product Catalog with Enum
 
-*   **Task:** Write a function that accepts a pointer to a struct to modify its contents.
-*   **Concept:** Passing a pointer is more efficient than passing a large struct by value, as it avoids copying the entire structure. It also allows the function to modify the original struct.
+*   **Task:** Create a product catalog where each product has a category defined by an `enum`.
+*   **Concept:** `enum` makes code more readable and less error-prone by using named constants instead of arbitrary numbers (e.g., `CATEGORY_ELECTRONICS` is clearer than `1`).
 *   **Requirements:**
-    1.  Define a `struct Student` with `char name[50]` and `float gpa`.
-    2.  Implement a function `void updateGpa(struct Student *s, float newGpa)`.
-    3.  Inside the function, use the arrow operator (`->`) to access the struct members via the pointer and update the GPA (e.g., `s->gpa = newGpa;`).
-    4.  In `main`, create a `Student` variable, print its initial GPA, call `updateGpa` with its address (`&`), and print the updated GPA.
+    1.  Define an `enum ProductCategory` with values like `ELECTRONICS`, `BOOKS`, `CLOTHING`, `GROCERIES`.
+    2.  Define a `struct Product` with members: `char name[50]`, `float price`, and `enum ProductCategory category`.
+    3.  Implement a function `void printProduct(struct Product p)`. Inside this function, use a `switch` statement on `p.category` to print the category as a string (e.g., if `p.category` is `ELECTRONICS`, print "Category: Electronics").
+    4.  In `main`, create an array of `Product` structs.
+    5.  Initialize the array with a few different products of various categories.
+    6.  Loop through the array and call `printProduct` for each product.
 
 ---
 

@@ -326,7 +326,7 @@ int main() {
 * Commonly used with `struct` definitions to make declaring variables less verbose (avoiding repeating `struct StructureTagName`).
 * **Syntax:** `typedef existing_type_definition NewTypeName;`
 
-```c
+```c {*}{maxHeight:'200px'}
 // Original struct definition
 struct ComplexNumber {
     double real;
@@ -359,8 +359,74 @@ int main() {
     return 0;
 }
 ```
+
 * Using `typedef` (like `Point` or `Complex` above) makes variable declarations cleaner than using `struct PointTag` or `struct ComplexNumber`.
 
+---
+
+## Structs and Functions
+
+* Structs can be passed to and returned from functions.
+* **Passing to Functions:**
+    * **By Value:** A copy of the entire struct is made. Changes inside the function do not affect the original. Can be inefficient for large structs.
+    * **By Pointer:** The function receives the memory address. This is efficient and allows the function to modify the original struct.  
+* **Returning from Functions:**
+    * Functions can create and return a struct, which is useful for factory patterns.
+    
+
+```c {*}{maxHeight:'180px'}
+#include <stdio.h>
+typedef struct { int x; int y; } Point;
+
+// Pass by pointer to modify original
+void movePointPtr(Point *p, int dx, int dy) { p->x += dx; p->y += dy; }
+
+// Create and return a new point
+Point createPoint(int x, int y) {
+    Point p = {x, y};
+    return p; // Returns a copy
+}
+
+int main() {
+    Point p1 = createPoint(10, 20);
+    printf("Original: (%d, %d)\n", p1.x, p1.y);
+    movePointPtr(&p1, 5, 5);
+    printf("After move: (%d, %d)\n", p1.x, p1.y);
+    return 0;
+}
+```
+---
+
+## Arrays of Structs
+
+* You can create arrays where each element is a `struct`. This is extremely useful for managing collections of records, like a list of students or a catalog of products.
+
+```c {*}{maxHeight:'370px'}
+#include <stdio.h>
+
+typedef struct {
+    char title[100];
+    char author[50];
+    int year;
+} Book;
+
+int main() {
+    // Declare and initialize an array of 3 Book structs
+    Book library[3] = {
+        {"The C Programming Language", "K&R", 1978},
+        {"Pride and Prejudice", "Jane Austen", 1813},
+        {.title = "Dune", .author = "Frank Herbert", .year = 1965}
+    };
+
+    // Loop through the array and print details for each book
+    for (int i = 0; i < 3; i++) {
+        printf("Book %d: %s by %s (%d)\n", i + 1,
+            library[i].title, library[i].author, library[i].year);
+    }
+
+    return 0;
+}
+```
 ---
 
 ## Memory Allocation for `struct`s & Padding
@@ -370,7 +436,7 @@ int main() {
 * **Why padding?** To ensure that each member is aligned on a memory address that is efficient for the CPU to access (e.g., ensuring an `int` starts on an address divisible by 4, or a `double` on an address divisible by 8).
 * **Consequence:** The total size of a `struct` (`sizeof(struct StructureTagName)`) might be **larger** than the sum of the sizes of its individual members due to this padding. The exact padding rules depend on the compiler and system architecture.
 
-```c
+```c {*}{maxHeight:'180px'}
 #include <stdio.h>
 
 typedef struct Example {
@@ -389,7 +455,44 @@ int main() {
     return 0;
 }
 ```
+
 * Don't assume the size of a struct is just the sum of its parts. Use `sizeof()` to get the actual size.
+
+---
+
+## Struct Bit-Fields
+
+* **Concept:** Bit-fields are special `struct` members that allow you to specify the exact number of bits a member should occupy.
+* **Purpose:** Primarily used for memory saving, especially in low-level programming, embedded systems, or when dealing with hardware registers that have specific bit layouts. It allows you to pack data tightly.
+* **Syntax:** `data_type member_name : number_of_bits;`
+    * The data type must be an integer type (e.g., `int`, `unsigned int`).
+    * `number_of_bits` is a constant integer specifying the field width.
+
+```c {*}{maxHeight:'180px'}
+#include <stdio.h>
+#include <stdint.h>
+
+  // A date packed into 16 bits
+  typedef struct {
+      uint16_t day   : 5; // 5 bits for day (0-31)
+      uint16_t month : 4; // 4 bits for month (0-15)
+      uint16_t year  : 7; // 7 bits for year (0-127, relative to a base year)
+  } PackedDate;
+
+  int main() {
+      PackedDate today;
+      today.day = 18;
+      today.month = 9;
+      today.year = 25; // Representing 2025
+
+      printf("Size of PackedDate: %zu bytes\n", sizeof(PackedDate));
+      printf("Date: %u/%u/%u\n", today.month, today.day, today.year + 2000);
+
+      return 0;
+  }
+```
+
+* **Caution:** The exact memory layout of bit-fields can be compiler-dependent.
 
 ---
 
@@ -420,7 +523,7 @@ int main() {
 
 ## `union` Example
 
-```c
+```c {*}{maxHeight:'400px'}
 #include <stdio.h>
 
 // Define a union to hold either an integer or a float
@@ -450,6 +553,7 @@ int main() {
     return 0;
 }
 ```
+
 * It's the programmer's responsibility to keep track of which member currently holds the valid data.
 
 ---
@@ -519,7 +623,7 @@ int main() {
 
 * Improves readability compared to using raw numbers or `#define` macros for related constants.
 
-```c
+```c {*}{maxHeight:'400px'}
 #include <stdio.h>
 
 // Define an enumeration for days of the week
@@ -552,60 +656,18 @@ int main() {
 }
 ```
 
+
 ---
 layout: default
 ---
 
 ## Summary
-<Transform scale="0.85">
 
-*   **`struct` (Structure):** A composite data type that groups variables (members) of different types under a single name. Used to create records (e.g., a `Student` struct with name, age, GPA).
-    *   Members are accessed with the **dot operator** (`.`) for variables (`student.age`) and the **arrow operator** (`->`) for pointers (`student_ptr->age`).
-*   **`typedef`:** Creates a synonym or alias for a data type, often used to simplify `struct` declarations.
-*   **`union`:** A data type where all members share the *same* memory location. Its size is determined by its largest member. Only one member can hold a valid value at a time.
-*   **`enum` (Enumeration):** Creates a set of named integer constants, improving code readability by replacing "magic numbers" with descriptive names (e.g., `enum Color {RED, GREEN, BLUE}`).
-*   **Memory Padding:** Compilers may add padding bytes within `struct`s to align members for efficient CPU access, so `sizeof(struct)` may be greater than the sum of its members' sizes.
-
-</Transform>
-
-
-
----
-
-## Summary (Cont.)
-
-<Transform scale="0.77">
-
-* If no values are explicitly assigned, the first enumerator gets `0`, and subsequent enumerators get the value of the previous one plus `1`.
-* If a value is assigned, subsequent unassigned enumerators continue incrementing from the last assigned value.
-* Multiple enumerators can have the same integer value (though this might reduce clarity).
-
-```c
-#include <stdio.h>
-
-// Example with mixed assignment
-enum Status {
-    PENDING,         // 0
-    PROCESSING,      // 1
-    COMPLETE = 10,
-    FAILED,          // 11
-    CANCELLED = 10,  // Same value as COMPLETE
-    RETRY = 20
-};
-
-int main() {
-    printf("PENDING = %d\n", PENDING);       // Output: 0
-    printf("PROCESSING = %d\n", PROCESSING);   // Output: 1
-    printf("COMPLETE = %d\n", COMPLETE);     // Output: 10
-    printf("FAILED = %d\n", FAILED);         // Output: 11
-    printf("CANCELLED = %d\n", CANCELLED);   // Output: 10
-    printf("RETRY = %d\n", RETRY);           // Output: 20
-    return 0;
-}
-```
-* Be mindful of implicit assignments when explicitly setting values.
-
-</Transform>
+*   **`struct` (Structure):** Groups different data types into a single unit. Members accessed with `.` (variable).
+*   **`typedef`:** Creates aliases for data types, simplifying declarations (especially for structs).
+*   **`union`:** Stores different data types in the *same* memory location; only one member is valid at a time. Size is determined by its largest member.
+*   **`enum` (Enumeration):** Defines a set of named integer constants for improved readability. Values are `0` by default, incrementing by `1`, or can be explicitly assigned.
+*   **Memory Padding:** `struct` size can be larger than the sum of its members due to compiler-added padding for alignment.
 
 <div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
 <Link to="lab7" title="Go to Lab7 👩‍🔬"/>
