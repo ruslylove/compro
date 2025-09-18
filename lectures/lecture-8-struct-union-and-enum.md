@@ -78,6 +78,7 @@ layout: two-cols
 :: right ::
 
 **Example: Student Record Structure**
+<img src="/student_struct.png" style="width:180px;margin:auto"/>
 ```c
 struct Student {
     char student_name[64];
@@ -91,7 +92,7 @@ struct Student {
 
 * This defines a *template* called `Student`. It doesn't create any variables yet.
 
-<img src="/student_struct.png" style="width:180px;margin:auto"/>
+
 
 ---
 
