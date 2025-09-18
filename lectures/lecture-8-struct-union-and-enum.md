@@ -3,10 +3,10 @@ theme: seriph
 background: https://cover.sli.dev
 transition: slide-left
 layout: cover
-title: Lecture 8 - struct, union, and enum
+title: Lecture 8 - struct, enum, and union
 ---
 
-# Lecture 8: struct, union, and enum
+# Lecture 8: struct, enum, and union
 ## {{ $slidev.configs.subject }}
 ### Semester {{ $slidev.configs.semester }}
 #### Presented by {{ $slidev.configs.presenter }}
@@ -37,8 +37,6 @@ layout: two-cols
     ```
 
 
-
-
 * **Challenge:** Managing these parallel arrays becomes very complex. Keeping track of which index corresponds to which student across all arrays is error-prone. There's no single entity representing *a student*. We need a way to group related data of different types together.
 
 ---
@@ -46,8 +44,8 @@ layout: two-cols
 ## Lecture Outline
 
 1.  **`struct` (Structures)**
-2.  `union` (Unions)
-3.  `enum` (Enumerations)
+2.  `enum` (Enumerations)
+3.  `union` (Unions)
 
 ---
 
@@ -88,25 +86,26 @@ struct Student {
     char gender[7]; // e.g., "Male", "Female"
     float height;
     float gpa;
-}; // Semicolon is mandatory here
+};
 ```
 
 * This defines a *template* called `Student`. It doesn't create any variables yet.
 
 <img src="/student_struct.png" style="width:180px;margin:auto"/>
 
-
 ---
 
 ## Lecture Outline
 
 1.  **`struct` (Structures)**
-    * Declaration, Definition, Member Access
-    * Nested Structs
-    * `typedef` with Structs
-    * Memory Allocation & Padding
-2.  `union` (Unions)
-3.  `enum` (Enumerations)
+    * Declaration, Definition, and Initialization
+    * Member Access (`.`)
+    * Nested `struct`s
+    * `typedef` with `struct`s
+    * Structs in Functions & Arrays
+    * Memory Padding & Bit-Fields
+2.  `enum` (Enumerations)
+3.  `union` (Unions)
 
 ---
 
@@ -141,7 +140,7 @@ int main() {
 
 ---
 
-## Accessing `struct` Members: The Dot Operator (`.`)
+## Accessing `struct` Members: The Dot Operator (`.`). 
 
 * To access or modify individual members within a `struct` variable, use the **dot operator (`.`)**.
 * **Syntax:** `structure_variable_name.member_name`
@@ -208,74 +207,6 @@ int main() {
 ```
 
 ---
-hide: true
----
-
-## Pointers to `struct`s
-
-* You can declare pointers that hold the memory address of a `struct` variable.
-* **Syntax:** `struct StructureTagName *pointer_name;`
-
-```c
-struct Student {
-    char student_name[64];
-    int age;
-    float gpa;
-};
-
-int main() {
-    struct Student s1 = {"Eve", 20, 3.7};
-    struct Student *ptr_s1; // Declare a pointer to a Student struct
-
-    // Assign the address of s1 to the pointer
-    ptr_s1 = &s1;
-
-    // ... access members using the pointer ...
-    return 0;
-}
-```
-
----
-hide: true
----
-
-## Accessing Members via Pointers: Arrow Operator (`->`)
-
-* When you have a pointer to a `struct`, you **cannot** use the dot (`.`) operator directly on the pointer itself.
-* You need to use the **arrow operator (`->`)** to access members through a pointer.
-* **Syntax:** `structure_pointer_name->member_name`
-* This is equivalent to first dereferencing the pointer (`*pointer_name`) and then using the dot operator (`(*pointer_name).member_name`), but the arrow operator is much more common and readable.
-
-```c
-#include <stdio.h>
-#include <string.h>
-
-struct Student {
-    char student_name[64];
-    int age;
-    float gpa;
-};
-
-int main() {
-    struct Student s1 = {"Frank", 21, 3.2};
-    struct Student *ptr_s1 = &s1; // Pointer holds address of s1
-
-    // Access members using the arrow operator ->
-    printf("Name (via ptr): %s\n", ptr_s1->student_name);
-    printf("Age (via ptr): %d\n", ptr_s1->age);
-
-    // Modify member using the arrow operator
-    ptr_s1->gpa = 3.3;
-    printf("New GPA (via original): %.1f\n", s1.gpa); // Change reflected in original
-
-    // Equivalent access using dereference and dot (less common)
-    printf("Age (via *ptr.): %d\n", (*ptr_s1).age);
-
-    return 0;
-}
-```
-
----
 
 ## Nested `struct`s
 
@@ -311,10 +242,6 @@ int main() {
 
     printf("Name: %s\n", s1.student_name);
     printf("Birthday: %d/%d/%d\n", s1.birthday.day, s1.birthday.month, s1.birthday.year);
-
-    // Using pointers
-    struct Student *ptr_s1 = &s1;
-    printf("Birthday Year (via ptr): %d\n", ptr_s1->birthday.year);
 
     return 0;
 }
@@ -372,17 +299,16 @@ int main() {
 * Structs can be passed to and returned from functions.
 * **Passing to Functions:**
     * **By Value:** A copy of the entire struct is made. Changes inside the function do not affect the original. Can be inefficient for large structs.
-    * **By Pointer:** The function receives the memory address. This is efficient and allows the function to modify the original struct.  
 * **Returning from Functions:**
     * Functions can create and return a struct, which is useful for factory patterns.
     
 
-```c {*}{maxHeight:'180px'}
+```c {*}{maxHeight:'230px'}
 #include <stdio.h>
 typedef struct { int x; int y; } Point;
 
-// Pass by pointer to modify original
-void movePointPtr(Point *p, int dx, int dy) { p->x += dx; p->y += dy; }
+// Pass by value to modify a copy
+void movePoint(Point p, int dx, int dy) { p.x += dx; p.y += dy; }
 
 // Create and return a new point
 Point createPoint(int x, int y) {
@@ -393,8 +319,8 @@ Point createPoint(int x, int y) {
 int main() {
     Point p1 = createPoint(10, 20);
     printf("Original: (%d, %d)\n", p1.x, p1.y);
-    movePointPtr(&p1, 5, 5);
-    printf("After move: (%d, %d)\n", p1.x, p1.y);
+    movePoint(p1, 5, 5); // Pass by value, p1 itself is not modified
+    printf("After move (original p1): (%d, %d)\n", p1.x, p1.y); // Will still be (10, 20)
     return 0;
 }
 ```
@@ -502,8 +428,134 @@ int main() {
 ## Lecture Outline
 
 1.  `struct` (Structures)
-2.  **`union` (Unions)**
-3.  `enum` (Enumerations)
+2.  **`enum` (Enumerations)**
+    * Declaration and Use
+    * `typedef` with `enum`
+3.  `union` (Unions)
+
+---
+
+## `enum` Overview (Enumerated Types)
+
+* An `enum` allows you to define a set of named **integer constants**, called **enumerators**.
+* Primarily used to improve code readability and maintainability by giving meaningful names to integer values that represent specific states, types, or options.
+* **Syntax:** 
+    ```c
+    enum EnumTagName {
+        ENUMERATOR_1, // Assigned 0 by default
+        ENUMERATOR_2, // Assigned 1 by default
+        ENUMERATOR_3, // Assigned 2 by default
+        // ...
+    };
+    ```
+    OR assigning specific values:
+    ```c
+    enum EnumTagName {
+        ENUMERATOR_A = 1,
+        ENUMERATOR_B = 5,
+        ENUMERATOR_C, // Assigned 6 (previous + 1)
+        ENUMERATOR_D = 10
+    };
+    ```
+* Underneath, enumerators are simply `int` values.
+
+---
+
+## Using `enum`
+
+* Improves readability compared to using raw numbers or `#define` macros for related constants.
+
+```c {*}{maxHeight:'400px'}
+#include <stdio.h>
+
+// Define an enumeration for days of the week
+enum Day {
+    SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY
+}; // SUNDAY=0, MONDAY=1, ..., SATURDAY=6
+
+// Define enumeration for basic colors with specific values
+enum Color {
+    RED = 1,
+    GREEN = 2,
+    BLUE = 4
+};
+
+int main() {
+    // Declare a variable of the enum type
+    enum Day today = WEDNESDAY; // More readable than 'int today = 3;'
+
+    if (today == WEDNESDAY || today == TUESDAY) {
+        printf("It's a weekday.\n");
+    } else {
+        printf("It's the weekend or Monday/Thursday/Friday.\n");
+    }
+
+    // Use the named constant
+    enum Color my_color = BLUE;
+    printf("Color value: %d\n", my_color); // Output: 4
+
+    return 0;
+}
+```
+
+---
+
+## `typedef` with `enum`
+
+* Just like with `struct`s, `typedef` can be used to create a cleaner alias for an `enum` type.
+* This avoids having to write `enum EnumTagName` every time you declare a variable.
+
+```c {*}{maxHeight:'350px'}
+#include <stdio.h>
+
+// Combine enum definition with typedef
+typedef enum {
+    STATE_IDLE,
+    STATE_RUNNING,
+    STATE_SUSPENDED,
+    STATE_FINISHED
+} SystemState; // 'SystemState' is now a type alias
+
+void print_state(SystemState state) {
+    switch (state) {
+        case STATE_IDLE:
+            printf("Current state: Idle\n");
+            break;
+        case STATE_RUNNING:
+            printf("Current state: Running\n");
+            break;
+        case STATE_SUSPENDED:
+            printf("Current state: Suspended\n");
+            break;
+        case STATE_FINISHED:
+            printf("Current state: Finished\n");
+            break;
+        default:
+            printf("Unknown state\n");
+    }
+}
+
+int main() {
+    // Declare a variable using the typedef'd alias
+    SystemState current_state = STATE_RUNNING;
+    print_state(current_state);
+
+    current_state = STATE_FINISHED;
+    print_state(current_state);
+
+    return 0;
+}
+```
+
+---
+
+## Lecture Outline
+
+1.  `struct` (Structures)
+2.  `enum` (Enumerations)
+3.  **`union` (Unions)**
+    * Declaration and Use
+    * Memory Allocation
 
 ---
 
@@ -513,7 +565,7 @@ int main() {
 * **Key Difference:** Whereas `struct` members occupy *separate* memory locations, `union` members **share the same memory location**.
 * Only **one** member of the `union` can hold a valid value at any given time. Assigning a value to one member overwrites the memory used by other members.
 * Useful for saving memory when you know only one of several possible data types will be needed at a time, or for interpreting the same raw memory bytes as different data types.
-* **Syntax:**
+* **Syntax:** 
     ```c
     union UnionTagName {
         data_type member1;
@@ -528,6 +580,7 @@ int main() {
 
 ```c {*}{maxHeight:'400px'}
 #include <stdio.h>
+#include <string.h>
 
 // Define a union to hold either an integer or a float
 union DataValue {
@@ -587,90 +640,29 @@ int main() {
 ```
 
 ---
-
-## Lecture Outline
-
-1.  `struct` (Structures)
-2.  `union` (Unions)
-3.  **`enum` (Enumerations)**
-
----
-
-## `enum` Overview (Enumerated Types)
-
-* An `enum` allows you to define a set of named **integer constants**, called **enumerators**.
-* Primarily used to improve code readability and maintainability by giving meaningful names to integer values that represent specific states, types, or options.
-* **Syntax:**
-    ```c
-    enum EnumTagName {
-        ENUMERATOR_1, // Assigned 0 by default
-        ENUMERATOR_2, // Assigned 1 by default
-        ENUMERATOR_3, // Assigned 2 by default
-        // ...
-    };
-    ```
-    OR assigning specific values:
-    ```c
-    enum EnumTagName {
-        ENUMERATOR_A = 1,
-        ENUMERATOR_B = 5,
-        ENUMERATOR_C, // Assigned 6 (previous + 1)
-        ENUMERATOR_D = 10
-    };
-    ```
-* Underneath, enumerators are simply `int` values.
-
----
-
-## Using `enum`
-
-* Improves readability compared to using raw numbers or `#define` macros for related constants.
-
-```c {*}{maxHeight:'400px'}
-#include <stdio.h>
-
-// Define an enumeration for days of the week
-enum Day {
-    SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY
-}; // SUNDAY=0, MONDAY=1, ..., SATURDAY=6
-
-// Define enumeration for basic colors with specific values
-enum Color {
-    RED = 1,
-    GREEN = 2,
-    BLUE = 4
-};
-
-int main() {
-    // Declare a variable of the enum type
-    enum Day today = WEDNESDAY; // More readable than 'int today = 3;'
-
-    if (today == WEDNESDAY || today == TUESDAY) {
-        printf("It's a weekday.\n");
-    } else {
-        printf("It's the weekend or Monday/Thursday/Friday.\n");
-    }
-
-    // Use the named constant
-    enum Color my_color = BLUE;
-    printf("Color value: %d\n", my_color); // Output: 4
-
-    return 0;
-}
-```
-
-
----
-layout: default
+layout: two-cols
 ---
 
 ## Summary
 
-*   **`struct` (Structure):** Groups different data types into a single unit. Members accessed with `.` (variable).
-*   **`typedef`:** Creates aliases for data types, simplifying declarations (especially for structs).
-*   **`union`:** Stores different data types in the *same* memory location; only one member is valid at a time. Size is determined by its largest member.
-*   **`enum` (Enumeration):** Defines a set of named integer constants for improved readability. Values are `0` by default, incrementing by `1`, or can be explicitly assigned.
-*   **Memory Padding:** `struct` size can be larger than the sum of its members due to compiler-added padding for alignment.
+*   **struct:** A composite type that groups variables (members) of different data types.
+    *   Members are stored in separate memory locations.
+    *   Access members using the dot (`.`) operator.
+    *   Can be nested and used in arrays.
+*   **typedef:** Creates a synonym (alias) for an existing data type, which can simplify complex declarations (e.g., `typedef struct ... Point;`).
+*   **Memory Considerations:**
+    *   **Padding:** `sizeof(struct)` can be greater than the sum of its members' sizes.
+    *   **Bit-fields:** Allow packing data into a specific number of bits.
+:: right ::
+*   **enum:** Creates a set of named integer constants (enumerators) to make code more readable.
+    *   By default, values start at 0 and increment by 1.
+    *   You can assign specific integer values to enumerators.
+
+*   **union:** A composite type where all members share the *same* memory location.
+    *   Only one member can hold a value at any time.
+    *   The size of a `union` is the size of its largest member.
+    *   Useful for memory saving or interpreting raw bytes in multiple ways.
+
 
 <div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
 <Link to="lab7" title="Go to Lab7 👩‍🔬"/>
