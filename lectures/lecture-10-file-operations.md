@@ -290,8 +290,6 @@ int main() {
 * (Detailed usage of binary I/O is often covered in more advanced topics).
 
 ---
-
----
 layout: default
 ---
 
@@ -312,7 +310,7 @@ layout: default
 </Transform>
 
 <div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
-<Link to="lab9" title="Go to Lab9 👩‍🔬"/>
+<Link to="lab10" title="Go to Lab10 👩‍🔬"/>
 </div>
 
 * Files provide persistent storage.

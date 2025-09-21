@@ -5,7 +5,7 @@ transition: slide-left
 layout: cover
 title: Lab 10 - File Operations
 class: lab
-routeAlias: lab9
+routeAlias: lab10
 ---
 
 # Lab 10: File Operations
