@@ -3,12 +3,12 @@ theme: seriph
 background: https://cover.sli.dev
 transition: slide-left
 layout: cover
-title: Lab 9 - Pointers and File Operations
+title: Lab 10 - File Operations
 class: lab
 routeAlias: lab9
 ---
 
-# Lab 9: Pointers and File Operations
+# Lab 10: File Operations
 ## {{ $slidev.configs.subject }}
 ### Semester {{ $slidev.configs.semester }}
 #### Presented by {{ $slidev.configs.presenter }}

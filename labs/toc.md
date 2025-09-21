@@ -27,5 +27,8 @@ src: ./lab-7-string.md
 src: ./lab-8-struct-and-union.md
 ---
 ---
-src: ./lab-9-pointers-and-file-operations.md
+src: ./lab-9-pointers.md
+---
+---
+src: ./lab-10-file-operations.md
 ---

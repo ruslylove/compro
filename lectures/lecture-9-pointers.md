@@ -118,7 +118,7 @@ int main() {
 
 ---
 
-## Pointer Arithmetic (Part 1)
+## Pointer Arithmetic
 
 * You can perform arithmetic operations (like `+`, `-`, `++`, `--`) on pointers.
 * **Key Concept:** Pointer arithmetic is automatically scaled by the **size of the data type** the pointer points to.
@@ -128,9 +128,9 @@ int main() {
 
 ---
 
-## Pointer Arithmetic Examples (Part 2)
+## Example: Pointer Arithmetic
 
-```c
+```c {*}{maxHeight:'420px'}
 #include <stdio.h>
 
 int main() {
@@ -190,7 +190,7 @@ int main() {
 
 ## Accessing Array Elements Using Pointers
 
-```c
+```c {*}{maxHeight:'420px'}
 #include <stdio.h>
 
 int main() {
@@ -242,7 +242,7 @@ int main() {
 * Assign the address of a struct variable: `ptr = &my_struct_var;`
 * Access members using the **arrow operator (`->`)**: `ptr->member_name`
 
-```c
+```c {*}{maxHeight:'300px'}
 #include <stdio.h>
 
 typedef struct { // Using typedef for cleaner syntax
@@ -298,17 +298,19 @@ int main() {
         * Cast the `void*` result to the desired pointer type.
         * Calculate size using `sizeof()`.
         * **Always check if the returned pointer is `NULL`**.
-
 2.  **`calloc(size_t num, size_t size)`:** (Contiguous Allocation)
     * Allocates memory for an array of `num` elements, each of `size` bytes.
     * Initializes the allocated memory to **zero**.
     * Returns `void*` or `NULL`.
 
+---
+
+## Dynamic Allocation Functions (`<stdlib.h>`) (Cont.)
+
 3.  **`realloc(void *ptr, size_t new_size)`:**
     * Resizes a previously allocated memory block (pointed to by `ptr`) to `new_size`.
     * May move the memory block; returns the new address (or `NULL` on failure).
     * Preserves existing content up to the minimum of the old and new sizes.
-
 4.  **`free(void *ptr)`:**
     * Deallocates a block of memory previously allocated by `malloc`, `calloc`, or `realloc`.
     * The pointer `ptr` must point to the *start* of a dynamically allocated block.
@@ -318,7 +320,7 @@ int main() {
 
 ## `malloc` Example: Allocating a Single Integer
 
-```c
+```c {*}{maxHeight:'430px'}
 #include <stdio.h>
 #include <stdlib.h> // Required for malloc, free
 
@@ -350,7 +352,7 @@ int main() {
 
 ## `malloc` Example: Allocating an Array Dynamically
 
-```c
+```c {*}{maxHeight:'430px'}
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -455,7 +457,7 @@ typedef struct NodeTag {
 
 ## Linked List Example: Creating a Simple List
 
-```c
+```c {*}{maxHeight:'430px'}
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -571,32 +573,11 @@ double (*process_data_ptr)(float *);
     int result2 = (*operation_ptr)(20, 8); // Explicit dereference also works
     ```
 
-
----
-layout: default
 ---
 
-## Summary
-<Transform scale="0.85">
+## Example: Using Function Pointers
 
-*   **Pointers:** Variables that store memory addresses of other variables.
-*   **Operators:**
-    *   `&` (Address-Of): Gets the memory address of a variable.
-    *   `*` (Dereference): Accesses the value at the address a pointer holds.
-*   **Pointers and Arrays:** An array name decays into a pointer to its first element. `arr[i]` is equivalent to `*(arr + i)`.
-*   **Dynamic Memory Allocation (`<stdlib.h>`):**
-    *   `malloc()`: Allocates a block of memory on the heap. Returns a pointer or `NULL` on failure.
-    *   `free()`: Deallocates memory to prevent memory leaks. Every `malloc` needs a corresponding `free`.
-*   **Linked Lists:** A dynamic data structure where nodes containing data are linked via pointers. They can grow and shrink at runtime.
-*   **Function Pointers:** Pointers that store the address of a function, allowing functions to be passed as arguments (callbacks).
-
-</Transform>
-
-<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
-<Link to="lab8" title="Go to Lab8 👩‍🔬"/>
-</div>
-
-```c
+```c {*}{maxHeight:'430px'}
 #include <stdio.h>
 
 // Functions with matching signatures
@@ -629,3 +610,29 @@ int main() {
     return 0;
 }
 ```
+
+
+---
+layout: default
+---
+
+## Summary
+<Transform scale="0.85">
+
+*   **Pointers:** Variables that store memory addresses of other variables.
+*   **Operators:**
+    *   `&` (Address-Of): Gets the memory address of a variable.
+    *   `*` (Dereference): Accesses the value at the address a pointer holds.
+*   **Pointers and Arrays:** An array name decays into a pointer to its first element. `arr[i]` is equivalent to `*(arr + i)`.
+*   **Dynamic Memory Allocation (`<stdlib.h>`):**
+    *   `malloc()`: Allocates a block of memory on the heap. Returns a pointer or `NULL` on failure.
+    *   `free()`: Deallocates memory to prevent memory leaks. Every `malloc` needs a corresponding `free`.
+*   **Linked Lists:** A dynamic data structure where nodes containing data are linked via pointers. They can grow and shrink at runtime.
+*   **Function Pointers:** Pointers that store the address of a function, allowing functions to be passed as arguments (callbacks).
+
+</Transform>
+
+<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
+<Link to="lab8" title="Go to Lab8 👩‍🔬"/>
+</div>
+
