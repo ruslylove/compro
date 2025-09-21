@@ -502,5 +502,5 @@ layout: two-cols
 *   **Arrays of Strings:** Can be implemented as 2D character arrays, e.g., `char names[10][50];`.
 
 <div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
-<Link to="lecture-8-struct-union-and-enum" title="Go to Lecture 8 ➡️"/>
+<Link to="lab7" title="Go to Lab7 👩‍🔬"/>
 </div>

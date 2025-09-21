@@ -666,5 +666,5 @@ layout: two-cols
 
 
 <div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
-<Link to="lab7" title="Go to Lab7 👩‍🔬"/>
+<Link to="lab8" title="Go to Lab8 👩‍🔬"/>
 </div>
