@@ -118,18 +118,37 @@ routeAlias: lab9
     6.  **Crucially**, free the allocated memory using `free(arr);`.
 
 ---
+layout: default
+---
 
-## Exercise 5: Build a Simple Linked List
+## Exercise 5: Linked List Operations: `addLast` and `removeFirst`
 
-*   **Task:** Create a program to build a linked list of integers (`10 -> 20 -> 30`).
-*   **📝 Flowchart First:** Draw a flowchart illustrating the steps to create the head node, then create and link the second and third nodes.
-*   **Requirements:**
+*   **Task:** Implement functions to dynamically manage a linked list by adding nodes to the end and removing them from the beginning.
+*   **📝 Flowchart First:** Draw flowcharts for both the `addLast` and `removeFirst` functions. `addLast` should show the logic for handling both an empty list and a non-empty list.
+* **Requirements:**
     1.  Define a `Node` struct with `int data;` and `struct Node *next;`.
-    2.  In `main`, dynamically allocate three nodes using `malloc`. Check for allocation failures.
-    3.  Assign data (`10`, `20`, `30`) and link them together: `head->next = second;`, `second->next = third;`, `third->next = NULL;`.
-    4.  Write a `print_list(Node *head)` function that traverses the list from the head and prints each node's data.
-    5.  Call `print_list` to display your list.
-    6.  Write a `free_list(Node *head)` function that iterates through the list and frees each node to prevent memory leaks. Call it before `main` exits.
+    2.  Implement `Node* addLast(Node *head, int data)`. This function should:
+        *   Dynamically allocate a new `Node`.
+        *   Set its `data` and make its `next` pointer `NULL`.
+        *   If the list is empty (`head` is `NULL`), the new node becomes the head.
+        *   If the list is not empty, traverse to the last node and link the new node.
+        *   Return the head of the list (which might be the new node).
+---
+
+## Exercise 5: Linked List Operations: `addLast` and `removeFirst` (Cont.)
+
+* **Requirements:**
+
+    3.  Implement `Node* removeFirst(Node *head)`. This function should:
+        *   Handle the case where the list is empty.
+        *   If not empty, store the second node as the new head.
+        *   Free the memory of the original head node.
+        *   Return the new head.
+    4.  In `main`, start with an empty list (`head = NULL`). Use `addLast` to build a list (e.g., with 10, 20, 30). Print it. Then, use `removeFirst` and print the list again to show the change.
+    5.  Ensure all dynamically allocated memory is freed by the end of the program.
+
+
+
 
 ---
 
