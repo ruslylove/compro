@@ -455,6 +455,228 @@ typedef struct NodeTag {
 
 ---
 
+## Visualizing a Linked List
+
+A linked list is a chain of nodes, starting from a `head` pointer. The last node points to `NULL`.
+
+
+
+**Concept:**
+- The `head` is your entry point.
+- Each `Node` contains data and a `next` pointer.
+- You follow the `next` pointers to traverse the list.
+- The chain ends when a `next` pointer is `NULL`.
+
+<br>
+
+```mermaid
+graph LR
+    
+        Head(Head) --> Node1["data |  next"]
+        Node1 -- "addr_of_node2" --> Node2["data |  next"]
+        Node2 -- "addr_of_node3" --> Node3["data |  next"]
+        Node3 -- "NULL" --> End(( ))
+    
+    style End fill:#000,stroke:#333,stroke-width:4px
+```
+
+
+
+---
+layout: two-cols-header
+---
+
+## Operation: Add to Front (Prepend)
+
+Adding a node to the beginning of the list is efficient.
+
+:: left ::
+
+**Steps:**
+1.  Allocate memory for the `newNode`.
+2.  Set the `newNode`'s data.
+3.  Point `newNode->next` to the current `head` of the list.
+4.  Update `head` to point to the `newNode`.
+
+:: right ::
+
+```c
+void addFirst(Node **head_ref, int new_data) {
+    // 1. Allocate new node
+    Node* new_node = (Node*)malloc(sizeof(Node));
+
+    // 2. Put in the data
+    new_node->data = new_data;
+
+    // 3. Make next of new node as head
+    new_node->next = (*head_ref);
+
+    // 4. Move the head to point to the new node
+    (*head_ref) = new_node;
+}
+
+// To call:
+// Node *head = NULL;
+// addFirst(&head, 10);
+// addFirst(&head, 5); // List is now 5 -> 10 -> NULL
+```
+
+---
+
+## Visualization: Add to Front
+**Visualization: `addFirst(&head, 5)`**
+
+```mermaid
+graph LR
+    subgraph "Before"
+        H1[head] --> N1(10)
+        N1 --> N2(20)
+        N2 --> NUL1((NULL))
+    end
+
+    subgraph "After"
+        NewNode("5<br>(new_node)")
+        H2[head] --> NewNode
+        NewNode -. "new_node.next = head" .-> N1
+    end
+
+    H1 -. "head.next = new_node" .-> H2
+```
+
+
+
+---
+layout: two-cols-header
+---
+
+## Operation: Remove from Front
+
+Removing the first node is also very fast.
+:: left ::
+**Steps:**
+1.  Check if the list is empty (`head` is `NULL`). If so, do nothing.
+2.  Create a temporary pointer `temp` to store the current `head`.
+3.  Move `head` to the next node (`head = head->next`).
+4.  `free` the memory of the old head using the `temp` pointer.
+
+<br><br>
+
+:: right ::
+
+```c
+void removeFirst(Node **head_ref) {
+    // 1. Check if list is empty
+    if (*head_ref == NULL) {
+        return;
+    }
+
+    // 2. Store old head
+    Node *temp = *head_ref;
+
+    // 3. Move head to next node
+    *head_ref = temp->next;
+
+    // 4. Free old head
+    free(temp);
+}
+
+// To call:
+// removeFirst(&head);
+```
+
+---
+
+## Visualization: Remove from Front
+
+**Visualization: `removeFirst(&head)`**
+
+```mermaid {scale: 0.9}
+graph LR
+    subgraph "Before"
+        H1[head] --> N1(10)
+        N1 --> N2(20)
+        N2 --> NUL1((NULL))
+    end
+
+    subgraph "After"
+        H2[head] --> N2
+    end
+
+    subgraph "Freed"
+      F(10)
+    end
+
+    H1 -. "head = head.next" .-> H2
+    N1 --> F
+```
+
+---
+layout: two-cols-header
+---
+
+## Operation: Add to End (Append)
+
+Adding a node to the end requires traversing the list.
+::left::
+**Steps:**
+1.  Allocate memory for the `newNode`.
+2.  Set its data and set `newNode->next` to `NULL`.
+3.  **If the list is empty:** set `head` to `newNode`.
+4.  **Otherwise:** Traverse the list until you find the last node (where `current->next` is `NULL`).
+5.  Point the `next` of that last node to `newNode`.
+
+::right::
+
+```c
+void addLast(Node **head_ref, int new_data) {
+    Node* new_node = (Node*)malloc(sizeof(Node));
+    new_node->data = new_data;
+    new_node->next = NULL;
+
+    // If list is empty, new node is the head
+    if (*head_ref == NULL) {
+       *head_ref = new_node;
+       return;
+    }
+
+    // Else, traverse till the last node
+    Node *last = *head_ref;
+    while (last->next != NULL) {
+        last = last->next;
+    }
+
+    // Change the next of last node
+    last->next = new_node;
+}
+```
+
+---
+
+## Visualization: Add to End (Append)
+
+**Visualization: `addLast(&head, 30)`**
+
+```mermaid
+graph LR
+    subgraph "Before"
+        H1[head] --> N1(10)
+        N1 --> N2(20)
+        N2 -.-> NUL1((NULL))
+    end
+
+    subgraph "After"
+        N2 --"(last_node).next = new_node"--> NewNode(30)
+        NewNode -- "new_node.next = NULL"--> NUL2((NULL))
+    end
+
+    
+    
+```
+
+
+
+---
+
 ## Linked List Example: Creating a Simple List
 
 ```c {*}{maxHeight:'430px'}
