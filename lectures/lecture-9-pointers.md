@@ -16,8 +16,8 @@ title: Lecture 9 - Pointers
 ## Lecture Outline
 
 1.  **Pointer Fundamentals** (Primitives, `&`, `*`)
-2.  Pointer Arithmetic and Arrays
-3.  Pointers with Structs and Pointers-to-Pointers
+2.  Pointers with Arrays and Strings
+3.  Pointers with Structs & Advanced Pointers
 4.  Passing Pointers to Functions
 5.  Dynamic Memory Allocation
 6.  Application: Linked Lists
@@ -153,8 +153,8 @@ int main() {
 ## Lecture Outline
 
 1.  Pointer Fundamentals (Primitives, `&`, `*`)
-2.  **Pointer Arithmetic and Arrays**
-3.  Pointers with Structs and Pointers-to-Pointers
+2.  **Pointers with Arrays and Strings**
+3.  Pointers with Structs & Advanced Pointers
 4.  Passing Pointers to Functions
 5.  Dynamic Memory Allocation
 6.  Application: Linked Lists
@@ -256,12 +256,56 @@ int main() {
 ```
 
 ---
+layout: two-cols-header
+---
+
+## Pointers and Strings (`char *`)
+::left::
+*   A `char *` pointer can be used to point to the first character of a string.
+
+**Key Distinction:**
+*   `char s[] = "hello";`
+    *   Creates a 6-byte **array** on the stack.
+    *   The contents of the string literal are *copied* into this array.
+    *   The array `s` is **modifiable**.
+*   `char *s = "hello";`
+    *   Creates a **pointer** `s` on the stack.
+    *   This pointer stores the address of the string literal `"hello"`, which is typically in **read-only** memory.
+
+::right::
+*   Attempting to modify the string via this pointer (`s[0] = 'H';`) leads to **undefined behavior** (often a crash).
+
+
+
+```c {*}{maxHeight:'400px'}
+#include <stdio.h>
+
+int main() {
+    // Pointer to a string literal (read-only)
+    char *str_ptr = "Welcome";
+
+    // Array initialized with a string literal (modifiable copy)
+    char str_arr[] = "Welcome";
+
+    printf("Pointer version: %s\n", str_ptr);
+    printf("Array version:   %s\n", str_arr);
+
+    // Modify the array version (OK)
+    str_arr[0] = 'w';
+    printf("Modified array: %s\n", str_arr);
+
+    // *str_ptr = 'W'; // UNDEFINED BEHAVIOR! Don't do this.
+    return 0;
+}
+```
+
+---
 
 ## Lecture Outline
 
 1.  Pointer Fundamentals (Primitives, `&`, `*`)
-2.  Pointer Arithmetic and Arrays
-3.  **Pointers with Structs and Pointers-to-Pointers**
+2.  Pointers with Arrays and Strings
+3.  **Pointers with Structs & Advanced Pointers**
 4.  Passing Pointers to Functions
 5.  Dynamic Memory Allocation
 6.  Application: Linked Lists
@@ -269,7 +313,7 @@ int main() {
 
 ---
 
-## Pointers to `struct` Variables (Recap)
+## Pointers to `struct` 
 
 * We covered this briefly in the `struct` lecture.
 * Declare a pointer of the struct type: `struct MyStruct *ptr;`
@@ -573,7 +617,7 @@ int main() {
 
 ---
 
-## Why Not Just Use Arrays?
+## Limitations of Arrays
 
 Arrays are great for storing collections of data, but they have some significant limitations, especially when the data size changes frequently.
 *   **Fixed Size:**
