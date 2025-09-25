@@ -15,22 +15,52 @@ title: Lecture 9 - Pointers
 
 ## Lecture Outline
 
-1.  **Pointers to Primitive Type Variables**
-2.  **Pointers and Arrays**
-3.  **Pointers to `struct` Variables**
-4.  **Dynamic Memory Allocation**
-5.  **Linked List Data Structure**
-6.  **Pointers to Functions**
+1.  **Pointer Fundamentals** (Primitives, `&`, `*`)
+2.  Pointer Arithmetic and Arrays
+3.  Pointers with Structs and Pointers-to-Pointers
+4.  Passing Pointers to Functions
+5.  Dynamic Memory Allocation
+6.  Application: Linked Lists
+7.  Function Pointers
 
+---
+layout: two-cols-header
 ---
 
 ## Pointer Fundamentals
 
-* We've seen various data types: `int`, `char`, `float`, `array`, `enum`, `union`, `struct`.
-* **Pointer:** A special type of variable whose value is the **memory address** of another variable.
-* Every variable, regardless of its type, resides at a specific memory address.
-* Pointers "point to" the location where data is stored.
-* It's also possible to have arrays *of* pointers.
+::left::
+
+*   We've seen various data types: `int`, `char`, `float`, `array`, `enum`, `union`, `struct`.
+*   **Pointer:** A special type of variable whose value is the **memory address** of another variable.
+*   Every variable, regardless of its type, resides at a specific memory address.
+*   Pointers "point to" the location where data is stored.
+
+```c
+int age = 30;
+int *ptr_age = &age;
+```
+
+::right::
+<div style="left:100px;position:relative">
+```mermaid {scale: 0.9}
+graph TD
+    subgraph "Memory"
+        A["
+            <b>age</b> (int)<br>
+            Value: 30<br>
+            Address: 0x7ffc1234
+        "]
+        B["
+            <b>ptr_age</b> (int *)<br>
+            Value: 0x7ffc1234<br>
+            Address: 0x7ffc5678
+        "]
+    end
+
+    B -- "points to" --> A
+```
+</div>
 
 ---
 
@@ -116,6 +146,20 @@ int main() {
 }
 ```
 
+
+
+---
+
+## Lecture Outline
+
+1.  Pointer Fundamentals (Primitives, `&`, `*`)
+2.  **Pointer Arithmetic and Arrays**
+3.  Pointers with Structs and Pointers-to-Pointers
+4.  Passing Pointers to Functions
+5.  Dynamic Memory Allocation
+6.  Application: Linked Lists
+7.  Function Pointers
+
 ---
 
 ## Pointer Arithmetic
@@ -162,17 +206,6 @@ int main() {
 }
 // Note: %p is used to print addresses (pointers). Casting to (void*) is good practice.
 ```
-
----
-
-## Lecture Outline
-
-1.  Pointers to Primitive Type Variables
-2.  **Pointers and Arrays**
-3.  Pointers to `struct` Variables
-4.  Dynamic Memory Allocation
-5.  Linked List Data Structure
-6.  Pointers to Functions
 
 ---
 
@@ -226,12 +259,13 @@ int main() {
 
 ## Lecture Outline
 
-1.  Pointers to Primitive Type Variables
-2.  Pointers and Arrays
-3.  **Pointers to `struct` Variables**
-4.  Dynamic Memory Allocation
-5.  Linked List Data Structure
-6.  Pointers to Functions
+1.  Pointer Fundamentals (Primitives, `&`, `*`)
+2.  Pointer Arithmetic and Arrays
+3.  **Pointers with Structs and Pointers-to-Pointers**
+4.  Passing Pointers to Functions
+5.  Dynamic Memory Allocation
+6.  Application: Linked Lists
+7.  Function Pointers
 
 ---
 
@@ -266,16 +300,141 @@ int main() {
 }
 ```
 
+
+---
+layout: two-cols-header
+---
+
+## Pointer to Pointer (Double Pointers)
+
+::left::
+
+*   A pointer can point to another pointer. This is called a **pointer to a pointer** or a **double pointer**.
+*   It's a variable that holds the memory address of another pointer variable.
+*   **Declaration:** `data_type **pptr;`
+*   **Dereferencing:**
+    *   `*pptr`: Accesses the pointer it points to (giving you an address).
+    *   `**pptr`: Accesses the final value (dereferences twice).
+
+```c
+int var = 789;
+// Pointer to an int
+int *ptr = &var;
+// Pointer to a pointer to an int
+int **pptr = &ptr;
+```
+
+::right::
+
+<div style="left:50px;position:relative">
+```mermaid {scale: 0.6}
+graph TD
+    subgraph "Memory"
+        C["<b>var</b> (int)<br>Value: 789<br>Address: 0x7ffc1111"]
+        B["<b>ptr</b> (int *)<br>Value: 0x7ffc1111<br>Address: 0x7ffc2222"]
+        A["<b>pptr</b> (int **)<br>Value: 0x7ffc2222<br>Address: 0x7ffc3333"]
+    end
+
+    A -- "points to address of ptr" --> B
+    B -- "points to address of var" --> C
+```
+
+
+`*pptr` evaluates to `0x7ffc1111` (the value of `ptr`).
+`**pptr` evaluates to `789` (the value of `var`).
+
+</div>
+
+
+
+
+---
+layout: two-cols-header
+---
+
+## Passing Pointers to Functions
+
+::left::
+
+### 1. To Modify a Variable's Value (Pass-by-Reference)
+
+*   To allow a function to modify a variable passed to it, you must pass a **pointer** to that variable.
+*   The function can then dereference the pointer to change the original variable's value.
+
+```c
+void add_five(int *num_ptr) {
+    *num_ptr = *num_ptr + 5; // Modifies original
+}
+
+int main() {
+    int x = 10;
+    add_five(&x); // Pass address of x
+    // Now, x is 15
+}
+```
+::right::
+
+```mermaid
+graph TD
+    subgraph "main()"
+        X["<b>x</b><br>Value: 10<br>Address: 0xAAA"]
+    end
+    subgraph "add_five(int *num_ptr)"
+        NP["<b>num_ptr</b><br>Value: 0xAAA"]
+    end
+    NP -- "points to" --> X
+```
+
+`*num_ptr` accesses `x`.
+
+---
+layout: two-cols-header
+---
+
+
+### 2. To Modify the Pointer Itself
+:: left ::
+*   To change where a pointer points from within a function (e.g., for memory allocation or linked list manipulation), you must pass a **pointer to that pointer** (`**`).
+
+
+
+```c
+void allocate_memory(int **ptr_ref) {
+    *ptr_ref = (int*)malloc(sizeof(int));
+}
+
+int main() {
+    int *my_ptr = NULL;
+    allocate_memory(&my_ptr); // Pass address of my_ptr
+    // my_ptr now points to allocated memory
+    free(*my_ptr);
+}
+```
+:: right ::
+
+```mermaid
+graph TD
+    subgraph "main()"
+        MP["<b>my_ptr</b> (int*)<br>Value: NULL<br>Address: 0xBBB"]
+    end
+    subgraph "allocate_memory(int **ptr_ref)"
+        PR["<b>ptr_ref</b> (int**)<br>Value: 0xBBB"]
+    end
+    PR -- "points to" --> MP
+```
+`*ptr_ref` accesses `my_ptr`, allowing the function to change it.
+
 ---
 
 ## Lecture Outline
 
-1.  Pointers to Primitive Type Variables
-2.  Pointers and Arrays
-3.  Pointers to `struct` Variables
-4.  **Dynamic Memory Allocation**
-5.  Linked List Data Structure
-6.  Pointers to Functions
+1.  Pointer Fundamentals (Primitives, `&`, `*`)
+2.  Pointer Arithmetic and Arrays
+3.  Pointers with Structs and Pointers-to-Pointers
+4.  Passing Pointers to Functions
+5.  **Dynamic Memory Allocation**
+6.  Application: Linked Lists
+7.  Function Pointers
 
 ---
 
@@ -404,42 +563,67 @@ int main() {
 
 ## Lecture Outline
 
-1.  Pointers to Primitive Type Variables
-2.  Pointers and Arrays
-3.  Pointers to `struct` Variables
-4.  Dynamic Memory Allocation
-5.  **Linked List Data Structure**
-6.  Pointers to Functions
+1.  Pointer Fundamentals (Primitives, `&`, `*`)
+2.  Pointer Arithmetic and Arrays
+3.  Pointers with Structs and Pointers-to-Pointers
+4.  Passing Pointers to Functions
+5.  Dynamic Memory Allocation
+6.  **Application: Linked Lists**
+7.  Function Pointers
+
+---
+
+## Why Not Just Use Arrays?
+
+Arrays are great for storing collections of data, but they have some significant limitations, especially when the data size changes frequently.
+*   **Fixed Size:**
+    *   The size of an array is fixed when it is created (either at compile-time or with a single `malloc` call).
+    *   If the array fills up, you must allocate a new, larger array and copy all the old elements over. This is a slow operation.
+*   **Inefficient Insertions & Deletions:**
+    *   To insert or delete an element in the middle of an array, you must shift all subsequent elements.
+    *   For an array with `N` elements, this can take up to $O(N)$ time, which is very inefficient for large collections.
+*   **Wasted Memory:**
+    *   If you allocate a large array to anticipate future needs but only use a small portion of it, the unused memory is wasted.
+**So, we need a data structure that can grow and shrink easily. This is where Linked Lists come in.**
 
 ---
 
 ## Introduction to Linked Lists
 
-* Arrays have a fixed size, determined at compile time (or when dynamically allocated). Inserting or deleting elements in the middle requires shifting subsequent elements, which can be inefficient.
-* A **Linked List** is a dynamic data structure where elements (**nodes**) are linked together using pointers. It can easily grow or shrink during runtime.
+*   A **Linked List** is a dynamic data structure that solves these problems. It's a sequence of elements (**nodes**) where each node is linked to the next one using pointers.
+*   It can easily grow or shrink at runtime without needing to reallocate and copy the entire structure.
 * Each node typically contains:
     1.  **Data:** The actual value stored in the node.
     2.  **Pointer(s):** One or more pointers linking to the next (and possibly previous) node in the sequence.
 * The list is accessed starting from a **head** pointer, which points to the first node. The last node's "next" pointer is typically `NULL`.
 
+
+
+
+---
+layout: default
 ---
 
 ## Linked List Node Structure
 
-* Define a `struct` for the list nodes. A common pattern uses a self-referential structure (a pointer to its own type).
-
+*   A node is defined using a `struct`.
+*   A common pattern is a **self-referential structure**, where the `struct` contains a pointer to its own type.
+*   This `next` pointer is the "link" that connects one node to the next one in the chain.
 ```c
 // Define the structure for a node in a singly linked list
 typedef struct NodeTag {
     int data;             // Data stored in the node (e.g., an integer)
     struct NodeTag *next; // Pointer to the next node in the list
 } Node;
+```
 
-// Usage:
-// Node *head = NULL; // Pointer to the first node, initially empty list
-// Node *newNode = (Node *)malloc(sizeof(Node)); // Create a new node
-// newNode->data = 10;
-// newNode->next = NULL; // Or link it to another node
+* A single node in memory consists of its data and a pointer to the next node.
+
+```mermaid
+graph LR
+    A["<b>Node</b><br>Address: 0x7ffc1234<br><b>data</b>(int): 10<br><b>next</b>(Node*) :0x7ffc5678<hr>"]
+    B["<b>Node</b><br>Address: 0x7ffc5678<br><b>data</b>(int): 20<br><b>next</b>(Node*) :NULL<hr>"]
+    A --> B
 ```
 
 ---
@@ -735,12 +919,13 @@ int main() {
 
 ## Lecture Outline
 
-1.  Pointers to Primitive Type Variables
-2.  Pointers and Arrays
-3.  Pointers to `struct` Variables
-4.  Dynamic Memory Allocation
-5.  Linked List Data Structure
-6.  **Pointers to Functions**
+1.  Pointer Fundamentals (Primitives, `&`, `*`)
+2.  Pointer Arithmetic and Arrays
+3.  Pointers with Structs and Pointers-to-Pointers
+4.  Passing Pointers to Functions
+5.  Dynamic Memory Allocation
+6.  Application: Linked Lists
+7.  **Function Pointers**
 
 ---
 
@@ -857,4 +1042,3 @@ layout: default
 <div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
 <Link to="lab9" title="Go to Lab9 👩‍🔬"/>
 </div>
-
