@@ -1020,24 +1020,25 @@ int main() {
 
 
 ---
-layout: default
+layout: two-cols
 ---
 
 ## Summary
-<Transform scale="0.85">
-
-*   **Pointers:** Variables that store memory addresses of other variables.
-*   **Operators:**
-    *   `&` (Address-Of): Gets the memory address of a variable.
+*   **Pointer Fundamentals:** Variables that store memory addresses. Key operators are:
+    *   `&` (Address-Of): Gets the memory address.
     *   `*` (Dereference): Accesses the value at the address a pointer holds.
-*   **Pointers and Arrays:** An array name decays into a pointer to its first element. `arr[i]` is equivalent to `*(arr + i)`.
+*   **Pointers & Arrays:** `arr[i]` is equivalent to `*(arr + i)`.
+*   **Advanced Pointers:**
+    *   Use the arrow operator (`->`) to access members of a `struct` via a pointer.
+    *   Pointers-to-pointers (`**`) hold the address of another pointer, useful for modifying pointers in functions.
+
+:: right ::
+*   **Passing Pointers to Functions:** Enables modifying external variables (pass-by-reference) and changing where a pointer points.
 *   **Dynamic Memory Allocation (`<stdlib.h>`):**
     *   `malloc()`: Allocates a block of memory on the heap. Returns a pointer or `NULL` on failure.
     *   `free()`: Deallocates memory to prevent memory leaks. Every `malloc` needs a corresponding `free`.
-*   **Linked Lists:** A dynamic data structure where nodes containing data are linked via pointers. They can grow and shrink at runtime.
-*   **Function Pointers:** Pointers that store the address of a function, allowing functions to be passed as arguments (callbacks).
-
-</Transform>
+*   **Application: Linked Lists:** A dynamic data structure built with nodes and pointers, overcoming the fixed-size limitation of arrays.
+*   **Function Pointers:** Store the address of a function, allowing them to be passed as arguments (callbacks) or stored.
 
 <div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
 <Link to="lab9" title="Go to Lab9 👩‍🔬"/>
