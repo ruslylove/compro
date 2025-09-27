@@ -32,3 +32,6 @@ src: ./lab-9-pointers.md
 ---
 src: ./lab-10-file-operations.md
 ---
+---
+src: ./assignment_1_2025.md
+---

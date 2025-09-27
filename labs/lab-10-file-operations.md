@@ -17,59 +17,62 @@ routeAlias: lab10
 
 ## Objectives
 
-*   **Master pointer fundamentals and arithmetic**
-    *   Declare, initialize, and dereference pointers.
-    *   Use pointer arithmetic to navigate arrays efficiently without using array indices.
-*   **Use pointers with functions and arrays**
-    *   Pass pointers to functions to allow direct modification of caller data (pass-by-reference).
-    *   Implement algorithms using pointer notation for array access.
 *   **Perform fundamental file I/O operations**
-    *   Open, read from, write to, and close text files.
-    *   Use `fopen`, `fprintf`, `fgetc`, and `fclose`.
+    *   Open files in various modes (`"r"`, `"w"`, `"a"`).
+    *   Read from files using different functions (`fscanf`, `fgets`, `fgetc`).
+    *   Write to files using `fprintf` and `fputc`.
     *   Handle file-related errors, such as a failure to open a file.
-*   **Manage memory dynamically**
-    *   Allocate and free memory on the heap using `malloc` and `free`.
+*   **Apply file operations to solve practical problems**
+    *   Parse formatted data from a file.
+    *   Process a file line by line.
+    *   Aggregate data from a file.
+    *   Copy file contents.
 
 ---
 
 ## Lab Outline
 
-*   **Exercise 1: Flip Array Elements using Pointers**
-    *   Modify an array in-place using pointer arithmetic.
-*   **Exercise 2: Calculate Dot Product using Pointers**
-    *   Access multiple arrays in parallel using pointers.
+*   **Exercise 1: Read and Process Student Scores**
+    *   Read formatted data from a file and perform calculations.
+*   **Exercise 2: Number Lines in a File**
+    *   Read a file line-by-line with `fgets` and write to a new file with `fprintf`.
 *   **Exercise 3: Alphabet Frequency from File**
     *   Combine file reading with array manipulation.
 *   **Exercise 4: Simple File Writing**
     *   Practice creating and writing to a new file.
-*   **Exercise 5: Dynamic Array with `malloc`**
-    *   Learn to allocate memory at runtime.
+*   **Exercise 5: Append a Log Entry**
+    *   Practice opening a file in append mode (`"a"`) to add content without overwriting.
 *   **Exercise 6: Copy a File**
     *   Read from one file and write the contents to another.
 
 ---
 
-## Exercise 1: Flip Array Elements using Pointers
+## Exercise 1: Read and Process Student Scores
 
-*   **Task:** Create a function `void flip(int *a, int sz)` that reverses an integer array *in place*.
-*   **📝 Flowchart First:** Draw a flowchart for the `flip` function. It should visualize the two-pointer swapping logic.
+*   **Task:** Read student names and scores from a file named `scores.txt`. Calculate the average score and find the student with the highest score.
+*   **📝 Flowchart First:** Draw a flowchart for the main logic. It should show opening the file, a loop to read and process data, closing the file, and printing the final results.
 *   **Requirements:**
-    1.  The function must use pointer arithmetic (e.g., `*p`, `p++`), not array indexing (`a[i]`).
-    2.  Use two pointers, one at the start and one at the end, moving towards the center and swapping elements.
-    3.  In `main`, declare an array, print it, call `flip`, and print it again.
-*   **Example:** `{11, 4, 31, 2, 5}` becomes `{5, 2, 31, 4, 11}`.
+    1.  Create a `scores.txt` file with a few lines, each containing a name and a score (e.g., `Alice 95`).
+    2.  Open `scores.txt` in read mode (`"r"`). Handle potential file opening errors.
+    3.  Use a `while` loop with `fscanf` to read the name and score from each line. The loop should continue as long as `fscanf` successfully reads 2 items.
+    4.  Inside the loop, accumulate the total score and keep track of the highest score seen so far and the name of the student who achieved it.
+    5.  After the loop, calculate the average.
+    6.  Print the average score, the highest score, and the name of the top-scoring student.
+    7.  Remember to `fclose()` the file.
 
 ---
 
-## Exercise 2: Calculate Dot Product using Pointers
+## Exercise 2: Number Lines in a File
 
-*   **Task:** Define a function `float dotprod(float *a, float *b, int sz)` that calculates the dot product of two float arrays.
-*   **📝 Flowchart First:** Draw a flowchart for the `dotprod` function, showing the loop that accumulates the sum using pointers.
-*   **Dot Product:** $result = \sum_{i=0}^{sz-1} a_i \times b_i$
+*   **Task:** Read a text file named `lyrics.txt` and write its contents to a new file, `numbered_lyrics.txt`, with each line prefixed by a line number.
+*   **📝 Flowchart First:** Draw a flowchart that shows opening both files, the loop for reading a line and writing the numbered line, and closing both files.
 *   **Requirements:**
-    1.  Use pointers, not array indexing, to iterate through the arrays.
-    2.  Return the resulting `float` dot product.
-    3.  In `main`, create two float arrays, call `dotprod`, and print the result.
+    1.  Create a `lyrics.txt` file with some sample text (e.g., a few lines of a song).
+    2.  Open `lyrics.txt` for reading and `numbered_lyrics.txt` for writing. Handle any file opening errors.
+    3.  Use a `while` loop with `fgets` to read the source file line by line.
+    4.  Inside the loop, use `fprintf` to write the line number, a colon, a space, and the line content to the destination file.
+    5.  Keep a counter for the line numbers.
+    6.  Close both files.
 
 ---
 
@@ -98,17 +101,15 @@ routeAlias: lab10
 
 ---
 
-## Exercise 5: Dynamic Array with `malloc`
+## Exercise 5: Append a Log Entry
 
-*   **Task:** Write a program that asks the user how many numbers they want to enter, allocates memory dynamically for them, reads the numbers, and then prints them.
-*   **Concept:** `malloc` (memory allocation) allocates a block of memory on the heap and returns a pointer to it. This is essential when you don't know the size of an array at compile time.
+*   **Task:** Write a program that appends a new log message to a file named `events.log` each time it is run.
+*   **Concept:** Opening a file in append mode (`"a"`) places the file pointer at the end of the file, so any new writes are added without deleting existing content. If the file doesn't exist, it will be created.
 *   **Requirements:**
-    1.  Ask the user for an integer `n`.
-    2.  Allocate space for `n` integers using `malloc`: `int *arr = (int*) malloc(n * sizeof(int));`.
-    3.  Check if `malloc` returned `NULL` (which indicates an error).
-    4.  If successful, loop `n` times to read integers from the user into the allocated array.
-    5.  Print the contents of the array.
-    6.  **Crucially**, free the allocated memory using `free(arr);`.
+    1.  Open `events.log` in append mode (`"a"`). Handle file opening errors.
+    2.  Use `fprintf` to write a new line to the file, for example: `"Event: System startup.\n"`.
+    3.  Close the file.
+    4.  Run the program multiple times and check the contents of `events.log` to verify that each run adds a new line to the end of the file.
 
 ---
 

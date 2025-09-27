@@ -30,16 +30,11 @@ title: Lecture 10 - File Operations
 
 ---
 
-## Storage Device Basics (Part 1)
+## Storage Device Basics
 
 * Various storage technologies have existed throughout computing history.
 * Common modern examples include Hard Disk Drives (HDDs), Solid-State Drives (SSDs), DVDs, and USB flash drives.
 * Data is stored on these devices in units called **files**.
-
----
-
-## Storage Device Basics (Part 2)
-
 * Essential information (metadata) managed by the operating system for each file includes:
     1.  File name
     2.  File size
@@ -87,7 +82,9 @@ title: Lecture 10 - File Operations
 
 ## Common `fopen()` Modes
 
-| Mode String | Meaning                                        | Behavior if File Exists | Behavior if File Doesn't Exist |
+<Transform scale="0.85">
+
+| **Mode String** | Meaning                                        | Behavior if File Exists | Behavior if File Doesn't Exist |
 | :---------- | :--------------------------------------------- | :---------------------- | :----------------------------- |
 | `"r"`       | **R**ead (text)                                | Read from start         | Error (`NULL` returned)        |
 | `"w"`       | **W**rite (text)                               | **Destroy contents** | Create new file                |
@@ -96,6 +93,8 @@ title: Lecture 10 - File Operations
 | `"w+"`      | Read and Write (text)                          | **Destroy contents** | Create new file                |
 | `"a+"`      | Read and Append (text)                         | Read start, Append end  | Create new file                |
 | `"rb"`, `"wb"`, `"ab"`, `"rb+"`, `"wb+"`, `"ab+"` | Like above, but for **B**inary files |                         |                                |
+
+</Transform>
 
 ---
 
@@ -126,7 +125,7 @@ title: Lecture 10 - File Operations
 
 ## Reading Example (`fscanf`)
 
-```c
+```c {*}{maxHeight:'420px',lines:true}
 #include <stdio.h>
 
 int main() {
@@ -168,7 +167,7 @@ int main() {
 
 ## Reading Example (`fgets`)
 
-```c
+```c {*}{maxHeight:'420px',lines:true}
 #include <stdio.h>
 
 #define MAX_LINE_LENGTH 100
@@ -213,7 +212,7 @@ int main() {
 
 ## Writing Example (`fprintf`, Mode "w")
 
-```c
+```c {*}{maxHeight:'400px',lines:true}
 #include <stdio.h>
 
 int main() {
@@ -242,13 +241,14 @@ int main() {
     return 0;
 }
 ```
+
 *Running this will create `output.txt` (or overwrite it) with the specified lines.*
 
 ---
 
 ## Appending Example (`fprintf`, Mode "a")
 
-```c
+```c {*}{maxHeight:'400px',lines:true}
 #include <stdio.h>
 
 int main() {
@@ -276,6 +276,7 @@ int main() {
     return 0;
 }
 ```
+
 *Running this after the previous example will add David's record to the end of `output.txt`.*
 
 ---
@@ -287,7 +288,7 @@ int main() {
 * Use functions like `fread()` and `fwrite()` for binary I/O.
     * `fread(void *ptr, size_t size, size_t count, FILE *fp)`: Reads `count` items, each of `size` bytes, from `fp` into the buffer pointed to by `ptr`.
     * `fwrite(const void *ptr, size_t size, size_t count, FILE *fp)`: Writes `count` items, each of `size` bytes, from the buffer `ptr` to `fp`.
-* (Detailed usage of binary I/O is often covered in more advanced topics).
+* Detailed usage of binary I/O is often covered in more advanced topics (e.g., Microprocessor and Embedded Systems).
 
 ---
 layout: default
