@@ -33,7 +33,7 @@ routeAlias: lab10
 ## Lab Outline
 
 *   **Exercise 1: Read and Process Student Scores**
-    *   Read formatted data from a file and perform calculations.
+    *   Read formatted data from a file using `fscanf` and perform calculations.
 *   **Exercise 2: Number Lines in a File**
     *   Read a file line-by-line with `fgets` and write to a new file with `fprintf`.
 *   **Exercise 3: Alphabet Frequency from File**

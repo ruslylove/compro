@@ -152,9 +152,16 @@ Your final score will be determined as follows:
 
 ## Submission ✅
 
-  - **What:** Submit your single, modified `cosmic_pet.c` file.
-  - **Where:** To the course portal.
-  - **When:** Before the deadline on **TBD**.
+Your submission must be a single ZIP file containing the following:
+1.  **Source Code**:
+    *   Your single, well-commented `cosmic_pet.c` file.
+2.  **Report (PDF format)**:
+    *   **Programming Design**: Include flowcharts for your main game loop and at least two other key functions (e.g., `feedPet`, a mini-game).
+    *   **Instruction Manual**: A clear, user-friendly guide on how to compile and play your game, explaining all commands and features.
+    *   **Advertising Banner**: A short, creative "advertisement" for your game. Highlight the unique features you implemented and make it sound exciting!
+
+- **Where:** Submit the ZIP file to the course portal.
+- **When:** Before the deadline on **TBD**.
 
 ---
 
@@ -163,4 +170,3 @@ Your final score will be determined as follows:
 We are incredibly excited to see the unique cosmic companions you all create.
 
 **Have Fun\!** 👽👾
-
