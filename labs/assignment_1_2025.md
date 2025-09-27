@@ -1,23 +1,26 @@
 ---
 theme: seriph
-background: https://cover.sli.dev
+background: https://images.stockcake.com/public/9/9/8/9985c91b-b967-4e97-a28d-f7adcf98d01b/cosmic-puppy-adventure-stockcake.jpg
 transition: slide-left
 layout: cover
-title: Programming Assignment- The Cosmic Pet Simulator!
+title: PA - The Cosmic Pet Simulator!
 class: lab
 routeAlias: pa
 ---
 
-# Programming Assignment: The Cosmic Pet Simulator!
+# Programming Assignment: <br>The Cosmic Pet Simulator!
 ## {{ $slidev.configs.subject }}
 ### Semester {{ $slidev.configs.semester }}
 #### Presented by {{ $slidev.configs.presenter }}
+---
+hide: true
 ---
 
 ## 🚀 C Programming Assignment 🚀
 ## The Cosmic Pet Simulator!
 
 **Posted:** September 23, 2025
+
 **Due:** Friday, October 10, 2025, by 11:59 PM
 
 ---
@@ -66,11 +69,11 @@ Here are some ideas to spark your imagination (but unique ideas are highly encou
 
 ---
 
-## Getting Started: Hints & Skeletons
+## Getting Started
 
 Here are some code skeletons to help you begin.
 
-## Hint: Advanced Pet Stats
+### Hint: Advanced Pet Stats
 
 Modify the `CosmicPet` struct and update the stats in your game loop.
 
@@ -89,8 +92,6 @@ pet->energy -= 5; // Playing uses energy
 ```
 
 ---
-
-## Hints & Skeletons (Cont.)
 
 ## Hint: Inventory System
 
@@ -112,8 +113,6 @@ Food inventory[2] = {
 ```
 
 ---
-
-## Hints & Skeletons (Cont.)
 
 ## Hint: Save/Load Functionality
 
@@ -155,7 +154,7 @@ Your final score will be determined as follows:
 
   - **What:** Submit your single, modified `cosmic_pet.c` file.
   - **Where:** To the course portal.
-  - **When:** Before the deadline on **Friday, October 10, 2025, by 11:59 PM**.
+  - **When:** Before the deadline on **TBD**.
 
 ---
 
