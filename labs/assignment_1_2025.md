@@ -66,6 +66,7 @@ Here are some ideas to spark your imagination (but unique ideas are highly encou
 - **Mini-Games**: Launch a number-guessing or rock-paper-scissors game for a happiness boost.
 - **Save/Load Functionality**: Use file I/O to save and resume the game.
 - **Dynamic Events**: Create random events like meteor showers or passing comets.
+- **High-Score Leaderboard**: Implement a system to calculate and save scores.
 
 ---
 
@@ -140,6 +141,55 @@ void loadGame(CosmicPet *pet) {
 
 ---
 
+## Hint: Leaderboard Logic
+
+* Maintain a top-10 leaderboard.
+
+* When a game ends, if the score is high enough, it must be inserted into the correct rank, shifting other scores down.
+
+* The main title screen must have an option to view the high scores without starting a new game.
+
+**Struct for High Scores**:
+
+```c
+#define HIGH_SCORE_ENTRIES 10
+#define SCORE_FILE "cosmic_scores.dat"
+
+typedef struct {
+    char playerName[50];
+    int score;
+} HighScoreEntry;
+```
+---
+
+## Hint: Main Menu Structure
+
+```c
+int main() {
+    loadHighScores(); // Your function to load scores from the file
+
+    while (1) {
+        // showTitleScreen();
+        printf("1. Start New Journey\n");
+        printf("2. View High Scores\n");
+        printf("3. Quit\n");
+
+        int choice;
+        // Get user's menu choice...
+
+        if (choice == 1) {
+            runGame(); // This function contains your main game loop
+        } else if (choice == 2) {
+            displayHighScoreBoard();
+        } else {
+            break; // Exit the loop to quit
+        }
+    }
+    return 0;
+}
+```
+---
+
 ## Grading Rubric 📊
 
 Your final score will be determined as follows:
@@ -147,7 +197,10 @@ Your final score will be determined as follows:
   - **60% - Core Functionality**: The base simulator works as expected. The pet hatches, grows, and responds correctly to commands. Game-over and win conditions are functional.
   - **20% - Creativity & Extra Features**: The quality, originality, and implementation of the new features you add to the game.
   - **20% - Code Quality & Comments**: Your code is clean, well-organized, and easy to read, with comments explaining your logic.
+  - **🎁 Bonus Features**: Up to 10 bonus points (**extra 10% of the final grading**) for exceptional creativity (e.g., advanced pet AI, multiple mini-games, ASCII art animations).
 
+---
+layout: two-cols
 ---
 
 ## Submission ✅
@@ -158,10 +211,19 @@ Your submission must be a single ZIP file containing the following:
 2.  **Report (PDF format)**:
     *   **Programming Design**: Include flowcharts for your main game loop and at least two other key functions (e.g., `feedPet`, a mini-game).
     *   **Instruction Manual**: A clear, user-friendly guide on how to compile and play your game, explaining all commands and features.
-    *   **Advertising Banner**: A short, creative "advertisement" for your game. Highlight the unique features you implemented and make it sound exciting!
+:: right ::
+
+3. **Video Demonstration**:
+* Each team must submit a **Youtube link** of a 3-5 minute video clip demonstrating their project.
+* **Introduction**: Both team members should appear on camera and introduce themselves and the project. Briefly explain the creative features you added.
+* **Live Demonstration**:
+    Show the game starting up and the main menu options.
+    * Demonstrate all core features: feeding, talking, and playing your mini-game.
+    * Show a game ending (win, lose, or quit).
+    * Display the final score calculation and show how the high-score board is updated.
 
 - **Where:** Submit the ZIP file to the course portal.
-- **When:** Before the deadline on **TBD**.
+- **When:** Before the deadline on **27 October 25**.
 
 ---
 
