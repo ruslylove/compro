@@ -313,12 +313,3 @@ layout: default
 <div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
 <Link to="lab10" title="Go to Lab10 👩‍🔬"/>
 </div>
-
-* Files provide persistent storage.
-* Use `<stdio.h>` functions for file I/O.
-* **`fopen()`:** Open a file with a specific mode (`"r"`, `"w"`, `"a"`, etc.). **Always check for `NULL` return.**
-* **`FILE*`:** Use the returned file pointer (handle) for subsequent operations.
-* **Reading:** Use `fscanf()` (formatted), `fgets()` (line-based, safer). Check return values for `EOF` or `NULL`.
-* **Writing:** Use `fprintf()` (formatted), `fputs()` (string).
-* **`fclose()`:** **Always close files** when finished to save data and release resources.
-* Remember standard streams: `stdin`, `stdout`, `stderr`.
