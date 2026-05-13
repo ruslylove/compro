@@ -25,7 +25,6 @@ title: Lecture 4 - Loop Control Structures
 3.  Introduction to Debugging
     *   Using `printf` for tracing.
     *   Debugger Tools & Common Bugs.
-4.  Visualizing Logic with Flowcharts for Loops
 
 ---
 layout: two-cols-header
@@ -83,7 +82,6 @@ int main() {
     *   `break`: Terminating a loop.
     *   `continue`: Skipping an iteration.
 3.  Introduction to Debugging
-4.  Visualizing Logic with Flowcharts for Loops
 
 ---
 
@@ -623,7 +621,6 @@ graph TD
 3.  Introduction to Debugging
     *   Using `printf` for tracing.
     *   Debugger Tools & Common Bugs.
-4.  Visualizing Logic with Flowcharts for Loops
 
 ---
 
@@ -843,7 +840,6 @@ graph TD
 3.  **Introduction to Debugging**
     *   Using `printf` for tracing.
     *   Debugger Tools & Common Bugs.
-4.  Visualizing Logic with Flowcharts for Loops
 
 ---
 layout: image-right
@@ -980,13 +976,8 @@ if (i % 2 == 1); // Stray semicolon, condition has no effect
 3.  Introduction to Debugging
     *   Using `printf` for tracing.
     *   Debugger Tools & Common Bugs.
-4.  **Visualizing Logic with Flowcharts for Loops**
 
-
-
----
-src: ./flow_chart_loop.md
----
+*Flowchart diagrams for `while`, `do-while`, `for`, and nested loops are in the **Annex** at the end of the deck.*
 
 ---
 layout: default
@@ -1006,7 +997,3 @@ layout: default
 *   **Flowcharts for Loops:** Visual diagrams that illustrate the repetition, condition, and exit points for `while`, `do-while`, and `for` loops.
 
 </Transform>
-
-<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
-<Link to="lab4" title="Go to Lab4 👩‍🔬"/>
-</div>

@@ -3,10 +3,10 @@ theme: seriph
 background: https://cover.sli.dev
 transition: slide-left
 layout: cover
-title: Lecture 8 - struct, enum, and union
+title: Lecture 9 - struct, enum, and union
 ---
 
-# Lecture 8: struct, enum, and union
+# Lecture 9: struct, enum, and union
 ## {{ $slidev.configs.subject }}
 ### Semester {{ $slidev.configs.semester }}
 #### Presented by {{ $slidev.configs.presenter }}
@@ -104,6 +104,8 @@ struct Student {
     * Nested `struct`s
     * `typedef` with `struct`s
     * Structs in Functions & Arrays
+    * **Pointers to Struct (`->`) and Pass-by-Pointer**
+    * Self-Referential Structs (Linked-List Preview)
     * Memory Padding & Bit-Fields
 2.  `enum` (Enumerations)
 3.  `union` (Unions)
@@ -325,6 +327,116 @@ int main() {
     return 0;
 }
 ```
+---
+
+## Pointers to Struct and the Arrow Operator (`->`)
+
+* Recall from Lecture 7: a pointer holds the address of another variable, and we use `*` to dereference. The same applies to structs.
+* Declare a pointer of the struct type: `struct Student *ptr;`
+* Take the address of an existing struct: `ptr = &alice;`
+* Access a member through the pointer with the **arrow operator (`->`)**:
+  `ptr->name` is shorthand for `(*ptr).name`. The parentheses are necessary because `.` binds tighter than `*`.
+
+```c {*}{maxHeight:'250px'}
+#include <stdio.h>
+
+typedef struct { int id; float gpa; } Record;
+
+int main(void) {
+    Record  r   = {101, 3.85f};
+    Record *p   = &r;       // p points to r
+
+    printf("via value:    id=%d  gpa=%.2f\n", r.id, r.gpa);
+    printf("via pointer:  id=%d  gpa=%.2f\n", p->id, p->gpa);
+
+    p->id = 999;            // modifies r through the pointer
+    printf("after edit:   id=%d\n", r.id);
+    return 0;
+}
+```
+
+* **Read it aloud as:** "the `id` of the struct that `p` points to". The `->` notation is one of the most-used pieces of C syntax.
+
+---
+layout: two-cols-header
+---
+
+## Passing a Struct by Pointer
+
+::left::
+
+* Passing a struct **by value** copies every byte -- fine for tiny structs but wasteful for large records and forbids the function from modifying the caller's struct.
+* Passing **by pointer** sends just an address (typically 8 bytes), and the function can both read and write through it.
+* Use `const Type *p` when the function only needs to read -- it documents intent and lets the compiler catch accidental writes.
+
+```c
+void  print_point (const Point *p);     // read-only
+void  move_point  (Point *p,
+                   int dx, int dy);     // can modify
+```
+
+::right::
+
+```c {*}{maxHeight:'320px'}
+#include <stdio.h>
+
+typedef struct { int x, y; } Point;
+
+void move_point(Point *p, int dx, int dy) {
+    p->x += dx;       // modifies the caller's Point
+    p->y += dy;
+}
+
+void print_point(const Point *p) {
+    printf("(%d, %d)\n", p->x, p->y);
+}
+
+int main(void) {
+    Point p1 = {10, 20};
+    print_point(&p1);
+    move_point(&p1, 5, 5);    // pass the address
+    print_point(&p1);         // now (15, 25)
+    return 0;
+}
+```
+
+* Compare with the previous slide's `movePoint(Point p, ...)` -- there the caller's `p1` did **not** change. The pointer version is how you really "modify a struct in place".
+
+---
+
+## Self-Referential Structs: a Peek at Linked Lists
+
+* A `struct` may contain a **pointer to its own type**. This pattern is the basis of dynamic data structures like linked lists and trees.
+* Combined with `malloc` from Lecture 7, we can build chains of structs that grow at runtime.
+
+```c {*}{maxHeight:'300px'}
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {        // tag is required so the pointer can refer back
+    int          data;
+    struct Node *next;       // pointer to the next node, or NULL at the end
+} Node;
+
+int main(void) {
+    Node *head = malloc(sizeof(Node));
+    head->data = 1;
+    head->next = malloc(sizeof(Node));
+    head->next->data = 2;
+    head->next->next = NULL;
+
+    for (Node *cur = head; cur != NULL; cur = cur->next)
+        printf("%d -> ", cur->data);
+    printf("NULL\n");
+
+    free(head->next);
+    free(head);
+    return 0;
+}
+```
+
+* This is the foundation of linked lists, trees, graphs -- topics you will meet in Data Structures.
+
 ---
 
 ## Arrays of Structs
@@ -648,8 +760,9 @@ layout: two-cols
 
 *   **struct:** A composite type that groups variables (members) of different data types.
     *   Members are stored in separate memory locations.
-    *   Access members using the dot (`.`) operator.
-    *   Can be nested and used in arrays.
+    *   Access members with `.` on a value and `->` on a pointer (`p->x` $\equiv$ `(*p).x`).
+    *   Can be nested, used in arrays, and reference themselves (linked lists, trees).
+*   **Pass by pointer:** Use `Type *p` to let a function modify the caller's struct or to avoid copying a large record; use `const Type *p` for read-only access.
 *   **typedef:** Creates a synonym (alias) for an existing data type, which can simplify complex declarations (e.g., `typedef struct ... Point;`).
 *   **Memory Considerations:**
     *   **Padding:** `sizeof(struct)` can be greater than the sum of its members' sizes.
@@ -663,8 +776,3 @@ layout: two-cols
     *   Only one member can hold a value at any time.
     *   The size of a `union` is the size of its largest member.
     *   Useful for memory saving or interpreting raw bytes in multiple ways.
-
-
-<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
-<Link to="lab8" title="Go to Lab8 👩‍🔬"/>
-</div>

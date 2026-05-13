@@ -27,7 +27,7 @@ mdc: true
 favicon: '/img/favicon_c_new.png'
 
 presenter: Dr. Ruslee Sutthaweekul
-semester: 1/2025
+semester: 1/2026
 subject: 010153002 Computer Programming
 ---
 
@@ -59,10 +59,7 @@ hideInToc: true
 
 # Contents
 
-<Toc maxDepth='1' columns='2'/>
+<Toc maxDepth='1' columns='1'/>
 ---
 src: lectures/toc.md
----
----
-src: labs/toc.md
 ---

@@ -309,7 +309,3 @@ layout: default
 *   **Standard Streams:** `stdin` (keyboard), `stdout` (screen), and `stderr` (screen for errors) are automatically available `FILE*` streams.
 
 </Transform>
-
-<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
-<Link to="lab10" title="Go to Lab10 👩‍🔬"/>
-</div>

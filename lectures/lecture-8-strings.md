@@ -3,10 +3,10 @@ theme: seriph
 background: https://cover.sli.dev
 transition: slide-left
 layout: cover
-title: Lecture 7 - Strings
+title: Lecture 8 - Strings
 ---
 
-# Lecture 7: Strings
+# Lecture 8: Strings
 ## {{ $slidev.configs.subject }}
 ### Semester {{ $slidev.configs.semester }}
 #### Presented by {{ $slidev.configs.presenter }}
@@ -24,7 +24,10 @@ layout: two-cols
     *   Declaration and Initialization
     *   Basic I/O with `printf` and `scanf`
     *   Safer Input with `fgets`
-3.  **Standard String Library (`<string.h>`)**
+3.  **Strings and Pointers (`char *`)**
+    *   `char[]` vs.\ `char *`
+    *   Pointer-based string traversal
+4.  **Standard String Library (`<string.h>`)**
     *   Finding Length: `strlen`
     *   Copying: `strcpy` (unsafe) & `strncpy` (safer)
     *   Concatenation: `strcat` (unsafe) & `strncat` (safer)
@@ -32,13 +35,13 @@ layout: two-cols
 
 :: right ::
 
-4.  **Strings and Functions**
+5.  **Strings and Functions**
     *   Passing Strings to Functions
-5.  **Arrays of Strings**
+6.  **Arrays of Strings**
     *   Declaration and Processing
     *   Passing Arrays of Strings to Functions
-6.  **Advanced String Examples**
-    *   Example 1: Palindrome Checker
+7.  **Advanced String Examples**
+    *   Example 1: Palindrome Checker (two pointers)
     *   Example 2: String Tokenization (`strtok`)
     *   Example 3: Basic String to Integer (`atoi`)
 
@@ -146,6 +149,71 @@ layout: two-cols
         return 0;
     }
     ```
+
+---
+layout: two-cols-header
+---
+
+## Strings and Pointers (`char *`)
+
+::left::
+
+*   You learned about pointers in Lecture 7. A string is just a `char` array, and an array name decays to a pointer to its first element -- so a `char *` is a natural way to refer to a string.
+*   **Key distinction:**
+    *   `char s[] = "hello";`
+        *   Creates a 6-byte **array** on the stack; the literal is **copied** into it.
+        *   The array `s` is **modifiable** (e.g.\ `s[0] = 'H';` is fine).
+    *   `char *s = "hello";`
+        *   Creates a **pointer** `s` that points at the string literal in **read-only** memory.
+        *   Modifying via the pointer (`s[0] = 'H';`) is **undefined behavior**.
+
+::right::
+
+*   In a function parameter, `char s[]` and `char *s` mean the same thing -- both receive the address of the first character.
+
+```c {*}{maxHeight:'320px'}
+#include <stdio.h>
+
+int main(void) {
+    char *str_ptr = "Welcome";   // points to a read-only literal
+    char  str_arr[] = "Welcome"; // modifiable copy on the stack
+
+    printf("Pointer version: %s\n", str_ptr);
+    printf("Array version:   %s\n", str_arr);
+
+    str_arr[0] = 'w';            // OK
+    printf("Modified array:  %s\n", str_arr);
+
+    // *str_ptr = 'W';           // UNDEFINED BEHAVIOR -- don't do this
+    return 0;
+}
+```
+
+---
+
+## Two Equivalent Ways to Walk a String
+
+Indexing and pointer-walking produce identical results because `s[i]` is just `*(s + i)`. The pointer-walk style is idiomatic in C and you will see it constantly.
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    char s[] = "abc";
+
+    /* index style */
+    for (int i = 0; s[i] != '\0'; i++) printf("%c", s[i]);
+    printf("\n");
+
+    /* pointer style: stop when *p is the null terminator */
+    for (char *p = s; *p != '\0'; p++) printf("%c", *p);
+    printf("\n");
+    return 0;
+}
+```
+
+* The pointer form makes the **end-of-string test** especially natural:
+  `*p` is truthy for every real character and `0` (false) at the `\0`, so `while (*p) ...` works.
 
 ---
 
@@ -500,7 +568,3 @@ layout: two-cols
     *   Strings (as `char[]` or `char*`) are passed by reference, allowing functions to modify the original string.
     *   Arrays of strings (`char arr[][LEN]`) can also be passed, but the second dimension's size must be specified.
 *   **Arrays of Strings:** Can be implemented as 2D character arrays, e.g., `char names[10][50];`.
-
-<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
-<Link to="lab7" title="Go to Lab7 👩‍🔬"/>
-</div>

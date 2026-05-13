@@ -1,0 +1,141 @@
+\documentclass[11pt]{article}
+\newcommand{\LabNumber}{3}
+\newcommand{\LabTitle}{Selection: \texttt{if-else} and \texttt{switch}}
+\newcommand{\LabTopic}{Conditional execution, logical operators, multi-way branching}
+\input{common.tex}
+
+\begin{document}
+\labheader
+
+\section*{Objectives}
+\begin{itemize}[leftmargin=*,nosep]
+  \item Use \texttt{if}, \texttt{if-else}, and \texttt{if-else if-else} ladders to express multi-way decisions.
+  \item Combine relational and logical operators (\texttt{\&\&}, \texttt{||}, \texttt{!}) into conditions.
+  \item Choose between an \texttt{if}-ladder and a \texttt{switch} statement appropriately.
+  \item Use \texttt{switch} fall-through deliberately, and remember the \texttt{break}.
+\end{itemize}
+
+\begin{summary}[Quick Reference]
+\textbf{if-else.}
+\begin{lstlisting}
+if (cond) {
+    /* runs when cond is non-zero */
+} else if (other) {
+    /* ... */
+} else {
+    /* fallback */
+}
+\end{lstlisting}
+
+\textbf{switch.}
+\begin{lstlisting}
+switch (expr) {
+    case 1: /* ... */ break;
+    case 2:
+    case 3: /* shared body */ break;
+    default: /* ... */
+}
+\end{lstlisting}
+
+\textbf{Logical operators} short-circuit:
+\texttt{a \&\& b} skips \texttt{b} if \texttt{a} is false; \texttt{a || b} skips \texttt{b} if \texttt{a} is true.\\
+\textbf{Common pitfall.} \texttt{=} is assignment; \texttt{==} is comparison.\\
+\textbf{Range tests.} You cannot write \texttt{0 < x < 10}. Write \texttt{x > 0 \&\& x < 10}.
+\end{summary}
+
+\section*{In-Lab Exercises (target: 2 hours)}
+
+\begin{labexercise}{Character Classification \hfill {\small \itshape (25 min)}}
+Read a single character and report which category it belongs to:
+\textit{digit}, \textit{lowercase letter}, \textit{uppercase letter}, \textit{space}, or
+\textit{other}. Use an \texttt{if-else if} ladder, not \texttt{ctype.h}.
+\end{labexercise}
+
+\begin{labexercise}{Leap Year \hfill {\small \itshape (25 min)}}
+Read a year and print whether it is a leap year. A year is a leap year if it is
+divisible by 4 \emph{and} (not divisible by 100 \emph{or} divisible by 400). Express
+this in a single boolean expression using \texttt{\&\&} and \texttt{||}.
+\end{labexercise}
+
+\begin{labexercise}{Simple Calculator with \texttt{switch} \hfill {\small \itshape (35 min)}}
+Read two doubles and a single-character operator (\texttt{+}, \texttt{-}, \texttt{*}, \texttt{/})
+and print the result. Use a \texttt{switch} on the operator. Handle division by zero
+gracefully (print an error message instead of dividing).
+\end{labexercise}
+
+\begin{labexercise}{Triangle Type \hfill {\small \itshape (35 min)}}
+Read three positive numbers as side lengths. First, check the triangle inequality:
+each side must be shorter than the sum of the other two. If invalid, print
+\texttt{Not a triangle}. Otherwise, classify as \textit{Equilateral}, \textit{Isosceles},
+or \textit{Scalene}.
+\end{labexercise}
+
+\takehomebanner
+
+\begin{trace}[Dangling else]
+Trace and predict for \texttt{x = 0}:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    int x = 0;
+    if (x > 0)
+        if (x > 10) printf("big\n");
+    else printf("small\n");
+    return 0;
+}
+\end{lstlisting}
+\textbf{Hint:} an \texttt{else} associates with the nearest unmatched \texttt{if}.
+\end{trace}
+
+\begin{trace}[\texttt{switch} fall-through]
+Predict the output for inputs \texttt{1}, \texttt{2}, and \texttt{3}:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    int n; scanf("%d", &n);
+    switch (n) {
+        case 1: printf("one ");
+        case 2: printf("two "); break;
+        case 3: printf("three ");
+        default: printf("end");
+    }
+    printf("\n");
+    return 0;
+}
+\end{lstlisting}
+\end{trace}
+
+\begin{bug}[Assignment vs.\ comparison + missing \texttt{break}]
+Find the bugs and rewrite the corrected program:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    int grade;
+    scanf("%d", &grade);
+    if (grade = 100) {
+        printf("Perfect!\n");
+    }
+    switch (grade / 10) {
+        case 10:
+        case 9: printf("A\n");
+        case 8: printf("B\n"); break;
+        default: printf("C or below\n");
+    }
+    return 0;
+}
+\end{lstlisting}
+\end{bug}
+
+\begin{writecode}[Maximum of three integers]
+Write a complete program that reads three integers and prints the largest. Do not
+use any library function such as \texttt{fmax}. Use nested \texttt{if-else}.
+\end{writecode}
+
+\begin{writecode}[BMI category]
+Write a complete program that reads weight in kilograms and height in meters,
+computes BMI ($w / h^2$), and prints one of the four categories:
+\textit{Underweight} ($<18.5$), \textit{Normal} ($[18.5, 25)$), \textit{Overweight}
+($[25, 30)$), \textit{Obese} ($\geq 30$). Print the BMI value with one decimal.
+\end{writecode}
+
+\end{document}

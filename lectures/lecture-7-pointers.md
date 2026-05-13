@@ -3,10 +3,10 @@ theme: seriph
 background: https://cover.sli.dev
 transition: slide-left
 layout: cover
-title: Lecture 9 - Pointers
+title: Lecture 7 - Pointers
 ---
 
-# Lecture 9: Pointers
+# Lecture 7: Pointers
 ## {{ $slidev.configs.subject }}
 ### Semester {{ $slidev.configs.semester }}
 #### Presented by {{ $slidev.configs.presenter }}
@@ -15,13 +15,12 @@ title: Lecture 9 - Pointers
 
 ## Lecture Outline
 
-1.  **Pointer Fundamentals** (Primitives, `&`, `*`)
-2.  Pointers with Arrays and Strings
-3.  Pointers with Structs & Advanced Pointers
+1.  **Pointer Fundamentals** (`&`, `*`)
+2.  Pointer Arithmetic and Arrays
+3.  Pointers-to-Pointers (Double Pointers)
 4.  Passing Pointers to Functions
 5.  Dynamic Memory Allocation
-6.  Application: Linked Lists
-7.  Function Pointers
+6.  Function Pointers
 
 ---
 layout: two-cols-header
@@ -31,7 +30,7 @@ layout: two-cols-header
 
 ::left::
 
-*   We've seen various data types: `int`, `char`, `float`, `array`, `enum`, `union`, `struct`.
+*   So far we've seen data types like `int`, `char`, `float`, and arrays.
 *   **Pointer:** A special type of variable whose value is the **memory address** of another variable.
 *   Every variable, regardless of its type, resides at a specific memory address.
 *   Pointers "point to" the location where data is stored.
@@ -152,13 +151,12 @@ int main() {
 
 ## Lecture Outline
 
-1.  Pointer Fundamentals (Primitives, `&`, `*`)
-2.  **Pointers with Arrays and Strings**
-3.  Pointers with Structs & Advanced Pointers
+1.  Pointer Fundamentals (`&`, `*`)
+2.  **Pointer Arithmetic and Arrays**
+3.  Pointers-to-Pointers (Double Pointers)
 4.  Passing Pointers to Functions
 5.  Dynamic Memory Allocation
-6.  Application: Linked Lists
-7.  Function Pointers
+6.  Function Pointers
 
 ---
 
@@ -256,94 +254,15 @@ int main() {
 ```
 
 ---
-layout: two-cols-header
----
-
-## Pointers and Strings (`char *`)
-::left::
-*   A `char *` pointer can be used to point to the first character of a string.
-
-**Key Distinction:**
-*   `char s[] = "hello";`
-    *   Creates a 6-byte **array** on the stack.
-    *   The contents of the string literal are *copied* into this array.
-    *   The array `s` is **modifiable**.
-*   `char *s = "hello";`
-    *   Creates a **pointer** `s` on the stack.
-    *   This pointer stores the address of the string literal `"hello"`, which is typically in **read-only** memory.
-
-::right::
-*   Attempting to modify the string via this pointer (`s[0] = 'H';`) leads to **undefined behavior** (often a crash).
-
-
-
-```c {*}{maxHeight:'400px'}
-#include <stdio.h>
-
-int main() {
-    // Pointer to a string literal (read-only)
-    char *str_ptr = "Welcome";
-
-    // Array initialized with a string literal (modifiable copy)
-    char str_arr[] = "Welcome";
-
-    printf("Pointer version: %s\n", str_ptr);
-    printf("Array version:   %s\n", str_arr);
-
-    // Modify the array version (OK)
-    str_arr[0] = 'w';
-    printf("Modified array: %s\n", str_arr);
-
-    // *str_ptr = 'W'; // UNDEFINED BEHAVIOR! Don't do this.
-    return 0;
-}
-```
-
----
 
 ## Lecture Outline
 
-1.  Pointer Fundamentals (Primitives, `&`, `*`)
-2.  Pointers with Arrays and Strings
-3.  **Pointers with Structs & Advanced Pointers**
+1.  Pointer Fundamentals (`&`, `*`)
+2.  Pointer Arithmetic and Arrays
+3.  **Pointers-to-Pointers (Double Pointers)**
 4.  Passing Pointers to Functions
 5.  Dynamic Memory Allocation
-6.  Application: Linked Lists
-7.  Function Pointers
-
----
-
-## Pointers to `struct` 
-
-* We covered this briefly in the `struct` lecture.
-* Declare a pointer of the struct type: `struct MyStruct *ptr;`
-* Assign the address of a struct variable: `ptr = &my_struct_var;`
-* Access members using the **arrow operator (`->`)**: `ptr->member_name`
-
-```c {*}{maxHeight:'300px'}
-#include <stdio.h>
-
-typedef struct { // Using typedef for cleaner syntax
-    int id;
-    float value;
-} Record;
-
-int main() {
-    Record r1 = {101, 99.5};
-    Record *ptr_r1 = &r1; // Pointer to the Record struct
-
-    // Access using arrow operator
-    printf("ID: %d\n", ptr_r1->id);
-    printf("Value: %.1f\n", ptr_r1->value);
-
-    // Modify using arrow operator
-    ptr_r1->id = 102;
-    printf("New ID: %d\n", r1.id); // Change reflected in original
-
-    return 0;
-}
-```
-
+6.  Function Pointers
 
 ---
 layout: two-cols-header
@@ -472,13 +391,12 @@ graph TD
 
 ## Lecture Outline
 
-1.  Pointer Fundamentals (Primitives, `&`, `*`)
+1.  Pointer Fundamentals (`&`, `*`)
 2.  Pointer Arithmetic and Arrays
-3.  Pointers with Structs and Pointers-to-Pointers
+3.  Pointers-to-Pointers (Double Pointers)
 4.  Passing Pointers to Functions
 5.  **Dynamic Memory Allocation**
-6.  Application: Linked Lists
-7.  Function Pointers
+6.  Function Pointers
 
 ---
 
@@ -605,371 +523,15 @@ int main() {
 
 ---
 
-## Lecture Outline
-
-1.  Pointer Fundamentals (Primitives, `&`, `*`)
-2.  Pointer Arithmetic and Arrays
-3.  Pointers with Structs and Pointers-to-Pointers
-4.  Passing Pointers to Functions
-5.  Dynamic Memory Allocation
-6.  **Application: Linked Lists**
-7.  Function Pointers
-
----
-
-## Limitations of Arrays
-
-Arrays are great for storing collections of data, but they have some significant limitations, especially when the data size changes frequently.
-*   **Fixed Size:**
-    *   The size of an array is fixed when it is created (either at compile-time or with a single `malloc` call).
-    *   If the array fills up, you must allocate a new, larger array and copy all the old elements over. This is a slow operation.
-*   **Inefficient Insertions & Deletions:**
-    *   To insert or delete an element in the middle of an array, you must shift all subsequent elements.
-    *   For an array with `N` elements, this can take up to $O(N)$ time, which is very inefficient for large collections.
-*   **Wasted Memory:**
-    *   If you allocate a large array to anticipate future needs but only use a small portion of it, the unused memory is wasted.
-**So, we need a data structure that can grow and shrink easily. This is where Linked Lists come in.**
-
----
-
-## Introduction to Linked Lists
-
-*   A **Linked List** is a dynamic data structure that solves these problems. It's a sequence of elements (**nodes**) where each node is linked to the next one using pointers.
-*   It can easily grow or shrink at runtime without needing to reallocate and copy the entire structure.
-* Each node typically contains:
-    1.  **Data:** The actual value stored in the node.
-    2.  **Pointer(s):** One or more pointers linking to the next (and possibly previous) node in the sequence.
-* The list is accessed starting from a **head** pointer, which points to the first node. The last node's "next" pointer is typically `NULL`.
-
-
-
-
----
-layout: default
----
-
-## Linked List Node Structure
-
-*   A node is defined using a `struct`.
-*   A common pattern is a **self-referential structure**, where the `struct` contains a pointer to its own type.
-*   This `next` pointer is the "link" that connects one node to the next one in the chain.
-```c
-// Define the structure for a node in a singly linked list
-typedef struct NodeTag {
-    int data;             // Data stored in the node (e.g., an integer)
-    struct NodeTag *next; // Pointer to the next node in the list
-} Node;
-```
-
-* A single node in memory consists of its data and a pointer to the next node.
-
-```mermaid
-graph LR
-    A["<b>Node</b><br>Address: 0x7ffc1234<br><b>data</b>(int): 10<br><b>next</b>(Node*) :0x7ffc5678<hr>"]
-    B["<b>Node</b><br>Address: 0x7ffc5678<br><b>data</b>(int): 20<br><b>next</b>(Node*) :NULL<hr>"]
-    A --> B
-```
-
----
-
-## Basic Linked List Operations
-
-* **Traversal:** Iterating through the list from head to tail, usually following the `next` pointers.
-* **Insertion:** Adding a new node (e.g., at the beginning, end, or middle). Requires updating `next` pointers.
-* **Deletion:** Removing a node. Requires updating the `next` pointer of the *previous* node to bypass the deleted node, then `free`ing the deleted node's memory.
-* **Searching:** Finding a node with a specific data value.
-
-*Implementing these operations requires careful pointer manipulation.*
-
----
-
-## Visualizing a Linked List
-
-A linked list is a chain of nodes, starting from a `head` pointer. The last node points to `NULL`.
-
-
-
-**Concept:**
-- The `head` is your entry point.
-- Each `Node` contains data and a `next` pointer.
-- You follow the `next` pointers to traverse the list.
-- The chain ends when a `next` pointer is `NULL`.
-
-<br>
-
-```mermaid
-graph LR
-    
-        Head(Head) --> Node1["data |  next"]
-        Node1 -- "addr_of_node2" --> Node2["data |  next"]
-        Node2 -- "addr_of_node3" --> Node3["data |  next"]
-        Node3 -- "NULL" --> End(( ))
-    
-    style End fill:#000,stroke:#333,stroke-width:4px
-```
-
-
-
----
-layout: two-cols-header
----
-
-## Operation: Add to Front (Prepend)
-
-Adding a node to the beginning of the list is efficient.
-
-:: left ::
-
-**Steps:**
-1.  Allocate memory for the `newNode`.
-2.  Set the `newNode`'s data.
-3.  Point `newNode->next` to the current `head` of the list.
-4.  Update `head` to point to the `newNode`.
-
-:: right ::
-
-```c
-void addFirst(Node **head_ref, int new_data) {
-    // 1. Allocate new node
-    Node* new_node = (Node*)malloc(sizeof(Node));
-
-    // 2. Put in the data
-    new_node->data = new_data;
-
-    // 3. Make next of new node as head
-    new_node->next = (*head_ref);
-
-    // 4. Move the head to point to the new node
-    (*head_ref) = new_node;
-}
-
-// To call:
-// Node *head = NULL;
-// addFirst(&head, 10);
-// addFirst(&head, 5); // List is now 5 -> 10 -> NULL
-```
-
----
-
-## Visualization: Add to Front
-**Visualization: `addFirst(&head, 5)`**
-
-```mermaid
-graph LR
-    subgraph "Before"
-        H1[head] --> N1(10)
-        N1 --> N2(20)
-        N2 --> NUL1((NULL))
-    end
-
-    subgraph "After"
-        NewNode("5<br>(new_node)")
-        H2[head] --> NewNode
-        NewNode -. "new_node.next = head" .-> N1
-    end
-
-    H1 -. "head.next = new_node" .-> H2
-```
-
-
-
----
-layout: two-cols-header
----
-
-## Operation: Remove from Front
-
-Removing the first node is also very fast.
-:: left ::
-**Steps:**
-1.  Check if the list is empty (`head` is `NULL`). If so, do nothing.
-2.  Create a temporary pointer `temp` to store the current `head`.
-3.  Move `head` to the next node (`head = head->next`).
-4.  `free` the memory of the old head using the `temp` pointer.
-
-<br><br>
-
-:: right ::
-
-```c
-void removeFirst(Node **head_ref) {
-    // 1. Check if list is empty
-    if (*head_ref == NULL) {
-        return;
-    }
-
-    // 2. Store old head
-    Node *temp = *head_ref;
-
-    // 3. Move head to next node
-    *head_ref = temp->next;
-
-    // 4. Free old head
-    free(temp);
-}
-
-// To call:
-// removeFirst(&head);
-```
-
----
-
-## Visualization: Remove from Front
-
-**Visualization: `removeFirst(&head)`**
-
-```mermaid {scale: 0.9}
-graph LR
-    subgraph "Before"
-        H1[head] --> N1(10)
-        N1 --> N2(20)
-        N2 --> NUL1((NULL))
-    end
-
-    subgraph "After"
-        H2[head] --> N2
-    end
-
-    subgraph "Freed"
-      F(10)
-    end
-
-    H1 -. "head = head.next" .-> H2
-    N1 --> F
-```
-
----
-layout: two-cols-header
----
-
-## Operation: Add to End (Append)
-
-Adding a node to the end requires traversing the list.
-::left::
-**Steps:**
-1.  Allocate memory for the `newNode`.
-2.  Set its data and set `newNode->next` to `NULL`.
-3.  **If the list is empty:** set `head` to `newNode`.
-4.  **Otherwise:** Traverse the list until you find the last node (where `current->next` is `NULL`).
-5.  Point the `next` of that last node to `newNode`.
-
-::right::
-
-```c
-void addLast(Node **head_ref, int new_data) {
-    Node* new_node = (Node*)malloc(sizeof(Node));
-    new_node->data = new_data;
-    new_node->next = NULL;
-
-    // If list is empty, new node is the head
-    if (*head_ref == NULL) {
-       *head_ref = new_node;
-       return;
-    }
-
-    // Else, traverse till the last node
-    Node *last = *head_ref;
-    while (last->next != NULL) {
-        last = last->next;
-    }
-
-    // Change the next of last node
-    last->next = new_node;
-}
-```
-
----
-
-## Visualization: Add to End (Append)
-
-**Visualization: `addLast(&head, 30)`**
-
-```mermaid
-graph LR
-    subgraph "Before"
-        H1[head] --> N1(10)
-        N1 --> N2(20)
-        N2 -.-> NUL1((NULL))
-    end
-
-    subgraph "After"
-        N2 --"(last_node).next = new_node"--> NewNode(30)
-        NewNode -- "new_node.next = NULL"--> NUL2((NULL))
-    end
-
-    
-    
-```
-
-
-
----
-
-## Linked List Example: Creating a Simple List
-
-```c {*}{maxHeight:'430px'}
-#include <stdio.h>
-#include <stdlib.h>
-
-typedef struct NodeTag {
-    int data;
-    struct NodeTag *next;
-} Node;
-
-int main() {
-    Node *head = NULL; // Start with an empty list
-    Node *second = NULL;
-    Node *third = NULL;
-
-    // Allocate three nodes dynamically
-    head = (Node *)malloc(sizeof(Node));
-    second = (Node *)malloc(sizeof(Node));
-    third = (Node *)malloc(sizeof(Node));
-
-    // Check allocation
-    if (!head || !second || !third) {
-        printf("Memory allocation failed\n"); return 1;
-    }
-
-    // Assign data and link them: head -> second -> third -> NULL
-    head->data = 1;
-    head->next = second; // Link first to second
-
-    second->data = 2;
-    second->next = third; // Link second to third
-
-    third->data = 3;
-    third->next = NULL; // Mark end of the list
-
-    // Traverse and print the list
-    Node *current = head;
-    printf("Linked List: ");
-    while (current != NULL) {
-        printf("%d -> ", current->data);
-        current = current->next; // Move to the next node
-    }
-    printf("NULL\n");
-
-    // Free the allocated memory (important!)
-    free(head);
-    free(second);
-    free(third); // In a real scenario, free nodes during traversal or deletion
-
-    return 0;
-}
-```
-
----
 
 ## Lecture Outline
 
-1.  Pointer Fundamentals (Primitives, `&`, `*`)
+1.  Pointer Fundamentals (`&`, `*`)
 2.  Pointer Arithmetic and Arrays
-3.  Pointers with Structs and Pointers-to-Pointers
+3.  Pointers-to-Pointers (Double Pointers)
 4.  Passing Pointers to Functions
 5.  Dynamic Memory Allocation
-6.  Application: Linked Lists
-7.  **Function Pointers**
+6.  **Function Pointers**
 
 ---
 
@@ -1069,21 +631,15 @@ layout: two-cols
 
 ## Summary
 *   **Pointer Fundamentals:** Variables that store memory addresses. Key operators are:
-    *   `&` (Address-Of): Gets the memory address.
+    *   `&` (Address-Of): Gets the memory address of a variable.
     *   `*` (Dereference): Accesses the value at the address a pointer holds.
-*   **Pointers & Arrays:** `arr[i]` is equivalent to `*(arr + i)`.
-*   **Advanced Pointers:**
-    *   Use the arrow operator (`->`) to access members of a `struct` via a pointer.
-    *   Pointers-to-pointers (`**`) hold the address of another pointer, useful for modifying pointers in functions.
+*   **Pointers & Arrays:** `arr[i]` is equivalent to `*(arr + i)`. Pointer arithmetic is scaled by the element size.
+*   **Pointers-to-Pointers (`**`):** Hold the address of another pointer, useful for letting a function change where a pointer points.
 
 :: right ::
-*   **Passing Pointers to Functions:** Enables modifying external variables (pass-by-reference) and changing where a pointer points.
+*   **Passing Pointers to Functions:** Enables pass-by-reference -- a function can modify a caller's variable through a pointer parameter.
 *   **Dynamic Memory Allocation (`<stdlib.h>`):**
     *   `malloc()`: Allocates a block of memory on the heap. Returns a pointer or `NULL` on failure.
     *   `free()`: Deallocates memory to prevent memory leaks. Every `malloc` needs a corresponding `free`.
-*   **Application: Linked Lists:** A dynamic data structure built with nodes and pointers, overcoming the fixed-size limitation of arrays.
 *   **Function Pointers:** Store the address of a function, allowing them to be passed as arguments (callbacks) or stored.
-
-<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
-<Link to="lab9" title="Go to Lab9 👩‍🔬"/>
-</div>
+*   **Next:** in Lecture 8 you will see how `char *` makes string handling more natural, and in Lecture 9 how `struct *` with the `->` operator lets you pass records efficiently.

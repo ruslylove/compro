@@ -938,7 +938,3 @@ for (int r=0; r<ROWS; r++) {
 *   **Passing to Functions:** Arrays are passed by reference. The function receives the memory address of the array and can modify the original data. You must pass the size as a separate argument.
 *   **Array Bounds:** C does not check if an array index is valid. Accessing an array out of bounds (e.g., `arr[size]`) leads to undefined behavior and is a common, serious bug. It is the programmer's responsibility to prevent this.
 *   **`sizeof`:** Useful for finding the element count of an array (`sizeof(arr)/sizeof(arr[0])`) but only in the scope where it was declared.
-
-<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
-<Link to="lab6" title="Go to Lab6 👩‍🔬"/>
-</div>

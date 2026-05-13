@@ -1,0 +1,146 @@
+\documentclass[11pt]{article}
+\newcommand{\LabNumber}{10}
+\newcommand{\LabTitle}{File Operations}
+\newcommand{\LabTopic}{Reading and writing text files with \texttt{FILE *}}
+\input{common.tex}
+
+\begin{document}
+\labheader
+
+\section*{Objectives}
+\begin{itemize}[leftmargin=*,nosep]
+  \item Open and close text files with \texttt{fopen}/\texttt{fclose}; check for failure.
+  \item Read with \texttt{fscanf}, \texttt{fgets}, and \texttt{fgetc}; write with \texttt{fprintf}, \texttt{fputs}, \texttt{fputc}.
+  \item Detect end-of-file correctly using the function return value, not \texttt{feof}.
+  \item Combine file I/O with previous skills (loops, arrays, structs) to process data sets.
+\end{itemize}
+
+\begin{summary}[Quick Reference]
+\textbf{A file handle is a pointer.} \texttt{fopen} returns a \texttt{FILE *} -- a pointer
+to an internal bookkeeping struct managed by the standard library. You never dereference it
+yourself; you just pass it to other \texttt{f*} functions. If \texttt{fopen} fails it returns
+\texttt{NULL} -- \emph{always} check.
+
+\textbf{Open / close.}
+\begin{lstlisting}
+FILE *f = fopen("input.txt", "r");
+if (f == NULL) { perror("fopen"); return 1; }
+/* ... use f ... */
+fclose(f);
+\end{lstlisting}
+
+\textbf{Modes.}\quad \texttt{"r"} read, \texttt{"w"} write (truncates), \texttt{"a"} append, add \texttt{"+"} for read+write.\\
+
+\textbf{Read.}\quad
+\texttt{fscanf(f, "\%d", \&x)} returns the number of items successfully read, or \texttt{EOF}.\\
+\texttt{fgets(line, sizeof line, f)} returns \texttt{NULL} at end of file or on error.\\
+
+\textbf{Idiomatic read loop.}
+\begin{lstlisting}
+int x;
+while (fscanf(f, "%d", &x) == 1) {
+    /* process x */
+}
+\end{lstlisting}
+
+\textbf{Write.}\quad \texttt{fprintf(f, "\%d \%s\textbackslash n", id, name);}
+\end{summary}
+
+\section*{In-Lab Exercises (target: 2 hours)}
+
+\noindent\textit{Before you start: create a sample \texttt{numbers.txt} (one integer per line)
+and a \texttt{lines.txt} (any text) in your working directory.}
+
+\begin{labexercise}{Copy a Text File \hfill {\small \itshape (25 min)}}
+Write a program that reads \texttt{lines.txt} line-by-line with \texttt{fgets} and writes
+each line to \texttt{copy.txt}. Verify by opening \texttt{copy.txt} in your editor.
+Handle the case where the input file cannot be opened.
+\end{labexercise}
+
+\begin{labexercise}{Sum and Average from File \hfill {\small \itshape (30 min)}}
+Read all integers from \texttt{numbers.txt} (unknown count) with \texttt{fscanf}.
+Print the count, sum, and average. Use the return value of \texttt{fscanf}
+to detect end of file -- do not call \texttt{feof} as the loop condition.
+\end{labexercise}
+
+\begin{labexercise}{Word and Line Count \hfill {\small \itshape (35 min)}}
+Read \texttt{lines.txt} character by character with \texttt{fgetc}. Count and print:
+the number of characters, the number of words (whitespace-separated), and the
+number of lines.
+\end{labexercise}
+
+\begin{labexercise}{Students Report \hfill {\small \itshape (30 min)}}
+Create \texttt{students.txt} with lines of the form\\
+\texttt{<id> <name> <score>}, e.g.\ \texttt{1023 Bob 87.5}.
+Read the records into an array of structs (reuse the \texttt{Student} struct from Lab 8)
+and write \texttt{report.txt} with the same records sorted by score in descending order.
+\end{labexercise}
+
+\takehomebanner
+
+\begin{trace}[Read loop terminates correctly]
+The file \texttt{nums.txt} contains: \texttt{10 20 30 40}. What does this print?
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    FILE *f = fopen("nums.txt", "r");
+    int x, n = 0, s = 0;
+    while (fscanf(f, "%d", &x) == 1) { s += x; n++; }
+    fclose(f);
+    printf("%d %d\n", n, s);
+    return 0;
+}
+\end{lstlisting}
+\end{trace}
+
+\begin{trace}[\texttt{"w"} truncates]
+If \texttt{out.txt} already contains \texttt{"old"}, what does \texttt{out.txt} contain
+after this program runs?
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    FILE *f = fopen("out.txt", "w");
+    fprintf(f, "new\n");
+    fclose(f);
+    return 0;
+}
+\end{lstlisting}
+\end{trace}
+
+\begin{bug}[Missing check, wrong mode]
+List the bugs and rewrite:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    FILE *f = fopen("data.txt", "w");   /* we only want to read */
+    int x;
+    while (!feof(f)) {                  /* anti-pattern */
+        fscanf(f, "%d", &x);
+        printf("%d\n", x);
+    }
+    /* fclose forgotten */
+    return 0;
+}
+\end{lstlisting}
+\end{bug}
+
+\begin{writecode}[Append a line]
+Write a complete program that prompts the user for a single line of text and
+appends it (followed by a newline) to \texttt{log.txt}. Create the file if it does
+not exist, but never erase existing content.
+\end{writecode}
+
+\begin{writecode}[Merge two sorted files]
+Two files \texttt{a.txt} and \texttt{b.txt} each contain an ascending sequence of
+integers. Write a complete program that produces \texttt{merged.txt} containing the
+combined sequence, still in ascending order, by reading one number at a time from
+each input.
+\end{writecode}
+
+\vspace{6pt}
+\noindent\textbf{End of the lab series.} Notice how every lab from Lab 7 onward has used pointers:
+out-parameters (Lab 7), \texttt{char *} string traversal (Lab 8), \texttt{struct *} with \texttt{->}
+(Lab 9), and \texttt{FILE *} here. Keep your in-lab source files and paper-work together as a
+portfolio for revision before the final exam.
+
+\end{document}

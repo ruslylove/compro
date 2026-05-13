@@ -1,0 +1,136 @@
+\documentclass[11pt]{article}
+\newcommand{\LabNumber}{8}
+\newcommand{\LabTitle}{Strings (with Pointers)}
+\newcommand{\LabTopic}{Null-terminated \texttt{char} arrays, \texttt{char *} traversal, \texttt{string.h}}
+\input{common.tex}
+
+\begin{document}
+\labheader
+
+\section*{Objectives}
+\begin{itemize}[leftmargin=*,nosep]
+  \item Represent strings as null-terminated \texttt{char} arrays.
+  \item Use both indexing (\texttt{s[i]}) and pointer traversal (\texttt{*p}, \texttt{p++}) on strings.
+  \item Read strings safely with \texttt{scanf("\%s", \dots)} and \texttt{fgets}.
+  \item Use \texttt{strlen}, \texttt{strcpy}, \texttt{strcmp}, \texttt{strcat}, and understand why \texttt{a == b} does not compare strings.
+\end{itemize}
+
+\begin{summary}[Quick Reference]
+\textbf{A C string is a \texttt{char} array ending in \texttt{'\textbackslash 0'}.}
+\begin{lstlisting}
+char s[20] = "hello";   /* 6 bytes: 'h','e','l','l','o','\0' */
+\end{lstlisting}
+
+\textbf{Two equivalent traversals.}
+\begin{lstlisting}
+/* index style */                 /* pointer style */
+for (int i = 0; s[i]; i++) ...    for (char *p = s; *p; p++) ...
+\end{lstlisting}
+Both stop at the null terminator. They produce identical results because
+\(s[i] \equiv *(s + i)\).
+
+\textbf{Reading input.}\quad
+\texttt{scanf("\%s", s);} reads one whitespace-delimited word and writes \texttt{'\textbackslash 0'}.
+\texttt{fgets(s, sizeof s, stdin);} reads a whole line including \texttt{'\textbackslash n'}.
+
+\textbf{Library functions} (\texttt{<string.h>}):\\
+\begin{tabular}{@{}ll@{}}
+\toprule
+\texttt{strlen(s)} & number of chars before the \texttt{'\textbackslash 0'} \\
+\texttt{strcpy(dst, src)} & copy (\texttt{dst} must be large enough) \\
+\texttt{strcmp(a, b)} & \texttt{0} if equal, $<0$ if \texttt{a}$<$\texttt{b}, $>0$ otherwise \\
+\texttt{strcat(dst, src)} & append \texttt{src} onto \texttt{dst} \\
+\bottomrule
+\end{tabular}\\[2pt]
+\textbf{Pitfall.}\quad \texttt{a == b} compares \emph{pointers}, not contents. Use \texttt{strcmp}.
+\end{summary}
+
+\section*{In-Lab Exercises (target: 2 hours)}
+
+\begin{labexercise}{\texttt{my\_strlen} -- index and pointer versions \hfill {\small \itshape (25 min)}}
+Write two functions that compute the length of a string \emph{without} calling \texttt{strlen}:
+\begin{itemize}[leftmargin=*,nosep]
+  \item \texttt{int len\_idx(const char s[])} -- uses \texttt{s[i]} and an index.
+  \item \texttt{int len\_ptr(const char *s)} -- walks a pointer \texttt{p} until \texttt{*p == '\textbackslash 0'}.
+\end{itemize}
+Verify both agree with \texttt{strlen} for at least three test inputs.
+\end{labexercise}
+
+\begin{labexercise}{Reverse a String In Place (two pointers) \hfill {\small \itshape (30 min)}}
+Write \texttt{void reverse(char *s)} that reverses a string in place using two pointers
+(one starting at the beginning, one at the character before the \texttt{'\textbackslash 0'}).
+Test with input read via \texttt{scanf("\%s", \dots)}.
+\end{labexercise}
+
+\begin{labexercise}{Count Vowels and Consonants \hfill {\small \itshape (25 min)}}
+Read a line with \texttt{fgets} and count vowels (case-insensitive),
+consonants, and other characters. Use pointer traversal: \texttt{for (char *p = line; *p; p++) \ldots}.
+\end{labexercise}
+
+\begin{labexercise}{Palindrome with Two Pointers \hfill {\small \itshape (40 min)}}
+Write \texttt{int is\_palindrome(const char *s)} that returns 1 if \texttt{s} reads the
+same forward and backward (case-insensitive, ignoring spaces). Use two pointers
+\texttt{left} and \texttt{right} moving toward the middle. Test on \texttt{"radar"},
+\texttt{"A man a plan a canal Panama"}, and \texttt{"hello"}.
+\end{labexercise}
+
+\takehomebanner
+
+\begin{trace}[Null terminator inside the buffer]
+What does this print?
+\begin{lstlisting}
+#include <stdio.h>
+#include <string.h>
+int main(void) {
+    char s[10] = {'C','S','\0','1','0','1','\0'};
+    printf("%lu\n", (unsigned long)strlen(s));
+    printf("%s\n", s);
+    return 0;
+}
+\end{lstlisting}
+\end{trace}
+
+\begin{trace}[Pointer-walk equivalence]
+Predict the output of both loops:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    char s[] = "abc";
+    for (int i = 0; s[i]; i++)        printf("%c", s[i]);
+    printf(" / ");
+    for (char *p = s; *p; p++)        printf("%c", *p);
+    printf("\n");
+    return 0;
+}
+\end{lstlisting}
+\end{trace}
+
+\begin{bug}[Comparing strings with \texttt{==} and buffer too small]
+List every bug and rewrite the corrected program.
+\begin{lstlisting}
+#include <stdio.h>
+#include <string.h>
+int main(void) {
+    char a[3];
+    char b[] = "yes";
+    scanf("%s", a);
+    if (a == b) printf("match\n");
+    else        printf("no match\n");
+    return 0;
+}
+\end{lstlisting}
+\end{bug}
+
+\begin{writecode}[Uppercase via pointer]
+Write \texttt{void to\_upper(char *s)} that walks the string with a pointer and converts
+every lowercase letter to uppercase. Do not use \texttt{ctype.h}. Then write a \texttt{main}
+that reads a word and prints it uppercased.
+\end{writecode}
+
+\begin{writecode}[Count occurrences of a character]
+Write \texttt{int count\_char(const char *s, char c)} that returns the number of times
+\texttt{c} occurs in \texttt{s} (use pointer traversal). Demonstrate from \texttt{main}
+on input read with \texttt{fgets}.
+\end{writecode}
+
+\end{document}

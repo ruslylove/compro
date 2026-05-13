@@ -24,7 +24,6 @@ title: Lecture 3 - Sequential and Conditional Program Flow
 4. Nested `if-else`
     * `if-else if-else` ladder
     * `switch` statement
-5.  Visualizing Logic with Flowcharts
 
 ---
 layout: two-cols
@@ -81,7 +80,6 @@ int main() {
 4. Nested `if-else`
     * `if-else if-else` ladder
     * `switch` statement
-5.  Visualizing Logic with Flowcharts
 
 ---
 layout: two-cols
@@ -286,7 +284,6 @@ graph TD
 4. Nested `if-else`
     * `if-else if-else` ladder
     * `switch` statement
-5.  Visualizing Logic with Flowcharts
 
 ---
 layout: image-right
@@ -576,7 +573,6 @@ graph TD
 4. Nested `if-else`
     * `if-else if-else` ladder
     * `switch` statement
-5.  Visualizing Logic with Flowcharts
 
 ---
 
@@ -618,7 +614,6 @@ graph TD
 4. Nested `if-else`
     * `if-else if-else` ladder
     * `switch` statement
-5.  Visualizing Logic with Flowcharts
 
 ---
 
@@ -813,7 +808,6 @@ if (a == 5) { // Compares current value of 'a' with 5.
 4. **Nested `if-else`**
     * `if-else if-else` ladder
     * `switch` statement
-5.  Visualizing Logic with Flowcharts
 
 ---
 layout: two-cols
@@ -943,7 +937,6 @@ graph TD
 4. Nested `if-else`
     * **`if-else if-else` ladder**
     * `switch` statement
-5.  Visualizing Logic with Flowcharts
 
 ---
 layout: two-cols
@@ -1063,7 +1056,6 @@ graph TD
 4. Nested `if-else`
     * `if-else if-else` ladder
     * **`switch` statement**
-5.  Visualizing Logic with Flowcharts
 
 
 
@@ -1201,9 +1193,9 @@ graph LR
     * You need to check complex conditions involving ranges (e.g., `score >= 90`).
     * You are comparing non-integer types (like floats, though direct equality check for floats is often problematic).
     * The conditions are not based on simple equality with constants.
----
-src: ./flow_chart_selection.md
----
+
+*Flowchart symbols and worked diagrams for `if-else` and `switch` are in the **Annex** at the end of the deck.*
+
 ---
 layout: default
 ---
@@ -1227,7 +1219,3 @@ layout: default
 *   **Flowcharts:** Visual diagrams for planning program logic using standard symbols to represent steps, decisions, and flow.
 
 </Transform>
-
-<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
-<Link to="lab3" title="Go to Lab3 👩‍🔬"/>
-</div>

@@ -1,0 +1,134 @@
+\documentclass[11pt]{article}
+\newcommand{\LabNumber}{4}
+\newcommand{\LabTitle}{Loops}
+\newcommand{\LabTopic}{\texttt{while}, \texttt{do-while}, \texttt{for}, nested loops, \texttt{break}/\texttt{continue}}
+\input{common.tex}
+
+\begin{document}
+\labheader
+
+\section*{Objectives}
+\begin{itemize}[leftmargin=*,nosep]
+  \item Choose the correct loop form for the problem (counter-controlled vs.\ condition-controlled vs.\ at-least-once).
+  \item Build nested loops to print patterns and search a 2D space.
+  \item Use \texttt{break} and \texttt{continue} to control loop flow.
+  \item Translate a mathematical sum or algorithm into an iterative program.
+\end{itemize}
+
+\begin{summary}[Quick Reference]
+\textbf{Three loop forms.}
+\begin{lstlisting}
+while (cond)   { /* tested first */ }
+do { /* runs at least once */ } while (cond);
+for (init; cond; update) { /* counter-controlled */ }
+\end{lstlisting}
+
+\textbf{Loop control.}\quad \texttt{break} exits the nearest loop; \texttt{continue} skips
+to the next iteration of the nearest loop.\\
+\textbf{Common pattern: accumulator.}
+\begin{lstlisting}
+int sum = 0;
+for (int i = 1; i <= n; i++) sum += i;
+\end{lstlisting}
+\textbf{Common pattern: flag + early exit.}
+\begin{lstlisting}
+int found = 0;
+for (int i = 2; i*i <= n; i++)
+    if (n % i == 0) { found = 1; break; }
+\end{lstlisting}
+\end{summary}
+
+\section*{In-Lab Exercises (target: 2 hours)}
+
+\begin{labexercise}{Guess the Number \hfill {\small \itshape (25 min)}}
+Choose a secret number (e.g.\ 42) in your code. Repeatedly read a guess from the user
+with a \texttt{do-while} loop, printing \texttt{Too high}, \texttt{Too low}, or
+\texttt{Correct} as appropriate. After the user wins, print the number of guesses they used.
+\end{labexercise}
+
+\begin{labexercise}{Prime Check with Early Exit \hfill {\small \itshape (25 min)}}
+Read a positive integer $n$ and decide whether it is prime. Use a \texttt{for} loop
+from \texttt{i = 2} to $\sqrt{n}$ and \texttt{break} as soon as a divisor is found.
+Handle $n \leq 1$ and $n = 2$ as special cases.
+\end{labexercise}
+
+\begin{labexercise}{Pyramid Pattern \hfill {\small \itshape (35 min)}}
+Read an integer \texttt{N} and print a centered pyramid of asterisks with \texttt{N} rows.
+For \texttt{N = 5}:
+\begin{lstlisting}
+    *
+   ***
+  *****
+ *******
+*********
+\end{lstlisting}
+\textbf{Hint:} row $r$ (1-indexed) has $N - r$ leading spaces and $2r - 1$ asterisks.
+\end{labexercise}
+
+\begin{labexercise}{Approximate $e^x$ via Taylor Series \hfill {\small \itshape (35 min)}}
+Read $x$ as a \texttt{double} and approximate $e^{x}= \sum_{n=0}^{\infty} x^{n}/n!$.
+Stop when the magnitude of the current term is below $10^{-6}$.
+\textbf{Hint:} compute each next term incrementally as \texttt{term *= x / n}, where \texttt{n}
+is the new term index. Test with $x = 0, 1, 2$ and compare against \texttt{exp(x)} (link with \texttt{-lm}).
+\end{labexercise}
+
+\takehomebanner
+
+\begin{trace}[Off-by-one]
+What is the printed output?
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    int sum = 0;
+    for (int i = 1; i < 5; i++) sum += i;
+    printf("%d\n", sum);
+    return 0;
+}
+\end{lstlisting}
+\end{trace}
+
+\begin{trace}[Nested loop with continue]
+Predict the exact output:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    for (int i = 1; i <= 3; i++) {
+        for (int j = 1; j <= 3; j++) {
+            if (i == j) continue;
+            printf("(%d,%d) ", i, j);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+\end{lstlisting}
+\end{trace}
+
+\begin{bug}[Infinite loop]
+Why does this program never terminate? Fix it (two reasonable fixes exist; show one).
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    int n;
+    scanf("%d", &n);
+    while (n > 0);
+    {
+        printf("%d\n", n);
+        n--;
+    }
+    return 0;
+}
+\end{lstlisting}
+\end{bug}
+
+\begin{writecode}[Sum and average of $N$ inputs]
+Write a complete program that reads $N$ followed by $N$ integers, then prints
+their sum and their average (as a \texttt{double} with two decimal places).
+\end{writecode}
+
+\begin{writecode}[Multiplication table]
+Write a complete program that reads an integer $N$ and prints the $N\times N$
+multiplication table. Each cell must use a field width of 4 so the columns align.
+\end{writecode}
+
+\end{document}

@@ -18,13 +18,13 @@ src: ./lecture-5-functions-and-macros.md
 src: ./lecture-6-arrays.md
 ---
 ---
-src: ./lecture-7-strings.md
+src: ./lecture-7-pointers.md
 ---
 ---
-src: ./lecture-8-struct-union-and-enum.md
+src: ./lecture-8-strings.md
 ---
 ---
-src: ./lecture-9-pointers.md
+src: ./lecture-9-struct-union-and-enum.md
 ---
 ---
 src: ./lecture-10-file-operations.md
@@ -34,4 +34,13 @@ src: ./lecture-11-bitwise-operations.md
 ---
 ---
 src: ./lecture-12-make-and-makefile-cmake.md
+---
+---
+src: ./annex.md
+---
+---
+src: ./flow_chart_selection.md
+---
+---
+src: ./flow_chart_loop.md
 ---

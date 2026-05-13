@@ -51,8 +51,6 @@ layout: two-cols
     * Attendance: 10%
     * Exam: 60%
 
-<img src="/no_ai.png" style="height:250px;padding-left:50px;padding-top:30px">
-
 ---
 
 ## Course Structure
@@ -65,6 +63,56 @@ layout: two-cols
     * Includes 3 coding problems.
 * **Policies:** Academic integrity is strictly enforced (no cheating or grade negotiation).
 * **Commitment:** Attending all classes is encouraged for maximizing learning.
+
+---
+layout: two-cols-header
+---
+
+## Working with AI in This Course
+
+::left::
+
+### The honest reality
+AI assistants (ChatGPT, Claude, Copilot, Gemini, ...) can write C code that passes most of these lab exercises in seconds. So you have to decide, every time you use one, **what you actually want to learn**.
+
+### The exam is on paper
+There is **no computer and no AI in the exam room**. You will hand-write 3 coding problems. If you outsourced your lab work to an AI, you will fail this part. The take-home paper exercises exist specifically to build that hand-coding muscle.
+
+::right::
+
+<div class="text-sm">
+
+### ✅ Use AI to
+- **Explain a concept** you didn't understand from the lecture, in a different way.
+- **Explain an error message** the compiler gave you (paste it in and ask "what does this mean?").
+- **Compare two approaches** ("why use a `for` loop here instead of `while`?").
+- **Quiz yourself** ("give me 5 tracing questions on pointer arithmetic").
+- **Review your own code** *after* you've written it ("what would a senior developer change?").
+
+### 🚫 Don't use AI to
+- **Generate the answer** to a lab exercise and submit it as your work.
+- **Copy a solution** you can't reproduce yourself five minutes later, on paper, from memory.
+- **Skip the struggle.** The 20 minutes of being stuck *is* the learning -- that's when your brain rewires.
+
+</div>
+
+---
+
+## How to Benefit from AI (a Workflow)
+
+A practical loop you can use for every lab exercise:
+
+1. **Read the problem.** Sketch a flowchart or pseudocode **on paper** before opening any tool.
+2. **Attempt it yourself.** Compile, run, get errors. Sit with the errors for at least 10 minutes.
+3. **Ask AI for hints, not answers.** Useful prompts:
+   - *"I'm stuck. Don't give me code -- just point me to the concept I'm missing."*
+   - *"Here is my code and the error. Explain what the compiler is complaining about."*
+   - *"Why does my output differ from the expected output? Don't fix it -- help me find the bug."*
+4. **Close the chat. Re-derive the fix yourself.** If you can't, you haven't learned it -- go back to step 3 with a more specific question.
+5. **After submitting, ask AI to critique your code.** Style, edge cases, alternative idioms. This is where AI is genuinely a great tutor.
+
+**The litmus test:** if I (or the exam paper) asked you to write the same program tomorrow, by hand, with no tools -- could you? If yes, your AI use was productive. If no, you cheated yourself.
+
 
 ---
 
@@ -622,7 +670,3 @@ layout: default
 *   **C Programming Basics:** A brief history of C, its characteristics, and a first look at a simple C program.
 *   **Compilation Process:** Detailed steps from source code to executable (preprocessing, compiling, assembling, linking).
 *   **Development Environments:** Overview of IDEs and text editors paired with compilers for C programming.
-
-<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
-<Link to="lab1" title="Go to Lab1 👩‍🔬"/>
-</div>

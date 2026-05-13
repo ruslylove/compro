@@ -1,0 +1,118 @@
+\documentclass[11pt]{article}
+\newcommand{\LabNumber}{6}
+\newcommand{\LabTitle}{Arrays}
+\newcommand{\LabTopic}{1D and 2D arrays, traversal, accumulation, passing arrays to functions}
+\input{common.tex}
+
+\begin{document}
+\labheader
+
+\section*{Objectives}
+\begin{itemize}[leftmargin=*,nosep]
+  \item Declare, initialize, and traverse 1D and 2D arrays.
+  \item Pass arrays to functions and understand that the size is \emph{not} carried with them.
+  \item Implement basic array algorithms: search, min/max, reverse, frequency count.
+  \item Use indices safely (bounds are 0 to \texttt{size} $-1$).
+\end{itemize}
+
+\begin{summary}[Quick Reference]
+\textbf{Declaration and initialization.}
+\begin{lstlisting}
+int  a[5] = {1, 2, 3, 4, 5};
+int  b[10] = {0};                /* all zeros */
+int  m[3][4] = {{1,2,3,4},{5,6,7,8},{9,10,11,12}};
+\end{lstlisting}
+
+\textbf{Bounds.}\quad For \texttt{a[N]} valid indices are \texttt{0..N-1}.
+Out-of-bounds access is \emph{undefined behavior} -- it may seem to work and still be wrong.\\
+\textbf{Passing to functions.}\quad
+\begin{lstlisting}
+int sum(int a[], int n);    /* size must be passed separately */
+\end{lstlisting}
+Inside the function, \texttt{sizeof(a)} is \emph{not} the array size -- it is the size of a pointer.\\
+\textbf{Common idiom: max scan.}
+\begin{lstlisting}
+int max = a[0];
+for (int i = 1; i < n; i++) if (a[i] > max) max = a[i];
+\end{lstlisting}
+\end{summary}
+
+\section*{In-Lab Exercises (target: 2 hours)}
+
+\begin{labexercise}{Read, Reverse, Print \hfill {\small \itshape (25 min)}}
+Read an integer $N$ ($1 \leq N \leq 100$) and then $N$ integers into an array.
+Print the array in reverse order on a single line.
+\end{labexercise}
+
+\begin{labexercise}{Min, Max, Average \hfill {\small \itshape (25 min)}}
+Read an array of up to 50 doubles and compute the minimum, maximum, and average.
+Write three separate functions; do not duplicate the loop.
+\end{labexercise}
+
+\begin{labexercise}{Linear Search \hfill {\small \itshape (30 min)}}
+Write \texttt{int find(int a[], int n, int key)} that returns the index of the first
+occurrence of \texttt{key} in the array, or \texttt{-1} if not present. Test from
+\texttt{main} with a key that is present and one that is not.
+\end{labexercise}
+
+\begin{labexercise}{Matrix Transpose \hfill {\small \itshape (40 min)}}
+Read a $3 \times 4$ matrix of integers and print its $4 \times 3$ transpose. Use
+two nested \texttt{for} loops. Format each cell with field width 4 so columns align.
+\end{labexercise}
+
+\takehomebanner
+
+\begin{trace}[Indexing]
+What does this print? (Watch the bounds!)
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    int a[] = {10, 20, 30, 40, 50};
+    int s = 0;
+    for (int i = 1; i < 4; i++) s += a[i];
+    printf("%d %d\n", s, a[0] + a[4]);
+    return 0;
+}
+\end{lstlisting}
+\end{trace}
+
+\begin{trace}[2D traversal]
+Predict the printed output:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    int m[2][3] = {{1,2,3},{4,5,6}};
+    for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < 2; i++) printf("%d ", m[i][j]);
+        printf("\n");
+    }
+    return 0;
+}
+\end{lstlisting}
+\end{trace}
+
+\begin{bug}[Off-by-one + uninitialized accumulator]
+List all bugs and write the corrected program:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    int a[5] = {2, 4, 6, 8, 10};
+    int sum;
+    for (int i = 0; i <= 5; i++) sum += a[i];
+    printf("sum = %d\n", sum);
+    return 0;
+}
+\end{lstlisting}
+\end{bug}
+
+\begin{writecode}[Count occurrences]
+Write a complete program that reads $N$ integers into an array (\(N \leq 100\)),
+then reads a target value and prints how many times the target occurs in the array.
+\end{writecode}
+
+\begin{writecode}[Reverse in place]
+Write a function \texttt{void reverse(int a[], int n)} that reverses the array
+\emph{in place} (no auxiliary array). Then write a \texttt{main} that demonstrates it.
+\end{writecode}
+
+\end{document}

@@ -1073,8 +1073,3 @@ layout: two-cols
     *   The preprocessor modifies code *before* compilation.
     *   `#include` incorporates header files.
     *   `#define` creates text-substitution macros for constants or simple operations.
-
-
-<div style="position:fixed;bottom:0;right:20px;padding-bottom:30px">
-<Link to="lab5" title="Go to Lab5 👩‍🔬"/>
-</div>

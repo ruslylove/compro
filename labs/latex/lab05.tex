@@ -1,0 +1,121 @@
+\documentclass[11pt]{article}
+\newcommand{\LabNumber}{5}
+\newcommand{\LabTitle}{Functions}
+\newcommand{\LabTopic}{Function definition, prototypes, parameters, return values, scope}
+\input{common.tex}
+
+\begin{document}
+\labheader
+
+\section*{Objectives}
+\begin{itemize}[leftmargin=*,nosep]
+  \item Write and call user-defined functions; declare prototypes before \texttt{main}.
+  \item Distinguish between parameters and arguments; understand pass-by-value.
+  \item Decompose a problem into small, reusable functions.
+  \item Reason about variable scope (local vs.\ global) and \texttt{return} semantics.
+\end{itemize}
+
+\begin{summary}[Quick Reference]
+\textbf{Anatomy of a function.}
+\begin{lstlisting}
+/* prototype (declaration) */
+int  add(int a, int b);
+
+int main(void) {
+    int s = add(3, 4);   /* call: arguments 3 and 4 */
+    return 0;
+}
+
+/* definition */
+int add(int a, int b) {   /* parameters a, b */
+    return a + b;         /* returns an int */
+}
+\end{lstlisting}
+
+\textbf{Void functions.} Use \texttt{void} for no return and \texttt{void} parameter list for no inputs.\\
+\textbf{Pass-by-value.} Each argument is \emph{copied}. Changing a parameter inside the function
+does not affect the caller's variable. (Pointers, in Lab 9, let us change the caller's variable.)\\
+\textbf{Scope.} A variable declared inside \texttt{\{...\}} exists only in that block.
+\end{summary}
+
+\section*{In-Lab Exercises (target: 2 hours)}
+
+\begin{labexercise}{\texttt{max3} \hfill {\small \itshape (15 min)}}
+Write a function \texttt{int max3(int a, int b, int c)} that returns the largest of three integers.
+Test it from \texttt{main} on at least three different input triples.
+\end{labexercise}
+
+\begin{labexercise}{Factorial and Binomial \hfill {\small \itshape (35 min)}}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item Write \texttt{long fact(int n)} returning $n!$ (iteratively).
+  \item Using \texttt{fact}, write \texttt{long C(int n, int k)} returning $\binom{n}{k} = n!/(k!(n-k)!)$.
+  \item In \texttt{main}, read $n$ and $k$ and print $C(n,k)$.
+\end{enumerate}
+\end{labexercise}
+
+\begin{labexercise}{Reusable Prime Check \hfill {\small \itshape (30 min)}}
+Write \texttt{int is\_prime(int n)} that returns 1 if \texttt{n} is prime, otherwise 0.
+In \texttt{main}, read two integers \texttt{a} and \texttt{b} and print every prime in $[a,b]$
+on a single line, separated by spaces.
+\end{labexercise}
+
+\begin{labexercise}{Recursive Power \hfill {\small \itshape (40 min)}}
+Write \texttt{double power(double x, int n)} for $n \geq 0$ using recursion:
+$\texttt{power}(x, 0) = 1$, otherwise $\texttt{power}(x, n) = x \cdot \texttt{power}(x, n-1)$.
+Then write an \emph{iterative} version \texttt{power\_iter} and compare the outputs on
+at least three test cases.
+\end{labexercise}
+
+\takehomebanner
+
+\begin{trace}[Pass-by-value]
+What does this print?
+\begin{lstlisting}
+#include <stdio.h>
+void f(int x) { x = x + 1; }
+int main(void) {
+    int a = 10;
+    f(a);
+    printf("%d\n", a);
+    return 0;
+}
+\end{lstlisting}
+\end{trace}
+
+\begin{trace}[Mutual recursion is unusual; here is plain recursion]
+What does \texttt{g(4)} return? Show every call.
+\begin{lstlisting}
+int g(int n) {
+    if (n <= 1) return 1;
+    return n * g(n - 1);
+}
+\end{lstlisting}
+\end{trace}
+
+\begin{bug}[Missing prototype, wrong return]
+Find and fix all problems:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    printf("%d\n", square(5));
+    return 0;
+}
+square(int x) {
+    x * x;
+}
+\end{lstlisting}
+\end{bug}
+
+\begin{writecode}[Sum from $a$ to $b$ (inclusive)]
+Write a function \texttt{long sum\_range(int a, int b)} that returns
+$a + (a+1) + \dots + b$. Assume $a \leq b$. Then write a complete program that reads
+\texttt{a} and \texttt{b}, calls the function, and prints the result.
+\end{writecode}
+
+\begin{writecode}[Fibonacci function (iterative)]
+Write \texttt{long fib(int n)} that returns the $n$-th Fibonacci number iteratively
+($F_0 = 0$, $F_1 = 1$). Then write \texttt{main} that prints $F_0, F_1, \dots, F_{10}$,
+all on one line separated by spaces.
+\end{writecode}
+
+\end{document}

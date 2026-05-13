@@ -1,0 +1,151 @@
+\documentclass[11pt]{article}
+\newcommand{\LabNumber}{9}
+\newcommand{\LabTitle}{Structures and Unions (with Pointers)}
+\newcommand{\LabTopic}{User-defined types, \texttt{->} member access, passing structs by pointer}
+\input{common.tex}
+
+\begin{document}
+\labheader
+
+\section*{Objectives}
+\begin{itemize}[leftmargin=*,nosep]
+  \item Define a \texttt{struct} that groups related fields under one name.
+  \item Access members with \texttt{.} on a value and \texttt{->} on a pointer.
+  \item Pass structs to functions \emph{by pointer} to avoid copying and to allow modification.
+  \item Recognize when a \texttt{union} or \texttt{enum} is the right tool.
+\end{itemize}
+
+\begin{summary}[Quick Reference]
+\textbf{Struct definition and member access.}
+\begin{lstlisting}
+typedef struct {
+    int x, y;
+} Point;
+
+Point  p  = {3, 4};
+Point *pp = &p;
+p.x  = 10;            /* through a value:   "." */
+pp->x = 20;           /* through a pointer: "->"  -- equivalent to (*pp).x */
+\end{lstlisting}
+
+\textbf{Pass by pointer (no copy, caller can be modified).}
+\begin{lstlisting}
+void move(Point *p, int dx, int dy) {
+    p->x += dx;
+    p->y += dy;
+}
+int main(void) {
+    Point p = {0, 0};
+    move(&p, 3, 4);   /* p is now {3, 4} */
+}
+\end{lstlisting}
+
+\textbf{Why use \texttt{->}?}\quad \texttt{p->x} reads as ``the \texttt{x} of the
+struct that \texttt{p} points to''. It is purely sugar for \texttt{(*p).x} -- the
+parentheses are needed because \texttt{.} binds tighter than \texttt{*}.\\
+
+\textbf{Array of structs + pointer walk.}
+\begin{lstlisting}
+Student class[N];
+for (Student *s = class; s < class + N; s++) printf("%s\n", s->name);
+\end{lstlisting}
+
+\textbf{Union.} All members share the same memory; only one is valid at a time.\\
+\textbf{Enum.} Names a small set of named integer constants.
+\end{summary}
+
+\section*{In-Lab Exercises (target: 2 hours)}
+
+\begin{labexercise}{Point Distance + \texttt{move} via pointer \hfill {\small \itshape (25 min)}}
+Define \texttt{typedef struct \{ double x, y; \} Point;}. Write
+\begin{itemize}[leftmargin=*,nosep]
+  \item \texttt{double distance(Point a, Point b)} -- by value, since it only reads.
+  \item \texttt{void move(Point *p, double dx, double dy)} -- by pointer, since it writes.
+\end{itemize}
+Read two points, print their distance, then move the first one and print again.
+\end{labexercise}
+
+\begin{labexercise}{Student Record -- read into pointer \hfill {\small \itshape (30 min)}}
+Define a \texttt{Student} struct with \texttt{id} (int), \texttt{name} (char[20]),
+\texttt{gpa} (double). Write \texttt{void read\_student(Student *s)} that fills the
+struct via \texttt{s->id}, \texttt{s->name}, \texttt{s->gpa}. Read $N$ students
+($N \leq 30$) into an array and print the one with the highest GPA.
+\end{labexercise}
+
+\begin{labexercise}{Sort by GPA via Pointer Swaps \hfill {\small \itshape (35 min)}}
+Extend the previous exercise: sort the array in \emph{descending} order of GPA.
+Use selection sort and a helper \texttt{void swap(Student *a, Student *b)} that swaps
+two struct values through their pointers. Print the sorted list, one student per line.
+\end{labexercise}
+
+\begin{labexercise}{Tagged Union: Shape Area \hfill {\small \itshape (30 min)}}
+Define an enum \texttt{Kind \{ CIRCLE, RECT \}} and a struct \texttt{Shape} containing
+a \texttt{Kind kind} and a \texttt{union} with the parameters of each shape
+(\texttt{double r} for the circle, \texttt{double w, h} for the rectangle).
+Write \texttt{double area(const Shape *s)} that uses a \texttt{switch} on \texttt{s->kind}.
+\end{labexercise}
+
+\takehomebanner
+
+\begin{trace}[Value copy vs.\ pointer]
+What does this print? Explain why \texttt{p} did not change.
+\begin{lstlisting}
+#include <stdio.h>
+typedef struct { int a, b; } P;
+void set_by_value(P x)   { x.a = 99; }
+void set_by_ptr  (P *x)  { x->a = 99; }
+int main(void) {
+    P p = {1, 2};
+    set_by_value(p);
+    printf("%d %d\n", p.a, p.b);
+    set_by_ptr(&p);
+    printf("%d %d\n", p.a, p.b);
+    return 0;
+}
+\end{lstlisting}
+\end{trace}
+
+\begin{trace}[\texttt{->} versus \texttt{.}]
+Predict the output:
+\begin{lstlisting}
+#include <stdio.h>
+typedef struct { int x, y; } V;
+int main(void) {
+    V  v  = {7, 8};
+    V *pv = &v;
+    pv->x = 100;
+    (*pv).y = 200;
+    printf("%d %d\n", v.x, v.y);
+    return 0;
+}
+\end{lstlisting}
+\end{trace}
+
+\begin{bug}[Wrong member access and missing braces]
+List the bugs and rewrite the corrected program:
+\begin{lstlisting}
+#include <stdio.h>
+typedef struct { int w, h; } Rect;
+int area(Rect *r) { return r.w * r.h; }
+int main(void) {
+    Rect r = 4, 5;
+    printf("%d\n", area(r));
+    return 0;
+}
+\end{lstlisting}
+\end{bug}
+
+\begin{writecode}[Complex addition via pointer]
+Define \texttt{typedef struct \{ double re, im; \} Complex;} and write
+\texttt{void add(const Complex *a, const Complex *b, Complex *out)} that stores
+\(a + b\) in \texttt{*out}. Write a complete program that reads two complex numbers,
+adds them, and prints the result as \texttt{a+bi}.
+\end{writecode}
+
+\begin{writecode}[Find oldest student]
+Define a \texttt{Student} struct with \texttt{name} and \texttt{age}. Write
+\texttt{Student *oldest(Student *arr, int n)} returning a pointer to the oldest
+student in the array. Demonstrate from \texttt{main} with three students.
+\end{writecode}
+
+\end{document}

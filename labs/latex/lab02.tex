@@ -1,0 +1,119 @@
+\documentclass[11pt]{article}
+\newcommand{\LabNumber}{2}
+\newcommand{\LabTitle}{Expressions and Operators}
+\newcommand{\LabTopic}{Arithmetic, formatted output, integer vs.\ floating-point}
+\input{common.tex}
+
+\begin{document}
+\labheader
+
+\section*{Objectives}
+\begin{itemize}[leftmargin=*,nosep]
+  \item Build expressions with arithmetic, relational, logical, and assignment operators.
+  \item Understand operator precedence and the difference between integer and floating-point division.
+  \item Use \texttt{printf} field width, alignment, and base specifiers.
+  \item Use the modulus operator to extract digits.
+\end{itemize}
+
+\begin{summary}[Quick Reference]
+\textbf{Arithmetic.}\quad \texttt{+ - * / \%}\quad
+Integer \texttt{/} truncates toward zero: \texttt{7/2 == 3}, \texttt{-7/2 == -3}.\\
+\textbf{Modulus.}\quad \texttt{a \% b} is the remainder; defined only for integers.\\
+\textbf{Mixed types.}\quad If either operand is floating-point, the result is floating-point:
+\texttt{7 / 2.0 == 3.5}.\\
+\textbf{Precedence (high $\to$ low).}\quad
+\texttt{() }$\,>\,$\texttt{ unary -}$\,>\,$\texttt{ * / \%}$\,>\,$\texttt{ + -}$\,>\,$\texttt{ < <= > >=}$\,>\,$\texttt{ == !=}$\,>\,$\texttt{ \&\&}$\,>\,$\texttt{ ||}$\,>\,$\texttt{ =}.\\
+\textbf{printf format.}\quad
+\texttt{\%5d} = width 5, right-aligned; \texttt{\%-5d} = left-aligned; \texttt{\%05d} = zero-padded;
+\texttt{\%.2f} = 2 decimals; \texttt{\%o}/\texttt{\%x} = octal/hex.\\
+\textbf{Character math.}\quad \texttt{'A'} = 65, \texttt{'a'} = 97. So \texttt{'a' - 'A' == 32}.
+\end{summary}
+
+\section*{In-Lab Exercises (target: 2 hours)}
+
+\begin{labexercise}{Formatted Output \hfill {\small \itshape (25 min)}}
+Print the six integers \texttt{123, 451, 332, 271, 74, 54} as a $2\times 3$ grid.
+Each cell must use a field width of 5 and be \emph{left-aligned}.
+\textbf{Hint:} \texttt{printf("\%-5d\%-5d\%-5d\textbackslash n", \ldots)}.
+\end{labexercise}
+
+\begin{labexercise}{Base Conversion \hfill {\small \itshape (20 min)}}
+Read a non-negative integer from the user and print its value in decimal, octal, and
+hexadecimal (uppercase) on three separate lines.
+Use \texttt{\%d}, \texttt{\%o}, \texttt{\%X}.
+\end{labexercise}
+
+\begin{labexercise}{Sum of Digits (3-digit number) \hfill {\small \itshape (35 min)}}
+Read a 3-digit positive integer (between 100 and 999) and print the sum of its three digits.
+\textbf{Approach:} extract each digit with \texttt{n \% 10} and \texttt{n / 10}.
+\textbf{Example:} input \texttt{479} $\Rightarrow$ output \texttt{20}.
+\end{labexercise}
+
+\begin{labexercise}{Average of Four Real Numbers \hfill {\small \itshape (20 min)}}
+Read four \texttt{double} values and print their average with three decimal places.
+\textbf{Pitfall:} use floating-point types and \texttt{\%lf} in \texttt{scanf}.
+\end{labexercise}
+
+\begin{labexercise}{Swap Without a Helper Variable \hfill {\small \itshape (20 min)}}
+Read two integers \texttt{a} and \texttt{b}, then swap them \emph{without} using a third variable
+(use arithmetic: \texttt{a = a + b; b = a - b; a = a - b;}).
+Print the values before and after the swap.
+\end{labexercise}
+
+\takehomebanner
+
+\begin{trace}[Integer vs.\ floating-point division]
+Predict the printed output:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    int    a = 9, b = 4;
+    double x = 9, y = 4;
+    printf("%d %d\n", a / b, a % b);
+    printf("%.2f\n", x / y);
+    printf("%.2f\n", (double)a / b);
+    printf("%.2f\n", (double)(a / b));
+    return 0;
+}
+\end{lstlisting}
+\end{trace}
+
+\begin{trace}[Width and alignment]
+What does this print? Show spaces with a dot (\texttt{.}) so alignment is clear.
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    printf("[%5d][%-5d][%05d]\n", 42, 42, 42);
+    return 0;
+}
+\end{lstlisting}
+\end{trace}
+
+\begin{bug}[Wrong format specifier and missing \&]
+List every bug, explain why each is wrong, and write the corrected program.
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    float price;
+    int qty;
+    printf("Enter price and quantity: ");
+    scanf("%d %d", &price, qty);
+    printf("Total = %d\n", price * qty);
+    return 0;
+}
+\end{lstlisting}
+\end{bug}
+
+\begin{writecode}[Reverse a 4-digit number]
+Write a complete program that reads a 4-digit integer (1000--9999) and prints the
+number with its digits reversed (e.g.\ input \texttt{1234} $\Rightarrow$ output \texttt{4321}).
+Use only \texttt{/} and \texttt{\%}.
+\end{writecode}
+
+\begin{writecode}[Lowercase to uppercase, one character]
+Write a complete program that reads a single character that you may assume is a
+lowercase letter and prints the corresponding uppercase letter. Use arithmetic on
+ASCII codes (not the \texttt{ctype.h} library).
+\end{writecode}
+
+\end{document}
