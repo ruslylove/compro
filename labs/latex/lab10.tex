@@ -46,6 +46,72 @@ while (fscanf(f, "%d", &x) == 1) {
 \textbf{Write.}\quad \texttt{fprintf(f, "\%d \%s\textbackslash n", id, name);}
 \end{summary}
 
+\subsection*{Quick Experiments (Try It)}
+
+\begin{tryit}{What does \texttt{fopen} return for a missing file?}
+Run and observe:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    FILE *f = fopen("no_such_file.txt", "r");
+    if (f == NULL)
+        printf("fopen returned NULL -- file not found\n");
+    else {
+        printf("fopen succeeded (unexpected!)\n");
+        fclose(f);
+    }
+    return 0;
+}
+\end{lstlisting}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item Change \texttt{"r"} to \texttt{"w"}. Does the file now get created? Verify in
+        your directory.
+  \item Change \texttt{"w"} to \texttt{"a"} and run twice. Does the file grow?
+  \item Why is checking for \texttt{NULL} after \texttt{fopen} non-optional?
+\end{enumerate}
+\end{tryit}
+
+\begin{tryit}{\texttt{"w"} truncates; \texttt{"a"} appends}
+Create a file \texttt{test.txt} (any content). Then run this program \emph{twice} and
+inspect \texttt{test.txt} after each run:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    FILE *f = fopen("test.txt", "w");   /* try "a" on the second run */
+    if (!f) { perror("fopen"); return 1; }
+    fprintf(f, "run result\n");
+    fclose(f);
+    return 0;
+}
+\end{lstlisting}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item With mode \texttt{"w"}: how many lines does \texttt{test.txt} have after the
+        second run? Did the first run's content survive?
+  \item Change to \texttt{"a"} and run three times. How many lines does the file have now?
+  \item Which mode would you use for a log file that must never lose old entries?
+\end{enumerate}
+\end{tryit}
+
+\begin{tryit}{\texttt{fprintf(stdout, ...)} is the same as \texttt{printf(...)}}
+Run and redirect the output to a file from your terminal:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    printf(            "1: from printf\n");
+    fprintf(stdout,    "2: from fprintf(stdout)\n");
+    fprintf(stderr,    "3: from fprintf(stderr)\n");
+    return 0;
+}
+\end{lstlisting}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item Run normally. Which lines appear on the terminal?
+  \item Run as \texttt{./program > out.txt}. Open \texttt{out.txt}. Which lines are in
+        the file? Which still appear on the terminal?
+  \item What does this tell you about the difference between \texttt{stdout} and
+        \texttt{stderr} -- and why is separating them useful in a real program?
+\end{enumerate}
+\end{tryit}
+
 \section*{In-Lab Exercises (target: 2 hours)}
 
 \noindent\textit{Before you start: create a sample \texttt{numbers.txt} (one integer per line)
@@ -75,6 +141,32 @@ Create \texttt{students.txt} with lines of the form\\
 Read the records into an array of structs (reuse the \texttt{Student} struct from Lab 8)
 and write \texttt{report.txt} with the same records sorted by score in descending order.
 \end{labexercise}
+
+\begin{aicollab}
+\textbf{Try these prompts with an AI tool:}
+\begin{itemize}[leftmargin=*,nosep]
+  \item ``Explain why checking \texttt{fopen}'s return value for \texttt{NULL} is
+        non-optional, and what \texttt{perror} prints when it fails.''
+  \item ``What is the \texttt{feof}-based loop anti-pattern in C, and why does
+        \texttt{while (fscanf(f, "\%d", \&x) == 1)} fix it?''
+  \item ``What happens to a file's existing contents when I open it with mode
+        \texttt{"w"} versus \texttt{"a"}?''
+\end{itemize}
+
+\medskip\textbf{Critical check -- verify, don't just accept:}
+Ask the AI to write a complete program that reads integers from a file and prints their
+average. Before running, inspect the code for:
+(a) \texttt{NULL} check after \texttt{fopen},
+(b) loop termination based on \texttt{fscanf}'s return value,
+(c) a \texttt{fclose} call.
+Then test with a file containing one integer, and again with an empty file. Record
+whether the AI's code handles division-by-zero on the empty case.
+
+\medskip\textbf{Know the limit:}
+AI tools regularly omit the \texttt{fclose} call and the \texttt{NULL} check, and almost
+never warn you that mode \texttt{"w"} silently destroys an existing file -- these are
+silent data-loss bugs, not compile errors.
+\end{aicollab}
 
 \takehomebanner
 

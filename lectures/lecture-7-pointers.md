@@ -160,6 +160,23 @@ int main() {
 
 ---
 
+## 🤖 Try This with AI: `p`, `*p`, and `&p`
+
+**Prompt:** *"For `int x = 10; int *p = &x;`, what are the values and types of `p`, `*p`, and `&p`? Draw a memory diagram as text."*
+
+Verify:
+```c
+int x = 10;
+int *p = &x;
+printf("p   = %p\n", (void *)p);   // address of x
+printf("*p  = %d\n", *p);          // value of x
+printf("&p  = %p\n", (void *)&p);  // address of p itself
+```
+
+> ⚠️ AI diagrams vary in quality. If the first one confuses you, ask: *"Try again with each box showing the variable name, its address, and its value."*
+
+---
+
 ## Pointer Arithmetic
 
 * You can perform arithmetic operations (like `+`, `-`, `++`, `--`) on pointers.
@@ -511,6 +528,21 @@ int main() {
     return 0;
 }
 ```
+
+---
+
+## 🤖 Try This with AI: Spot the Memory Bug
+
+**Prompt:** *"Find all bugs in this code:"*
+```c
+int *p = malloc(5 * sizeof(int));
+p[0] = 1;
+return 0;
+```
+
+The AI should flag: **(1)** missing `NULL` check after `malloc`, **(2)** missing `free(p)`.
+
+> ⚠️ AI-generated `malloc` examples frequently omit both. Make it a habit: every `malloc` needs a `NULL` check **and** a matching `free`. No exceptions.
 
 ---
 

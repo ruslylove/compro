@@ -728,6 +728,27 @@ hide: true
 
 ---
 
+## 🤖 Try This with AI: Pass-by-Value Proof
+
+**Prompt:** *"Why does `void double_it(int x) { x *= 2; }` not change the caller's variable? Draw a memory diagram."*
+
+Confirm with code:
+```c
+void double_it(int x) {
+    x *= 2;
+    printf("inside: %d\n", x);
+}
+int main(void) {
+    int a = 5;
+    double_it(a);
+    printf("in main: %d\n", a);  // still 5?
+}
+```
+
+> ⚠️ Ask for the fix using a pointer (`int *x`). AI will give it — but make sure you understand *why* `&a` is needed at the call site before moving on.
+
+---
+
 ## Recursive Functions
 
 * A function is **recursive** if it calls itself, either directly or indirectly.
@@ -1016,6 +1037,23 @@ int main() {
     return 0;
 }
 ```
+
+---
+
+## 🤖 Try This with AI: `#define` vs `const`
+
+**Prompt:** *"What is the difference between `#define PI 3.14` and `const double PI = 3.14;` in C? Which is safer and why?"*
+
+Test the type-safety difference:
+```c
+#define PI_MACRO 3.14
+const double PI_CONST = 3.14;
+
+// PI_MACRO = 4.0;   // try this — what error?
+// PI_CONST = 4.0;   // try this — what error?
+```
+
+> ⚠️ AI often says "use `const` for type safety" — but for macros, ask it to show what `PI_MACRO * 2` expands to in the preprocessor. The lack of parentheses can cause bugs in complex expressions.
 
 ---
 

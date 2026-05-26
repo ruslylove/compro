@@ -42,6 +42,70 @@ not bytes: \texttt{p + 1} skips one \texttt{int}.\\
 Always set it (\texttt{p = \&x;}) or assign \texttt{NULL} and check before use.
 \end{summary}
 
+\subsection*{Quick Experiments (Try It)}
+
+\begin{tryit}{Pointer arithmetic -- how many bytes does \texttt{p+1} skip?}
+Run and record the addresses:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    int a[3] = {10, 20, 30};
+    int *p = a;
+    printf("p     = %p,  *p     = %d\n", (void *)p,     *p);
+    printf("p+1   = %p,  *(p+1) = %d\n", (void *)(p+1), *(p+1));
+    printf("byte gap: %td\n",
+           (char *)(p + 1) - (char *)p);
+    return 0;
+}
+\end{lstlisting}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item How many bytes did \texttt{p+1} advance? Is it the same as \texttt{sizeof(int)}?
+  \item Change \texttt{int *p = a;} to \texttt{double *pd = (double*)a;} (and use \texttt{pd}).
+        What is the byte gap now? What does this tell you about pointer arithmetic?
+  \item What is the relationship between pointer arithmetic and \texttt{sizeof}?
+\end{enumerate}
+\end{tryit}
+
+\begin{tryit}{Dereferencing a \texttt{NULL} pointer -- see a segfault up close}
+\textbf{Save your work first.} Then run:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    int *p = NULL;        /* points to nothing */
+    printf("%d\n", *p);   /* crash here */
+    return 0;
+}
+\end{lstlisting}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item What error does the operating system report? (segmentation fault / access violation)
+  \item Now declare \texttt{int *p;} without assigning anything (do not set it to \texttt{NULL}).
+        Does it still crash? Is the crash guaranteed or unpredictable?
+  \item What defensive habit does this experiment motivate?
+\end{enumerate}
+\end{tryit}
+
+\begin{tryit}{Two pointers to the same variable}
+Run and trace the changes:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    int x = 1;
+    int *p = &x;
+    int *q = &x;   /* both p and q point to x */
+    *p = 10;
+    printf("x = %d, *q = %d\n", x, *q);
+    (*q)++;
+    printf("x = %d, *p = %d\n", x, *p);
+    return 0;
+}
+\end{lstlisting}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item Does writing through \texttt{p} also change what \texttt{q} reads? Why?
+  \item Print \texttt{\&x}, \texttt{p}, and \texttt{q} with \texttt{\%p}. Are they equal?
+  \item This is called \emph{aliasing}. Why can aliasing make code hard to reason about?
+\end{enumerate}
+\end{tryit}
+
 \section*{In-Lab Exercises (target: 2 hours)}
 
 \begin{labexercise}{Swap via Pointers \hfill {\small \itshape (20 min)}}
@@ -68,6 +132,30 @@ Write \texttt{void reverse(int *a, int n)} that reverses an array in place using
 pointers: \texttt{left = a}, \texttt{right = a + n - 1}. Swap and walk them toward
 each other until they meet. Reuse \texttt{swap} from Exercise 1.
 \end{labexercise}
+
+\begin{aicollab}
+\textbf{Try these prompts with an AI tool:}
+\begin{itemize}[leftmargin=*,nosep]
+  \item ``Explain the difference between \texttt{int *p = \&x} and \texttt{int *p = x}
+        -- why does the second one likely crash?''
+  \item ``Show me why \texttt{void swap(int a, int b)} fails to swap the caller's
+        variables, and fix it with pointers.''
+  \item ``Draw a text-based memory diagram for: \texttt{int x = 5; int *p = \&x; *p = 10;}''
+\end{itemize}
+
+\medskip\textbf{Critical check -- verify, don't just accept:}
+Ask the AI to write a function using \texttt{int *} out-parameters to return two values.
+Before compiling, check: (a) does every call site pass \texttt{\&variable}?
+(b) does the function write through the pointer as \texttt{*param = ...}, not
+\texttt{param = ...}?
+Compile with \texttt{-Wall} and confirm zero warnings. Then introduce one deliberate bug
+(pass a variable without \texttt{\&}) and verify you get a warning or crash.
+
+\medskip\textbf{Know the limit:}
+AI tools sometimes generate pointer code that is technically correct but introduces
+aliasing or lifetime bugs that only appear at runtime -- always compile with \texttt{-Wall}
+and test with edge inputs, not just the happy path.
+\end{aicollab}
 
 \takehomebanner
 

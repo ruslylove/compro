@@ -419,7 +419,27 @@ graph TD
 </div>
 
 ---
- 
+
+## 🤖 Try This with AI: `sizeof` Inside a Function
+
+**Prompt:** *"If `int arr[5]` is declared in `main`, can I use `sizeof(arr)/sizeof(arr[0])` inside a function that receives `arr` as a parameter?"*
+
+Verify by printing `sizeof` in both places:
+```c
+void check(int a[]) {
+    printf("sizeof inside fn: %lu\n", sizeof(a));  // pointer size!
+}
+int main(void) {
+    int arr[5];
+    printf("sizeof in main: %lu\n", sizeof(arr));  // array size
+    check(arr);
+}
+```
+
+> ⚠️ AI often says "yes it works" — it does **not**. Inside a function, `a` has decayed to a pointer. Always pass the size as a separate `int n` parameter.
+
+---
+
 ## Array Bounds and Potential Errors
 
 * A critical point in C: The language **does not automatically check** if the index you use to access an array element is within the valid range (0 to `size - 1`).
@@ -520,6 +540,26 @@ int main() {
 
 ---
 layout: two-cols-header
+---
+
+## 🤖 Try This with AI: Array Elements Are Modifiable in Functions
+
+**Prompt:** *"If I modify elements of an `int` array inside a function, do the changes persist back in `main`? Why is this different from a plain `int` parameter?"*
+
+Verify:
+```c
+void fill(int a[], int n) {
+    for (int i = 0; i < n; i++) a[i] = 99;
+}
+int main(void) {
+    int v[3] = {1, 2, 3};
+    fill(v, 3);
+    printf("%d\n", v[0]);  // 1 or 99?
+}
+```
+
+> ⚠️ AI contrasts this with scalar pass-by-value — confirm you can explain *why* arrays behave differently. (Hint: the array name decays to a pointer.) This is the conceptual bridge to Lecture 7.
+
 ---
 
 ## Pass-by-Value vs. Pass-by-Reference

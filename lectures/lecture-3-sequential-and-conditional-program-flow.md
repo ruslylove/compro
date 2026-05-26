@@ -813,6 +813,22 @@ if (a == 5) { // Compares current value of 'a' with 5.
 layout: two-cols
 ---
 
+## 🤖 Try This with AI: The `=` vs `==` Bug
+
+**Prompt:** *"Find the bug in this code and explain why it always enters the true branch: `if (x = 0) printf("zero"); else printf("nonzero");`"*
+
+Verify by running:
+```c
+int x = 5;
+if (x = 0) printf("zero\n");
+else        printf("nonzero\n");
+printf("x is now: %d\n", x);  // what changed?
+```
+
+> ⚠️ AI explains the bug correctly — but also ask: *"What compiler flag warns about this?"* (`-Wall`). Check whether the generated fix uses `==` or a Yoda condition like `0 == x`.
+
+---
+
 ## Nested `if-else` Clauses
 
 <Transform scale="0.75">
@@ -1061,6 +1077,18 @@ graph TD
 
 ---
 layout: two-cols
+---
+
+## 🤖 Try This with AI: Testing Boundary Values
+
+**Prompt:** *"What edge-case input values should I test for a grade classifier that maps scores to A/B/C/D/F?"*
+
+Take the AI's list and actually test each one — particularly:
+- Exactly 90, 80, 70, 60 (boundary scores)
+- 100, 0, -1, 101 (extremes and out-of-range)
+
+> ⚠️ AI rarely includes negative scores or values above 100 in its edge-case list without prompting. The exam will.
+
 ---
 
 ## The `switch` Statement

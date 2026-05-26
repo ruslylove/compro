@@ -38,6 +38,67 @@ for (int i = 2; i*i <= n; i++)
 \end{lstlisting}
 \end{summary}
 
+\subsection*{Quick Experiments (Try It)}
+
+\begin{tryit}{Off-by-one: \texttt{<} versus \texttt{<=}}
+Run both versions and record each result:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    int sum = 0;
+    for (int i = 1; i < 5; i++) sum += i;   /* version A */
+    printf("< 5:  %d\n", sum);
+
+    sum = 0;
+    for (int i = 1; i <= 5; i++) sum += i;  /* version B */
+    printf("<= 5: %d\n", sum);
+    return 0;
+}
+\end{lstlisting}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item What are the two sums? Which version sums 1 through 5 inclusive?
+  \item Which condition gives you the \(n\)-th triangular number $T_n = n(n+1)/2$?
+  \item Off-by-one errors are among the most common bugs. Describe a quick mental check
+        you can use: ``Does my loop body run once for $i = 1$ \emph{and} once for $i = n$?''
+\end{enumerate}
+\end{tryit}
+
+\begin{tryit}{\texttt{break} vs.\ \texttt{continue} -- same condition, different outcomes}
+Start with this skeleton:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    for (int i = 1; i <= 10; i++) {
+        if (i % 3 == 0) { /* ??? */ }
+        printf("%d ", i);
+    }
+    printf("\n");
+    return 0;
+}
+\end{lstlisting}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item Replace \texttt{/\!* ??? *\!/} with \texttt{continue;}. Run it. Which numbers appear?
+  \item Replace \texttt{continue;} with \texttt{break;}. Run it. Which numbers appear now?
+  \item Explain in one sentence the difference between what the two keywords do.
+\end{enumerate}
+\end{tryit}
+
+\begin{tryit}{Semicolon after \texttt{while} -- the empty-body loop}
+Run and observe carefully:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    int n = 5;
+    while (n > 0);   /* <-- notice the semicolon */
+        printf("n = %d\n", n--);
+    return 0;
+}
+\end{lstlisting}
+What happens? (You may need to force-stop the program.)
+Remove the semicolon and run again. What is the correct output?
+This is the same bug as in the take-home section -- recognizing it by sight is a valuable skill.
+\end{tryit}
+
 \section*{In-Lab Exercises (target: 2 hours)}
 
 \begin{labexercise}{Guess the Number \hfill {\small \itshape (25 min)}}
@@ -71,6 +132,30 @@ Stop when the magnitude of the current term is below $10^{-6}$.
 \textbf{Hint:} compute each next term incrementally as \texttt{term *= x / n}, where \texttt{n}
 is the new term index. Test with $x = 0, 1, 2$ and compare against \texttt{exp(x)} (link with \texttt{-lm}).
 \end{labexercise}
+
+\begin{aicollab}
+\textbf{Try these prompts with an AI tool:}
+\begin{itemize}[leftmargin=*,nosep]
+  \item ``Explain the off-by-one error: when should a \texttt{for} loop use
+        \texttt{i < n} versus \texttt{i <= n}?''
+  \item ``My \texttt{while} loop runs forever. Walk me through a checklist for finding
+        infinite-loop bugs.''
+  \item ``Rewrite this \texttt{for} loop as a \texttt{while} loop and explain when each
+        form is preferable:
+        \texttt{for (int i = 0; i < n; i++) \{ ... \}}''
+\end{itemize}
+
+\medskip\textbf{Critical check -- verify, don't just accept:}
+Ask the AI to write a loop that sums integers from 1 to $N$ inclusive.
+Before running, trace the AI's loop by hand for $N = 5$, writing the accumulator value
+after each iteration. Then run the program for $N = 1$, $N = 5$, and $N = 0$.
+Compare the actual output to your trace and to the AI's stated result.
+
+\medskip\textbf{Know the limit:}
+AI tools often generate loops with subtle off-by-one errors in the boundary condition --
+especially when converting between 0-indexed and 1-indexed thinking -- and rarely flag
+this without being explicitly asked.
+\end{aicollab}
 
 \takehomebanner
 

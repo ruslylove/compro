@@ -151,6 +151,21 @@ layout: two-cols
     ```
 
 ---
+
+## 🤖 Try This with AI: `scanf` vs `fgets` Safety
+
+**Prompt:** *"What happens if I use `scanf("%s", buf)` where `buf` is `char buf[5]` and the user types `"hello world"`?"*
+
+Ask the AI to rewrite the read using `fgets` safely:
+```c
+char buf[5];
+// scanf("%s", buf);                       // dangerous — no size limit
+fgets(buf, sizeof(buf), stdin);            // safe — stops at 4 chars
+```
+
+> ⚠️ AI may say `scanf` "causes a buffer overflow" without showing *how* `fgets` fixes it. Ask for the `fgets` version explicitly and check it uses `sizeof(buf)` — not a magic number.
+
+---
 layout: two-cols-header
 ---
 
@@ -305,6 +320,19 @@ int main() {
     return 0;
 }
 ```
+
+---
+
+## 🤖 Try This with AI: String Comparison Trap
+
+**Prompt:** *"Find the bug: `char s1[] = "hello"; char s2[] = "hello"; if (s1 == s2) printf("equal");`"*
+
+Verify by running it — does it print `"equal"`? Then fix it:
+```c
+if (strcmp(s1, s2) == 0) printf("equal\n");
+```
+
+> ⚠️ AI explains the bug correctly. But then ask: *"What does `s1 == s2` actually compare?"* Make sure the answer mentions **addresses**, not content. You will see this on the exam.
 
 ---
 layout: two-cols

@@ -54,6 +54,80 @@ for (Student *s = class; s < class + N; s++) printf("%s\n", s->name);
 \textbf{Enum.} Names a small set of named integer constants.
 \end{summary}
 
+\subsection*{Quick Experiments (Try It)}
+
+\begin{tryit}{Pass by value vs.\ pass by pointer: which one sticks?}
+Run and compare the two calls:
+\begin{lstlisting}
+#include <stdio.h>
+typedef struct { int x, y; } Point;
+
+void move_by_value  (Point p,  int dx, int dy) { p.x += dx;  p.y += dy;  }
+void move_by_pointer(Point *p, int dx, int dy) { p->x += dx; p->y += dy; }
+
+int main(void) {
+    Point a = {1, 2};
+    move_by_value(a, 10, 10);
+    printf("after by-value:   (%d, %d)\n", a.x, a.y);   /* unchanged? */
+
+    move_by_pointer(&a, 10, 10);
+    printf("after by-pointer: (%d, %d)\n", a.x, a.y);   /* changed? */
+    return 0;
+}
+\end{lstlisting}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item Which call actually moved the point?
+  \item Add \texttt{printf("struct size: \%lu\textbackslash n", (unsigned long)sizeof(Point));}.
+        Now change the struct to \texttt{int data[100];}.
+        How large is the struct now? What would the by-value copy cost each call?
+\end{enumerate}
+\end{tryit}
+
+\begin{tryit}{\texttt{.} vs.\ \texttt{->} -- what does the compiler say?}
+Deliberately introduce the wrong operator and read the error:
+\begin{lstlisting}
+#include <stdio.h>
+typedef struct { int val; } Node;
+int main(void) {
+    Node  n  = {42};
+    Node *np = &n;
+
+    printf("%d\n", n.val);    /* correct: value, use . */
+    printf("%d\n", np->val);  /* correct: pointer, use -> */
+
+    /* now swap them intentionally and see the errors: */
+    /* printf("%d\n", np.val);  */  /* uncomment one at a time */
+    /* printf("%d\n", n->val);  */
+    return 0;
+}
+\end{lstlisting}
+Uncomment each bad line one at a time. What compiler error do you get for each?
+Relate the error message to the rule: \texttt{.} for values, \texttt{->} for pointers.
+\end{tryit}
+
+\begin{tryit}{Union: one block of memory, two interpretations}
+Run and explain why the numbers look strange:
+\begin{lstlisting}
+#include <stdio.h>
+union U { int i; float f; };
+int main(void) {
+    union U u;
+    u.f = 1.0f;
+    printf("write float 1.0, read as int:   %d\n", u.i);
+    u.i = 0;
+    printf("write int 0,   read as float:   %f\n", u.f);
+    printf("size of union: %lu\n", (unsigned long)sizeof(u));
+    return 0;
+}
+\end{lstlisting}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item What is the size of the union? Is it the sum of both members or the largest?
+  \item Why does reading \texttt{u.i} after writing \texttt{u.f} give a strange integer?
+  \item When is a union the right data structure to use?
+        (Hint: Lab 9 Exercise 4 uses a \emph{tagged} union -- explain why the tag is essential.)
+\end{enumerate}
+\end{tryit}
+
 \section*{In-Lab Exercises (target: 2 hours)}
 
 \begin{labexercise}{Point Distance + \texttt{move} via pointer \hfill {\small \itshape (25 min)}}
@@ -84,6 +158,31 @@ a \texttt{Kind kind} and a \texttt{union} with the parameters of each shape
 (\texttt{double r} for the circle, \texttt{double w, h} for the rectangle).
 Write \texttt{double area(const Shape *s)} that uses a \texttt{switch} on \texttt{s->kind}.
 \end{labexercise}
+
+\begin{aicollab}
+\textbf{Try these prompts with an AI tool:}
+\begin{itemize}[leftmargin=*,nosep]
+  \item ``Explain the difference between accessing a struct member with \texttt{.}
+        versus \texttt{->} -- when do I use each?''
+  \item ``I have a \texttt{Student} struct with a \texttt{char name[20]} field.
+        Why can't I assign \texttt{s.name = "Alice"} and what should I use instead?''
+  \item ``Show me how to sort an array of structs by a numeric field using selection
+        sort, passing struct pointers to a swap function.''
+\end{itemize}
+
+\medskip\textbf{Critical check -- verify, don't just accept:}
+Ask the AI to write a \texttt{typedef struct} with at least three fields and a function
+that fills it via a pointer parameter. Check the AI's code for:
+(a) correct use of \texttt{->} vs.\ \texttt{.},
+(b) \texttt{strcpy} rather than \texttt{=} for string fields,
+(c) \texttt{\&} at every call site.
+Compile with \texttt{-Wall} and fix any warning the AI's code triggers.
+
+\medskip\textbf{Know the limit:}
+AI tools frequently use direct string assignment (\texttt{s.name = "Alice"}) in generated
+struct code -- this is invalid for \texttt{char} array fields; the correct call is
+\texttt{strcpy}, and the AI may not mention buffer size safety without prompting.
+\end{aicollab}
 
 \takehomebanner
 

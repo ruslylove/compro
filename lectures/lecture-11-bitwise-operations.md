@@ -280,6 +280,20 @@ int main() {
 
 ---
 
+## 🤖 Try This with AI: Signed Right Shift
+
+**Prompt:** *"In C, what does `-8 >> 1` evaluate to? Is the answer guaranteed by the language standard?"*
+
+Run on your machine:
+```c
+printf("%d\n", -8 >> 1);          // likely -4, but is it guaranteed?
+printf("%d\n", (unsigned)-8 >> 1); // cast to unsigned first
+```
+
+> ⚠️ AI typically says "arithmetic right shift gives -4" — but for **signed** integers this is **implementation-defined** in C (guaranteed only in C23). For portable bitwise code, cast to `unsigned` before shifting.
+
+---
+
 ## Common Applications of Bitwise Ops
 
 Bitwise operators are fundamental for tasks like:

@@ -127,6 +127,25 @@ clean:
 
 ---
 
+## 🤖 Try This with AI: Header File Dependencies
+
+**Prompt:** *"In a Makefile where `main.c` includes `utils.h`, what happens when I only modify `utils.h` and run `make`?"*
+
+Check whether the AI's Makefile lists `utils.h` as a prerequisite:
+```makefile
+# Without header dependency (AI often generates this):
+main.o: main.c
+    gcc -c main.c
+
+# Correct — .h change triggers recompilation:
+main.o: main.c utils.h
+    gcc -c main.c
+```
+
+> ⚠️ AI-generated Makefiles almost always omit header prerequisites. Modifying a `.h` file won't trigger a rebuild, causing stale object files and confusing "my change had no effect" bugs.
+
+---
+
 ## Using Variables in Makefiles
 
 * Makefiles often use variables to make them more readable and easier to modify.
@@ -181,6 +200,17 @@ clean:
 
 1.  Building Projects with `make` and Makefiles
 2.  **Building Projects with CMake**
+
+---
+
+## 🤖 Try This with AI: Why Out-of-Source Builds?
+
+**Prompt:** *"What is the difference between running `cmake .` (in-source) and creating a `build/` directory and running `cmake ..` there? Why does it matter?"*
+
+Ask the AI to show the directory structure for both cases. Then ask:
+*"Does CMake automatically handle header file dependencies — the problem we just saw with Makefiles?"*
+
+> ⚠️ AI gives a good answer here. Follow up: *"Show me the generated Makefile inside the build directory."* Confirm it contains `-MMD -MP` flags for automatic dependency tracking — the manual Makefile fix we just saw.
 
 ---
 

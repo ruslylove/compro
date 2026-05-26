@@ -37,6 +37,74 @@ for (int i = 1; i < n; i++) if (a[i] > max) max = a[i];
 \end{lstlisting}
 \end{summary}
 
+\subsection*{Quick Experiments (Try It)}
+
+\begin{tryit}{Partial initialization zeroes the rest}
+Run and observe every element:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    int a[6] = {10, 20, 30};   /* only 3 initializers for 6 elements */
+    for (int i = 0; i < 6; i++)
+        printf("a[%d] = %d\n", i, a[i]);
+    return 0;
+}
+\end{lstlisting}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item What are the values of \texttt{a[3]}, \texttt{a[4]}, \texttt{a[5]}?
+  \item Change the initializer to \texttt{= \{0\}}. Does the whole array become zero?
+  \item Remove the initializer entirely (\texttt{int a[6];}). Are the values still zero?
+        (Run it several times. Does the answer change?) What lesson does this teach?
+\end{enumerate}
+\end{tryit}
+
+\begin{tryit}{Modifying an array inside a function affects the original}
+Run this and compare the output to Lab 5's pass-by-value behaviour:
+\begin{lstlisting}
+#include <stdio.h>
+void fill(int a[], int n) {
+    for (int i = 0; i < n; i++) a[i] = i * 10;
+}
+int main(void) {
+    int v[5] = {0};
+    printf("before fill: ");
+    for (int i = 0; i < 5; i++) printf("%d ", v[i]);
+    printf("\n");
+
+    fill(v, 5);
+    printf("after  fill: ");
+    for (int i = 0; i < 5; i++) printf("%d ", v[i]);
+    printf("\n");
+    return 0;
+}
+\end{lstlisting}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item Did \texttt{fill} change \texttt{v} in \texttt{main}?
+  \item In Lab 5, changing a plain \texttt{int} parameter inside a function had no effect
+        on the caller. Why is an array different?
+  \item (Look ahead) Add \texttt{printf("\%p{\textbackslash}n", (void*)a);} inside \texttt{fill} and
+        \texttt{printf("\%p{\textbackslash}n", (void*)v);} in \texttt{main}. Are the addresses the same?
+\end{enumerate}
+\end{tryit}
+
+\begin{tryit}{Out-of-bounds access -- silent and dangerous}
+\textbf{Warning:} this invokes undefined behaviour; save your work first.
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    int a[3] = {1, 2, 3};
+    for (int i = 0; i <= 5; i++)   /* intentional over-run */
+        printf("a[%d] = %d\n", i, a[i]);
+    return 0;
+}
+\end{lstlisting}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item Does it compile? Does it crash immediately? What does it print for indices 3, 4, 5?
+  \item Run the program a second time. Are those out-of-bounds values the same?
+  \item Why is this so dangerous even when it seems to ``work''?
+\end{enumerate}
+\end{tryit}
+
 \section*{In-Lab Exercises (target: 2 hours)}
 
 \begin{labexercise}{Read, Reverse, Print \hfill {\small \itshape (25 min)}}
@@ -59,6 +127,29 @@ occurrence of \texttt{key} in the array, or \texttt{-1} if not present. Test fro
 Read a $3 \times 4$ matrix of integers and print its $4 \times 3$ transpose. Use
 two nested \texttt{for} loops. Format each cell with field width 4 so columns align.
 \end{labexercise}
+
+\begin{aicollab}
+\textbf{Try these prompts with an AI tool:}
+\begin{itemize}[leftmargin=*,nosep]
+  \item ``In C, what happens when I access \texttt{a[n]} on an array declared as
+        \texttt{int a[n]}? What is undefined behavior?''
+  \item ``Why does \texttt{sizeof(a)} inside a function not give the array size when
+        \texttt{a} is a parameter?''
+  \item ``Walk me through selection sort on \texttt{\{5, 3, 8, 1\}}, showing the
+        array state after each pass.''
+\end{itemize}
+
+\medskip\textbf{Critical check -- verify, don't just accept:}
+Ask the AI to write a function that finds the maximum element in an array. Then call
+it with: an array of size 0 (n = 0), an array of size 1, and a normal array.
+Run the code and check whether it crashes, returns garbage, or handles these edge cases
+correctly. Note whether the AI warned you about them in advance.
+
+\medskip\textbf{Know the limit:}
+AI tools routinely generate C array code without bounds checking and will not warn you
+that out-of-bounds access is undefined behavior -- meaning it may silently produce wrong
+results rather than crashing, which is the most dangerous kind of bug.
+\end{aicollab}
 
 \takehomebanner
 

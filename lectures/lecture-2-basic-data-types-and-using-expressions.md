@@ -1121,6 +1121,21 @@ How are these evaluated?
 
 ---
 
+## 🤖 Try This with AI: Integer vs. Float Division
+
+**Prompt:** *"In C, why does `7/2` give `3` and not `3.5`? Show the difference between `7/2`, `7.0/2`, and `(double)7/2`."*
+
+Run and compare all three:
+```c
+printf("%d\n",   7 / 2);          // integer ÷ integer
+printf("%.1f\n", 7.0 / 2);        // one operand is float
+printf("%.1f\n", (double)7 / 2);  // explicit cast
+```
+
+> ⚠️ AI usually explains this correctly but often skips the case where **only one operand** needs to be floating-point — verify each variant yourself.
+
+---
+
 ## The Modulus Operator `%`
 
 * The modulus operator (`%`) calculates the **remainder** of an integer division.
@@ -1363,6 +1378,22 @@ Final: a = 4, b = 2
 4.  Handling Variable Input and Output
 5.  Using Data Operators and Building Expressions
 6.  **Understanding Implicit and Explicit Data Type Conversion**
+
+---
+
+## 🤖 Try This with AI: Pre- vs. Post-Increment
+
+**Prompt:** *"What is the difference between `i++` and `++i` when used inside an expression like `printf("%d", i++)`?"*
+
+Trace by hand, then run:
+```c
+int a = 5, b = 5;
+printf("%d\n", a++);       // prints 5 or 6?
+printf("%d\n", ++b);       // prints 5 or 6?
+printf("%d %d\n", a, b);  // what are a and b now?
+```
+
+> ⚠️ AI frequently swaps the two forms in examples without flagging it — always run the code to confirm which prints first.
 
 ---
 

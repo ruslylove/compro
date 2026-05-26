@@ -42,6 +42,54 @@ For a single character after a previous \texttt{scanf}, use \texttt{" \%c"} (wit
 A compile error means your source did not produce an executable; read the first error message first.
 \end{summary}
 
+\subsection*{Quick Experiments (Try It)}
+
+\begin{tryit}{What happens with a wrong format specifier?}
+Type and run this program exactly as shown:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    double x = 3.14;
+    printf("x = %d\n", x);   /* %d expects int, not double */
+    return 0;
+}
+\end{lstlisting}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item Does the compiler give a warning, an error, or nothing?
+  \item What does the output look like? Is it what you expected?
+  \item Change \texttt{\%d} to \texttt{\%f}. Does the output change?
+  \item What rule does this teach about matching format specifiers to variable types?
+\end{enumerate}
+\end{tryit}
+
+\begin{tryit}{Explore escape sequences}
+In your ``Hello, world!'' program replace \texttt{\textbackslash n} with each of the
+following one at a time, predict the output first, then run:
+\begin{itemize}[nosep,leftmargin=*]
+  \item \texttt{\textbackslash t} \quad (horizontal tab)
+  \item \texttt{\textbackslash n\textbackslash n} \quad (two newlines)
+  \item \texttt{\textbackslash\textbackslash} \quad (literal backslash)
+  \item \texttt{\%\%} \quad (literal percent sign, inside the format string)
+\end{itemize}
+Record the one result that surprised you most.
+\end{tryit}
+
+\begin{tryit}{Integer division -- change one character, different result}
+Start with:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    printf("%d\n", 7 / 2);
+    return 0;
+}
+\end{lstlisting}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item Run it. What is printed?
+  \item Change \texttt{2} to \texttt{2.0}. What is printed now? Why?
+  \item What format specifier do you need to use to see the decimal places?
+\end{enumerate}
+\end{tryit}
+
 \section*{In-Lab Exercises (target: 2 hours)}
 
 \begin{labexercise}{Hello + Your Info \hfill {\small \itshape (15 min)}}
@@ -75,6 +123,29 @@ ASCII box that contains the name. Example:
 \end{lstlisting}
 \textbf{Hint:} use \texttt{scanf("\%s", name)} for the name and \texttt{scanf(" \%c", \&ch)} for the character.
 \end{labexercise}
+
+\begin{aicollab}
+\textbf{Try these prompts with an AI tool:}
+\begin{itemize}[leftmargin=*,nosep]
+  \item ``Explain what each line of a minimal C program does:
+        \texttt{\#include}, \texttt{main}, \texttt{return 0;}, and the semicolons.''
+  \item ``What is the difference between \texttt{\%d}, \texttt{\%f}, and \texttt{\%lf} in
+        \texttt{printf}? Give one example each.''
+  \item ``My program compiles but prints garbage when I use \texttt{\%d} to print a
+        \texttt{double}. Why?''
+\end{itemize}
+
+\medskip\textbf{Critical check -- verify, don't just accept:}
+Take the AI's explanation of format specifiers and write a small program that
+intentionally mismatches \texttt{\%d} with a \texttt{double}, \texttt{\%f} with an
+\texttt{int}, and \texttt{\%s} with a \texttt{char}. Run it and compare the actual output
+and compiler warnings against what the AI predicted. Note every discrepancy.
+
+\medskip\textbf{Know the limit:}
+AI tools explain format specifiers confidently but sometimes give example code that
+compiles with a \emph{warning} rather than an error -- always read your compiler's full
+output yourself, never assume the AI's snippet is warning-free.
+\end{aicollab}
 
 \takehomebanner
 

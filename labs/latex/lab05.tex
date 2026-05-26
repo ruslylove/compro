@@ -38,6 +38,70 @@ does not affect the caller's variable. (Pointers, in Lab 9, let us change the ca
 \textbf{Scope.} A variable declared inside \texttt{\{...\}} exists only in that block.
 \end{summary}
 
+\subsection*{Quick Experiments (Try It)}
+
+\begin{tryit}{Pass-by-value: the caller's copy is \emph{never} changed}
+Run this and record the output:
+\begin{lstlisting}
+#include <stdio.h>
+void double_it(int x) {
+    x = x * 2;
+    printf("inside function: x = %d\n", x);
+}
+int main(void) {
+    int a = 5;
+    double_it(a);
+    printf("back in main:    a = %d\n", a);
+    return 0;
+}
+\end{lstlisting}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item Was \texttt{a} changed? Why not?
+  \item Rewrite \texttt{double\_it} to accept \texttt{int *x} and use \texttt{*x = (*x) * 2;}.
+        Call it as \texttt{double\_it(\&a);} and verify \texttt{a} is now 10.
+  \item This is the core difference between Lab 5 (pass-by-value) and Lab 7 (pointers).
+\end{enumerate}
+\end{tryit}
+
+\begin{tryit}{What if you call a function before its prototype?}
+Deliberately place the definition of \texttt{square} \emph{after} \texttt{main} and remove
+any prototype:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    printf("%d\n", square(4));   /* called before defined */
+    return 0;
+}
+int square(int x) { return x * x; }
+\end{lstlisting}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item Does it compile? What warning or error do you get?
+  \item Add the prototype \texttt{int square(int x);} before \texttt{main}. Does it compile now?
+  \item Why does the compiler need to see the prototype \emph{before} the call?
+\end{enumerate}
+\end{tryit}
+
+\begin{tryit}{Count recursive calls with a global counter}
+Add a global counter to your recursive \texttt{power} function and measure how many calls it makes:
+\begin{lstlisting}
+#include <stdio.h>
+int calls = 0;
+double power(double x, int n) {
+    calls++;
+    if (n == 0) return 1.0;
+    return x * power(x, n - 1);
+}
+int main(void) {
+    printf("%.0f\n", power(2.0, 10));
+    printf("recursive calls: %d\n", calls);
+    return 0;
+}
+\end{lstlisting}
+How many calls are made for \texttt{power(2, 10)}?
+Now implement an iterative version with a loop -- how many loop iterations does it take?
+Are the numbers the same? Why or why not?
+\end{tryit}
+
 \section*{In-Lab Exercises (target: 2 hours)}
 
 \begin{labexercise}{\texttt{max3} \hfill {\small \itshape (15 min)}}
@@ -65,6 +129,30 @@ $\texttt{power}(x, 0) = 1$, otherwise $\texttt{power}(x, n) = x \cdot \texttt{po
 Then write an \emph{iterative} version \texttt{power\_iter} and compare the outputs on
 at least three test cases.
 \end{labexercise}
+
+\begin{aicollab}
+\textbf{Try these prompts with an AI tool:}
+\begin{itemize}[leftmargin=*,nosep]
+  \item ``In C, explain pass-by-value with a concrete example showing why changing a
+        parameter inside a function does not affect the caller's variable.''
+  \item ``What is a function prototype, and what happens if I omit it when the function
+        is defined after \texttt{main}?''
+  \item ``Show me a recursive and an iterative version of factorial and compare how
+        many operations each performs for $n = 10$.''
+\end{itemize}
+
+\medskip\textbf{Critical check -- verify, don't just accept:}
+Ask the AI to write a recursive function and ask how many recursive calls it makes for a
+specific input. Add a global call counter to the AI's code, run it, and verify the actual
+count. Then ask the AI whether the function risks a stack overflow for large $n$ -- test
+that claim by calling it with increasingly large arguments until you observe a crash or
+wrong result.
+
+\medskip\textbf{Know the limit:}
+AI tools generate recursive functions without mentioning stack depth limits and rarely
+suggest an iterative alternative unless asked -- always follow up with ``is there a risk
+of stack overflow here?''
+\end{aicollab}
 
 \takehomebanner
 

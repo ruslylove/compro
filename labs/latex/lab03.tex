@@ -43,6 +43,62 @@ switch (expr) {
 \textbf{Range tests.} You cannot write \texttt{0 < x < 10}. Write \texttt{x > 0 \&\& x < 10}.
 \end{summary}
 
+\subsection*{Quick Experiments (Try It)}
+
+\begin{tryit}{Assignment inside \texttt{if} -- the classic typo}
+Run this program and observe:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    int x = 0;
+    if (x = 5) {        /* assignment, not comparison! */
+        printf("true branch\n");
+    } else {
+        printf("false branch\n");
+    }
+    printf("x is now: %d\n", x);
+    return 0;
+}
+\end{lstlisting}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item Which branch executes? What value does \texttt{x} have after the \texttt{if}?
+  \item Change \texttt{x = 5} to \texttt{x = 0}. Which branch runs now? Why?
+  \item Change to \texttt{x == 5}. Does it behave as you expect?
+  \item Lesson: assignment \texttt{=} always evaluates to the assigned value;
+        \texttt{if (a = 0)} is always false; \texttt{if (a = 1)} is always true.
+\end{enumerate}
+\end{tryit}
+
+\begin{tryit}{Fall-through in \texttt{switch} -- remove one \texttt{break}}
+Take your switch-based calculator from Exercise 3. Remove the \texttt{break} after
+the \texttt{'+'} case only, then test the input \texttt{4 + 2}.
+\begin{enumerate}[nosep,leftmargin=*]
+  \item What is printed? Which cases ran?
+  \item Now add \texttt{break} back and remove it after \texttt{'-'}. Test \texttt{4 - 2}.
+  \item What is intentional fall-through useful for? (Hint: look at the take-home trace.)
+\end{enumerate}
+\end{tryit}
+
+\begin{tryit}{Range check: the C chain-comparison trap}
+Predict the output, then run:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    int x = 50;
+    if (0 < x < 10)           /* legal C but NOT what you think */
+        printf("in range\n");
+    else
+        printf("out of range\n");
+    return 0;
+}
+\end{lstlisting}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item Did the correct branch run? Explain what \texttt{0 < x < 10} actually means
+        to the compiler. (Hint: evaluate \texttt{0 < x} first; what type is its result?)
+  \item Fix the condition with \texttt{\&\&} and verify it now works correctly.
+\end{enumerate}
+\end{tryit}
+
 \section*{In-Lab Exercises (target: 2 hours)}
 
 \begin{labexercise}{Character Classification \hfill {\small \itshape (25 min)}}
@@ -69,6 +125,29 @@ each side must be shorter than the sum of the other two. If invalid, print
 \texttt{Not a triangle}. Otherwise, classify as \textit{Equilateral}, \textit{Isosceles},
 or \textit{Scalene}.
 \end{labexercise}
+
+\begin{aicollab}
+\textbf{Try these prompts with an AI tool:}
+\begin{itemize}[leftmargin=*,nosep]
+  \item ``Explain the dangling-else problem in C with a concrete example and show how
+        braces fix it.''
+  \item ``When should I use \texttt{switch} instead of an \texttt{if-else if} ladder?
+        What are the restrictions on \texttt{switch} expressions in C?''
+  \item ``Why does \texttt{if (x = 5)} always enter the true branch? What compiler
+        warning catches this?''
+\end{itemize}
+
+\medskip\textbf{Critical check -- verify, don't just accept:}
+Ask the AI to write a grade classifier using \texttt{switch} (A/B/C/D/F from a score).
+Before running, count how many \texttt{break} statements appear and whether every case
+has one. Compile and test with edge inputs: exactly 90, exactly 100, 0, and $-1$.
+Record any behavior that differs from the AI's stated output.
+
+\medskip\textbf{Know the limit:}
+AI tools regularly omit or misplace \texttt{break} statements in \texttt{switch} blocks
+and rarely distinguish intentional fall-through from accidental fall-through -- inspect
+every case boundary yourself.
+\end{aicollab}
 
 \takehomebanner
 

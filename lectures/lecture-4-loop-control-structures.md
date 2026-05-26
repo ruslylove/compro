@@ -624,6 +624,20 @@ graph TD
 
 ---
 
+## 🤖 Try This with AI: Off-by-One in Array Loops
+
+**Prompt:** *"Is there a bug in `for (int i = 0; i <= n; i++) a[i] = 0;` when `a` has `n` elements?"*
+
+Trace it for `n = 3`:
+```c
+int a[3] = {1, 2, 3};
+for (int i = 0; i <= 3; i++) a[i] = 0;  // <= or < ?
+```
+
+> ⚠️ AI often misses that `i <= n` accesses `a[n]`, which is **out of bounds** — this is undefined behavior that may look like it works. The compiler will not warn you.
+
+---
+
 ## The `break` Statement
 
 * Immediately **terminates** the execution of the innermost `switch` statement or loop (`while`, `do-while`, `for`) it is contained within.
@@ -840,6 +854,23 @@ graph TD
 3.  **Introduction to Debugging**
     *   Using `printf` for tracing.
     *   Debugger Tools & Common Bugs.
+
+---
+
+## 🤖 Try This with AI: `break` vs `continue`
+
+**Prompt:** *"Show me the exact output difference when `i == 3` triggers `break` versus `continue` in a loop from 1 to 5."*
+
+Verify both by running:
+```c
+for (int i = 1; i <= 5; i++) {
+    if (i == 3) continue;  // then try: break
+    printf("%d ", i);
+}
+printf("\n");
+```
+
+> ⚠️ AI sometimes describes the output correctly but uses confusing wording like "exits the iteration" for both. Run both versions so you can explain the difference from memory — the exam may ask.
 
 ---
 layout: image-right

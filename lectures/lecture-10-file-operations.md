@@ -108,6 +108,22 @@ title: Lecture 10 - File Operations
 
 ---
 
+## 🤖 Try This with AI: Missing `NULL` Check
+
+**Prompt:** *"Spot the bug: `FILE *fp = fopen("data.txt", "r"); fscanf(fp, "%d", &x);` — what happens if the file does not exist?"*
+
+Test it:
+```c
+FILE *fp = fopen("no_such_file.txt", "r");
+// if (!fp) { perror("fopen"); return 1; }  // comment this out first
+int x;
+fscanf(fp, "%d", &x);   // crash without the NULL check
+```
+
+> ⚠️ AI omits the `NULL` check in generated file code surprisingly often. It compiles, but crashes at runtime with a confusing error. Always add the check — it is not optional.
+
+---
+
 ## Reading from Files: `fscanf()` and `fgets()`
 
 * **`fscanf(FILE *fp, const char *format, ...)`:**
@@ -194,6 +210,23 @@ int main() {
     return 0;
 }
 ```
+
+---
+
+## 🤖 Try This with AI: The `feof` Anti-Pattern
+
+**Prompt:** *"Why is `while (!feof(fp)) { fscanf(fp, "%d", &x); printf("%d\\n", x); }` considered incorrect? What is the right pattern?"*
+
+Compare both patterns on a file containing `10 20 30`:
+```c
+// Anti-pattern: processes the last value TWICE
+while (!feof(fp)) { fscanf(fp, "%d", &x); printf("%d\n", x); }
+
+// Correct: loop on the return value
+while (fscanf(fp, "%d", &x) == 1) printf("%d\n", x);
+```
+
+> ⚠️ AI sometimes generates the `!feof` anti-pattern. Inspect every file-reading loop AI writes and verify the condition is based on the **return value** of the read function.
 
 ---
 

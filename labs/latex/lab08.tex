@@ -45,6 +45,76 @@ Both stop at the null terminator. They produce identical results because
 \textbf{Pitfall.}\quad \texttt{a == b} compares \emph{pointers}, not contents. Use \texttt{strcmp}.
 \end{summary}
 
+\subsection*{Quick Experiments (Try It)}
+
+\begin{tryit}{String comparison with \texttt{==} vs.\ \texttt{strcmp}}
+Run and study the results:
+\begin{lstlisting}
+#include <stdio.h>
+#include <string.h>
+int main(void) {
+    char a[] = "hello";
+    char b[] = "hello";
+    printf("a == b (pointer):   %d\n", a == b);
+    printf("strcmp(a,b):        %d\n", strcmp(a, b));
+    printf("address of a: %p\n", (void *)a);
+    printf("address of b: %p\n", (void *)b);
+    return 0;
+}
+\end{lstlisting}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item Why does \texttt{a == b} print 0 (false) even though both arrays contain \texttt{"hello"}?
+  \item What are \texttt{a} and \texttt{b} when used in \texttt{==}? (Look at the printed addresses.)
+  \item When does \texttt{strcmp} return 0, a positive value, or a negative value?
+\end{enumerate}
+\end{tryit}
+
+\begin{tryit}{The hidden null terminator and \texttt{strlen} vs.\ \texttt{sizeof}}
+Run and explain each line:
+\begin{lstlisting}
+#include <stdio.h>
+#include <string.h>
+int main(void) {
+    char s[10] = "hello";
+    printf("strlen:  %lu\n", (unsigned long)strlen(s));
+    printf("sizeof:  %lu\n", (unsigned long)sizeof(s));
+    s[2] = '\0';           /* plant a null in the middle */
+    printf("strlen after: %lu\n", (unsigned long)strlen(s));
+    printf("string after: %s\n", s);
+    return 0;
+}
+\end{lstlisting}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item What is the difference between \texttt{strlen} and \texttt{sizeof} for arrays?
+  \item After \texttt{s[2] = '\textbackslash 0'}, what does \texttt{\%s} print and why?
+  \item Where are the characters \texttt{'l'}, \texttt{'l'}, \texttt{'o'} in memory?
+        Are they still there? How could you print them?
+\end{enumerate}
+\end{tryit}
+
+\begin{tryit}{Index style vs.\ pointer style -- they do the exact same thing}
+Add print statements to verify both traversals visit identical characters:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    char s[] = "World";
+    /* index style */
+    for (int i = 0; s[i] != '\0'; i++)
+        printf("idx[%d] = %c (%d)\n", i, s[i], s[i]);
+    /* pointer style */
+    for (char *p = s; *p != '\0'; p++)
+        printf("ptr     = %c (%d)  addr=%p\n", *p, *p, (void*)p);
+    return 0;
+}
+\end{lstlisting}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item Do both loops print the same characters in the same order?
+  \item How much does the pointer address increase with each iteration?
+  \item Rewrite the pointer loop to use \texttt{*(s + i)} with an index variable.
+        Does it still work identically?
+\end{enumerate}
+\end{tryit}
+
 \section*{In-Lab Exercises (target: 2 hours)}
 
 \begin{labexercise}{\texttt{my\_strlen} -- index and pointer versions \hfill {\small \itshape (25 min)}}
@@ -73,6 +143,30 @@ same forward and backward (case-insensitive, ignoring spaces). Use two pointers
 \texttt{left} and \texttt{right} moving toward the middle. Test on \texttt{"radar"},
 \texttt{"A man a plan a canal Panama"}, and \texttt{"hello"}.
 \end{labexercise}
+
+\begin{aicollab}
+\textbf{Try these prompts with an AI tool:}
+\begin{itemize}[leftmargin=*,nosep]
+  \item ``Explain why \texttt{if (a == b)} does not compare two C strings, and what to
+        use instead.''
+  \item ``Show me how to implement \texttt{strlen} manually using pointer traversal,
+        without calling the library version.''
+  \item ``What is a buffer overflow in the context of \texttt{strcpy}, and how does
+        \texttt{strncpy} reduce (but not eliminate) the risk?''
+\end{itemize}
+
+\medskip\textbf{Critical check -- verify, don't just accept:}
+Ask the AI to write a palindrome-checking function that handles spaces and mixed case.
+Before running, inspect the AI's loop termination condition and predict whether it handles
+an empty string \texttt{""} without reading out of bounds.
+Test on: \texttt{"radar"}, \texttt{"A man a plan a canal Panama"}, \texttt{"hello"}, and
+\texttt{""}. Record whether the AI's stated behavior matches the actual output.
+
+\medskip\textbf{Know the limit:}
+AI tools frequently write C string code that works for typical inputs but silently
+overflows a fixed-size buffer on longer input -- always ask ``what happens if the
+input is longer than the array?'' as a follow-up.
+\end{aicollab}
 
 \takehomebanner
 

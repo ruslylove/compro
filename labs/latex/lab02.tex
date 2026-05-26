@@ -29,6 +29,62 @@ Integer \texttt{/} truncates toward zero: \texttt{7/2 == 3}, \texttt{-7/2 == -3}
 \textbf{Character math.}\quad \texttt{'A'} = 65, \texttt{'a'} = 97. So \texttt{'a' - 'A' == 32}.
 \end{summary}
 
+\subsection*{Quick Experiments (Try It)}
+
+\begin{tryit}{Integer overflow -- what happens past the maximum?}
+Run the following and record the output:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    int x = 2147483647;   /* INT_MAX -- the largest int */
+    printf("before: %d\n", x);
+    x++;
+    printf("after:  %d\n", x);
+    return 0;
+}
+\end{lstlisting}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item What value is printed after the increment? Why is it negative?
+  \item Change \texttt{int} to \texttt{long} and the format specifier to \texttt{\%ld}.
+        Does the result change? By how much does the maximum grow?
+  \item What does this tell you about choosing the right integer type for large counts?
+\end{enumerate}
+\end{tryit}
+
+\begin{tryit}{Operator precedence -- one pair of parentheses changes everything}
+Start with this snippet and predict the output \emph{before} running it:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    int a = 2, b = 3, c = 4;
+    printf("%d\n", a + b * c);     /* (1) default precedence */
+    printf("%d\n", (a + b) * c);   /* (2) force addition first */
+    printf("%d\n", a + (b * c));   /* (3) explicit but same as (1) */
+    return 0;
+}
+\end{lstlisting}
+Which two lines print the same value? What rule explains it?
+Now add the expression \texttt{10 - 2 + 3} and predict whether it is 5 or 11.
+(Operators of equal precedence associate \emph{left-to-right}.)
+\end{tryit}
+
+\begin{tryit}{Character arithmetic -- from lowercase to uppercase}
+Run:
+\begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    char c = 'a';
+    printf("'a' as int: %d\n", c);
+    printf("'A' as int: %d\n", 'A');
+    printf("'a' - 'A' = %d\n", 'a' - 'A');
+    printf("'a' - 32  = %c\n", c - 32);
+    return 0;
+}
+\end{lstlisting}
+What is the difference between lowercase and uppercase ASCII codes?
+Change \texttt{'a'} to \texttt{'z'} and verify the pattern still holds.
+\end{tryit}
+
 \section*{In-Lab Exercises (target: 2 hours)}
 
 \begin{labexercise}{Formatted Output \hfill {\small \itshape (25 min)}}
@@ -59,6 +115,28 @@ Read two integers \texttt{a} and \texttt{b}, then swap them \emph{without} using
 (use arithmetic: \texttt{a = a + b; b = a - b; a = a - b;}).
 Print the values before and after the swap.
 \end{labexercise}
+
+\begin{aicollab}
+\textbf{Try these prompts with an AI tool:}
+\begin{itemize}[leftmargin=*,nosep]
+  \item ``In C, what is the result of \texttt{(double)(7/2)} versus \texttt{(double)7/2}?
+        Step through the evaluation.''
+  \item ``List C arithmetic operators in order of precedence from highest to lowest.''
+  \item ``I have a 4-digit integer. Show me how to extract each digit using only
+        \texttt{/} and \texttt{\%}, step by step.''
+\end{itemize}
+
+\medskip\textbf{Critical check -- verify, don't just accept:}
+Ask the AI to evaluate five mixed-type expressions:
+\texttt{1 + 2 * 3}, \texttt{9 / 4}, \texttt{9 / 4.0}, \texttt{(int)9.9}, \texttt{'a' + 1}.
+Write a C program that prints the actual value of each with the correct format specifier,
+run it, and mark every AI prediction that was wrong.
+
+\medskip\textbf{Know the limit:}
+AI tools frequently misstate precedence for less common operators such as \texttt{?:} and
+the comma operator -- always verify against a C reference table rather than trusting AI
+output alone.
+\end{aicollab}
 
 \takehomebanner
 

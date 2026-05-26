@@ -358,6 +358,25 @@ int main(void) {
 * **Read it aloud as:** "the `id` of the struct that `p` points to". The `->` notation is one of the most-used pieces of C syntax.
 
 ---
+
+## 🤖 Try This with AI: `.` vs `->` Compiler Errors
+
+**Prompt:** *"What is the difference between `p.x` and `p->x`? When does each apply?"*
+
+Deliberately introduce the wrong operator and read the error:
+```c
+typedef struct { int x; } Point;
+Point  v = {1};
+Point *p = &v;
+// p.x  = 5;   // uncomment: what error?
+// v->x = 5;   // uncomment: what error?
+p->x = 5;      // correct
+v.x  = 5;      // correct
+```
+
+> ⚠️ AI-generated struct code sometimes mixes these up. If you see AI using `.` on a pointer variable, that is a bug — the compiler error message will tell you which operator was expected.
+
+---
 layout: two-cols-header
 ---
 
@@ -469,6 +488,22 @@ int main() {
     return 0;
 }
 ```
+---
+
+## 🤖 Try This with AI: String Fields in Structs
+
+**Prompt:** *"Why can't I assign `s.name = "Alice"` when `name` is declared as `char name[20]` in a struct?"*
+
+Try it — what error do you get? Then fix it:
+```c
+typedef struct { char name[20]; int id; } Student;
+Student s;
+// s.name = "Alice";           // error — why?
+strcpy(s.name, "Alice");       // correct
+```
+
+> ⚠️ AI-generated struct code regularly uses `s.name = "..."` for `char[]` fields. This is **always** a bug in C. Whenever you see it in AI output, flag it and replace with `strcpy`.
+
 ---
 
 ## Memory Allocation for `struct`s & Padding

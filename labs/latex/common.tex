@@ -155,6 +155,33 @@
   top=12pt,
 }
 
+% ---------- AI Collaboration box ----------
+\definecolor{aipurple}{HTML}{4C1D95}
+\definecolor{aipurplelight}{HTML}{EDE9FE}
+
+\newtcolorbox{aicollab}[1][AI Collaboration]{
+  enhanced,breakable,
+  colback=aipurplelight,colframe=aipurple!70,
+  title={\bfseries #1},
+  fonttitle=\color{white},
+  attach boxed title to top left={xshift=6pt,yshift=-3pt},
+  boxed title style={colback=aipurple,boxrule=0pt,arc=2pt},
+  arc=2pt,boxrule=0.4pt,
+  top=12pt,
+}
+
+\newcounter{tryex}
+\newtcolorbox{tryit}[1]{
+  enhanced,breakable,
+  colback=ok!6,colframe=ok!70!black,
+  title={\bfseries Try It \refstepcounter{tryex}\thetryex: #1},
+  fonttitle=\color{white},
+  attach boxed title to top left={xshift=6pt,yshift=-3pt},
+  boxed title style={colback=ok!70!black,boxrule=0pt,arc=2pt},
+  arc=2pt,boxrule=0.4pt,
+  top=12pt,
+}
+
 \newcommand{\takehomebanner}{%
   \vspace{6pt}
   \begin{tcolorbox}[
