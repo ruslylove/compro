@@ -1,0 +1,442 @@
+\documentclass[11pt,a4paper]{article}
+
+% ── Packages ──────────────────────────────────────────────────────────────────
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage{fancyhdr}
+\usepackage[table]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{ragged2e}
+
+% ── Colours ───────────────────────────────────────────────────────────────────
+\definecolor{primary}{HTML}{1E3A5F}   % deep navy
+\definecolor{accent}{HTML}{2563EB}    % blue
+\definecolor{muted}{HTML}{64748B}     % slate grey
+\definecolor{rowalt}{HTML}{F1F5F9}    % light blue-grey for alternating rows
+\definecolor{examrow}{HTML}{FEF3C7}   % amber for exam rows
+\definecolor{midrow}{HTML}{FEE2E2}    % red-tint for midterm
+
+% ── Section styling ───────────────────────────────────────────────────────────
+\titleformat{\section}
+  {\large\bfseries\color{primary}}
+  {}
+  {0pt}
+  {}
+  [{\color{accent}\titlerule[1pt]}]
+
+\titlespacing{\section}{0pt}{18pt}{8pt}
+
+% ── Header / Footer ───────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\small\color{muted}010153002 Computer Programming}
+\fancyhead[R]{\small\color{muted}Semester 1 / 2026}
+\fancyfoot[C]{\small\color{muted}\thepage}
+
+% ── Info-box environment ──────────────────────────────────────────────────────
+\newtcolorbox{infobox}[1]{
+  enhanced, breakable,
+  colback=rowalt, colframe=accent!60,
+  title={\bfseries #1},
+  fonttitle=\color{white},
+  attach boxed title to top left={xshift=8pt, yshift=-3pt},
+  boxed title style={colback=accent, boxrule=0pt, arc=2pt},
+  arc=3pt, boxrule=0.4pt,
+  top=10pt, left=6pt, right=6pt, bottom=6pt,
+}
+
+% ── Hyperref ──────────────────────────────────────────────────────────────────
+\hypersetup{
+  colorlinks=true,
+  linkcolor=accent,
+  urlcolor=accent,
+  pdfauthor={Dr. Ruslee Sutthaweekul},
+  pdftitle={Course Syllabus -- 010153002 Computer Programming},
+}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\begin{document}
+
+% ── Title block ───────────────────────────────────────────────────────────────
+\begin{center}
+  {\LARGE\bfseries\color{primary} Course Syllabus}\\[6pt]
+  {\large\bfseries 010153002 \quad Computer Programming}\\[4pt]
+  {\color{muted} Semester 1, Academic Year 2026 \quad|\quad
+   Faculty of Engineering, King Mongkut's University of Technology North Bangkok}\\[2pt]
+  {\color{muted}\small Revised \today}
+\end{center}
+
+\vspace{4pt}
+\color{accent}\hrule height 1.5pt\color{black}
+\vspace{12pt}
+
+% ── Course Information ────────────────────────────────────────────────────────
+\section{Course Information}
+
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+  \textbf{Course Code}      & 010153002 \\[2pt]
+  \textbf{Course Title}     & Computer Programming \\[2pt]
+  \textbf{Credit Hours}     & 3 credits (2 lecture hours + 2 laboratory hours per week) \\[2pt]
+  \textbf{Semester}         & 1 / 2026 \\[2pt]
+  \textbf{Schedule}         & Every Thursday, 13:00--17:00 \\[2pt]
+  \textbf{Lecture}          & 13:00--15:00 (2 hours) \\[2pt]
+  \textbf{Laboratory}       & 15:00--17:00 (2 hours) \\[2pt]
+  \textbf{Semester Dates}   & 22 June 2026 -- 11 October 2026 \\[2pt]
+  \textbf{First Class}      & Thursday, 25 June 2026 \\[2pt]
+  \textbf{Last Class}       & Thursday, 24 September 2026 \\[2pt]
+  \textbf{Instructor}       & Dr.\ Ruslee Sutthaweekul \\[2pt]
+  \textbf{Language}         & English (supplementary explanations in Thai available) \\[2pt]
+  \textbf{Prerequisites}    & None \\[2pt]
+\end{tabularx}
+
+% ── Course Description ────────────────────────────────────────────────────────
+\section{Course Description}
+
+An introduction to computer programming using the C language.
+Topics cover the complete programming workflow: writing, compiling, and debugging
+programs; primitive data types; operators and expressions; control flow (selection
+and iteration); functions; arrays; pointers and dynamic memory; strings;
+structures, unions, and enumerations; and file input/output.
+Students apply each concept during weekly two-hour laboratory sessions using
+hands-on programming exercises.
+
+% ── Learning Outcomes ─────────────────────────────────────────────────────────
+\section{Learning Outcomes}
+
+Upon successful completion of this course, students will be able to:
+
+\begin{enumerate}[leftmargin=*, nosep, label=\textbf{LO\arabic*.}]
+  \item Write, compile, and run syntactically correct C programs from scratch.
+  \item Apply appropriate data types, operators, and control structures to solve
+        computational problems.
+  \item Design, implement, and test functions with well-defined parameters,
+        return types, and scope.
+  \item Use arrays and pointers to manage sequences of data and dynamic memory.
+  \item Manipulate strings using the standard \texttt{string.h} library and
+        pointer-based traversal.
+  \item Define and use \texttt{struct}, \texttt{union}, and \texttt{enum} types
+        to model structured data.
+  \item Perform file input/output using the standard C file API
+        (\texttt{FILE *}, \texttt{fopen}, \texttt{fscanf}, \texttt{fprintf}).
+  \item Collaborate effectively with AI coding assistants while maintaining
+        critical evaluation of generated code.
+\end{enumerate}
+
+% ── Required Materials ────────────────────────────────────────────────────────
+\section{Required Materials}
+
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+  \toprule
+  \textbf{Item}       & \textbf{Details} \\
+  \midrule
+  Lecture slides      & Available on the course website before each class \\
+  Lab sheets          & Distributed as PDF each week; bring a printed copy \\
+  Compiler            & GCC (Linux/macOS) or MinGW-GCC (Windows); any IDE is fine \\
+  Source code         & Provided in the course repository (\texttt{src/lec01}--\texttt{lec12}) \\
+  \midrule
+  \textit{Recommended} & \textit{Kernighan \& Ritchie, ``The C Programming Language,'' 2nd ed.} \\
+  \bottomrule
+\end{tabularx}
+
+% ── Assessment ────────────────────────────────────────────────────────────────
+\section{Assessment \& Grading}
+
+\begin{tabularx}{\textwidth}{@{}lXr@{}}
+  \toprule
+  \textbf{Component} & \textbf{Description} & \textbf{Weight} \\
+  \midrule
+  Attendance          & Present and engaged; $\geq$80\,\% required to sit the final exam  & 10\,\% \\[2pt]
+  Lab Exercises       & 10 in-lab worksheets (Labs 1--10), graded on completion and correctness & 20\,\% \\[2pt]
+  Project Assignment  & One individual programming project (announced Week 9) & 10\,\% \\[2pt]
+  Midterm Examination & Covers Part 1 (Lectures 1--7); date and venue TBD by Registrar & 30\,\% \\[2pt]
+  Final Examination   & Covers Part 2 only (Lectures 8--10); date and venue TBD by Registrar & 30\,\% \\
+  \midrule
+  \textbf{Total}      & & \textbf{100\,\%} \\
+  \bottomrule
+\end{tabularx}
+
+\vspace{6pt}
+\begin{infobox}{Grading Scale}
+\begin{tabular}{@{}llllll@{}}
+  \textbf{A} \;$\geq$90\,\% &
+  \textbf{B+} 85--89\,\% &
+  \textbf{B}\; 80--84\,\% &
+  \textbf{C+} 75--79\,\% &
+  \textbf{C}\; 70--74\,\% &
+  \textbf{D+} 65--69\,\% \\[2pt]
+  \textbf{D}\; 60--64\,\% &
+  \textbf{F}\; $<$60\,\% & & & &
+\end{tabular}
+\end{infobox}
+
+% ── Exam Policy ───────────────────────────────────────────────────────────────
+\section{Examination Policy}
+
+\begin{itemize}[leftmargin=*, nosep]
+  \item Both examinations are \textbf{closed-book and paper-based} (no computer, no AI tools).
+  \item Students must bring their student ID card to enter the exam room.
+  \item Questions include multiple-choice, code tracing, bug fixing, and short
+        programming tasks (written by hand).
+  \item No make-up exams except with documented medical or official university reasons,
+        approved \emph{before} the exam date wherever possible.
+  \item A minimum attendance of 80\,\% is required to be eligible to sit the final exam.
+\end{itemize}
+
+% ── AI Collaboration Policy ───────────────────────────────────────────────────
+\section{Academic Integrity \& AI Collaboration Policy}
+
+\begin{infobox}{Using AI Tools in This Course}
+AI assistants (ChatGPT, Claude, Copilot, \ldots) can complete these lab exercises
+in seconds. You must decide each time what you actually want to learn.
+
+\smallskip
+\textbf{Permitted use:}
+\begin{itemize}[nosep, leftmargin=*]
+  \item Ask the AI to \emph{explain} a concept or error message in a different way.
+  \item Ask for \emph{hints} rather than solutions; use the AI as a tutor, not an
+        answer machine.
+  \item Use AI to review your own code \emph{after} you have written it.
+\end{itemize}
+
+\smallskip
+\textbf{Not permitted:}
+\begin{itemize}[nosep, leftmargin=*]
+  \item Submitting AI-generated code as your own lab or project work.
+  \item Copying a solution you cannot reproduce yourself, by hand, five minutes later.
+\end{itemize}
+
+\smallskip
+\textbf{The litmus test:} If asked to write the same program on paper in the exam,
+could you? If yes, your AI use was productive. If no, you are cheating yourself.
+\end{infobox}
+
+Plagiarism and academic dishonesty are subject to university disciplinary
+procedures, which may include a grade of F for the course.
+
+% ── Weekly Schedule ───────────────────────────────────────────────────────────
+\section{Weekly Schedule}
+
+\noindent All classes meet on \textbf{Thursday, 13:00--17:00}.
+Lecture: 13:00--15:00\quad|\quad Laboratory: 15:00--17:00.
+
+\vspace{8pt}
+
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.4}
+
+\begin{longtable}{@{}
+    >{\centering\bfseries}p{1.1cm}
+    >{\centering}p{2.5cm}
+    >{\RaggedRight}p{5.4cm}
+    >{\RaggedRight}p{5.0cm}
+  @{}}
+  \toprule
+  \textbf{Week} & \textbf{Date} & \textbf{Lecture} {\small(13:00--15:00)} & \textbf{Lab} {\small(15:00--17:00)} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \textbf{Week} & \textbf{Date} & \textbf{Lecture} {\small(13:00--15:00)} & \textbf{Lab} {\small(15:00--17:00)} \\
+  \midrule
+  \endhead
+  \midrule
+  \multicolumn{4}{r}{\small\itshape continued on next page}\\
+  \endfoot
+  \bottomrule
+  \endlastfoot
+
+  % ── Weeks 1-7: before midterm ──────────────────────────────────────────────
+  1 & Thu 25 Jun 2026
+    & \textbf{Lec 1:} Introduction \& Overview\newline
+      \small Course structure, compilation pipeline, first program, development environment.
+    & \textbf{Lab 1:} Introduction to C\newline
+      \small Compile and run \texttt{hello\_world.c}; explore the compiler flags. \\
+
+  \rowcolor{rowalt}
+  2 & Thu 02 Jul 2026
+    & \textbf{Lec 2:} Basic Data Types \& Expressions\newline
+      \small Integers, floats, chars; \texttt{printf}/\texttt{scanf}; arithmetic \& assignment operators.
+    & \textbf{Lab 2:} Expressions \& Operators\newline
+      \small Type conversion, pre/post increment, operator precedence. \\
+
+  3 & Thu 09 Jul 2026
+    & \textbf{Lec 3:} Sequential \& Conditional Flow\newline
+      \small \texttt{if}, \texttt{if-else}, nested \texttt{if}, \texttt{switch}; ternary operator.
+    & \textbf{Lab 3:} Conditional Statements\newline
+      \small Grade classifier, switch on user input. \\
+
+  \rowcolor{rowalt}
+  4 & Thu 16 Jul 2026
+    & \textbf{Lec 4:} Loop Control Structures\newline
+      \small \texttt{while}, \texttt{do-while}, \texttt{for}; \texttt{break}, \texttt{continue}; debugging with \texttt{printf}.
+    & \textbf{Lab 4:} Loop Control\newline
+      \small Summation, factorial, pattern printing, input validation. \\
+
+  5 & Thu 23 Jul 2026
+    & \textbf{Lec 5:} Functions \& Macros\newline
+      \small Declaration, definition, call, return values; scope; recursion; \texttt{\#define} macros.
+    & \textbf{Lab 5:} Functions\newline
+      \small Write and call helper functions; implement recursive factorial. \\
+
+  \rowcolor{rowalt}
+  6 & Thu 30 Jul 2026
+    & \textbf{Lec 6:} Arrays\newline
+      \small 1-D and 2-D arrays; traversal; passing arrays to functions; \texttt{sizeof} decay.
+    & \textbf{Lab 6:} Arrays\newline
+      \small Statistics on scores array; bubble sort; matrix addition. \\
+
+  7 & Thu 06 Aug 2026
+    & \textbf{Lec 7:} Pointers\newline
+      \small Address-of \& dereference; pointer arithmetic; \texttt{malloc}/\texttt{free}; function pointers.
+    & \textbf{Lab 7:} Pointers\newline
+      \small Pointer tracing, swap via pointers, dynamic array allocation. \\
+
+  \rowcolor{rowalt}
+  8 & Thu 13 Aug 2026
+    & Part 1 review \& consolidation\newline
+      \small Q\&A on Lectures 1--7; past exam question walkthrough; common pitfalls.
+    & \textbf{Lab 8:} Strings\newline
+      \small \texttt{my\_strlen}; reverse in place; palindrome checker.
+      \newline\small\textit{(Lec 8 content distributed as pre-reading.)} \\
+
+  % ── Midterm exam period ────────────────────────────────────────────────────
+  \rowcolor{midrow}
+  \multicolumn{1}{>{\centering\bfseries\color{primary}}p{1.0cm}}{—}
+    & \textbf{Thu 20 Aug 2026}
+    & \multicolumn{2}{p{10.75cm}}{%
+        \textbf{\color{primary}University Midterm Examination Period \quad (17--23 August 2026)}%
+        \newline
+        \small \textbf{No class this week.}\quad
+        Midterm exam date \& venue TBD by the Registrar.\quad
+        Covers: Lectures 1--7, Labs 1--7.
+      } \\
+
+  % ── Part 2: post-midterm ───────────────────────────────────────────────────
+  9 & Thu 27 Aug 2026
+    & \textbf{Lec 8:} Strings (with Pointers)\newline
+      \small Null-terminated \texttt{char} arrays; \texttt{strlen}, \texttt{strcpy}, \texttt{strcmp}, \texttt{strcat}; pointer traversal.
+    & \textbf{Lab 8:} Strings (continued)\newline
+      \small Count vowels; palindrome with two pointers. \\
+
+  \rowcolor{rowalt}
+  10 & Thu 03 Sep 2026
+    & \textbf{Lec 9:} Structures, Unions \& Enumerations\newline
+      \small \texttt{struct} definition; \texttt{.} vs \texttt{->}; pass-by-pointer; \texttt{typedef}; \texttt{union}; \texttt{enum}; memory padding.
+    & \textbf{Lab 9:} Structures \& Unions\newline
+      \small Student record with \texttt{->}; sort structs; tagged union area calculator.
+      \newline\small\textit{Project assignment announced.} \\
+
+  11 & Thu 10 Sep 2026
+    & \textbf{Lec 10:} File Operations\newline
+      \small \texttt{FILE *}; \texttt{fopen}/\texttt{fclose}; \texttt{fscanf}/\texttt{fgets}/\texttt{fgetc}; \texttt{fprintf}; modes; EOF detection.
+    & \textbf{Lab 10:} File Operations\newline
+      \small Copy a file with \texttt{fgets}; sum integers from file; student report sorted by score. \\
+
+  \rowcolor{rowalt}
+  12 & Thu 17 Sep 2026
+    & Project work session\newline
+      \small Instructor and TA available for project Q\&A; individual code review on request.
+    & Course review \& final exam preparation\newline
+      \small Past exam questions; common bugs; tracing exercises. \\
+
+  13 & Thu 24 Sep 2026
+    & \multicolumn{2}{p{10.75cm}}{%
+        Course wrap-up \& Q\&A\newline
+        \small Open Q\&A on all topics; exam strategy; feedback session.\quad
+        \textbf{Last class.}\quad\textit{Project submission deadline: 17:00 today.}
+      } \\
+
+  % ── Final exam note ────────────────────────────────────────────────────────
+  \rowcolor{examrow}
+  \multicolumn{1}{>{\centering\bfseries\color{primary}}p{1.0cm}}{—}
+    & \textbf{TBD}
+    & \multicolumn{2}{p{10.75cm}}{%
+        \textbf{\color{primary}Final Examination} \quad \textit{Date \& venue TBD by the Registrar}%
+        \newline
+        \small Covers \textbf{Part 2 only}: Lectures 8--10 (Strings, Structs, File Operations) and Labs 8--10.\quad
+        Closed-book; no computer; no AI tools.
+      } \\
+
+\end{longtable}
+
+\vspace{4pt}
+{\small\color{muted}
+  \textbf{Note:} Teaching concludes on \textbf{24 September 2026} (Week 13).
+  The university midterm exam period (17--23 Aug) and final exam dates are set by the Registrar
+  and will be announced on the LMS as soon as confirmed.
+  The \textbf{final exam covers Part 2 only} (Lectures 8--12).
+  Students requiring accommodation must contact the instructor before the last class.
+}
+
+% ── Course Policies ───────────────────────────────────────────────────────────
+\section{Course Policies}
+
+\begin{description}[leftmargin=2em, labelwidth=1.8em, labelsep=0.2em, font=\bfseries]
+  \item[Attendance]
+    Students must attend at least 80\,\% of class sessions (12 of 14) to be
+    eligible to sit the Final Examination.
+    Notify the instructor \emph{before} class if you must be absent.
+
+  \item[Lab Work]
+    Lab sheets must be submitted by the end of the lab session.
+    Late submissions are not accepted without a valid excuse approved in advance.
+    Students are expected to type and run their own code during the lab.
+
+  \item[Project]
+    The project is an individual assignment; collaboration on code is not permitted.
+    Submitted code must compile and run on GCC without modification.
+    Include a short written report (one page) describing your design choices.
+
+  \item[Communication]
+    The primary communication channel is the course LMS (announced in Week 1).
+    Email responses can be expected within two working days.
+
+  \item[Devices]
+    Laptops and tablets are permitted during lecture and lab for course-related work only.
+    Mobile phones should be silenced.
+\end{description}
+
+% ── Topic–Outcome Mapping ─────────────────────────────────────────────────────
+\section{Topic--Outcome Alignment}
+
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+  \toprule
+  \textbf{Lecture} & \textbf{Learning Outcomes Addressed} \\
+  \midrule
+  Lec 1 -- Introduction       & LO1 \\
+  Lec 2 -- Data Types         & LO1, LO2 \\
+  Lec 3 -- Conditionals       & LO2 \\
+  Lec 4 -- Loops              & LO2 \\
+  Lec 5 -- Functions          & LO3 \\
+  Lec 6 -- Arrays             & LO4 \\
+  Lec 7 -- Pointers           & LO4 \\
+  Lec 8 -- Strings            & LO5 \\
+  Lec 9 -- Structs \& Unions  & LO6 \\
+  Lec 10 -- File Operations   & LO7 \\
+  All lectures                & LO8 (AI collaboration) \\
+  \bottomrule
+\end{tabularx}
+
+\vspace{20pt}
+\noindent\rule{\textwidth}{0.4pt}
+\begin{center}
+  {\small\color{muted}
+    Questions about this syllabus? Contact Dr.\ Ruslee Sutthaweekul.\\
+    This document is subject to revision; changes will be announced in class and on the LMS.
+  }
+\end{center}
+
+\end{document}
