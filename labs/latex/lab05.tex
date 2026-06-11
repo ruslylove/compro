@@ -206,4 +206,17 @@ Write \texttt{long fib(int n)} that returns the $n$-th Fibonacci number iterativ
 all on one line separated by spaces.
 \end{writecode}
 
+\begin{drawex}{Function call hierarchy and recursion tree}
+\textbf{Part A -- Hierarchy diagram.}
+A program has three functions: \texttt{main} calls \texttt{print\_fib},
+which calls \texttt{fib} for each index 0--10.
+Draw a \emph{hierarchical (tree) diagram} with \texttt{main} at the top, showing
+this call structure with labelled boxes and arrows.\\[6pt]
+\textbf{Part B -- Recursion tree.}
+The recursive definition $g(n) = n \times g(n-1)$, $g(1)=1$ was traced in Trace 2.
+Draw the \emph{recursion tree} for $g(4)$: show each call as a node labelled with its
+argument, connect parent to child with an arrow, and annotate the return value on
+the way back up.
+\end{drawex}
+
 \end{document}

@@ -26,8 +26,8 @@
 
 % ---------- Course identity (override per file if needed) ----------
 \providecommand{\CourseName}{Computer Programming}
-\providecommand{\CourseCode}{}
-\providecommand{\Semester}{}
+\providecommand{\CourseCode}{010153002}
+\providecommand{\Semester}{Semester 1/2026}
 \providecommand{\LabDuration}{2 hours (in-lab)}
 
 % ---------- Colors ----------
@@ -73,7 +73,8 @@
 % ---------- Page headers/footers ----------
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\small\CourseName}
+\fancyhead[L]{\small\CourseName\ifx\CourseCode\empty\else\ (\CourseCode)\fi}
+\fancyhead[C]{\small\Semester}
 \fancyhead[R]{\small\textbf{Lab \LabNumber:} \LabTitle}
 \fancyfoot[C]{\small\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
@@ -181,6 +182,23 @@
   arc=2pt,boxrule=0.4pt,
   top=12pt,
 }
+
+% ---------- Drawing exercise ----------
+\definecolor{drawteal}{HTML}{0D7377}
+\definecolor{drawteallight}{HTML}{D4F1F4}
+
+\newcounter{drawex}
+\newtcolorbox{drawex}[1]{
+  enhanced,breakable,
+  colback=drawteallight,colframe=drawteal!70,
+  title={\bfseries Draw on Paper \refstepcounter{drawex}\thedrawex: #1},
+  fonttitle=\color{white},
+  attach boxed title to top left={xshift=6pt,yshift=-3pt},
+  boxed title style={colback=drawteal,boxrule=0pt,arc=2pt},
+  arc=2pt,boxrule=0.4pt,
+  top=12pt,
+}
+
 
 \newcommand{\takehomebanner}{%
   \vspace{6pt}

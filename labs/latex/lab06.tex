@@ -206,4 +206,14 @@ Write a function \texttt{void reverse(int a[], int n)} that reverses the array
 \emph{in place} (no auxiliary array). Then write a \texttt{main} that demonstrates it.
 \end{writecode}
 
+\begin{drawex}{2-D array memory layout}
+The declaration \texttt{int m[3][4]} stores elements in \emph{row-major} order.\\[4pt]
+\textbf{Part A -- Grid view.} Draw three rows of four boxes each. Label every box
+with its index notation (\texttt{m[0][0]}, \texttt{m[0][1]}, \ldots, \texttt{m[2][3]}).\\[4pt]
+\textbf{Part B -- Flat memory view.} Below the grid, draw a single row of 12
+consecutive boxes showing how the same elements are laid out in memory, and
+indicate the \emph{byte offset} of each box relative to \texttt{m[0][0]}
+(assume \texttt{sizeof(int) = 4}).
+\end{drawex}
+
 \end{document}

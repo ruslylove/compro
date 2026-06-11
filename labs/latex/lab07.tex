@@ -213,6 +213,20 @@ that walks \texttt{a} with a pointer and writes both the total sum and the count
 strictly positive elements through the out-parameters. Demonstrate from \texttt{main}.
 \end{writecode}
 
+\begin{drawex}{Pointer diagram}
+Draw a memory diagram for the sequence of statements below.
+Use \textbf{named boxes} for each variable; use \textbf{arrows} for pointer relationships.
+Show the state of every box after \emph{each} assignment (you may draw four snapshots
+side by side, or annotate a single diagram with step numbers).
+\begin{lstlisting}
+int x = 5, y = 10;
+int *p = &x;   /* step 1 */
+*p = 20;       /* step 2 */
+p  = &y;       /* step 3 */
+*p = *p + 1;   /* step 4 */
+\end{lstlisting}
+\end{drawex}
+
 \vspace{4pt}
 \noindent\textbf{Heads up.} Pointers reappear in every remaining lab -- strings (Lab 8),
 structs (Lab 9), and files (Lab 10). Pointers are \(\mathbf{1/3}\) of the final exam,

@@ -229,6 +229,19 @@ combined sequence, still in ascending order, by reading one number at a time fro
 each input.
 \end{writecode}
 
+\begin{drawex}{File-reading flowchart}
+Draw a complete flowchart for a program that:
+opens a file; reads integers one at a time until EOF; accumulates their sum;
+closes the file; and prints the sum and the count.\\[4pt]
+Your diagram must include all of these elements:
+\begin{itemize}[nosep,leftmargin=*]
+  \item The \texttt{fopen} call and a \textbf{null-check} branch (``file opened?'').
+  \item The read-and-test loop (\texttt{fscanf} returns 1 while a value was read).
+  \item The \texttt{fclose} step before printing results.
+  \item Separate output for the case where the file could not be opened.
+\end{itemize}
+\end{drawex}
+
 \vspace{6pt}
 \noindent\textbf{End of the lab series.} Notice how every lab from Lab 7 onward has used pointers:
 out-parameters (Lab 7), \texttt{char *} string traversal (Lab 8), \texttt{struct *} with \texttt{->}

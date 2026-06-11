@@ -247,4 +247,22 @@ Define a \texttt{Student} struct with \texttt{name} and \texttt{age}. Write
 student in the array. Demonstrate from \texttt{main} with three students.
 \end{writecode}
 
+\begin{drawex}{Struct memory layout}
+Draw the memory layout of \texttt{Student} below as a row of labelled boxes,
+sized proportionally (\texttt{char[20]} = 20 bytes, \texttt{int} = 4 bytes,
+\texttt{double} = 8 bytes). Mark any \textbf{padding} bytes with \textbf{X}.
+Write the \emph{byte offset} of each field from the start of the struct.
+\begin{lstlisting}
+typedef struct {
+    char   name[20];
+    int    id;
+    double gpa;
+} Student;
+\end{lstlisting}
+Then draw a second diagram showing an \emph{array} \texttt{Student arr[3]}
+in memory: three consecutive \texttt{Student} blocks, each labelled
+\texttt{arr[0]}, \texttt{arr[1]}, \texttt{arr[2]}, with an arrow from a pointer
+\texttt{Student *p = arr} to \texttt{arr[0]}.
+\end{drawex}
+
 \end{document}
