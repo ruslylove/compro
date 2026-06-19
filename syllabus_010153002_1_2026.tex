@@ -1,0 +1,456 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{titlesec}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{ragged2e}
+
+\definecolor{kmutnbBlue}{HTML}{1F3A8A}
+\definecolor{accent}{HTML}{0F6FC5}
+\definecolor{lightGray}{HTML}{F2F4F7}
+\definecolor{examrow}{HTML}{FEF3C7}
+\definecolor{midrow}{HTML}{FEE2E2}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=accent,
+    urlcolor=accent,
+    citecolor=accent,
+    pdfauthor={Asst. Prof. Dr. Ruslee Sutthaweekul},
+    pdftitle={Course Syllabus -- 010153002 Computer Programming},
+}
+
+\titleformat{\section}
+  {\normalfont\large\bfseries\color{kmutnbBlue}}
+  {\thesection}{0.6em}{}
+\titlespacing*{\section}{0pt}{1.2\baselineskip}{0.4\baselineskip}
+
+\setlist[itemize]{leftmargin=1.4em,itemsep=2pt,topsep=2pt}
+\setlist[enumerate]{leftmargin=1.6em,itemsep=2pt,topsep=2pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{010153002 Computer Programming}}
+\fancyhead[R]{\small Semester 1/2026}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+
+\newcommand{\fieldlabel}[1]{\textbf{#1:}}
+
+\begin{document}
+
+%% ─── Title block ────────────────────────────────────────────────────────────
+\begin{center}
+  {\Large\bfseries\color{kmutnbBlue}
+    Electrical and Computer Engineering Course Syllabus}\\[4pt]
+  {\large\bfseries 010153002 \quad Computer Programming}\\[2pt]
+  {\normalsize Semester 1 / Academic Year 2026}\\[2pt]
+  {\small Department of Electrical and Computer Engineering (ECE)}\\
+  {\small Faculty of Engineering,
+    King Mongkut's University of Technology North Bangkok}\\[4pt]
+  {\small Instructor: Asst.\ Prof.\ Dr.\ Ruslee Sutthaweekul
+    \quad\textbar\quad
+    \href{mailto:ruslee.s@eng.kmutnb.ac.th}{ruslee.s@eng.kmutnb.ac.th}}
+\end{center}
+
+\noindent\rule{\linewidth}{0.4pt}\medskip
+
+%% ─── 1. Course Information ──────────────────────────────────────────────────
+\section*{1.\quad Course Information}
+\begin{tabular}{@{}p{4.4cm}p{10.8cm}@{}}
+  \fieldlabel{Course Number}   & 010153002 \\[2pt]
+  \fieldlabel{Course Name}     & Computer Programming \\[2pt]
+  \fieldlabel{Credits}         & 3 (2--2--5) \\[2pt]
+  \fieldlabel{Contact Hours}   & 4 hours per week (2 lecture + 2 laboratory) \\[2pt]
+  \fieldlabel{Schedule}        & Every Thursday, 13:00--17:00 \\[2pt]
+  \fieldlabel{Semester Dates}  & 22 June 2026 -- 11 October 2026 \\[2pt]
+  \fieldlabel{Course Type}     & Required \\[2pt]
+  \fieldlabel{Prerequisites}   & None \\[2pt]
+  \fieldlabel{Language}        & English (supplementary explanations in Thai available) \\[2pt]
+  \fieldlabel{Textbook}        & Kernighan, B.~W.\ \& Ritchie, D.~M.\
+                                  \textit{The C Programming Language},
+                                  2nd Edition. Prentice Hall, 1988. \\
+\end{tabular}
+
+%% ─── 2. Course Description ──────────────────────────────────────────────────
+\section*{2.\quad Course Description}
+Basic operations of a computer, required components of a computer, how hardware
+and software work together, data processing, fundamental of high level computer
+programming, application design and development, problem solving by using
+computer programming.
+
+%% ─── 3. Course Learning Outcomes ────────────────────────────────────────────
+\section*{3.\quad Course Learning Outcomes (CLOs)}
+Upon successful completion of this course, students will be able to:
+\begin{enumerate}
+  \item Understand computer systems concepts, different computing environments,
+        computer languages, and the system development life cycle.
+  \item Write programs using basic programming constructs including identifiers,
+        data types, variables, constants, input/output statements, logical and
+        comparative operators, and control structures (selections and loops).
+  \item Understand and apply expressions, precedence rules, associativity in
+        evaluating expressions, type conversions, and various statement types.
+  \item Develop and implement programs using arrays, pointers, and functions,
+        including sorting algorithms, search algorithms, and string manipulations.
+  \item Understand and utilize complex data structures such as structures, unions,
+        and enumerated types.
+  \item Recognize the importance of effective communication, ethical and
+        professional responsibilities in engineering, and the impact of engineering
+        solutions in various contexts.
+\end{enumerate}
+
+%% ─── 4. ABET Student Outcomes ───────────────────────────────────────────────
+\section*{4.\quad ABET Student Outcomes Addressed}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{X >{\centering\arraybackslash}p{3.2cm}}
+  \toprule
+  \rowcolor{kmutnbBlue!90}
+  \textcolor{white}{\textbf{ABET Student Outcome (SO)}} &
+  \textcolor{white}{\textbf{Course Learning Outcome (CLO)}} \\
+  \midrule
+  1.\ An ability to identify, formulate, and solve complex engineering problems
+      by applying principles of engineering, science, and mathematics.
+  & 1--6 \\
+  \rowcolor{lightGray}
+  2.\ An ability to apply engineering design to produce solutions that meet
+      specified needs with consideration of public health, safety, and welfare,
+      as well as global, cultural, social, environmental, and economic factors.
+  & 1--6 \\
+  3.\ An ability to communicate effectively with a range of audiences.
+  & 6 \\
+  \rowcolor{lightGray}
+  4.\ An ability to recognize ethical and professional responsibilities in
+      engineering situations and make informed judgments, which must consider
+      the impact of engineering solutions in global, economic, environmental,
+      and societal contexts.
+  & 6 \\
+  5.\ An ability to function effectively on a team whose members together
+      provide leadership, create a collaborative and inclusive environment,
+      establish goals, plan tasks, and meet objectives.
+  & --- \\
+  \rowcolor{lightGray}
+  6.\ An ability to develop and conduct appropriate experimentation, analyze
+      and interpret data, and use engineering judgment to draw conclusions.
+  & 1--6 \\
+  7.\ An ability to acquire and apply new knowledge as needed, using
+      appropriate learning strategies.
+  & 1--6 \\
+  \bottomrule
+\end{tabularx}
+
+%% ─── 5. CLO–Assessment Mapping ──────────────────────────────────────────────
+\section*{5.\quad CLO Assessment Mapping}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{X >{\centering\arraybackslash}p{2.0cm} >{\centering\arraybackslash}p{4.4cm}}
+  \toprule
+  \rowcolor{kmutnbBlue!90}
+  \textcolor{white}{\textbf{Course Learning Outcome (CLO)}} &
+  \textcolor{white}{\textbf{SO}} &
+  \textcolor{white}{\textbf{Assessment Tools}} \\
+  \midrule
+  1.\ Understand computer systems concepts, different computing environments,
+      computer languages, and the system development life cycle.
+  & 1, 7 & Exams, Quiz, Assignment, Project \\
+  \rowcolor{lightGray}
+  2.\ Write programs using basic programming constructs including identifiers,
+      data types, variables, constants, input/output statements, logical and
+      comparative operators, and control structures (selections and loops).
+  & 1, 2, 7 & Exams, Quiz, Assignment, Project \\
+  3.\ Understand and apply expressions, precedence rules, associativity in
+      evaluating expressions, type conversions, and various statement types.
+  & 1, 2, 7 & Exams, Quiz, Assignment, Project \\
+  \rowcolor{lightGray}
+  4.\ Develop and implement programs using arrays, pointers, and functions,
+      including sorting algorithms, search algorithms, and string manipulations.
+  & 1, 2, 7 & Exams, Quiz, Assignment, Project \\
+  5.\ Understand and utilize complex data structures such as structures, unions,
+      and enumerated types.
+  & 1, 7 & Exams, Quiz, Assignment, Project \\
+  \rowcolor{lightGray}
+  6.\ Recognize the importance of effective communication, ethical and
+      professional responsibilities in engineering, and the impact of engineering
+      solutions in various contexts.
+  & 1, 7 & Exams, Quiz, Assignment, Project \\
+  \bottomrule
+\end{tabularx}
+
+%% ─── 6. Weekly Schedule ─────────────────────────────────────────────────────
+\section*{6.\quad Weekly Schedule}
+
+\noindent All classes meet on \textbf{Thursday, 13:00--17:00}.\quad
+Lecture: 13:00--15:00\quad$|$\quad Laboratory: 15:00--17:00.
+
+\vspace{6pt}
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{4pt}
+
+\begin{longtable}{@{}
+    >{\centering\bfseries}p{1.0cm}
+    >{\centering}p{2.4cm}
+    >{\RaggedRight}p{5.2cm}
+    >{\RaggedRight}p{5.0cm}
+  @{}}
+  \toprule
+  \rowcolor{kmutnbBlue!90}
+  \textcolor{white}{\textbf{Week}} &
+  \textcolor{white}{\textbf{Date}} &
+  \textcolor{white}{\textbf{Lecture} \small(13:00--15:00)} &
+  \textcolor{white}{\textbf{Lab} \small(15:00--17:00)} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \rowcolor{kmutnbBlue!90}
+  \textcolor{white}{\textbf{Week}} &
+  \textcolor{white}{\textbf{Date}} &
+  \textcolor{white}{\textbf{Lecture} \small(13:00--15:00)} &
+  \textcolor{white}{\textbf{Lab} \small(15:00--17:00)} \\
+  \midrule
+  \endhead
+  \midrule
+  \multicolumn{4}{r}{\small\itshape continued on next page}\\
+  \endfoot
+  \bottomrule
+  \endlastfoot
+
+  1 & Thu 25 Jun 2026
+    & \textbf{Lec 1:} Introduction to Computer \& Programming\newline
+      \small Computer components, hardware/software interaction, compilation pipeline,
+             development environment.
+    & \textbf{Lab 1:} Introduction to C\newline
+      \small Compile and run \texttt{hello\_world.c}; explore compiler flags. \\
+
+  \rowcolor{lightGray}
+  2 & Thu 02 Jul 2026
+    & \textbf{Lec 2:} Structure of a Program \& Data Types\newline
+      \small Identifiers, variables, constants; integer, float, char;
+             \texttt{printf}/\texttt{scanf}; type conversions.
+    & \textbf{Lab 2:} Expressions \& Operators\newline
+      \small Arithmetic operators, precedence rules, pre/post increment. \\
+
+  3 & Thu 09 Jul 2026
+    & \textbf{Lec 3:} Expressions \& Operators\newline
+      \small Arithmetic, logical, and comparative operators; associativity;
+             precedence; various statement types.
+    & \textbf{Lab 3:} Expressions Practice\newline
+      \small Type conversion exercises; operator precedence tasks. \\
+
+  \rowcolor{lightGray}
+  4 & Thu 16 Jul 2026
+    & \textbf{Lec 4:} Selection -- Making Decisions\newline
+      \small \texttt{if}, \texttt{if-else}, nested \texttt{if}, \texttt{switch};
+             ternary operator.
+    & \textbf{Lab 4:} Conditional Statements\newline
+      \small Grade classifier, switch on user input. \\
+
+  5 & Thu 23 Jul 2026
+    & \textbf{Lec 5:} Repetition\newline
+      \small \texttt{while}, \texttt{do-while}, \texttt{for}; \texttt{break},
+             \texttt{continue}; nested loops.
+    & \textbf{Lab 5:} Loop Control\newline
+      \small Summation, factorial, pattern printing, input validation. \\
+
+  \rowcolor{lightGray}
+  6 & Thu 30 Jul 2026
+    & \textbf{Lec 6:} Functions \& Macros\newline
+      \small Declaration, definition, call, return values; scope; recursion;
+             \texttt{\#define} macros.
+    & \textbf{Lab 6:} Functions\newline
+      \small Write and call helper functions; implement recursive factorial. \\
+
+  7 & Thu 06 Aug 2026
+    & \textbf{Lec 7:} Arrays\newline
+      \small 1-D and 2-D arrays; traversal; passing arrays to functions;
+             sorting and searching algorithms.
+    & \textbf{Lab 7:} Arrays\newline
+      \small Statistics on scores array; bubble sort; binary search. \\
+
+  \rowcolor{lightGray}
+  8 & Thu 13 Aug 2026
+    & Part 1 Review \& Consolidation\newline
+      \small Q\&A on Lectures 1--7; past exam walkthrough; common pitfalls.
+    & \textbf{Lab 8:} Pointers (Part A)\newline
+      \small Address-of \& dereference; pointer tracing; swap via pointers.
+      \newline\small\textit{(Lec 8 content distributed as pre-reading.)} \\
+
+  % ── Midterm exam period ────────────────────────────────────────────────────
+  \rowcolor{midrow}
+  \multicolumn{1}{>{\centering\bfseries\color{kmutnbBlue}}p{1.0cm}}{---}
+    & \textbf{Thu 20 Aug 2026}
+    & \multicolumn{2}{p{10.5cm}}{%
+        \textbf{\color{kmutnbBlue}University Midterm Examination Period
+        \quad (17--23 August 2026)}%
+        \newline
+        \small \textbf{No class this week.}\quad
+        Midterm exam date \& venue announced by the Registrar.\quad
+        Covers: Lectures 1--7, Labs 1--7.
+      } \\
+
+  9 & Thu 27 Aug 2026
+    & \textbf{Lec 8:} Pointers\newline
+      \small Address-of \& dereference; pointer arithmetic;
+             \texttt{malloc}/\texttt{free}; dynamic memory.
+    & \textbf{Lab 8:} Pointers (continued)\newline
+      \small Dynamic array allocation; pointer to function. \\
+
+  \rowcolor{lightGray}
+  10 & Thu 03 Sep 2026
+    & \textbf{Lec 9:} Strings\newline
+      \small Null-terminated \texttt{char} arrays; \texttt{strlen}, \texttt{strcpy},
+             \texttt{strcmp}, \texttt{strcat}; pointer traversal; string manipulation.
+    & \textbf{Lab 9:} Strings\newline
+      \small \texttt{my\_strlen}; reverse in place; palindrome checker;
+             count vowels.
+      \newline\small\textit{Project assignment announced.} \\
+
+  11 & Thu 10 Sep 2026
+    & \textbf{Lec 10:} Enumerated, Structure, and Union Types\newline
+      \small \texttt{struct} definition; \texttt{.} vs \texttt{->};
+             pass-by-pointer; \texttt{typedef}; \texttt{union}; \texttt{enum};
+             memory padding.
+    & \textbf{Lab 10:} Structures \& Unions\newline
+      \small Student record with \texttt{->}; sort structs;
+             tagged union area calculator. \\
+
+  \rowcolor{lightGray}
+  12 & Thu 17 Sep 2026
+    & Project Work Session\newline
+      \small Instructor and TA available for project Q\&A;
+             individual code review on request.
+    & Course Review \& Exam Preparation\newline
+      \small Past exam questions; common bugs; tracing exercises. \\
+
+  13 & Thu 24 Sep 2026
+    & \multicolumn{2}{p{10.5cm}}{%
+        Course Wrap-up \& Q\&A\newline
+        \small Open Q\&A on all topics; exam strategy; feedback session.\quad
+        \textbf{Last class.}\quad
+        \textit{Project submission deadline: 17:00 today.}
+      } \\
+
+  % ── Final exam ────────────────────────────────────────────────────────────
+  \rowcolor{examrow}
+  \multicolumn{1}{>{\centering\bfseries\color{kmutnbBlue}}p{1.0cm}}{---}
+    & \textbf{TBD}
+    & \multicolumn{2}{p{10.5cm}}{%
+        \textbf{\color{kmutnbBlue}Final Examination} \quad
+        \textit{Date \& venue announced by the Registrar}%
+        \newline
+        \small Covers \textbf{Part 2 only}: Lectures 8--10 (Pointers, Strings,
+               Structs/Unions) and Labs 8--10.\quad
+               Closed-book; no computer; no AI tools.
+      } \\
+
+\end{longtable}
+
+\noindent\textit{Note:} Teaching concludes on \textbf{24 September 2026} (Week~13).
+The midterm exam period (17--23 Aug) and final exam dates are set by the Registrar.
+The \textbf{final exam covers Part 2 only} (Lectures 8--10).
+
+%% ─── 7. Assessment & Grading ────────────────────────────────────────────────
+\section*{7.\quad Assessment and Grading}
+
+\noindent
+\begin{minipage}[t]{0.52\linewidth}
+  \textbf{Assessment Breakdown}
+  \begin{itemize}
+    \item Lab Exercises, Quizzes \& Assignment \dotfill 40\%
+    \item Midterm Examination          \dotfill 30\%
+    \item Final Examination            \dotfill 30\%
+  \end{itemize}
+  \smallskip
+  \noindent\small A minimum attendance of 80\,\% (11 of 13 sessions) is
+  required to be eligible to sit the Final Examination.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.44\linewidth}
+  \textbf{Grading Scale}\par\smallskip
+  \begin{tabular}{@{}l@{\hspace{1em}}l@{\hspace{2.5em}}l@{\hspace{1em}}l@{}}
+    80--100 & A  & 60--64 & C  \\
+    75--79  & B+ & 55--59 & D+ \\
+    70--74  & B  & 50--54 & D  \\
+    65--69  & C+ & 0--49  & F  \\
+  \end{tabular}
+\end{minipage}
+
+%% ─── 8. Brief List of Topics ────────────────────────────────────────────────
+\section*{8.\quad Topics Covered}
+\begin{enumerate}[label=\alph*.]
+  \item Introduction to Computer
+  \item Introduction to Computer Language
+  \item Structure of a Program
+  \item Selection -- Making Decisions
+  \item Repetition
+  \item Arrays
+  \item Pointers
+  \item Functions
+  \item Strings
+  \item Enumerated, Structure, and Union Types
+\end{enumerate}
+
+%% ─── 9. Course Policies ─────────────────────────────────────────────────────
+\section*{9.\quad Course Policies}
+
+\noindent\textbf{Examinations.}
+Both examinations are \textbf{closed-book and paper-based} (no computer, no AI tools).
+Students must bring their student ID card.
+Questions include multiple-choice, code tracing, bug fixing, and short
+programming tasks written by hand.
+No make-up exams except with documented medical or official university reasons
+approved \emph{before} the exam date wherever possible.
+
+\medskip
+\noindent\textbf{Academic Integrity.}
+Students are expected to submit their own work.
+The use of AI tools to generate code submitted as individual work is not permitted.
+Plagiarism and academic dishonesty are subject to university disciplinary
+procedures which may include a grade of F for the course.
+
+\medskip
+\noindent\textbf{Lab Work.}
+Lab sheets must be submitted by the end of the lab session.
+Late submissions are not accepted without a valid excuse approved in advance.
+
+\medskip
+\noindent\textbf{Project.}
+Individual assignment; collaboration on code is not permitted.
+Submitted code must compile and run on GCC without modification.
+Include a short written report (one page) describing your design choices.
+
+\medskip
+\noindent\textbf{Communication.}
+Primary channel is the course LMS (announced in Week 1).
+Email responses within two working days.
+
+%% ─── 10. Course Materials ───────────────────────────────────────────────────
+\section*{10.\quad Course Materials}
+\begin{itemize}
+  \item Lecture slides: \href{https://ruslylove.github.io/compro}{ruslylove.github.io/compro}
+  \item Lab sheets: available on the course LMS before each class
+  \item Compiler: GCC (Linux/macOS) or MinGW-GCC (Windows); any IDE is acceptable
+  \item \textit{Reference:} Kernighan \& Ritchie,
+        \textit{The C Programming Language}, 2nd ed.\ (Prentice Hall, 1988)
+\end{itemize}
+
+%% ─── Footer ─────────────────────────────────────────────────────────────────
+\vfill
+\noindent\rule{\linewidth}{0.4pt}
+\begin{center}
+  \small\textit{This syllabus is subject to minor adjustments at the
+  instructor's discretion to accommodate the academic calendar and class
+  progress. Students are responsible for staying informed of any changes
+  announced in class or via the course LMS.}
+\end{center}
+
+\end{document}

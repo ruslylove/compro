@@ -26,6 +26,8 @@ mdc: true
 # lineNumbers: true
 favicon: '/img/favicon_c_new.png'
 
+download: 'https://ruslylove.github.io/compro/slides.pdf'
+
 presenter: Dr. Ruslee Sutthaweekul
 semester: 1/2026
 subject: 010153002 Computer Programming
