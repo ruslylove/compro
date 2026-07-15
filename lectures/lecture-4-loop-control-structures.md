@@ -494,7 +494,7 @@ for (i = 0, j = 10; i < j; i++, j--) {
 
 * **Problem:** Calculate factorial N (N! = 1 * 2 * ... * N).
 
-```c
+```c {monaco-run}
 #include <stdio.h>
 
 int main() {

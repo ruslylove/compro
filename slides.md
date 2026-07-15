@@ -31,6 +31,16 @@ download: 'https://ruslylove.github.io/compro/slides.pdf'
 presenter: Dr. Ruslee Sutthaweekul
 semester: 1/2026
 subject: 010153002 Computer Programming
+
+addons:
+  - slidev-addon-cpp-runner
+
+c:
+  compiler: 'gcc'
+  standard: 'c17'
+  optimization: 'O2'
+  flags: '-Wall -Wextra -pedantic'
+  alwaysShowCompilerOutput: true
 ---
 
 # Welcome to {{ $slidev.configs.subject }}
