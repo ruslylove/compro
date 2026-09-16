@@ -30,6 +30,9 @@ src: ./lecture-9-struct-union-and-enum.md
 src: ./lecture-10-file-operations.md
 ---
 ---
+src: ../assignment/pa1_raylib_group_project_2026.md
+---
+---
 src: ./lecture-11-bitwise-operations.md
 ---
 ---
