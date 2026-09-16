@@ -1,0 +1,10 @@
+/*
+ * Slidev's built-in "Go to slide" dialog (press `g`) is only pushed off-screen
+ * by a small `-top-20` offset when closed. Its autocomplete list is normally
+ * empty then, but an empty search query matches every slide (fuse.js quirk),
+ * so the full list of slide titles renders and peeks out over every slide.
+ * Hide the list until the dialog is actually open (`top-5` class applied).
+ */
+#slidev-goto-dialog:not(.top-5) .autocomplete-list {
+  display: none !important;
+}
