@@ -1,0 +1,131 @@
+% Shared preamble for Computer Programming assignment sheets.
+% Include with \input{common.tex} after \documentclass{article}.
+
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable,skins}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=blue!60!black,
+  pdfborder={0 0 0}
+}
+
+% ---------- Course identity (override per file if needed) ----------
+\providecommand{\CourseName}{Computer Programming}
+\providecommand{\CourseCode}{010153002}
+\providecommand{\Semester}{Semester 1/2026}
+
+% ---------- Colors ----------
+\definecolor{accent}{HTML}{1F4E79}
+\definecolor{accentlight}{HTML}{D9E2EC}
+\definecolor{warn}{HTML}{B45309}
+\definecolor{ok}{HTML}{166534}
+\definecolor{codebg}{HTML}{F6F8FA}
+\definecolor{codeframe}{HTML}{D0D7DE}
+\definecolor{codekw}{HTML}{0550AE}
+\definecolor{codestr}{HTML}{0A7B2C}
+\definecolor{codecom}{HTML}{6E7781}
+
+% ---------- Code listings ----------
+\lstdefinestyle{c}{
+  language=C,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{codekw}\bfseries,
+  stringstyle=\color{codestr},
+  commentstyle=\color{codecom}\itshape,
+  backgroundcolor=\color{codebg},
+  frame=single,
+  rulecolor=\color{codeframe},
+  framerule=0.4pt,
+  showstringspaces=false,
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+  tabsize=4,
+  xleftmargin=8pt,
+  xrightmargin=4pt,
+  aboveskip=6pt,
+  belowskip=6pt,
+}
+\lstset{style=c}
+
+% ---------- Section styling ----------
+\titleformat{\section}{\Large\bfseries\color{accent}}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries\color{accent!85!black}}{\thesubsection}{0.5em}{}
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+\titlespacing*{\subsection}{0pt}{8pt}{4pt}
+
+% ---------- Page headers/footers ----------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\CourseName\ifx\CourseCode\empty\else\ (\CourseCode)\fi}
+\fancyhead[C]{\small\Semester}
+\fancyhead[R]{\small\textbf{Assignment \AssignmentNumber:} \AssignmentTitle}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---------- Title block ----------
+\newcommand{\assignmentheader}{%
+  \begin{tcolorbox}[
+    enhanced,
+    colback=accentlight,
+    colframe=accent,
+    boxrule=0.5pt,
+    arc=2pt,
+    left=10pt, right=10pt, top=8pt, bottom=8pt
+  ]
+    {\Large\bfseries\color{accent} Programming Assignment \AssignmentNumber: \AssignmentTitle}\\[2pt]
+    {\small \CourseName\ifx\CourseCode\empty\else\ (\CourseCode)\fi\quad\textbar\quad \Semester}\\[1pt]
+    {\small \textbf{Posted:} \PostedDate\quad\textbar\quad \textbf{Team size:} \TeamSize}\\[1pt]
+    {\small \textbf{Submission:} \DueDate}
+  \end{tcolorbox}
+  \vspace{2pt}
+}
+
+% ---------- Custom environments ----------
+\newtcolorbox{summary}[1][Quick Reference]{
+  enhanced,breakable,
+  colback=accentlight!40,colframe=accent!70,
+  title={\bfseries #1},
+  fonttitle=\color{white},
+  attach boxed title to top left={xshift=6pt,yshift=-3pt},
+  boxed title style={colback=accent,boxrule=0pt,arc=2pt},
+  arc=2pt,boxrule=0.4pt,
+  top=12pt,
+}
+
+\newtcolorbox{rulebox}[1][The One Rule That Matters Most]{
+  enhanced,breakable,
+  colback=warn!8,colframe=warn,
+  title={\bfseries #1},
+  fonttitle=\color{white},
+  attach boxed title to top left={xshift=6pt,yshift=-3pt},
+  boxed title style={colback=warn,boxrule=0pt,arc=2pt},
+  arc=2pt,boxrule=0.4pt,
+  top=12pt,
+}
+
+\newtcolorbox{deliverables}[1][Deliverables]{
+  enhanced,breakable,
+  colback=ok!6,colframe=ok!70!black,
+  title={\bfseries #1},
+  fonttitle=\color{white},
+  attach boxed title to top left={xshift=6pt,yshift=-3pt},
+  boxed title style={colback=ok!70!black,boxrule=0pt,arc=2pt},
+  arc=2pt,boxrule=0.4pt,
+  top=12pt,
+}

@@ -1,0 +1,101 @@
+\documentclass[11pt]{article}
+\newcommand{\AssignmentNumber}{1}
+\newcommand{\AssignmentTitle}{raylib Group Project --- TA Checklist}
+\newcommand{\PostedDate}{---}
+\newcommand{\TeamSize}{---}
+\newcommand{\DueDate}{---}
+\input{common.tex}
+\usepackage{amssymb}
+\newcommand{\ybox}{$\square$\ }
+\fancyhead[R]{\small\textbf{TA Checklist:} PA1}
+
+\begin{document}
+
+\begin{tcolorbox}[
+  enhanced,
+  colback=accentlight,
+  colframe=accent,
+  boxrule=0.5pt,
+  arc=2pt,
+  left=10pt, right=10pt, top=8pt, bottom=8pt
+]
+  {\Large\bfseries\color{accent} TA Checklist: Programming Assignment 1 --- Weekly Progress Checkpoints}\\[2pt]
+  {\small \CourseName\ifx\CourseCode\empty\else\ (\CourseCode)\fi\quad\textbar\quad \Semester}\\[1pt]
+  {\small For use alongside \emph{PA1: Build a Game with raylib}. One copy per team, per checkpoint.}
+\end{tcolorbox}
+
+\vspace{4pt}
+\noindent\textbf{Team:} \makebox[4cm]{\hrulefill} \quad
+\textbf{Members:} \makebox[7cm]{\hrulefill}
+
+\section*{How to Use This Sheet}
+
+Each team submits three checkpoints before the final code submission and presentation
+(see the assignment sheet). Checkpoints are \textbf{low-stakes and not separately scored},
+but repeated missed or shallow checkpoints should be reflected in that team's
+\textbf{Teamwork \& Individual Contribution} score on the final rubric --- note it here so it
+isn't forgotten by grading time.
+
+\section*{Checkpoint 1 --- Concept \& Setup \hfill {\small \itshape target: Thu, 24 Sep 2026}}
+
+\begin{itemize}[leftmargin=1.4em,itemsep=3pt]
+  \item[\ybox] All 3 team members identified; roster matches the course portal
+  \item[\ybox] Game concept is described in 1--2 sentences and fits the course's scope
+        (playable with the topics from Lectures 1--10, not an over-ambitious engine/genre)
+  \item[\ybox] raylib toolchain confirmed working: a window opens and draws \emph{something}
+        (shape, text, or image) without crashing
+  \item[\ybox] Status note explains \emph{who} is doing \emph{what} for the coming week
+\end{itemize}
+
+\textbf{Verdict:} \ybox On track \quad \ybox Needs follow-up \quad \ybox Missing
+
+\medskip
+\textbf{Notes / feedback to send the team:}\\[28pt]
+
+\section*{Checkpoint 2 --- Core Loop \hfill {\small \itshape target: Thu, 1 Oct 2026}}
+
+\begin{itemize}[leftmargin=1.4em,itemsep=3pt]
+  \item[\ybox] Main loop follows \texttt{while (!WindowShouldClose())} with update logic and
+        drawing clearly separated (not everything crammed into one block)
+  \item[\ybox] At least one \texttt{struct} is defined \emph{and} used to hold real game state
+        (not just declared and ignored)
+  \item[\ybox] At least one array is in use for a collection of entities/data (not a handful of
+        loose variables standing in for a list)
+  \item[\ybox] Game state visibly changes frame to frame (not a static screen redrawn every tick)
+  \item[\ybox] Spot-check for disallowed scope: no C++ classes/\texttt{std::vector}/\texttt{new}
+        or unrelated external libraries
+\end{itemize}
+
+\textbf{Verdict:} \ybox On track \quad \ybox Needs follow-up \quad \ybox Missing
+
+\medskip
+\textbf{Notes / feedback to send the team:}\\[28pt]
+
+\section*{Checkpoint 3 --- Feature-Complete Draft \hfill {\small \itshape target: Thu, 8 Oct 2026}}
+
+\begin{itemize}[leftmargin=1.4em,itemsep=3pt]
+  \item[\ybox] Game is playable start to finish; a win/lose/end condition can actually be reached
+  \item[\ybox] Coverage matrix draft submitted, mapping \textbf{at least 5 of the 9} required
+        topics to specific files/functions
+  \item[\ybox] Code is split across multiple functions, not one long \texttt{main}
+  \item[\ybox] Status note credibly describes each member's contribution so far (useful evidence
+        if a teamwork dispute comes up later)
+  \item[\ybox] Any code the team can't yet explain, or that looks copy-pasted/AI-generated, is
+        flagged back to the team \emph{now} --- while there's still time to fix it
+\end{itemize}
+
+\textbf{Verdict:} \ybox On track \quad \ybox Needs follow-up \quad \ybox Missing
+
+\medskip
+\textbf{Notes / feedback to send the team:}\\[28pt]
+
+\begin{rulebox}[Escalate to Instructor If\ldots]
+\begin{itemize}[leftmargin=*,nosep]
+  \item A team misses \textbf{two or more} checkpoints without a valid reason
+  \item A team's submitted code repeatedly contains material they cannot explain
+  \item Contribution looks badly unbalanced across members (e.g.\ one member has done
+        essentially nothing across all three checkpoints)
+\end{itemize}
+\end{rulebox}
+
+\end{document}

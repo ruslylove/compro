@@ -133,6 +133,26 @@ Install raylib and see build instructions for your OS at **raylib.com** (Quickst
 
 ---
 
+## Weekly Progress Checkpoints 📅
+
+Before the final code submission and presentation, each team checks in **three times**, about once a week, so problems get caught early instead of the night before the deadline.
+
+Post each checkpoint to the course portal: a short status note (a few sentences) plus your current source code (or a link/clip showing it running).
+
+| # | Target date | What to show |
+|---|---|---|
+| 1 — Concept & Setup | Thu, 24 Sep 2026 | Team roster confirmed; game concept chosen; raylib toolchain working (a window opens and draws something) |
+| 2 — Core Loop | Thu, 1 Oct 2026 | Main game loop updates and draws every frame; at least one `struct` and one array already in use |
+| 3 — Feature-Complete Draft | Thu, 8 Oct 2026 | All core mechanics implemented and playable; coverage matrix draft showing ≥5 of the 9 required topics |
+
+---
+
+## Weekly Progress Checkpoints (continued) 📅
+
+These checkpoints are **low-stakes and not separately scored**, but a team that skips **two or more** of them without a good reason should expect this to be reflected in the **Teamwork & Individual Contribution** portion of the final rubric.
+
+---
+
 ## Deliverables 📦
 
 Submit a single ZIP file containing:

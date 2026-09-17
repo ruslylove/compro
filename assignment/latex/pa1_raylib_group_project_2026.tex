@@ -1,0 +1,214 @@
+\documentclass[11pt]{article}
+\newcommand{\AssignmentNumber}{1}
+\newcommand{\AssignmentTitle}{Build a Game with raylib}
+\newcommand{\PostedDate}{Thursday, 17 September 2026}
+\newcommand{\TeamSize}{exactly 3 students per group}
+\newcommand{\DueDate}{Code + live presentation, on a day \textbf{TBA} during the week following the Final Examination period}
+\input{common.tex}
+
+\begin{document}
+\assignmentheader
+
+\section*{The Mission}
+
+Your team's mission is to design and build a \textbf{playable game} using
+\href{https://www.raylib.com/}{\textbf{raylib}}, a simple C library for graphics, input, and audio.
+
+\textbf{Your goal:} a complete, working game --- written in \textbf{plain C}, using only the
+programming concepts covered in this course --- that your team can confidently explain, line by
+line, in front of the class.
+
+This is not just a coding exercise. It is a test of whether your team truly \textbf{understands}
+every piece of code you submit.
+
+\begin{rulebox}
+\textbf{If you (or your teammates) cannot explain a piece of code, or it does not relate to what
+we've studied in class, it earns you no score for that part --- no matter how impressive it looks.}
+
+\medskip
+Copy-pasted tutorial code, AI-generated boilerplate no one understands, and unrelated
+libraries/features are all treated the same way: \textbf{unexplainable code = zero credit for
+that section}, and it may reduce your whole-project score.
+\end{rulebox}
+
+\section*{Scope: What You May Use}
+
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Allowed:}
+\begin{itemize}[leftmargin=*,nosep]
+  \item \textbf{Plain C} (the course's C17/K\&R style) --- no C++ classes, STL, or \texttt{.cpp} files
+  \item \textbf{raylib's C API only} --- \texttt{InitWindow}, \texttt{BeginDrawing}/\texttt{EndDrawing},
+        \texttt{DrawText}, \texttt{DrawRectangle}, \texttt{IsKeyDown}, \texttt{LoadSound}, etc.
+        (raylib is your ``screen and controller,'' not a shortcut around writing your own game logic)
+  \item Every concept from \textbf{Lectures 1--10} of this course (see the checklist below)
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Not allowed / flagged as ``unrelated code'':}
+\begin{itemize}[leftmargin=*,nosep]
+  \item C++ features (classes, \texttt{std::vector}, templates, \texttt{new}/\texttt{delete}, \ldots)
+  \item External game engines, physics/AI libraries, or frameworks beyond raylib
+  \item Multithreading, networking, or other techniques never covered in class
+  \item Large chunks of code lifted from tutorials that your team cannot explain
+\end{itemize}
+\end{minipage}
+
+\section*{Required Topic Coverage}
+
+Your game's \textbf{logic} (not just its graphics) must clearly use the concepts below. You will
+present a \textbf{coverage matrix} showing where each one lives in your code. Your team should aim
+to \textbf{clearly demonstrate at least 8 of these 9} in working, explainable code. Using a topic
+just to ``check a box'' without a real purpose will not count.
+
+\begin{center}
+\begin{tabular}{@{}clp{7.7cm}@{}}
+\toprule
+\# & Topic (Lecture) & Typical use in a game \\
+\midrule
+1 & Data types, variables, constants & Player stats, screen size constants \\
+2 & Expressions \& operators & Score math, collision checks \\
+3 & Selection (\texttt{if}/\texttt{switch}) & Game states, win/lose conditions \\
+4 & Repetition (loops) & The main game loop, animations \\
+5 & Functions, macros, recursion & Modular update/draw functions \\
+6 & Arrays (1D/2D) + sorting/searching & Entities, grids, leaderboard \\
+7 & Pointers \& dynamic memory (\texttt{malloc}/\texttt{free}) & Growing lists of bullets/enemies \\
+8 & Strings & Player name, HUD text, messages \\
+9 & \texttt{struct} / \texttt{union} / \texttt{enum} & Game objects, game-state enum \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{Game Idea Starters}
+
+Pick one, combine ideas, or bring your own (check with the instructor first):
+
+\begin{itemize}[leftmargin=*,nosep]
+  \item \textbf{Snake} --- array/grid of segments, struct for each segment, growing the snake with dynamic memory
+  \item \textbf{Breakout / Brick Breaker} --- 2D array of bricks (struct per brick), collision via expressions
+  \item \textbf{Space Shooter} --- dynamic array (pointers) of bullets/enemies, struct per entity, sorted high-score list
+  \item \textbf{Memory / Card-Matching Game} --- 2D array shuffled with \texttt{rand()}, struct per card, string comparison
+  \item \textbf{Tic-Tac-Toe / Connect Four} (vs.\ simple AI) --- 2D array board, recursion for the AI, enum for game state
+  \item \textbf{Maze Game} --- 2D array maze, recursion or loops for movement/pathfinding
+\end{itemize}
+
+\section*{Getting Started: Minimal raylib Skeleton}
+
+\begin{lstlisting}
+#include "raylib.h"
+
+int main(void) {
+    const int screenWidth = 800;
+    const int screenHeight = 450;
+
+    InitWindow(screenWidth, screenHeight, "My Game");
+    SetTargetFPS(60);
+
+    while (!WindowShouldClose()) {
+        // 1. Update game state (your functions, structs, arrays...)
+
+        // 2. Draw
+        BeginDrawing();
+            ClearBackground(RAYWHITE);
+            DrawText("Hello, raylib!", 190, 200, 20, LIGHTGRAY);
+        EndDrawing();
+    }
+
+    CloseWindow();
+    return 0;
+}
+\end{lstlisting}
+
+Install raylib and see build instructions for your OS at \textbf{raylib.com} (Quickstart).
+
+\section*{Weekly Progress Checkpoints}
+
+Before the final code submission and presentation, each team checks in \textbf{three times},
+about once a week, so problems get caught early instead of the night before the deadline.
+Post each checkpoint to the course portal: a short status note (a few sentences) plus your
+current source code (or a link/clip showing it running).
+
+\begin{center}
+\begin{tabular}{@{}lp{2.6cm}p{8.3cm}@{}}
+\toprule
+Checkpoint & Target date & What to show \\
+\midrule
+1 --- Concept \& Setup & Thu, 24 Sep 2026 & Team roster confirmed; game concept chosen; raylib
+toolchain working (a window opens and draws something, even just a colored rectangle) \\
+2 --- Core Loop & Thu, 1 Oct 2026 & The main game loop updates and draws every frame; at least
+one \texttt{struct} and one array already in use for real game state \\
+3 --- Feature-Complete Draft & Thu, 8 Oct 2026 & All core mechanics implemented and playable;
+coverage matrix draft showing at least 5 of the 9 required topics in use \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+These checkpoints are low-stakes and not separately scored, but a team that skips two or more of
+them without a good reason should expect this to be reflected in the \textbf{Teamwork \&
+Individual Contribution} portion of the final rubric below.
+
+\begin{deliverables}
+Submit a single ZIP file containing:
+\begin{enumerate}[leftmargin=*,nosep]
+  \item \textbf{Source Code} --- organized \texttt{.c}/\texttt{.h} files (no single 1000-line \texttt{main.c} --- use functions!)
+  \item \textbf{Coverage Matrix} --- a short document (or slide) mapping each topic from Lectures 1--10 to the exact file/function where it's used
+  \item \textbf{Design Report (PDF)} --- brief description of the game, a flowchart of the main game loop, and each team member's contribution
+  \item \textbf{Compile Instructions} --- the exact command(s) to build your game (no Makefile knowledge required --- a plain \texttt{gcc ... -lraylib ...} command is fine)
+\end{enumerate}
+\end{deliverables}
+
+\section*{The 15-Minute Presentation}
+
+Each group presents \textbf{live, in front of the class}, for \textbf{15 minutes total}:
+
+\begin{center}
+\begin{tabular}{@{}lp{9cm}@{}}
+\toprule
+Time & Segment \\
+\midrule
+0--2 min & Game concept \& design overview (whole team) \\
+2--8 min & Live gameplay demo \\
+8--13 min & Code walkthrough --- each member explains \textbf{the part they personally wrote} \\
+13--15 min & Instructor Q\&A --- any member may be asked about \textbf{any} part of the code \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{All 3 members must speak} and must each be able to answer questions about the whole
+project, not only their own section.
+
+\section*{Grading Rubric (100 points)}
+
+\begin{center}
+\begin{tabular}{@{}lcp{6.7cm}@{}}
+\toprule
+Category & Points & Focus \\
+\midrule
+Core Gameplay \& Functionality & 40 & Game runs, is playable, has clear win/lose logic \\
+Concept Coverage \& Correct Use & 25 & Correct, purposeful use of $\geq$8 topics from the checklist \\
+Code Quality \& Organization & 15 & Functions, meaningful names, no dead/unrelated code \\
+Presentation \& Understanding & 10 & Every member explains their code clearly and fluently \\
+Teamwork \& Individual Contribution & 10 & Balanced contribution across all 3 members \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Reminder:} any code a team cannot explain, or that falls outside course topics, scores
+\textbf{0} for that portion --- regardless of how the rest of the rubric is scored.
+
+\section*{Submission}
+
+\begin{itemize}[leftmargin=*,nosep]
+  \item \textbf{What:} One ZIP per team (source code + coverage matrix + design report PDF)
+  \item \textbf{Where:} Course portal
+  \item \textbf{When:} Code submission and live presentation both happen on the same \textbf{TBA}
+        day, sometime in the week following Final Examinations --- exact day and venue will be
+        posted on the course portal once scheduled
+\end{itemize}
+
+Only one submission per team --- make sure all 3 names are listed in the design report.
+
+\bigskip
+\centerline{\textbf{Good luck! Build something you're proud of --- and something every teammate can explain with confidence.}}
+
+\end{document}
